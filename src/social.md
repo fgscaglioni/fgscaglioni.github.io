@@ -1,4 +1,4 @@
-# Social
+# Redes Sociais
 
 - [<i class="fa-brands fa-github"></i> Github](http://github.com/fgscaglioni/)
 - [<i class="fa-brands fa-medium"></i> Medium](https://medium.com/@fgscaglioni)

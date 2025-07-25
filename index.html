@@ -1,7 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6T5HCKSVKG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6T5HCKSVKG');
+  </script>
   <meta charset="UTF-8">
   <title>@fgscaglioni</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -10,35 +18,22 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="/assets/data.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
 <body>
   <div id="app"></div>
-
   <script >
     window.$docsify = {
+      homepage: '/src/home.md',
+      // notFoundPage: '404.md',
       loadSidebar: false,
       loadNavbar: true,
       name: '',
       repo: '',
-      vueComponents: {
-        'button-counter': {
-          template: `
-        <button @click="count += 1">
-          You clicked me {{ count }} times
-        </button>
-      `,
-          data() {
-            console.log('cheguei aqui')
-
-            return {
-              count: 0,
-            };
-          },
-        },
-      },
     }
   </script>
 
@@ -47,7 +42,6 @@
   <!-- Production -->
   <!-- <script src="//cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script> -->
   <!-- Development -->
-  <script src="/assets/data.js"></script>
 </body>
 
 </html>
