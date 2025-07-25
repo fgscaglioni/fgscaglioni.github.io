@@ -21,15 +21,12 @@
 			myStack: []
 		}),
 		async mounted() {
-			console.log('Mounted stack component');
 			try {
 				const response = await fetch('assets/stack.json');
 				if (!response.ok) {
 					throw new Error(`Erro HTTP: ${response.status}`);
 				}
 				const data = await response.json();
-				
-				console.log(data);
 				this.myStack = data;
 			} catch (error) {
 				console.error('Erro ao carregar o JSON:', error);
