@@ -1,39 +1,51 @@
 ---
-import { my_stack } from '../data/siteData';
+import { my_stack } from "../data/siteData";
 
-// We map through the object property keys to display them nicely
-const stackEntries = Object.entries(my_stack).map(([key, category]) => category);
+const stackEntries = Object.entries(my_stack).map(([_, category]) => category);
 ---
 
-<div class="space-y-12">
-  {stackEntries.map((category) => (
-    <div class="group">
-      <h3 class="text-xl font-bold mb-4 pb-2 border-b-2 inline-block transition-colors" style={`border-color: ${category.color}`}>
-        {category.title}
-      </h3>
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-        {category.data.map((item) => {
-          const Tag = item.url ? 'a' : 'div';
-          const props = item.url ? { href: item.url, target: '_blank', rel: 'noopener noreferrer' } : {};
-          
-          return (
-            <Tag
-              {...props}
-              class="flex flex-col items-center p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-all sm:p-6"
-            >
-              <div class="h-16 w-16 mb-4 flex items-center justify-center p-2 rounded-full bg-white object-contain shadow-sm border border-gray-100 overflow-hidden">
-                <img 
-                  src={item.image} 
-                  alt={`${item.name} logo`} 
-                  class="max-h-full max-w-full object-contain" 
-                  loading="lazy"
-                />
-              </div>
-              <span class="text-sm font-medium text-center text-gray-700">{item.name}</span>
-            </Tag>
-          )
-        })}
+<div class="space-y-10">
+  {
+    stackEntries.map((category) => (
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div
+            class="w-2 h-2 rounded-full flex-shrink-0"
+            style={`background-color: ${category.color}`}
+          />
+          <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-widest">
+            {category.title}
+          </h3>
+          <div class="flex-grow h-px bg-white/5" />
+        </div>
+        <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-3">
+          {category.data.map((item) => {
+            const Tag = item.url ? "a" : "div";
+            const props = item.url
+              ? { href: item.url, target: "_blank", rel: "noopener noreferrer" }
+              : {};
+
+            return (
+              <Tag
+                {...props}
+                class="group flex flex-col items-center gap-2.5 p-3 rounded-xl glass hover:border-white/20 hover:bg-white/5 transition-all duration-200"
+              >
+                <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-white/5 group-hover:bg-white/10 transition-colors overflow-hidden p-1.5">
+                  <img
+                    src={item.image}
+                    alt={`${item.name} logo`}
+                    class="max-h-full max-w-full object-contain"
+                    loading="lazy"
+                  />
+                </div>
+                <span class="text-xs text-center text-slate-500 group-hover:text-slate-300 transition-colors leading-tight">
+                  {item.name}
+                </span>
+              </Tag>
+            );
+          })}
+        </div>
       </div>
-    </div>
-  ))}
+    ))
+  }
 </div>
