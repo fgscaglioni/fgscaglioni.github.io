@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Sidebar from '../components/Sidebar.astro';
+import StackList from '../components/StackList.astro';
+---
+
+<BaseLayout>
+  <Sidebar slot="sidebar" />
+  <Header slot="header" />
+
+  <article class="prose prose-slate max-w-none">
+    <div class="flex flex-col items-center sm:flex-row sm:items-start gap-6 mb-8">
+      <img src="https://pbs.twimg.com/profile_images/1090259717975244801/3LzbosJc_400x400.jpg" alt="profile-image" class="w-24 h-24 rounded-full shadow-md object-cover" />
+      <div>
+        <h1 class="text-4xl font-extrabold mb-2 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">@fgscaglioni</h1>
+        <blockquote class="text-xl text-gray-600 border-l-4 border-blue-500 pl-4 py-1 italic mb-4">
+          Olá, me chamo <strong>Fabrício Scaglioni</strong>.
+        </blockquote>
+        <div class="flex flex-wrap gap-4 text-sm font-medium">
+          <a href="http://github.com/fgscaglioni/" target="_blank" class="flex items-center gap-1 hover:text-blue-600 transition-colors bg-gray-100 px-3 py-1 rounded-full"><i class="fa-brands fa-github"></i> Github</a>
+          <a href="https://medium.com/@fgscaglioni" target="_blank" class="flex items-center gap-1 hover:text-blue-600 transition-colors bg-gray-100 px-3 py-1 rounded-full"><i class="fa-brands fa-medium"></i> Medium</a>
+          <a href="https://www.linkedin.com/in/fgscaglioni/" target="_blank" class="flex items-center gap-1 hover:text-blue-600 transition-colors bg-gray-100 px-3 py-1 rounded-full"><i class="fa-brands fa-linkedin"></i> Linkedin</a>
+          <a href="https://x.com/fgscaglioni" target="_blank" class="flex items-center gap-1 hover:text-blue-600 transition-colors bg-gray-100 px-3 py-1 rounded-full"><i class="fa-brands fa-x"></i> X (Antigo Twitter)</a>
+          <a href="https://www.instagram.com/fgscaglioni" target="_blank" class="flex items-center gap-1 hover:text-blue-600 transition-colors bg-gray-100 px-3 py-1 rounded-full"><i class="fa-brands fa-instagram"></i> Instagram</a>
+        </div>
+      </div>
+    </div>
+
+    <section class="mb-12">
+      <h2 class="text-3xl font-bold mb-4 pb-2 border-b">Sobre mim</h2>
+      <p class="text-lg leading-relaxed text-gray-700 mb-4">
+        Atuo como desenvolvedor de sistemas há mais de 15 anos, com sólida experiência em todo o ciclo de vida do desenvolvimento de software — passando por planejamento, arquitetura de soluções, frontend e backend. Atualmente, sou doutorando em <strong>Ciência da Computação</strong> pela Universidade Federal de Pelotas (UFPel), conduzindo pesquisas na área de <strong>Inteligência Artificial aplicada à Educação</strong>.
+      </p>
+      <p class="text-lg leading-relaxed text-gray-700">
+        Sou movido pelo desafio intelectual, mantendo-me em constante aprendizado e explorando novas abordagens tecnológicas para construir sistemas eficientes e inovadores capazes de gerar impacto tangível nas organizações.
+      </p>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-3xl font-bold mb-4 pb-2 border-b">Abordagem Técnica</h2>
+      <p class="text-lg leading-relaxed text-gray-700 mb-4">
+        Acredito no pragmatismo tecnológico: não me restrinjo a modismos, mas seleciono o ferramental que melhor atenda às reais necessidades de arquitetura e performance do negócio para solucionar os desafios em questão de forma robusta e sustentável. Ao longo da minha trajetória, estive exposto a uma ampla gama de paradigmas atuando com ecossistemas em PHP, consolidando sistemas web utilizando os pilares clássicos e evoluindo para arquiteturas modernas utilizando linguagens fluentes, como TypeScript e frameworks reativos como React e Angular.
+      </p>
+      <p class="text-lg leading-relaxed text-gray-700 mb-8">
+        Abaixo consolido minhas principais proficiências com arquiteturas de software englobando bancos de dados, metodologias ágeis e integrações com Machine Learning:
+      </p>
+      
+      <!-- Componente Dinâmico -->
+      <StackList />
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-3xl font-bold mb-4 pb-2 border-b">Formação acadêmica</h2>
+      <ul class="space-y-4">
+        <li class="flex items-start gap-3 bg-white p-4 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+          <div class="mt-1 text-blue-500"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div>
+            <a href="https://institucional.ufpel.edu.br/cursos/cod/8102" target="_blank" class="font-bold text-lg hover:text-blue-600 transition-colors">UFPel</a>
+            <span class="text-gray-600 block">Doutorado em Ciência da Computação (2024-<strong>Cursando</strong>)</span>
+          </div>
+        </li>
+        <li class="flex items-start gap-3 bg-white p-4 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+          <div class="mt-1 text-blue-500"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div>
+            <a href="https://institucional.ufpel.edu.br/cursos/cod/7057" target="_blank" class="font-bold text-lg hover:text-blue-600 transition-colors">UFPel</a>
+            <span class="text-gray-600 block">Mestrado em Ciência da Computação (2019-2021)</span>
+          </div>
+        </li>
+        <li class="flex items-start gap-3 bg-white p-4 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+          <div class="mt-1 text-blue-500"><i class="fa-solid fa-certificate"></i></div>
+          <div>
+            <a href="https://www.senacrs.com.br/unidade/78" target="_blank" class="font-bold text-lg hover:text-blue-600 transition-colors">UniSenac</a>
+            <span class="text-gray-600 block">Especialização em Gerenciamento de Projetos (2009-2010)</span>
+          </div>
+        </li>
+        <li class="flex items-start gap-3 bg-white p-4 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+          <div class="mt-1 text-blue-500"><i class="fa-solid fa-certificate"></i></div>
+          <div>
+            <a href="https://www.senacrs.com.br/unidade/78" target="_blank" class="font-bold text-lg hover:text-blue-600 transition-colors">UniSenac</a>
+            <span class="text-gray-600 block">Tecnólogo em Análise e Desenvolvimento de Sistemas (2005-2007)</span>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+      <div>
+        <h2 class="text-3xl font-bold mb-4 pb-2 border-b">Idiomas</h2>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2"><div class="w-2 h-2 bg-green-500 rounded-full"></div> <strong>Português</strong> - Nativo</li>
+          <li class="flex items-center gap-2"><div class="w-2 h-2 bg-yellow-500 rounded-full"></div> <strong>Inglês</strong> - Intermediário</li>
+          <li class="flex items-center gap-2"><div class="w-2 h-2 bg-orange-500 rounded-full"></div> <strong>Espanhol</strong> - Básico</li>
+          <li class="flex items-center gap-2"><div class="w-2 h-2 bg-red-500 rounded-full"></div> <strong>Francês</strong> - Básico</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-3xl font-bold mb-4 pb-2 border-b">Quer saber mais?</h2>
+        <ul class="space-y-3">
+          <li>
+            <a href="/downloads" class="flex items-center gap-2 hover:text-blue-600 transition-colors group">
+              <div class="w-8 h-8 rounded bg-gray-100 flex items-center justify-center group-hover:bg-blue-100 transition-colors"><i class="fa-solid fa-download"></i></div>
+              Downloads
+            </a>
+          </li>
+          <li>
+            <a href="/experience" class="flex items-center gap-2 hover:text-blue-600 transition-colors group">
+              <div class="w-8 h-8 rounded bg-gray-100 flex items-center justify-center group-hover:bg-blue-100 transition-colors"><i class="fa-solid fa-briefcase"></i></div>
+              Experiência
+            </a>
+          </li>
+          <li>
+            <a href="/social" class="flex items-center gap-2 hover:text-blue-600 transition-colors group">
+              <div class="w-8 h-8 rounded bg-gray-100 flex items-center justify-center group-hover:bg-blue-100 transition-colors"><i class="fa-solid fa-network-wired"></i></div>
+              Redes Sociais Acadêmicas
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

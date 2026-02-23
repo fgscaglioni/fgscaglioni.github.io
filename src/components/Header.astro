@@ -1,0 +1,25 @@
+---
+// src/components/Header.astro
+---
+
+<header class="flex justify-between items-center pb-4 border-b mb-8">
+  <div>
+    <a href="/" class="text-xl font-bold hover:text-blue-600 transition-colors">Home</a>
+  </div>
+  
+  <nav class="flex items-center space-x-6 relative group">
+    <div class="cursor-pointer flex items-center gap-2 hover:text-blue-600">
+      <i class="fa-solid fa-bars"></i> Menu
+    </div>
+    
+    <!-- Dropdown menu -->
+    <div class="absolute right-0 top-full mt-2 w-48 bg-white border rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+      <a href="/downloads" class="block px-4 py-2 hover:bg-gray-50 flex items-center gap-2">
+        <i class="fa-solid fa-download"></i> Downloads
+      </a>
+      <a href="https://medium.com/@fgscaglioni" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 hover:bg-gray-50 flex items-center gap-2">
+        <i class="fa-brands fa-medium"></i> Posts
+      </a>
+    </div>
+  </nav>
+</header>

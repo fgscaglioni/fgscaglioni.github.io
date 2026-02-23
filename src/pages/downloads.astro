@@ -1,0 +1,114 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Sidebar from "../components/Sidebar.astro";
+
+const articles = [
+  {
+    type: "Autor",
+    items: [
+      {
+        title:
+          "Enrollment Recommendation System based on Student Profile and Progress",
+        url: "https://doi.org/10.1109/LACLO56648.2022.10013424",
+        date: "Jan/2023",
+      },
+    ],
+  },
+  {
+    type: "Coautor",
+    items: [
+      {
+        title:
+          "Effectiveness of an app-delivered, self-management exercise program in public safety workers with chronic low back pain: a randomized controlled trial",
+        url: "/public/papers/1-s2.0-S1413355525000619-main.pdf",
+        date: "Jul/2025",
+      },
+      {
+        title:
+          "Effectiveness of m-health-based core strengthening exercise and health education for public safety workers with chronic non-specific low back pain: study protocol for a superiority randomized controlled trial (SAFEBACK)",
+        url: "/public/papers/s13063-023-07833-9.pdf",
+        date: "Dez/2023",
+      },
+    ],
+  },
+];
+
+const dissertations = [
+  {
+    title:
+      "Sistema de Recomendação de Matrículas a partir do Perfil e do Progresso dos Estudantes no Contexto de Campus Inteligente",
+    url: "http://guaiaca.ufpel.edu.br/xmlui/handle/prefix/12891",
+  },
+];
+---
+
+<BaseLayout title="Downloads | @fgscaglioni">
+  <Sidebar slot="sidebar" />
+  <Header slot="header" />
+
+  <article>
+    <h1 class="text-4xl font-extrabold mb-4 text-gray-900">Downloads</h1>
+    <p class="text-lg text-gray-600 mb-10 pb-4 border-b">
+      Aqui eu disponibilizo arquivos para download.
+    </p>
+
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+        <i class="fa-solid fa-file-pdf text-red-500"></i> Artigos publicados
+      </h2>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        {
+          articles.map((category) => (
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+              <h3 class="text-xl font-semibold mb-4 text-gray-800 border-b pb-2">
+                {category.type}
+              </h3>
+              <ul class="space-y-4">
+                {category.items.map((item) => (
+                  <li class="flex flex-col gap-1">
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="font-medium text-blue-600 hover:text-blue-800 transition-colors leading-snug"
+                    >
+                      {item.title}
+                    </a>
+                    <span class="text-sm text-gray-500 font-mono bg-gray-50 px-2 py-1 rounded w-fit">
+                      {item.date}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+        <i class="fa-solid fa-book text-blue-500"></i> Dissertação
+      </h2>
+      <ul class="space-y-4">
+        {
+          dissertations.map((item) => (
+            <li class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:border-blue-200 transition-colors">
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="font-medium text-blue-600 hover:text-blue-800 transition-colors text-lg flex items-center justify-between"
+              >
+                <span>{item.title}</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-sm" />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </article>
+</BaseLayout>

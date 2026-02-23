@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Sidebar from '../components/Sidebar.astro';
+
+const socialLinks = [
+  { name: 'Github', url: 'http://github.com/fgscaglioni/', icon: 'fa-github', color: 'text-gray-900 bg-gray-100' },
+  { name: 'Medium', url: 'https://medium.com/@fgscaglioni', icon: 'fa-medium', color: 'text-gray-900 bg-gray-100' },
+  { name: 'Linkedin', url: 'https://www.linkedin.com/in/fgscaglioni/', icon: 'fa-linkedin', color: 'text-blue-600 bg-blue-50' },
+  { name: 'X (Antigo Twitter)', url: 'https://x.com/fgscaglioni', icon: 'fa-x', color: 'text-black bg-gray-100' },
+  { name: 'Instagram', url: 'https://www.instagram.com/fgscaglioni', icon: 'fa-instagram', color: 'text-pink-600 bg-pink-50' }
+];
+
+const academicLinks = [
+  { name: 'Google Scholar', url: 'https://scholar.google.com/citations?user=fZEKGvUAAAAJ', icon: 'fa-google', color: 'text-blue-500 bg-blue-50' },
+  { name: 'Kaggle', url: 'https://www.kaggle.com/fgscaglioni', icon: 'fa-k', color: 'text-blue-400 bg-blue-50' },
+  { name: 'Lattes', url: 'https://lattes.cnpq.br/0870115674210417', icon: 'fa-book', color: 'text-green-600 bg-green-50' },
+  { name: 'Orcid', url: 'https://orcid.org/0000-0002-9749-2077', icon: 'fa-id-badge', color: 'text-lime-600 bg-lime-50' },
+  { name: 'Parsifal', url: 'https://parsif.al/fgscaglioni/', icon: 'fa-p', color: 'text-purple-600 bg-purple-50' },
+  { name: 'Researchgate', url: 'https://www.researchgate.net/profile/Fabricio-Scaglioni', icon: 'fa-r', color: 'text-teal-600 bg-teal-50' },
+  { name: 'ResearchId', url: 'https://researchid.co/fgscaglioni', icon: 'fa-id-card', color: 'text-gray-700 bg-gray-100' },
+  { name: 'Semantic Scholar', url: 'https://www.semanticscholar.org/author/2202206947', icon: 'fa-graduation-cap', color: 'text-indigo-600 bg-indigo-50' }
+];
+---
+
+<BaseLayout title="Social e Acadêmico | @fgscaglioni">
+  <Sidebar slot="sidebar" />
+  <Header slot="header" />
+
+  <article>
+    <h1 class="text-4xl font-extrabold mb-4 text-gray-900">Redes Sociais e Científicas</h1>
+    <p class="text-lg text-gray-600 mb-10 pb-4 border-b">Abaixo uma lista de todos os perfis profissionais, sociais e acadêmicos.</p>
+    
+    <div class="grid md:grid-cols-2 gap-10">
+      
+      <section>
+        <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+          <i class="fa-solid fa-users text-blue-500"></i> Redes Sociais
+        </h2>
+        <div class="flex flex-col gap-3">
+          {socialLinks.map(link => (
+            <a href={link.url} target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-4 bg-white border border-gray-100 rounded-lg shadow-sm hover:shadow-md transition-all hover:border-blue-200">
+              <div class="flex items-center gap-4">
+                <div class={`w-10 h-10 rounded-full flex items-center justify-center ${link.color}`}>
+                  <i class={`fa-brands ${link.icon} text-lg`}></i>
+                </div>
+                <span class="font-medium text-gray-800 group-hover:text-blue-600 transition-colors">{link.name}</span>
+              </div>
+              <i class="fa-solid fa-chevron-right text-gray-300 group-hover:text-blue-500 transition-colors text-sm"></i>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+          <i class="fa-solid fa-microscope text-teal-500"></i> Redes Acadêmicas
+        </h2>
+        <div class="flex flex-col gap-3">
+          {academicLinks.map(link => (
+            <a href={link.url} target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-4 bg-white border border-gray-100 rounded-lg shadow-sm hover:shadow-md transition-all hover:border-teal-200">
+              <div class="flex items-center gap-4">
+                <div class={`w-10 h-10 rounded-full flex items-center justify-center ${link.color}`}>
+                  <i class={`fa-solid ${link.icon} text-lg`}></i>
+                </div>
+                <span class="font-medium text-gray-800 group-hover:text-teal-600 transition-colors">{link.name}</span>
+              </div>
+              <i class="fa-solid fa-arrow-up-right-from-square text-gray-300 group-hover:text-teal-500 transition-colors text-sm"></i>
+            </a>
+          ))}
+        </div>
+      </section>
+
+    </div>
+  </article>
+</BaseLayout>
