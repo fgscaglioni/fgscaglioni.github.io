@@ -78,3 +78,15 @@ export const my_stack = {
         ]
     }
 };
+
+export const siteLinks = {
+    main: [
+        { href: "/", label: "Início", icon: "fa-house" },
+        { href: "/downloads", label: "Downloads", icon: "fa-download", newTab: false },
+        { href: "/experience", label: "Experiência", icon: "fa-briefcase" },
+        { href: "/social", label: "Social", icon: "fa-hashtag" },
+    ],
+    external: [
+        { href: "https://medium.com/@fgscaglioni", label: "Posts", icon: "fa-medium", newTab: true }
+    ]
+};

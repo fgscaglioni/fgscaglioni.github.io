@@ -1,26 +1,27 @@
 ---
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import { siteLinks } from "../data/siteData";
 
 const currentPath = Astro.url.pathname;
-
-const links = [
-  { href: '/', label: '🏠 Home' },
-  { href: '/experience', label: '🗂️ Jobs' },
-  { href: '/social', label: '💬 Social' }
-];
 ---
 
 <div class="h-full py-8 pr-8 border-r">
   <h2 class="text-2xl font-bold mb-6 tracking-tight">Menu</h2>
-  
+
   <nav class="flex flex-col space-y-3">
-    {links.map(link => (
-      <a 
-        href={link.href} 
-        class={`text-lg transition-colors hover:text-blue-600 ${currentPath === link.href || currentPath === link.href + '/' ? 'font-bold text-blue-600' : 'text-gray-700'}`}
-      >
-        {link.label}
-      </a>
-    ))}
+    {
+      siteLinks.main.map((link) => (
+        <a
+          href={link.href}
+          class={`text-lg transition-colors hover:text-blue-600 flex items-center gap-2 ${
+            currentPath === link.href || currentPath === link.href + "/"
+              ? "font-bold text-blue-600"
+              : "text-gray-700"
+          }`}
+        >
+          <i class={`fa-solid ${link.icon} w-5 text-center`} /> {link.label}
+        </a>
+      ))
+    }
   </nav>
 </div>
