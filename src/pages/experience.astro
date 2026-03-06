@@ -6,58 +6,82 @@ import Sidebar from '../components/Sidebar.astro';
 // Data adapted from the markdown source
 const experiences = [
   {
-    role: "Analista de TI",
+    role: "Analista de TI (Engenheiro de Software Sênior)",
     company: "Universidade Federal de Pelotas",
+    tag: "Tempo Integral",
     url: "https://ufpel.edu.br/",
-    period: "11/2008 – Atualmente",
+    period: "Nov/2008 – Atualmente",
     current: true,
-    description: "Servidor público, responsável pela manutenção e evolução do sistema acadêmico institucional (GOL → Cobalto). Desenvolvi módulos em PHP/CodeIgniter e iniciativas com NestJS e o aplicativo universitário mobile.",
-    skills: ["CodeIgniter", "PHP", "NestJS", "PostgreSQL", "MongoDB", "Redis", "Docker", "Gitlab"]
+    description: [
+      "Atuo como Desenvolvedor Fullstack no projeto Cobalto, um ecossistema acadêmico complexo e modular. Migrei arquiteturas legadas, como o sistema GOL, integrando-as aos novos padrões da instituição.",
+      "Idealizador e desenvolvedor principal do Aplicativo Universitário, centralizando notas, frequências e serviços para dezenas de milhares de estudantes.",
+      "Integrei a equipe responsável por estruturar e desenvolver a transição de endpoints PHP legados para uma API moderna utilizando NestJS e Node.js em containers."
+    ],
+    skills: ["PHP", "Laravel", "NestJS", "CodeIgniter", "PostgreSQL", "MongoDB", "Scrum", "SOLID", "CI/CD"]
   },
   {
-    role: "Chefe de Seção",
+    role: "Chefe da Seção de Informações Institucionais",
     company: "Universidade Federal de Pelotas",
+    tag: "Tempo Integral",
     url: "https://ufpel.edu.br/",
-    period: "07/2021 – 12/2024",
+    period: "Jul/2021 – Dez/2024",
     current: false,
-    description: "Coordenei a automatização do fluxo de informações institucionais para o portal de dados abertos (dados.ufpel.edu.br) e forneci relatórios estratégicos para órgãos de controle e gestão.",
-    skills: []
+    description: [
+      "Coordenei o fluxo de informações estratégicas e a extração de dados da universidade, gerando relatórios precisos para órgãos de controle (MEC, TCU).",
+      "Fui responsável por estruturar e automatizar o pipeline de alimentação do Portal de Dados Abertos (dados.ufpel.edu.br), garantindo transparência pública e adequação à LGPD."
+    ],
+    skills: ["Gestão de Dados", "LGPD", "Automação de Relatórios", "SQL", "Liderança Técnica"]
   },
   {
-    role: "Backend Developer",
+    role: "Engenheiro de Software Backend",
     company: "HOX",
+    tag: "Freelance",
     url: "https://hox.rs/",
     period: "Mai/2022 – Abr/2023",
     current: false,
-    description: "Desenvolvimento backend em PHP/Laravel para grande concessionária, com entrega de endpoints REST consumidos por aplicativo React. Após entrega, atuei também na interface frontend.",
-    skills: ["Laravel", "PostgreSQL", "React", "Gitlab", "Docker"]
+    description: [
+      "Desenvolvi novas funcionalidades e mantive as APIs REST de um backend já existente voltado para o sistema de gestão de uma rede de concessionárias de grande porte utilizando PHP e Laravel.",
+      "Atuei ativamente no frontend colaborando com a equipe React para resolução de gargalos de interface e integração de dados. Todo o ecossistema operava conteinerizado via Docker com pipelines CI/CD."
+    ],
+    skills: ["PHP", "Laravel", "PostgreSQL", "React", "Docker", "Gitlab CI/CD", "PHPUnit"]
   },
   {
-    role: "App Developer",
+    role: "Engenheiro de Software Fullstack (Mobile)",
     company: "Partamon",
+    tag: "Freelance",
     url: "https://partamon.com/",
     period: "Dez/2014 – Dez/2019",
     current: false,
-    description: "Desenvolvimento do aplicativo mobile da empresa (Angular + Ionic) e APIs backend (PHP/Laravel/PostgreSQL) com suporte de CI/CD e Docker.",
-    skills: ["Angular", "Ionic", "PHP", "Laravel", "PostgreSQL", "Docker"]
+    description: [
+      "Fui o desenvolvedor líder do aplicativo mobile principal da empresa, publicado e consumido ativamente em produção. Construído utilizando a stack Angular e Ionic.",
+      "Trabalhei em equipe para estruturar e consumir as APIs backend utilizando Laravel, Express e PostgreSQL, sustentando a lógica de negócios do aplicativo mobile."
+    ],
+    skills: ["Ionic", "Angular", "Mobile Development", "Laravel", "PostgreSQL", "Docker"]
   },
   {
-    role: "Developer",
+    role: "Desenvolvedor Mobile App/PWA",
     company: "Santa Transmedia",
+    tag: "Freelance",
     url: "https://santatransmedia.com/",
     period: "Fev/2015 – Nov/2017",
     current: false,
-    description: "Desenvolvimento de PWAs em diversas verticais (\"Converse Love\", \"Adesão Faz Bem\", \"Biblia Play\") utilizando Cordova, Ionic e Angular.",
-    skills: ["Apache Cordova", "Ionic", "Angular", "TypeScript"]
+    description: [
+      "Fui um dos responsáveis pela entrega de múltiplos aplicativos PWA (ex: \"Converse Love\", \"Adesão Faz Bem\", \"Biblia Play\", \"Projeto Comunica\"), atuando diretamente com as equipes de frontend e design.",
+      "Realizei o consumo e a integração de dezenas de APIs REST para criar experiências ricas no lado do cliente utilizando Ionic Framework, Apache Cordova e TypeScript."
+    ],
+    skills: ["Ionic", "PWA", "TypeScript", "Apache Cordova", "Angular", "APIs REST"]
   },
   {
-    role: "Desenvolvedor",
+    role: "Desenvolvedor de Software",
     company: "VOIZA",
+    tag: "Tempo Integral",
     url: "https://www.voiza.com.br/",
     period: "Jul/2006 – Nov/2008",
     current: false,
-    description: "Início de carreira desenvolvendo sistemas em VB6 e Oracle Database, seguindo framework interno e documentação UML.",
-    skills: ["Visual Basic", "Oracle", "PostgreSQL", "UML"]
+    description: [
+      "Trilha inicial da carreira atuando no desenvolvimento do sistema ERP proprietário da empresa. Traduzi extensa documentação técnica UML para código de negócios."
+    ],
+    skills: ["VB6", "Oracle Database", "PostgreSQL", "Modelagem UML", "SVN"]
   }
 ];
 ---
@@ -68,46 +92,52 @@ const experiences = [
 
   <article class="pt-8 pb-16">
     <!-- Page Header -->
-    <div class="glass rounded-2xl p-8 mb-8 glow-hover relative overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent pointer-events-none rounded-2xl"></div>
+    <div class="brutalist-card p-8 mb-12 sharp-hover relative overflow-hidden">
       <div class="flex items-center gap-4 relative">
-        <div class="w-12 h-12 rounded-2xl bg-blue-500/20 flex items-center justify-center flex-shrink-0 border border-blue-500/20">
-          <i class="fa-solid fa-briefcase text-blue-400 text-xl"></i>
+        <div class="w-12 h-12 border border-slate-700 bg-[#0a0a0a] flex items-center justify-center flex-shrink-0">
+          <i class="fa-solid fa-briefcase text-slate-400 text-xl"></i>
         </div>
         <div>
-          <h1 class="text-3xl font-bold gradient-text">Experiência Profissional</h1>
-          <p class="text-slate-500 text-sm mt-1">Minha trajetória como desenvolvedor de sistemas desde 2006</p>
+          <h1 class="text-4xl font-display italic tracking-wide text-white">Experiência Profissional</h1>
+          <p class="text-slate-500 text-sm mt-1 uppercase tracking-widest font-bold">Minha trajetória como desenvolvedor de sistemas desde 2006</p>
         </div>
       </div>
     </div>
 
     <!-- Timeline -->
-    <div class="relative timeline-line pl-10 space-y-6">
+    <div class="relative timeline-line pl-10 space-y-8">
       {experiences.map((exp) => (
         <div class="relative">
           <!-- Dot -->
-          <div class={`absolute -left-10 w-5 h-5 rounded-full border-2 flex items-center justify-center bg-[#0a0e1a] mt-1.5 transition-colors ${exp.current ? 'border-blue-400' : 'border-slate-700'}`}>
-            <div class={`w-2 h-2 rounded-full ${exp.current ? 'bg-blue-400 animate-pulse' : 'bg-slate-600'}`}></div>
+          <div class={`absolute -left-[45px] w-[9px] h-[9px] border border-slate-700 bg-[#050505] mt-2 transition-colors ${exp.current ? 'border-rose-500 bg-rose-500/20' : ''}`}>
+            {exp.current && <div class="w-1 h-1 bg-rose-500 mx-auto mt-[1px] animate-pulse"></div>}
           </div>
 
           <!-- Card -->
-          <div class="glass rounded-2xl p-5 glow-hover hover:border-blue-500/20 transition-all duration-300">
-            <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-3">
+          <div class="brutalist-card p-6 sharp-hover group">
+            <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-4 border-b border-slate-800 pb-4">
               <div>
-                <h3 class="text-white font-bold text-base">{exp.role}</h3>
-                <a href={exp.url} target="_blank" rel="noopener noreferrer" class="text-blue-400 text-sm hover:text-blue-300 transition-colors font-medium">
-                  {exp.company}
+                <h3 class="text-2xl font-display italic tracking-wide text-white">{exp.role}</h3>
+                <a href={exp.url} target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white text-sm font-bold uppercase tracking-wider transition-colors">
+                  {exp.company} <span class="text-slate-600 font-medium ml-1">({exp.tag})</span>
                 </a>
               </div>
-              <span class={`font-mono text-xs px-2.5 py-1 rounded-lg flex-shrink-0 ${exp.current ? 'bg-green-500/15 text-green-400 border border-green-500/20' : 'bg-white/5 text-slate-500 border border-white/5'}`}>
+              <span class={`font-mono text-[10px] px-2 py-1 uppercase tracking-widest border flex-shrink-0 ${exp.current ? 'bg-white/5 text-slate-300 border-slate-500' : 'bg-[#050505] text-slate-500 border-slate-700'}`}>
                 {exp.period}
               </span>
             </div>
-            <p class="text-slate-400 text-sm leading-relaxed mb-4">{exp.description}</p>
+            <ul class="list-none space-y-3 mb-6">
+              {exp.description.map(bullet => (
+                <li class="flex items-start gap-3">
+                  <span class="text-rose-500/70 mt-1 text-[10px] shrink-0">■</span>
+                  <span class="text-slate-300 text-sm leading-relaxed">{bullet}</span>
+                </li>
+              ))}
+            </ul>
             {exp.skills.length > 0 && (
-              <div class="flex flex-wrap gap-1.5">
+              <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800 border-dashed">
                 {exp.skills.map(skill => (
-                  <span class="px-2 py-0.5 rounded-md bg-white/5 text-slate-400 text-xs border border-white/5 hover:border-white/10 transition-colors">
+                  <span class="px-2 py-1 bg-[#050505] text-slate-400 text-[10px] uppercase font-bold tracking-wider border border-slate-800 hover:border-slate-600 transition-colors">
                     {skill}
                   </span>
                 ))}

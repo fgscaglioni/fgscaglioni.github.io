@@ -9,94 +9,86 @@ import StackList from "../components/StackList.astro";
   <Sidebar slot="sidebar" />
   <Header slot="header" />
 
-  <article class="dot-grid rounded-2xl pt-8 pb-4">
+  <article class="dot-grid pt-8 pb-4">
     <!-- Hero Section -->
     <section
-      class="glass rounded-2xl p-8 mb-8 glow-hover relative overflow-hidden"
+      class="brutalist-card p-8 mb-8 sharp-hover relative overflow-hidden"
     >
-      <div
-        class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-indigo-500/5 pointer-events-none rounded-2xl"
-      >
-      </div>
       <div class="flex flex-col sm:flex-row items-start gap-6 relative">
         <!-- Avatar -->
-        <div class="relative flex-shrink-0">
-          <div
-            class="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 blur-md opacity-50 scale-110"
-          >
-          </div>
+        <div class="relative flex-shrink-0 group">
           <img
-            src="https://pbs.twimg.com/profile_images/1090259717975244801/3LzbosJc_400x400.jpg"
+            src="https://gravatar.com/avatar/556a14540bc4ab41d65b17218d498fd9d628698736378f62deb6e8f0849a5376"
             alt="Fabrício Scaglioni"
-            class="relative w-24 h-24 rounded-full object-cover border-2 border-white/10 shadow-2xl"
+            class="relative w-24 h-24 object-cover border-2 border-slate-700 group-hover:border-slate-300 shadow-[4px_4px_0px_#111] filter grayscale group-hover:grayscale-0 transition-all duration-300"
           />
         </div>
         <!-- Info -->
         <div class="flex-grow">
-          <div class="flex items-center gap-2 mb-2">
-            <h1 class="text-3xl font-bold gradient-text">@fgscaglioni</h1>
+          <div class="flex items-center gap-3 mb-1">
+            <h1 class="text-4xl accent-text font-display italic tracking-wide">
+              @fgscaglioni
+            </h1>
             <span
-              class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-green-500/15 text-green-400 text-xs font-medium border border-green-500/20"
+              class="inline-flex items-center gap-1.5 px-2 py-0.5 border border-slate-600 bg-slate-800/50 text-slate-300 text-[10px] uppercase font-bold tracking-wider"
             >
-              <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"
-              ></span> Disponível
+              <span class="w-1.5 h-1.5 bg-rose-500 animate-pulse"></span> Disponível
             </span>
           </div>
-          <p class="text-slate-400 text-lg mb-5">
-            Olá, me chamo <strong class="text-slate-200 font-semibold"
-              >Fabrício Scaglioni</strong
-            >.
+          <!-- Positioning Tagline -->
+          <p class="text-slate-300 font-medium mb-1">Fabrício Scaglioni</p>
+          <p
+            class="text-slate-500 text-sm mb-5 font-mono uppercase tracking-widest"
+          >
+            Engenheiro de Software Sênior&nbsp;·&nbsp;Fullstack &amp;
+            Mobile&nbsp;·&nbsp;Pesquisador em IA
           </p>
-          <!-- Social Links -->
-          <div class="flex flex-wrap gap-2">
-            {
-              [
-                {
-                  href: "http://github.com/fgscaglioni/",
-                  icon: "fa-github",
-                  label: "GitHub",
-                  brand: true,
-                },
-                {
-                  href: "https://medium.com/@fgscaglioni",
-                  icon: "fa-medium",
-                  label: "Medium",
-                  brand: true,
-                },
-                {
-                  href: "https://www.linkedin.com/in/fgscaglioni/",
-                  icon: "fa-linkedin",
-                  label: "LinkedIn",
-                  brand: true,
-                },
-                {
-                  href: "https://x.com/fgscaglioni",
-                  icon: "fa-x-twitter",
-                  label: "X",
-                  brand: true,
-                },
-                {
-                  href: "https://www.instagram.com/fgscaglioni",
-                  icon: "fa-instagram",
-                  label: "Instagram",
-                  brand: true,
-                },
-              ].map((link) => (
-                <a
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-slate-400 hover:text-white text-xs font-medium transition-all duration-200"
-                >
-                  <i
-                    class={`${link.brand ? "fa-brands" : "fa-solid"} ${
-                      link.icon
-                    }`}
-                  />
-                  {link.label}
-                </a>
-              ))
-            }
+          <!-- Social Links: Primary -->
+          <div class="flex flex-wrap items-center gap-2">
+            <a
+              href="https://www.linkedin.com/in/fgscaglioni/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 px-4 py-2 border border-slate-500 bg-[#0a0a0a] hover:bg-white/5 hover:border-slate-300 text-slate-200 hover:text-white text-xs font-bold uppercase tracking-wider transition-all duration-200"
+            >
+              <i class="fa-brands fa-linkedin"></i> LinkedIn
+            </a>
+            <a
+              href="http://github.com/fgscaglioni/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 px-4 py-2 border border-slate-500 bg-[#0a0a0a] hover:bg-white/5 hover:border-slate-300 text-slate-200 hover:text-white text-xs font-bold uppercase tracking-wider transition-all duration-200"
+            >
+              <i class="fa-brands fa-github"></i> GitHub
+            </a>
+            <a
+              href="https://medium.com/@fgscaglioni"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 px-4 py-2 border border-slate-700 bg-[#0a0a0a] hover:bg-white/5 hover:border-slate-500 text-slate-400 hover:text-white text-xs font-bold uppercase tracking-wider transition-all duration-200"
+            >
+              <i class="fa-brands fa-medium"></i> Medium
+            </a>
+            <!-- Secondary / Personal -->
+            <div class="h-4 w-px bg-slate-700 mx-1 hidden sm:block"></div>
+            <a
+              href="https://x.com/fgscaglioni"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center justify-center w-8 h-8 border border-slate-800 bg-[#0a0a0a] hover:border-slate-600 text-slate-600 hover:text-slate-300 transition-all duration-200"
+              title="X (Twitter)"
+            >
+              <i class="fa-brands fa-x-twitter text-xs"></i>
+            </a>
+            <a
+              href="https://www.instagram.com/fgscaglioni"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center justify-center w-8 h-8 border border-slate-800 bg-[#0a0a0a] hover:border-slate-600 text-slate-600 hover:text-slate-300 transition-all duration-200"
+              title="Instagram"
+            >
+              <i class="fa-brands fa-instagram text-xs"></i>
+            </a>
           </div>
         </div>
       </div>
@@ -104,76 +96,121 @@ import StackList from "../components/StackList.astro";
 
     <!-- About + Technical Approach side by side on desktop -->
     <div class="grid lg:grid-cols-2 gap-6 mb-8">
-      <section class="glass rounded-2xl p-6 glow-hover">
-        <div class="flex items-center gap-3 mb-4">
+      <section class="brutalist-card p-6 sharp-hover">
+        <div
+          class="flex items-center gap-3 mb-5 border-b border-slate-800 pb-3"
+        >
           <div
-            class="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center"
+            class="w-8 h-8 flex items-center justify-center border border-slate-700"
           >
-            <i class="fa-solid fa-user text-blue-400 text-sm"></i>
+            <i class="fa-solid fa-user text-slate-400 text-xs"></i>
           </div>
-          <h2 class="text-lg font-bold text-white">Sobre mim</h2>
+          <h2 class="text-2xl font-display italic text-white tracking-wide">
+            Sobre mim
+          </h2>
         </div>
-        <p class="text-slate-400 text-sm leading-relaxed mb-3">
-          Atuo como desenvolvedor de sistemas há mais de 15 anos, com sólida
-          experiência em todo o ciclo de vida do desenvolvimento de software —
-          passando por planejamento, arquitetura de soluções, frontend e
-          backend.
-        </p>
-        <p class="text-slate-400 text-sm leading-relaxed">
-          Atualmente, sou doutorando em <strong
-            class="text-blue-400 font-semibold">Ciência da Computação</strong
-          > pela UFPel, conduzindo pesquisas na área de <strong
-            class="text-indigo-400 font-semibold"
-            >Inteligência Artificial aplicada à Educação</strong
-          >.
-        </p>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3">
+            <span class="text-rose-500/70 mt-1 text-[10px] shrink-0">■</span>
+            <span class="text-slate-300 text-sm leading-relaxed">
+              <strong class="text-white font-medium">+15 anos</strong> atuando em
+              todo o ciclo de desenvolvimento — planejamento, arquitetura, frontend
+              e backend.
+            </span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-rose-500/70 mt-1 text-[10px] shrink-0">■</span>
+            <span class="text-slate-300 text-sm leading-relaxed">
+              <strong class="text-white font-medium"
+                >Doutorando em Ciência da Computação</strong
+              > (UFPel), pesquisando <strong class="text-white font-medium"
+                >Inteligência Artificial aplicada à Educação</strong
+              >.
+            </span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-rose-500/70 mt-1 text-[10px] shrink-0">■</span>
+            <span class="text-slate-300 text-sm leading-relaxed">
+              Experiência em escalar sistemas em produção — de aplicativos
+              mobile com <strong class="text-white font-medium"
+                >+2k usuários</strong
+              > a APIs institucionais integradas com MEC e TCU.
+            </span>
+          </li>
+        </ul>
       </section>
 
-      <section class="glass rounded-2xl p-6 glow-hover">
-        <div class="flex items-center gap-3 mb-4">
+      <section class="brutalist-card p-6 sharp-hover">
+        <div
+          class="flex items-center gap-3 mb-5 border-b border-slate-800 pb-3"
+        >
           <div
-            class="w-8 h-8 rounded-lg bg-indigo-500/20 flex items-center justify-center"
+            class="w-8 h-8 flex items-center justify-center border border-slate-700"
           >
-            <i class="fa-solid fa-code text-indigo-400 text-sm"></i>
+            <i class="fa-solid fa-code text-slate-400 text-xs"></i>
           </div>
-          <h2 class="text-lg font-bold text-white">Abordagem Técnica</h2>
+          <h2 class="text-2xl font-display italic text-white tracking-wide">
+            Competências Chave
+          </h2>
         </div>
-        <p class="text-slate-400 text-sm leading-relaxed mb-3">
-          Acredito no pragmatismo tecnológico: seleciono o ferramental que
-          melhor atenda às reais necessidades de arquitetura e performance do
-          negócio para solucionar os desafios de forma robusta e sustentável.
-        </p>
-        <p class="text-slate-400 text-sm leading-relaxed">
-          Sou movido pelo desafio intelectual, mantendo-me em constante
-          aprendizado e explorando novas abordagens tecnológicas para construir
-          sistemas eficientes e inovadores.
-        </p>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3">
+            <span class="text-rose-500/70 mt-1 text-[10px] shrink-0">■</span>
+            <span class="text-slate-300 text-sm leading-relaxed">
+              <strong class="text-white font-medium"
+                >Arquitetura de Software</strong
+              > — design e implementação de APIs REST, sistemas containerizados com
+              Docker e pipelines CI/CD.
+            </span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-rose-500/70 mt-1 text-[10px] shrink-0">■</span>
+            <span class="text-slate-300 text-sm leading-relaxed">
+              <strong class="text-white font-medium"
+                >Desenvolvimento Fullstack</strong
+              > — Laravel, NestJS, Angular, Ionic e PostgreSQL como stacks principais.
+            </span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-rose-500/70 mt-1 text-[10px] shrink-0">■</span>
+            <span class="text-slate-300 text-sm leading-relaxed">
+              <strong class="text-white font-medium">Pesquisa em ML/IA</strong> —
+              modelos preditivos educacionais, SLMs e revisões sistemáticas publicadas
+              em IEEE.
+            </span>
+          </li>
+        </ul>
       </section>
     </div>
 
     <!-- Stack Section -->
-    <section class="mb-8">
-      <div class="flex items-center gap-3 mb-6">
-        <div
-          class="w-8 h-8 rounded-lg bg-cyan-500/20 flex items-center justify-center"
+    <section class="mb-10">
+      <div class="flex items-center justify-center gap-3 mb-8">
+        <div class="h-px bg-slate-800 flex-grow"></div>
+        <h2
+          class="text-3xl font-display italic text-white tracking-widest px-4"
         >
-          <i class="fa-solid fa-layer-group text-cyan-400 text-sm"></i>
-        </div>
-        <h2 class="text-lg font-bold text-white">Stack & Tecnologias</h2>
+          Stack & Tecnologias
+        </h2>
+        <div class="h-px bg-slate-800 flex-grow"></div>
       </div>
       <StackList />
     </section>
 
     <!-- Education + Languages -->
     <div class="grid lg:grid-cols-2 gap-6 mb-8">
-      <section class="glass rounded-2xl p-6 glow-hover">
-        <div class="flex items-center gap-3 mb-4">
+      <section class="brutalist-card p-6 sharp-hover">
+        <div
+          class="flex items-center gap-3 mb-6 border-b border-slate-800 pb-3"
+        >
           <div
-            class="w-8 h-8 rounded-lg bg-purple-500/20 flex items-center justify-center"
+            class="w-8 h-8 flex items-center justify-center border border-slate-700"
           >
-            <i class="fa-solid fa-graduation-cap text-purple-400 text-sm"></i>
+            <i class="fa-solid fa-graduation-cap text-slate-400 text-xs"></i>
           </div>
-          <h2 class="text-lg font-bold text-white">Formação Acadêmica</h2>
+          <h2 class="text-2xl font-display italic text-white tracking-wide">
+            Formação Acadêmica
+          </h2>
         </div>
         <div class="space-y-4">
           {
@@ -199,32 +236,36 @@ import StackList from "../components/StackList.astro";
                 href: "https://www.senacrs.com.br/unidade/78",
                 level: "Especialização em Gerenciamento de Projetos",
                 period: "2009 - 2010",
-                icon: "fa-circle-dot",
-                color: "text-slate-500",
+                icon: "fa-square",
+                color: "text-slate-600",
               },
               {
                 inst: "UniSenac",
                 href: "https://www.senacrs.com.br/unidade/78",
                 level: "Tecnólogo em Análise e Desenvolvimento de Sistemas",
                 period: "2005 - 2007",
-                icon: "fa-circle-dot",
-                color: "text-slate-500",
+                icon: "fa-square",
+                color: "text-slate-600",
               },
             ].map((item) => (
               <div class="flex items-start gap-3">
                 <div class="mt-1 flex-shrink-0">
-                  <i class={`fa-solid ${item.icon} text-xs ${item.color}`} />
+                  <i
+                    class={`fa-solid ${item.icon} text-[10px] text-rose-500`}
+                  />
                 </div>
                 <div>
                   <a
                     href={item.href}
                     target="_blank"
-                    class="text-slate-200 text-sm font-medium hover:text-blue-400 transition-colors"
+                    class="text-slate-200 text-sm font-medium hover:text-white transition-colors"
                   >
                     {item.inst}
                   </a>
-                  <p class="text-slate-500 text-xs">{item.level}</p>
-                  <p class="text-slate-600 text-xs font-mono">{item.period}</p>
+                  <p class="text-slate-400 font-light text-sm">{item.level}</p>
+                  <p class="text-slate-500 text-xs font-mono mt-1 tracking-wider">
+                    {item.period}
+                  </p>
                 </div>
               </div>
             ))
@@ -233,14 +274,18 @@ import StackList from "../components/StackList.astro";
       </section>
 
       <div class="space-y-6 flex flex-col">
-        <section class="glass rounded-2xl p-6 glow-hover flex-grow">
-          <div class="flex items-center gap-3 mb-4">
+        <section class="brutalist-card p-6 sharp-hover flex-grow">
+          <div
+            class="flex items-center gap-3 mb-6 border-b border-slate-800 pb-3"
+          >
             <div
-              class="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center"
+              class="w-8 h-8 flex items-center justify-center border border-slate-700"
             >
-              <i class="fa-solid fa-globe text-green-400 text-sm"></i>
+              <i class="fa-solid fa-globe text-slate-400 text-xs"></i>
             </div>
-            <h2 class="text-lg font-bold text-white">Idiomas</h2>
+            <h2 class="text-2xl font-display italic text-white tracking-wide">
+              Idiomas
+            </h2>
           </div>
           <div class="space-y-3">
             {
@@ -275,61 +320,17 @@ import StackList from "../components/StackList.astro";
                     <span class="text-sm text-slate-300 font-medium">
                       {item.lang}
                     </span>
-                    <span class="text-xs text-slate-500">{item.level}</span>
+                    <span class="text-xs font-mono text-slate-500 uppercase tracking-widest">
+                      {item.level}
+                    </span>
                   </div>
-                  <div class="w-full bg-white/5 rounded-full h-1.5">
+                  <div class="w-full bg-[#050505] border border-slate-800 h-2">
                     <div
-                      class={`${item.color} h-1.5 rounded-full`}
+                      class={`bg-slate-300 h-full`}
                       style={`width: ${item.pct}%`}
                     />
                   </div>
                 </div>
-              ))
-            }
-          </div>
-        </section>
-
-        <section class="glass rounded-2xl p-6 glow-hover">
-          <div class="flex items-center gap-3 mb-4">
-            <div
-              class="w-8 h-8 rounded-lg bg-amber-500/20 flex items-center justify-center"
-            >
-              <i class="fa-solid fa-compass text-amber-400 text-sm"></i>
-            </div>
-            <h2 class="text-lg font-bold text-white">Saiba Mais</h2>
-          </div>
-          <div class="space-y-2">
-            {
-              [
-                {
-                  label: "Experiência Profissional",
-                  href: "/experience",
-                  icon: "fa-briefcase",
-                  color: "text-blue-400",
-                },
-                {
-                  label: "Downloads & Publicações",
-                  href: "/downloads",
-                  icon: "fa-download",
-                  color: "text-green-400",
-                },
-                {
-                  label: "Redes Sociais & Científicas",
-                  href: "/social",
-                  icon: "fa-network-wired",
-                  color: "text-purple-400",
-                },
-              ].map((link) => (
-                <a
-                  href={link.href}
-                  class="flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 border border-transparent hover:border-white/10 text-slate-400 hover:text-white transition-all duration-200 group"
-                >
-                  <i
-                    class={`fa-solid ${link.icon} ${link.color} group-hover:scale-110 transition-transform duration-200`}
-                  />
-                  <span class="text-sm font-medium">{link.label}</span>
-                  <i class="fa-solid fa-chevron-right text-xs ml-auto opacity-0 group-hover:opacity-50 transition-opacity duration-200" />
-                </a>
               ))
             }
           </div>

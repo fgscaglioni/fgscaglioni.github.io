@@ -8,15 +8,19 @@ const currentPath = Astro.url.pathname;
   <div class="mb-10">
     <a href="/" class="group flex items-center gap-3">
       <div
-        class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:shadow-blue-500/50 transition-all duration-300"
+        class="w-10 h-10 border-2 border-slate-200 bg-[#0a0a0a] flex items-center justify-center transition-all duration-300 group-hover:bg-slate-200 group-hover:text-[#0a0a0a]"
       >
-        <span class="text-white font-bold text-sm">fg</span>
+        <span class="font-display italic text-xl">fg</span>
       </div>
       <div>
-        <div class="text-white font-bold text-base leading-tight">
-          @fgscaglioni
+        <div
+          class="font-display italic text-xl leading-tight text-white group-hover:text-slate-300 transition-colors"
+        >
+          fgscaglioni
         </div>
-        <div class="text-slate-500 text-xs">Portfólio</div>
+        <!-- <div class="text-slate-500 text-xs tracking-wider uppercase">
+          Portfólio
+        </div> -->
       </div>
     </a>
   </div>
@@ -35,25 +39,21 @@ const currentPath = Astro.url.pathname;
         return (
           <a
             href={link.href}
-            class={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 group
+            class={`flex items-center gap-3 px-3 py-2.5 text-sm font-medium transition-all duration-200 group border-l-2
             ${
               isActive
-                ? "bg-blue-500/15 text-blue-400 border border-blue-500/20"
-                : "text-slate-400 hover:text-white hover:bg-white/5 border border-transparent"
+                ? "border-l-slate-200 bg-white/5 text-white"
+                : "border-l-transparent text-slate-400 hover:text-white hover:bg-white/5"
             }`}
           >
             <div
-              class={`w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-200 ${
-                isActive
-                  ? "bg-blue-500/20"
-                  : "bg-white/5 group-hover:bg-white/10"
-              }`}
+              class={`w-8 h-8 flex items-center justify-center transition-all duration-200`}
             >
               <i
-                class={`fa-solid ${link.icon} text-xs ${
+                class={`fa-solid ${link.icon} text-sm ${
                   isActive
-                    ? "text-blue-400"
-                    : "text-slate-400 group-hover:text-white"
+                    ? "text-white"
+                    : "text-slate-500 group-hover:text-white"
                 }`}
               />
             </div>
@@ -76,18 +76,18 @@ const currentPath = Astro.url.pathname;
           href={link.href}
           target={link.newTab ? "_blank" : "_self"}
           rel={link.newTab ? "noopener noreferrer" : ""}
-          class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 border border-transparent transition-all duration-200 group"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-sm text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 border border-transparent transition-all duration-200 group"
         >
-          <div class="w-8 h-8 rounded-lg bg-white/5 group-hover:bg-white/10 flex items-center justify-center transition-all duration-200">
+          <div class="w-8 h-8 flex items-center justify-center transition-all duration-200">
             <i
               class={`${link.icon === "fa-medium" ? "fa-brands" : "fa-solid"} ${
                 link.icon
-              } text-xs text-slate-400 group-hover:text-white`}
+              } text-sm text-slate-500 group-hover:text-white`}
             />
           </div>
           {link.label}
           {link.newTab && (
-            <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-auto opacity-40" />
+            <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-auto opacity-40 group-hover:text-slate-300" />
           )}
         </a>
       ))

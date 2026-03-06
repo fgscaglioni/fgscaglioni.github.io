@@ -7,8 +7,8 @@ const articles = [
   {
     type: "Autor",
     icon: "fa-pen-nib",
-    color: "text-blue-400",
-    bgColor: "bg-blue-500/15 border-blue-500/20",
+    color: "text-slate-400",
+    bgColor: "bg-[#050505] border-slate-800",
     items: [
       {
         title:
@@ -22,8 +22,8 @@ const articles = [
   {
     type: "Coautor",
     icon: "fa-people-group",
-    color: "text-indigo-400",
-    bgColor: "bg-indigo-500/15 border-indigo-500/20",
+    color: "text-slate-400",
+    bgColor: "bg-[#050505] border-slate-800",
     items: [
       {
         title:
@@ -60,114 +60,127 @@ const dissertations = [
 
   <article class="pt-8 pb-16">
     <!-- Page Header -->
-    <div class="glass rounded-2xl p-8 mb-8 glow-hover relative overflow-hidden">
+    <article class="pt-8 pb-16">
+      <!-- Page Header -->
       <div
-        class="absolute inset-0 bg-gradient-to-br from-green-500/5 to-transparent pointer-events-none rounded-2xl"
+        class="brutalist-card p-8 mb-12 sharp-hover relative overflow-hidden"
       >
-      </div>
-      <div class="flex items-center gap-4 relative">
-        <div
-          class="w-12 h-12 rounded-2xl bg-green-500/20 flex items-center justify-center flex-shrink-0 border border-green-500/20"
-        >
-          <i class="fa-solid fa-download text-green-400 text-xl"></i>
+        <div class="flex items-center gap-4 relative">
+          <div
+            class="w-12 h-12 border border-slate-700 bg-[#0a0a0a] flex items-center justify-center flex-shrink-0"
+          >
+            <i class="fa-solid fa-download text-slate-400 text-xl"></i>
+          </div>
+          <div>
+            <h1 class="text-4xl font-display italic tracking-wide text-white">
+              Downloads
+            </h1>
+            <p
+              class="text-slate-500 text-sm mt-1 uppercase tracking-widest font-bold"
+            >
+              Publicações acadêmicas, artigos e dissertações
+            </p>
+          </div>
         </div>
-        <div>
-          <h1 class="text-3xl font-bold gradient-text">Downloads</h1>
-          <p class="text-slate-500 text-sm mt-1">
-            Publicações acadêmicas, artigos e dissertações disponíveis
-          </p>
-        </div>
       </div>
-    </div>
 
-    <!-- Articles -->
-    <section class="mb-8">
-      <div class="flex items-center gap-3 mb-5">
+      <!-- Articles -->
+      <section class="mb-12">
         <div
-          class="w-8 h-8 rounded-lg bg-red-500/20 flex items-center justify-center"
+          class="flex items-center gap-3 mb-6 border-b border-slate-800 pb-3"
         >
-          <i class="fa-solid fa-file-pdf text-red-400 text-sm"></i>
+          <div
+            class="w-8 h-8 border border-slate-700 flex items-center justify-center"
+          >
+            <i class="fa-solid fa-file-pdf text-slate-400 text-xs"></i>
+          </div>
+          <h2 class="text-2xl font-display italic text-white tracking-wide">
+            Artigos Publicados
+          </h2>
         </div>
-        <h2 class="text-lg font-bold text-white">Artigos Publicados</h2>
-      </div>
-      <div class="grid lg:grid-cols-2 gap-5">
-        {
-          articles.map((category) => (
-            <div class="glass rounded-2xl overflow-hidden">
-              <div
-                class={`px-5 py-3 border-b border-white/5 flex items-center gap-2 ${category.bgColor} border rounded-t-2xl`}
-              >
-                <i
-                  class={`fa-solid ${category.icon} ${category.color} text-sm`}
-                />
-                <h3 class="font-semibold text-slate-200 text-sm">
-                  {category.type}
-                </h3>
-              </div>
-              <div class="p-4 space-y-4">
-                {category.items.map((item) => (
-                  <div class="group">
-                    <a
-                      href={item.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="block text-blue-400 hover:text-blue-300 font-medium text-sm leading-snug transition-colors mb-1.5 group-hover:underline"
-                    >
-                      {item.title}
-                    </a>
-                    <div class="flex items-center gap-2">
-                      <span class="text-xs font-mono text-slate-600">
-                        {item.date}
-                      </span>
-                      <span class="px-1.5 py-0.5 rounded bg-white/5 text-slate-500 text-xs border border-white/5">
-                        {item.badge}
-                      </span>
+        <div class="grid lg:grid-cols-2 gap-5">
+          {
+            articles.map((category) => (
+              <div class="brutalist-card">
+                <div
+                  class={`px-5 py-3 border-b border-slate-800 flex items-center gap-2 ${category.bgColor}`}
+                >
+                  <i
+                    class={`fa-solid ${category.icon} ${category.color} text-sm`}
+                  />
+                  <h3 class="font-bold text-slate-300 uppercase tracking-wider text-[10px]">
+                    {category.type}
+                  </h3>
+                </div>
+                <div class="p-5 space-y-6">
+                  {category.items.map((item) => (
+                    <div class="group">
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="block text-slate-300 hover:text-white font-serif text-lg leading-snug transition-colors mb-2 group-hover:underline decoration-rose-500/50 underline-offset-4"
+                      >
+                        {item.title}
+                      </a>
+                      <div class="flex items-center gap-3">
+                        <span class="text-[10px] font-mono uppercase font-bold text-slate-500">
+                          {item.date}
+                        </span>
+                        <span class="px-2 py-0.5 border border-slate-700 bg-[#050505] text-slate-400 text-[10px] uppercase font-bold tracking-wider">
+                          {item.badge}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Dissertation -->
+      <section>
+        <div
+          class="flex items-center gap-3 mb-6 border-b border-slate-800 pb-3"
+        >
+          <div
+            class="w-8 h-8 border border-slate-700 flex items-center justify-center"
+          >
+            <i class="fa-solid fa-book text-slate-400 text-xs"></i>
+          </div>
+          <h2 class="text-2xl font-display italic text-white tracking-wide">
+            Dissertação de Mestrado
+          </h2>
+        </div>
+        {
+          dissertations.map((item) => (
+            <a
+              href={item.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group brutalist-card p-6 sharp-hover flex flex-col sm:flex-row items-start gap-6 transition-all duration-300"
+            >
+              <div class="w-16 h-20 border border-slate-700 bg-slate-900 flex items-center justify-center flex-shrink-0 group-hover:border-slate-400 transition-colors shadow-[4px_4px_0px_#1a1a1a] group-hover:shadow-[4px_4px_0px_#333]">
+                <i class="fa-solid fa-book-open text-slate-500 text-2xl group-hover:text-slate-200 transition-colors" />
+              </div>
+              <div class="flex-1 min-w-0 pt-1">
+                <p class="text-[10px] font-mono font-bold uppercase tracking-widest text-slate-500 mb-2">
+                  ANO: {item.year}
+                </p>
+                <h3 class="text-slate-300 font-serif text-xl leading-snug group-hover:text-white transition-colors">
+                  {item.title}
+                </h3>
+                <div class="flex items-center justify-end gap-2 mt-4 text-slate-400 text-xs font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  <span>Acessar repositório</span>
+                  <i class="fa-solid fa-arrow-right text-sm" />
+                </div>
+              </div>
+            </a>
           ))
         }
-      </div>
-    </section>
-
-    <!-- Dissertation -->
-    <section>
-      <div class="flex items-center gap-3 mb-5">
-        <div
-          class="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center"
-        >
-          <i class="fa-solid fa-book text-blue-400 text-sm"></i>
-        </div>
-        <h2 class="text-lg font-bold text-white">Dissertação de Mestrado</h2>
-      </div>
-      {
-        dissertations.map((item) => (
-          <a
-            href={item.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group glass rounded-2xl p-6 hover:border-blue-500/30 glow-hover flex items-start gap-5 transition-all duration-300"
-          >
-            <div class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500/30 transition-colors border border-blue-500/20">
-              <i class="fa-solid fa-book-open text-blue-400 text-lg" />
-            </div>
-            <div class="flex-1 min-w-0">
-              <p class="text-xs font-mono text-slate-600 mb-1">
-                {item.type} · {item.year}
-              </p>
-              <h3 class="text-slate-200 font-semibold leading-snug group-hover:text-white transition-colors">
-                {item.title}
-              </h3>
-              <div class="flex items-center gap-1 mt-2 text-blue-400 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                <span>Acessar repositório</span>
-                <i class="fa-solid fa-arrow-up-right-from-square text-xs" />
-              </div>
-            </div>
-          </a>
-        ))
-      }
-    </section>
+      </section>
+    </article>
   </article>
 </BaseLayout>

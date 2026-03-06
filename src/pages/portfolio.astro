@@ -1,0 +1,213 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Sidebar from "../components/Sidebar.astro";
+
+// Lookpest screenshots
+// import lp0 from "../assets/portfolio-imgs/proj-000.jpg";
+// import lp1 from "../assets/portfolio-imgs/proj-001.jpg";
+// import lp2 from "../assets/portfolio-imgs/proj-002.jpg";
+// import lp3 from "../assets/portfolio-imgs/proj-003.jpg";
+// import lp4 from "../assets/portfolio-imgs/proj-004.jpg";
+
+// // My Safe Back screenshots
+// import msb0 from "../assets/portfolio-imgs/proj-009.jpg";
+// import msb1 from "../assets/portfolio-imgs/proj-010.jpg";
+// import msb2 from "../assets/portfolio-imgs/proj-011.jpg";
+// import msb3 from "../assets/portfolio-imgs/proj-013.jpg";
+
+// // Daily Travelling News screenshots
+// import dtn0 from "../assets/portfolio-imgs/proj-023.jpg";
+// import dtn1 from "../assets/portfolio-imgs/proj-024.jpg";
+
+const projects = [
+  {
+    year: "2018",
+    client: "Partamon",
+    name: "Lookpest",
+    url: null,
+    stack: ["Ionic", "Angular", "TypeScript", "Apache Cordova"],
+    summary:
+      "App mobile para agrônomos e técnicos de campo: monitoramento de pragas, coleta de dados de lavoura e consulta climática — tudo funcionando offline.",
+    bullets: [
+      "Banco de imagens offline para comparação de condições de campo sem internet",
+      "Dados meteorológicos em tempo real para apoiar decisões de plantio, irrigação e aplicação de defensivos",
+      "Coleta estruturada de dados: estágio das plantas, presença de pragas e doenças",
+      "Pluviômetro integrado para registrar precipitação por área",
+      "Cadastro de profissionais e equipes com controle de acesso",
+      "Geração de relatórios detalhados por período e cultura",
+    ],
+    screenshots: [
+      // lp0, lp1, lp2, lp3, lp4
+    ],
+    screenshotType: "mobile",
+  },
+  {
+    year: "2022",
+    client: "Pesquisa UFPel",
+    name: "My Safe Back",
+    url: "https://www.youtube.com/watch?v=Cq1upMVIt3g",
+    stack: ["Ionic", "Angular", "TypeScript"],
+    summary:
+      "Aplicativo de saúde para trabalhadores da segurança pública com dor lombar crônica, desenvolvido como suporte a um ensaio clínico randomizado publicado em revista indexada.",
+    bullets: [
+      "Protocolo de exercícios para fortalecimento e flexibilidade lombar — guiado por vídeo",
+      "Cartilha educacional sobre postura e hábitos saudáveis para a coluna",
+      "Seção informativa sobre tipos de dor lombar, causas e cuidados específicos",
+      "Integrado a um RCT (Randomized Controlled Trial) publicado em periódico internacional",
+    ],
+    screenshots: [
+      // msb0, msb1, msb2, msb3
+    ],
+    screenshotType: "mobile",
+  },
+  {
+    year: "2023",
+    client: "Daily Travelling News",
+    name: "Daily Travelling News",
+    url: "https://dailyweb.com.ar/",
+    stack: ["PHP", "WordPress", "JavaScript"],
+    summary:
+      "Melhorias pontuais no site de notícias de viagens argentino: correções de bugs, ajustes de performance e implementação de códigos de rastreamento.",
+    bullets: [
+      "Implementação de pixels de tracking e Google Tag Manager",
+      "Correções de bugs e inconsistências visuais no frontend",
+      "Ajustes de performance e carregamento de página",
+    ],
+    screenshots: [
+      // dtn0, dtn1
+    ],
+    screenshotType: "desktop",
+  },
+];
+---
+
+<BaseLayout>
+  <Sidebar slot="sidebar" />
+  <Header slot="header" />
+
+  <article class="pt-8 pb-16">
+    <!-- Page Header -->
+    <div class="brutalist-card p-8 mb-10 sharp-hover relative overflow-hidden">
+      <div class="flex items-center gap-4 relative">
+        <div
+          class="w-12 h-12 border border-slate-700 bg-[#0a0a0a] flex items-center justify-center flex-shrink-0"
+        >
+          <i class="fa-solid fa-folder-open text-slate-400 text-xl"></i>
+        </div>
+        <div>
+          <h1 class="text-4xl font-display italic tracking-wide text-white">
+            Portfólio
+          </h1>
+          <p
+            class="text-slate-500 text-sm mt-1 uppercase tracking-widest font-bold"
+          >
+            Uma seleção de projetos desenvolvidos desde 2018
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-slate-600 text-xs mb-10 ml-1 italic">
+      Alguns projetos foram omitidos por cláusulas de confidencialidade com
+      clientes.
+    </p>
+
+    <!-- Projects -->
+    <div class="space-y-12">
+      {
+        projects.map((project) => (
+          <div class="brutalist-card sharp-hover group overflow-hidden">
+            <!-- Header Bar -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-6 py-4 border-b border-slate-800 bg-[#050505]">
+              <div>
+                <div class="flex items-center gap-3 mb-1">
+                  <span class="font-mono text-[10px] px-2 py-0.5 border border-slate-700 text-slate-500 uppercase tracking-widest bg-[#0a0a0a]">
+                    {project.year}
+                  </span>
+                  <span class="text-slate-600 text-xs uppercase tracking-wider">
+                    {project.client}
+                  </span>
+                </div>
+                <h2 class="text-2xl font-display italic text-white tracking-wide">
+                  {project.url ? (
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="hover:text-slate-300 transition-colors"
+                    >
+                      {project.name}
+                      <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-2 opacity-40 group-hover:opacity-100 transition-opacity" />
+                    </a>
+                  ) : (
+                    project.name
+                  )}
+                </h2>
+              </div>
+              <div class="flex flex-wrap gap-1.5 sm:justify-end">
+                {project.stack.map((tech) => (
+                  <span class="px-2 py-0.5 border border-slate-800 bg-[#0a0a0a] text-slate-500 text-[10px] uppercase font-bold tracking-wider">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div class="px-6 py-5">
+              <p class="text-slate-300 text-sm leading-relaxed mb-5 border-l-2 border-slate-700 pl-4">
+                {project.summary}
+              </p>
+              <ul class="space-y-2.5 mb-6">
+                {project.bullets.map((bullet) => (
+                  <li class="flex items-start gap-3">
+                    <span class="text-slate-600 mt-1 text-[10px] shrink-0">
+                      ■
+                    </span>
+                    <span class="text-slate-400 text-sm leading-relaxed">
+                      {bullet}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+
+              <!-- Screenshots Gallery -->
+              {project.screenshots.length > 0 && (
+                <div class="border-t border-slate-800 pt-5">
+                  <p class="text-slate-600 text-[10px] uppercase tracking-widest font-bold mb-4">
+                    Screenshots
+                  </p>
+                  <div
+                    class={`flex gap-3 overflow-x-auto pb-2 ${
+                      project.screenshotType === "mobile"
+                        ? "items-end"
+                        : "items-start"
+                    }`}
+                  >
+                    {project.screenshots.map((img, i) => (
+                      <div
+                        class={`flex-shrink-0 border border-slate-800 overflow-hidden transition-all duration-200 hover:border-slate-500 ${
+                          project.screenshotType === "mobile"
+                            ? "w-32"
+                            : "w-64"
+                        }`}
+                      >
+                        <img
+                          src={img.src}
+                          alt={`${project.name} screenshot ${i + 1}`}
+                          class="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-300"
+                          loading="lazy"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </article>
+</BaseLayout>

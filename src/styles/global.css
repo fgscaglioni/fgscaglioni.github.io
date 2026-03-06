@@ -1,12 +1,26 @@
 @import "tailwindcss";
 
 :root {
-    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-display: 'Instrument Serif', serif;
+    --font-body: 'Manrope', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
+    --color-accent: #e2e8f0;
+    /* Slate 200 — neutral white */
 }
 
 body {
-    font-family: var(--font-sans);
+    font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-display {
+    font-family: var(--font-display);
+    font-weight: 400;
 }
 
 code,
@@ -14,58 +28,69 @@ code,
     font-family: var(--font-mono);
 }
 
-/* Glass Card Effect */
-.glass {
-    background: rgba(15, 23, 42, 0.6);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(148, 163, 184, 0.1);
+/* Brutalist Card Element */
+.brutalist-card {
+    background: #0a0a0a;
+    border: 1px solid #262626;
+    border-radius: 2px;
 }
 
-/* Gradient text utility */
-.gradient-text {
-    background: linear-gradient(135deg, #60a5fa, #a78bfa, #38bdf8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+/* Noise overlay */
+.noise-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-/* Subtle glow on hover */
-.glow-hover {
-    transition: box-shadow 0.3s ease;
+/* Accent text utility */
+.accent-text {
+    color: var(--color-accent);
 }
 
-.glow-hover:hover {
-    box-shadow: 0 0 20px rgba(96, 165, 250, 0.15);
+/* Brutalist hover interaction */
+.sharp-hover {
+    transition: all 0.2s ease;
+}
+
+.sharp-hover:hover {
+    border-color: #525252;
+    transform: translateY(-2px);
+    box-shadow: 4px 4px 0px #1a1a1a;
 }
 
 /* Dotted grid background pattern */
 .dot-grid {
-    background-image: radial-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+    background-image: radial-gradient(#262626 1px, transparent 1px);
     background-size: 24px 24px;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-    width: 4px;
+    width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    background: transparent;
+    background: #050505;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(148, 163, 184, 0.2);
-    border-radius: 4px;
+    background: #262626;
+    border-radius: 0px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(148, 163, 184, 0.4);
+    background: #404040;
 }
 
 /* Smooth link transitions */
 a {
-    transition: color 0.2s ease, opacity 0.2s ease;
+    transition: color 0.1s ease, background-color 0.1s ease, border-color 0.1s ease;
 }
 
 /* Timeline dot connector */
@@ -76,5 +101,5 @@ a {
     top: 0;
     bottom: 0;
     width: 1px;
-    background: linear-gradient(to bottom, transparent, rgba(96, 165, 250, 0.3), transparent);
+    background: #262626;
 }
