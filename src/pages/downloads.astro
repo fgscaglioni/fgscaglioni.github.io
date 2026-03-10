@@ -14,9 +14,21 @@ const articles = [
         title:
           "Enrollment Recommendation System based on Student Profile and Progress",
         url: "https://doi.org/10.1109/LACLO56648.2022.10013424",
-        date: "Jan/2023",
+        event: "LACLO",
+        year: "2023",
+        month: "Jan",
+        event_url: "https://ieeexplore.ieee.org/document/10013424",
         badge: "IEEE",
       },
+      {
+        title: "Plataforma de Interação Digital no Contexto de Campus Inteligente",
+        url: "https://anais-siiepe.ufpel.edu.br/2020/CE_03692.pdf",
+        event: "SIIEPE",
+        year: "2020",
+        month: "Nov",
+        event_url: "https://anais-siiepe.ufpel.edu.br/2020/index.html",
+        badge: "UFPel",
+      }
     ],
   },
   {
@@ -29,14 +41,16 @@ const articles = [
         title:
           "Effectiveness of an app-delivered, self-management exercise program in public safety workers with chronic low back pain: a randomized controlled trial",
         url: "/public/papers/1-s2.0-S1413355525000619-main.pdf",
-        date: "Jul/2025",
+        year: "2025",
+        month: "Jul",
         badge: "PDF",
       },
       {
         title:
           "Effectiveness of m-health-based core strengthening exercise and health education for public safety workers with chronic non-specific low back pain: study protocol for a superiority randomized controlled trial (SAFEBACK)",
         url: "/public/papers/s13063-023-07833-9.pdf",
-        date: "Dez/2023",
+        year: "2023",
+        month: "Dez",
         badge: "PDF",
       },
     ],
@@ -60,11 +74,9 @@ const dissertations = [
 
   <article class="pt-8 pb-16">
     <!-- Page Header -->
-    <article class="pt-8 pb-16">
-      <!-- Page Header -->
-      <div
-        class="brutalist-card p-8 mb-12 sharp-hover relative overflow-hidden"
-      >
+    <div
+      class="brutalist-card p-8 mb-12 sharp-hover relative overflow-hidden"
+    >
         <div class="flex items-center gap-4 relative">
           <div
             class="w-12 h-12 border border-slate-700 bg-[#0a0a0a] flex items-center justify-center flex-shrink-0"
@@ -123,11 +135,26 @@ const dissertations = [
                       >
                         {item.title}
                       </a>
-                      <div class="flex items-center gap-3">
+                      <div class="flex flex-wrap items-center gap-3 mt-1">
                         <span class="text-[10px] font-mono uppercase font-bold text-slate-500">
-                          {item.date}
+                          {item.month}/{item.year}
                         </span>
-                        <span class="px-2 py-0.5 border border-slate-700 bg-[#050505] text-slate-400 text-[10px] uppercase font-bold tracking-wider">
+                        
+                        {item.event && (
+                          <>
+                            <span class="text-slate-700 text-[10px]">/</span>
+                            {item.event_url ? (
+                              <a href={item.event_url} target="_blank" rel="noopener noreferrer" class="text-[10px] font-mono uppercase font-bold text-slate-400 hover:text-white transition-colors group/link flex items-center gap-1.5">
+                                {item.event}
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[8.5px] text-slate-600 group-hover/link:text-white transition-colors"></i>
+                              </a>
+                            ) : (
+                              <span class="text-[10px] font-mono uppercase font-bold text-slate-400">{item.event}</span>
+                            )}
+                          </>
+                        )}
+
+                        <span class="px-2 py-0.5 border border-slate-700 bg-[#050505] text-slate-400 text-[10px] uppercase font-bold tracking-wider ml-auto">
                           {item.badge}
                         </span>
                       </div>
@@ -181,6 +208,5 @@ const dissertations = [
           ))
         }
       </section>
-    </article>
   </article>
 </BaseLayout>
