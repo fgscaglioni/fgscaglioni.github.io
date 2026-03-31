@@ -1,3 +1,6 @@
+---
+updated: 2026-03-31
+---
 # Astro Starter Kit: Basics
 
 ```sh
