@@ -76,6 +76,8 @@ export const my_stack = {
 export const siteLinks = {
     main: [
         { href: "/", label: "Início", icon: "fa-house" },
+        { href: "/research", label: "Pesquisa", icon: "fa-microscope" },
+        { href: "/blog", label: "Journal", icon: "fa-feather" },
         { href: "/downloads", label: "Downloads", icon: "fa-download", newTab: false },
         { href: "/experience", label: "Experiência", icon: "fa-briefcase" },
         { href: "/portfolio", label: "Portfólio", icon: "fa-folder-open" },

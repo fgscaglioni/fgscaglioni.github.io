@@ -198,7 +198,7 @@ const projects = [
                         : "items-start"
                     }`}
                   >
-                    {project.screenshots.map((img, i) => (
+                    {project.screenshots.map((img: any, i) => (
                       <div
                         class={`flex-shrink-0 border border-slate-800 overflow-hidden transition-all duration-200 hover:border-slate-500 ${
                           project.screenshotType === "mobile"
