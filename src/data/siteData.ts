@@ -1,10 +1,9 @@
 export const my_stack = {
     languages: {
-        color: '#52E0D0',
+        color: '#2dd4bf', // Teal moderno e sofisticado
         title: 'Linguagens',
         data: [
             { name: 'Java', image: 'https://blog.geekhunter.com.br/wp-content/uploads/2020/07/pngwing.com_.png', url: 'https://www.java.com/' },
-            { name: 'Visual Basic', image: 'https://cursosbig.com.br/wp-content/uploads/2019/03/logo-visual-basic-net-vb.png', url: '' },
             { name: 'PHP', image: 'https://e7.pngegg.com/pngimages/185/655/png-clipart-logo-php-computer-icons-symbol-miscellaneous-emblem-thumbnail.png', url: 'https://www.php.net/' },
             { name: 'JavaScript', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuHnJDLOcdm_0b6N6kNj-1OvO9KhKYgqIy0w&s', url: '' },
             { name: 'TypeScript', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Typescript.svg/1200px-Typescript.svg.png', url: 'https://www.typescriptlang.org/' },
@@ -14,7 +13,7 @@ export const my_stack = {
         ]
     },
     databases: {
-        color: '#ED1D7A',
+        color: '#fb7185', // Rosa suave equilibrado
         title: 'Bancos de Dados',
         data: [
             { name: 'PostgreSQL', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/640px-Postgresql_elephant.svg.png', url: 'https://www.postgresql.org/' },
@@ -24,12 +23,10 @@ export const my_stack = {
             { name: 'Redis', image: 'https://blog.patrickbrandao.com/wp-content/uploads/2024/11/redis-logo-512.png', url: 'https://redis.io/' },
             { name: 'Firestore', image: 'https://emendes.com/wp-content/uploads/2019/11/Cloud-Firestore-3-Vertical-Lockup-Light.png', url: 'https://firebase.google.com/docs/firestore' },
             { name: 'Oracle', image: 'https://www.nrb.be/sites/default/files/oracle.png', url: 'https://www.oracle.com/database/' },
-            { name: 'DB2', image: 'https://db2tutorial.com/wp-content/uploads/2019/03/db2-tutorial.png', url: 'https://www.ibm.com/products/db2' },
-            { name: 'CouchDB', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3k_HM83Nitkf5EU-Weks9s0i29-prBQTC8Q&s', url: 'https://couchdb.apache.org/' },
         ]
     },
     frameworks: {
-        color: '#282A3E',
+        color: '#818cf8', // Indigo vibrante e legível
         title: 'Frameworks & Bibliotecas',
         data: [
             { name: 'Laravel', image: 'https://laravel.com/img/logotype.min.svg', url: 'https://laravel.com/' },
@@ -38,15 +35,13 @@ export const my_stack = {
             { name: 'Angular', image: 'https://angular.io/assets/images/logos/angular/angular.svg', url: 'https://angular.dev/' },
             { name: 'NestJS', image: 'https://nestjs.com/img/logo-small.svg', url: 'https://nestjs.com/' },
             { name: 'React', image: 'https://images.seeklogo.com/logo-png/27/2/react-logo-png_seeklogo-273845.png', url: 'https://react.dev/' },
-            { name: 'AdonisJS', image: 'https://avatars.githubusercontent.com/u/13810373?s=280&v=4', url: 'https://adonisjs.com/' },
             { name: 'Svelte', image: 'https://svelte.dev/svelte-logo-horizontal.svg', url: 'https://svelte.dev/' },
             { name: 'Apache Cordova', image: 'https://cordova.apache.org/static/img/cordova_bot.png', url: 'https://cordova.apache.org/' },
             { name: 'jQuery', image: 'https://miro.medium.com/v2/resize:fit:860/0*eFomJUFua8tuqe8g.png', url: 'https://jquery.com/' },
-            { name: 'jQuery UI', image: 'https://cdn.simpleicons.org/jquery/0769AD', url: 'https://jqueryui.com/' },
         ]
     },
     others: {
-        color: '#FF7033',
+        color: '#f97316', // Laranja moderno (Orange 500)
         title: 'Outras Tecnologias',
         data: [
             { name: 'Android', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDHvnyoyWI-FlgTfOWRoJjazD3ke1Q6hOgfQ&s', url: 'https://www.android.com/intl/pt_br/' },
@@ -60,7 +55,7 @@ export const my_stack = {
         ]
     },
     methodologies: {
-        color: '#02040F',
+        color: '#64748b', // Slate discreto
         title: 'Metodologias',
         data: [
             { name: 'Scrum', image: 'https://cdn.simpleicons.org/scrumalliance/009FDA', url: 'https://www.scrum.org/' },
@@ -68,7 +63,7 @@ export const my_stack = {
         ]
     },
     version_controllers: {
-        color: '#ADFFAD',
+        color: '#4ade80', // Verde menta vivo (Green 400)
         title: 'Controle de Versão',
         data: [
             { name: 'Github', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/250px-GitHub_Invertocat_Logo.svg.png', url: 'https://github.com/' },

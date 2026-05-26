@@ -55,13 +55,13 @@ code,
 
 /* Brutalist hover interaction */
 .sharp-hover {
-    transition: all 0.2s ease;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .sharp-hover:hover {
-    border-color: #525252;
-    transform: translateY(-2px);
-    box-shadow: 4px 4px 0px #1a1a1a;
+    border-color: #e2e8f0;
+    transform: translate(-3px, -3px);
+    box-shadow: 6px 6px 0px rgba(226, 232, 240, 0.08);
 }
 
 /* Dotted grid background pattern */
@@ -91,6 +91,27 @@ code,
 /* Smooth link transitions */
 a {
     transition: color 0.1s ease, background-color 0.1s ease, border-color 0.1s ease;
+}
+
+/* External Link Brutalist Hint */
+a[target="_blank"]:not(.brutalist-card *):not(nav *):not(aside *) {
+    text-decoration: underline;
+    text-decoration-style: dashed;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(226, 232, 240, 0.3);
+}
+
+a[target="_blank"]:not(.brutalist-card *):not(nav *):not(aside *)::after {
+    content: " \2197";
+    font-size: 0.85em;
+    opacity: 0.6;
+    display: inline-block;
+    transition: transform 0.1s ease;
+}
+
+a[target="_blank"]:not(.brutalist-card *):not(nav *):not(aside *):hover::after {
+    transform: translate(1px, -1px);
+    opacity: 1;
 }
 
 /* Timeline dot connector */

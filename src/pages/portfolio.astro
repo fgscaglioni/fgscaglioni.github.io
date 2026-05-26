@@ -82,7 +82,7 @@ const projects = [
 ];
 ---
 
-<BaseLayout>
+<BaseLayout title="Portfólio de Projetos & Publicações Científicas | Fabrício Scaglioni">
   <Sidebar slot="sidebar" />
   <Header slot="header" />
 
@@ -171,6 +171,19 @@ const projects = [
                   </li>
                 ))}
               </ul>
+
+              {project.name === "My Safe Back" && (
+                <div class="mb-6 pt-2">
+                  <a
+                    href="https://doi.org/10.1016/j.bjpt.2025.101232"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-300 hover:text-white transition-colors"
+                  >
+                    <i class="fa-solid fa-file-pdf text-rose-500" /> Acessar Artigo Publicado (BJPT)
+                  </a>
+                </div>
+              )}
 
               <!-- Screenshots Gallery -->
               {project.screenshots.length > 0 && (
