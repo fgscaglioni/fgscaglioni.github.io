@@ -1,30 +1,24 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Header from "../components/Header.astro";
-import Sidebar from "../components/Sidebar.astro";
+import Navbar from "../components/Navbar.astro";
 import { publications } from "../data/researchData";
 ---
 
 <BaseLayout title="Pesquisa Científica & Publicações | Fabrício Scaglioni">
-  <Sidebar slot="sidebar" />
-  <Header slot="header" />
+  <Navbar slot="header" />
 
   <article class="pt-8 pb-16">
     <!-- Page Header -->
-    <div class="brutalist-card p-8 mb-10 sharp-hover relative overflow-hidden">
+    <div class="glass-card p-6 sm:p-8 mb-6 relative overflow-hidden">
       <div class="flex items-center gap-4 relative">
-        <div
-          class="w-12 h-12 border border-slate-700 bg-[#0a0a0a] flex items-center justify-center flex-shrink-0"
-        >
+        <div class="w-12 h-12 rounded-lg border border-white/10 bg-black/40 flex items-center justify-center flex-shrink-0">
           <i class="fa-solid fa-microscope text-slate-400 text-xl"></i>
         </div>
         <div>
-          <h1 class="text-4xl font-display italic tracking-wide text-white">
+          <h1 class="text-3xl sm:text-4xl font-display italic tracking-wide text-white">
             Pesquisa Científica
           </h1>
-          <p
-            class="text-slate-500 text-sm mt-1 uppercase tracking-widest font-bold"
-          >
+          <p class="text-slate-500 text-xs mt-1 uppercase tracking-widest font-bold">
             Investigações de Doutorado, Inteligência Artificial e publicações
           </p>
         </div>
@@ -32,8 +26,8 @@ import { publications } from "../data/researchData";
     </div>
 
     <!-- Research Lines -->
-    <section class="brutalist-card p-6 sharp-hover mb-12">
-      <h2 class="text-2xl font-display italic text-white mb-4 border-b border-slate-800 pb-2">
+    <section class="glass-card p-6 mb-8">
+      <h2 class="text-2xl font-display italic text-white mb-4 border-b border-white/5 pb-2">
         Linhas de Investigação
       </h2>
       <p class="text-slate-300 text-sm leading-relaxed mb-4">
@@ -56,28 +50,28 @@ import { publications } from "../data/researchData";
     </section>
 
     <!-- Publications List -->
-    <div class="space-y-8">
-      <h2 class="text-2xl font-display italic text-white mb-6 border-b border-slate-800 pb-2">
+    <div class="space-y-6">
+      <h2 class="text-2xl font-display italic text-white mb-4 border-b border-white/5 pb-2">
         Publicações Acadêmicas
       </h2>
       {
         publications.map((pub) => (
-          <div class="brutalist-card p-6 sharp-hover">
-            <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4 border-b border-slate-800 pb-3">
+          <div class="glass-card p-6">
+            <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4 border-b border-white/5 pb-3">
               <div>
-                <span class="font-mono text-[10px] px-2 py-0.5 border border-slate-700 text-slate-500 uppercase tracking-widest bg-[#0a0a0a]">
+                <span class="font-mono text-[9px] px-2 py-0.5 rounded-full border border-white/10 text-slate-400 uppercase tracking-widest bg-black/40">
                   {pub.year}
                 </span>
-                <h3 class="text-2xl font-display italic text-white tracking-wide mt-2">
+                <h3 class="text-xl sm:text-2xl font-display italic text-white tracking-wide mt-2">
                   {pub.title}
                 </h3>
                 <p class="text-slate-400 text-xs mt-1 font-mono">{pub.authors}</p>
               </div>
-              <span class="text-slate-500 text-xs font-bold uppercase tracking-wider font-mono">
+              <span class="text-slate-500 text-xs font-bold uppercase tracking-wider font-mono self-start">
                 {pub.venue}
               </span>
             </div>
-            <p class="text-slate-300 text-sm leading-relaxed mb-6 font-light">
+            <p class="text-slate-300 text-sm leading-relaxed mb-4 font-light">
               {pub.abstract}
             </p>
             {pub.doi && (

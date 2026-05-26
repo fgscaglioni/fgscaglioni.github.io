@@ -41,26 +41,13 @@ const { title = "@fgscaglioni" } = Astro.props;
       rel="stylesheet"
     />
   </head>
-  <body class="bg-[#050505] text-slate-300 font-sans antialiased min-h-screen">
-    <!-- Noise & Base Background -->
-    <div class="noise-bg"></div>
-    <div class="fixed inset-0 -z-10 pointer-events-none bg-[#050505]"></div>
+  <body class="bg-[#030303] text-slate-300 font-sans antialiased min-h-screen relative overflow-x-hidden">
+    <!-- Header/Navbar slot -->
+    <slot name="header" />
 
-    <div class="flex min-h-screen max-w-7xl mx-auto">
-      <!-- Sidebar -->
-      <aside
-        class="w-72 flex-shrink-0 hidden lg:flex flex-col sticky top-0 h-screen overflow-y-auto"
-      >
-        <slot name="sidebar" />
-      </aside>
-
-      <!-- Main Content -->
-      <main class="flex-grow min-w-0 flex flex-col">
-        <slot name="header" />
-        <div class="flex-grow px-6 pb-16">
-          <slot />
-        </div>
-      </main>
-    </div>
+    <!-- Main Content Container (Single column layout) -->
+    <main class="max-w-3xl mx-auto px-4 sm:px-6 pt-6 pb-20">
+      <slot />
+    </main>
   </body>
 </html>

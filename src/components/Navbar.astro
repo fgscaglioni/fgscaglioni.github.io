@@ -1,0 +1,49 @@
+---
+import { siteLinks } from "../data/siteData";
+const currentPath = Astro.url.pathname;
+---
+
+<header class="sticky top-4 z-50 px-4 max-w-3xl mx-auto w-full">
+  <div class="glass-card px-4 py-3 flex items-center justify-between bg-black/40 backdrop-blur-md border border-white/10 rounded-full">
+    <!-- Brand Logo -->
+    <a href="/" class="flex items-center gap-2 group">
+      <div class="w-8 h-8 rounded-full border border-white/20 bg-black/40 flex items-center justify-center transition-all duration-300 group-hover:bg-white group-hover:text-black">
+        <span class="font-display italic text-base font-bold">fg</span>
+      </div>
+      <span class="font-display italic text-lg text-white group-hover:text-slate-300 transition-colors hidden xs:inline">
+        fgscaglioni
+      </span>
+    </a>
+
+    <!-- Top Navigation Links -->
+    <nav class="flex items-center gap-1 sm:gap-2">
+      {
+        siteLinks.main.slice(0, 6).map((link) => {
+          const isActive = currentPath === link.href || currentPath === link.href + "/";
+          return (
+            <a
+              href={link.href}
+              class={`px-3 py-1.5 rounded-full text-xs font-medium tracking-wide transition-all duration-300 ${
+                isActive
+                  ? "bg-white text-black shadow-lg"
+                  : "text-slate-400 hover:text-white hover:bg-white/5"
+              }`}
+            >
+              {link.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+  </div>
+</header>
+
+<style>
+  @media (max-width: 380px) {
+    /* Hide some items on ultra-small screens to prevent overflow */
+    nav a:nth-child(4),
+    nav a:nth-child(5) {
+      display: none;
+    }
+  }
+</style>

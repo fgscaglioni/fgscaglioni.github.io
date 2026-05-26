@@ -1,14 +1,13 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Header from "../components/Header.astro";
-import Sidebar from "../components/Sidebar.astro";
+import Navbar from "../components/Navbar.astro";
 
 const articles = [
   {
     type: "Autor",
     icon: "fa-pen-nib",
     color: "text-slate-400",
-    bgColor: "bg-[#050505] border-slate-800",
+    bgColor: "bg-white/5 border-white/5",
     items: [
       {
         title:
@@ -35,7 +34,7 @@ const articles = [
     type: "Coautor",
     icon: "fa-people-group",
     color: "text-slate-400",
-    bgColor: "bg-[#050505] border-slate-800",
+    bgColor: "bg-white/5 border-white/5",
     items: [
       {
         title:
@@ -68,145 +67,104 @@ const dissertations = [
 ];
 ---
 
-<BaseLayout title="Downloads | @fgscaglioni">
-  <Sidebar slot="sidebar" />
-  <Header slot="header" />
+<BaseLayout title="Downloads de Publicações Científicas | Fabrício Scaglioni">
+  <Navbar slot="header" />
 
   <article class="pt-8 pb-16">
     <!-- Page Header -->
-    <div
-      class="brutalist-card p-8 mb-12 sharp-hover relative overflow-hidden"
-    >
-        <div class="flex items-center gap-4 relative">
-          <div
-            class="w-12 h-12 border border-slate-700 bg-[#0a0a0a] flex items-center justify-center flex-shrink-0"
-          >
-            <i class="fa-solid fa-download text-slate-400 text-xl"></i>
-          </div>
-          <div>
-            <h1 class="text-4xl font-display italic tracking-wide text-white">
-              Downloads
-            </h1>
-            <p
-              class="text-slate-500 text-sm mt-1 uppercase tracking-widest font-bold"
-            >
-              Publicações acadêmicas, artigos e dissertações
-            </p>
-          </div>
+    <div class="glass-card p-6 sm:p-8 mb-8 relative overflow-hidden">
+      <div class="flex items-center gap-4 relative">
+        <div class="w-12 h-12 rounded-lg border border-white/10 bg-black/40 flex items-center justify-center flex-shrink-0">
+          <i class="fa-solid fa-download text-slate-400 text-xl"></i>
+        </div>
+        <div>
+          <h1 class="text-3xl sm:text-4xl font-display italic tracking-wide text-white">Downloads</h1>
+          <p class="text-slate-500 text-xs mt-1 uppercase tracking-widest font-bold">Publicações acadêmicas, artigos e dissertações</p>
         </div>
       </div>
+    </div>
 
-      <!-- Articles -->
-      <section class="mb-12">
-        <div
-          class="flex items-center gap-3 mb-6 border-b border-slate-800 pb-3"
-        >
-          <div
-            class="w-8 h-8 border border-slate-700 flex items-center justify-center"
-          >
-            <i class="fa-solid fa-file-pdf text-slate-400 text-xs"></i>
-          </div>
-          <h2 class="text-2xl font-display italic text-white tracking-wide">
-            Artigos Publicados
-          </h2>
-        </div>
-        <div class="grid lg:grid-cols-2 gap-5">
-          {
-            articles.map((category) => (
-              <div class="brutalist-card">
-                <div
-                  class={`px-5 py-3 border-b border-slate-800 flex items-center gap-2 ${category.bgColor}`}
-                >
-                  <i
-                    class={`fa-solid ${category.icon} ${category.color} text-sm`}
-                  />
-                  <h3 class="font-bold text-slate-300 uppercase tracking-wider text-[10px]">
-                    {category.type}
-                  </h3>
-                </div>
-                <div class="p-5 space-y-6">
-                  {category.items.map((item) => (
-                    <div class="group">
-                      <a
-                        href={item.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="block text-slate-300 hover:text-white font-serif text-lg leading-snug transition-colors mb-2 group-hover:underline decoration-rose-500/50 underline-offset-4"
-                      >
-                        {item.title}
-                      </a>
-                      <div class="flex flex-wrap items-center gap-3 mt-1">
-                        <span class="text-[10px] font-mono uppercase font-bold text-slate-500">
-                          {item.month}/{item.year}
-                        </span>
-                        
-                        {item.event && (
-                          <>
-                            <span class="text-slate-700 text-[10px]">/</span>
-                            {item.event_url ? (
-                              <a href={item.event_url} target="_blank" rel="noopener noreferrer" class="text-[10px] font-mono uppercase font-bold text-slate-400 hover:text-white transition-colors group/link flex items-center gap-1.5">
-                                {item.event}
-                                <i class="fa-solid fa-arrow-up-right-from-square text-[8.5px] text-slate-600 group-hover/link:text-white transition-colors"></i>
-                              </a>
-                            ) : (
-                              <span class="text-[10px] font-mono uppercase font-bold text-slate-400">{item.event}</span>
-                            )}
-                          </>
-                        )}
-
-                        <span class="px-2 py-0.5 border border-slate-700 bg-[#050505] text-slate-400 text-[10px] uppercase font-bold tracking-wider ml-auto">
-                          {item.badge}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))
-          }
-        </div>
-      </section>
-
-      <!-- Dissertation -->
-      <section>
-        <div
-          class="flex items-center gap-3 mb-6 border-b border-slate-800 pb-3"
-        >
-          <div
-            class="w-8 h-8 border border-slate-700 flex items-center justify-center"
-          >
-            <i class="fa-solid fa-book text-slate-400 text-xs"></i>
-          </div>
-          <h2 class="text-2xl font-display italic text-white tracking-wide">
-            Dissertação de Mestrado
-          </h2>
-        </div>
+    <!-- Articles -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-6 border-b border-white/5 pb-3">
+        <i class="fa-solid fa-file-pdf text-slate-400 text-sm"></i>
+        <h2 class="text-2xl font-display italic text-white tracking-wide">Artigos Publicados</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-5">
         {
-          dissertations.map((item) => (
-            <a
-              href={item.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="group brutalist-card p-6 sharp-hover flex flex-col sm:flex-row items-start gap-6 transition-all duration-300"
-            >
-              <div class="w-16 h-20 border border-slate-700 bg-slate-900 flex items-center justify-center flex-shrink-0 group-hover:border-slate-400 transition-colors shadow-[4px_4px_0px_#1a1a1a] group-hover:shadow-[4px_4px_0px_#333]">
-                <i class="fa-solid fa-book-open text-slate-500 text-2xl group-hover:text-slate-200 transition-colors" />
+          articles.map((category) => (
+            <div class="glass-card overflow-hidden">
+              <div class="px-5 py-3 border-b border-white/5 flex items-center gap-2 bg-white/5">
+                <i class={`fa-solid ${category.icon} ${category.color} text-sm`} />
+                <h3 class="font-bold text-slate-400 uppercase tracking-wider text-[9px]">{category.type}</h3>
               </div>
-              <div class="flex-1 min-w-0 pt-1">
-                <p class="text-[10px] font-mono font-bold uppercase tracking-widest text-slate-500 mb-2">
-                  ANO: {item.year}
-                </p>
-                <h3 class="text-slate-300 font-serif text-xl leading-snug group-hover:text-white transition-colors">
-                  {item.title}
-                </h3>
-                <div class="flex items-center justify-end gap-2 mt-4 text-slate-400 text-xs font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                  <span>Acessar repositório</span>
-                  <i class="fa-solid fa-arrow-right text-sm" />
-                </div>
+              <div class="p-5 space-y-6">
+                {category.items.map((item) => (
+                  <div>
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="block text-slate-200 hover:text-white font-serif text-lg leading-snug transition-colors mb-2"
+                    >
+                      {item.title}
+                    </a>
+                    <div class="flex flex-wrap items-center gap-3 mt-1 text-[10px] font-mono text-slate-500">
+                      <span>{item.month}/{item.year}</span>
+                      {item.event && (
+                        <>
+                          <span>/</span>
+                          {item.event_url ? (
+                            <a href={item.event_url} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center gap-1">
+                              {item.event}
+                              <i class="fa-solid fa-arrow-up-right-from-square text-[8px]" />
+                            </a>
+                          ) : (
+                            <span>{item.event}</span>
+                          )}
+                        </>
+                      )}
+                      <span class="px-2 py-0.5 rounded border border-white/10 bg-white/5 text-slate-400 font-bold ml-auto">
+                        {item.badge}
+                      </span>
+                    </div>
+                  </div>
+                ))}
               </div>
-            </a>
+            </div>
           ))
         }
-      </section>
+      </div>
+    </section>
+
+    <!-- Dissertation -->
+    <section>
+      <div class="flex items-center gap-3 mb-6 border-b border-white/5 pb-3">
+        <i class="fa-solid fa-book text-slate-400 text-sm"></i>
+        <h2 class="text-2xl font-display italic text-white tracking-wide">Dissertação de Mestrado</h2>
+      </div>
+      {
+        dissertations.map((item) => (
+          <a
+            href={item.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group glass-card p-6 flex flex-col sm:flex-row items-center gap-6 transition-all duration-300"
+          >
+            <div class="w-16 h-20 rounded-lg border border-white/10 bg-black/40 flex items-center justify-center flex-shrink-0 group-hover:border-white/20 transition-colors">
+              <i class="fa-solid fa-book-open text-slate-500 text-2xl group-hover:text-slate-200 transition-colors" />
+            </div>
+            <div class="flex-1 min-w-0 text-center sm:text-left">
+              <p class="text-[9px] font-mono font-bold uppercase tracking-widest text-slate-500 mb-1">ANO: {item.year}</p>
+              <h3 class="text-slate-200 font-serif text-xl leading-snug group-hover:text-white transition-colors">{item.title}</h3>
+              <div class="flex items-center justify-center sm:justify-end gap-2 mt-4 text-slate-400 text-xs font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span>Acessar repositório</span>
+                <i class="fa-solid fa-arrow-right text-sm" />
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </section>
   </article>
 </BaseLayout>

@@ -1,58 +1,65 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Header from "../components/Header.astro";
-import Sidebar from "../components/Sidebar.astro";
+import Navbar from "../components/Navbar.astro";
 import StackList from "../components/StackList.astro";
 ---
 
-<BaseLayout title="Fabrício Scaglioni | Engenheiro de Software Sênior & Doutorando em IA">
-  <Sidebar slot="sidebar" />
-  <Header slot="header" />
+<BaseLayout
+  title="Fabrício Scaglioni | Engenheiro de Software Sênior & Doutorando em IA"
+>
+  <Navbar slot="header" />
 
-  <article class="dot-grid pt-8 pb-4">
-    <!-- Background Backlight Glow -->
-    <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-slate-200/2 rounded-full blur-[120px] pointer-events-none -z-10"></div>
-
+  <article class="pt-8 pb-4">
     <!-- Hero Section -->
-    <section
-      class="brutalist-card p-8 mb-8 sharp-hover relative overflow-hidden"
-    >
-      <div class="flex flex-col sm:flex-row items-start gap-6 relative">
+    <section class="glass-card p-6 sm:p-8 mb-6 relative overflow-hidden">
+      <!-- Light aura inside card -->
+      <div
+        class="absolute -right-10 -top-10 w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"
+      >
+      </div>
+
+      <div
+        class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 relative"
+      >
         <!-- Avatar -->
-        <div class="relative flex-shrink-0 group">
+        <div class="relative flex-shrink-0">
           <img
             src="https://gravatar.com/avatar/556a14540bc4ab41d65b17218d498fd9d628698736378f62deb6e8f0849a5376"
             alt="Fabrício Scaglioni"
-            class="relative w-24 h-24 object-cover border-2 border-slate-700 group-hover:border-slate-300 shadow-[4px_4px_0px_#111] filter grayscale group-hover:grayscale-0 transition-all duration-300"
+            class="relative w-24 h-24 rounded-full object-cover border border-white/10 shadow-xl transition-transform duration-500 hover:scale-105"
           />
         </div>
         <!-- Info -->
         <div class="flex-grow">
-          <div class="flex items-center gap-3 mb-1">
-            <h1 class="text-4xl accent-text font-display italic tracking-wide">
-              @fgscaglioni
+          <div class="flex flex-col sm:flex-row items-center gap-3 mb-2">
+            <h1
+              class="text-3xl sm:text-4xl text-white font-display italic tracking-wide"
+            >
+              Fabrício Scaglioni
             </h1>
             <span
-              class="inline-flex items-center gap-1.5 px-2 py-0.5 border border-slate-600 bg-slate-800/50 text-slate-300 text-[10px] uppercase font-bold tracking-wider"
+              class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-[9px] uppercase font-bold tracking-wider"
             >
-              <span class="w-1.5 h-1.5 bg-rose-500 animate-pulse"></span> Disponível
+              <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping"
+              ></span> Disponível
             </span>
           </div>
           <!-- Positioning Tagline -->
-          <p class="text-slate-300 font-medium mb-1">Fabrício Scaglioni</p>
           <p
-            class="text-slate-500 text-sm mb-5 font-mono uppercase tracking-widest"
+            class="text-slate-400 text-sm mb-4 font-mono uppercase tracking-wider leading-relaxed"
           >
             Engenheiro de Software Sênior&nbsp;·&nbsp;Fullstack &amp;
             Mobile&nbsp;·&nbsp;Pesquisador em IA
           </p>
-          <!-- Social Links: Primary -->
-          <div class="flex flex-wrap items-center gap-2">
+          <!-- Social Links -->
+          <div
+            class="flex flex-wrap items-center justify-center sm:justify-start gap-2"
+          >
             <a
               href="https://www.linkedin.com/in/fgscaglioni/"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center gap-2 px-4 py-2 border border-slate-500 bg-[#0a0a0a] hover:bg-white/5 hover:border-slate-300 text-slate-200 hover:text-white text-xs font-bold uppercase tracking-wider transition-all duration-200"
+              class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 hover:bg-white hover:text-black text-xs font-bold uppercase tracking-wider transition-all duration-300"
             >
               <i class="fa-brands fa-linkedin"></i> LinkedIn
             </a>
@@ -60,7 +67,7 @@ import StackList from "../components/StackList.astro";
               href="http://github.com/fgscaglioni/"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center gap-2 px-4 py-2 border border-slate-500 bg-[#0a0a0a] hover:bg-white/5 hover:border-slate-300 text-slate-200 hover:text-white text-xs font-bold uppercase tracking-wider transition-all duration-200"
+              class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 hover:bg-white hover:text-black text-xs font-bold uppercase tracking-wider transition-all duration-300"
             >
               <i class="fa-brands fa-github"></i> GitHub
             </a>
@@ -68,53 +75,27 @@ import StackList from "../components/StackList.astro";
               href="https://medium.com/@fgscaglioni"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center gap-2 px-4 py-2 border border-slate-700 bg-[#0a0a0a] hover:bg-white/5 hover:border-slate-500 text-slate-400 hover:text-white text-xs font-bold uppercase tracking-wider transition-all duration-200"
+              class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 hover:bg-white hover:text-black text-xs font-bold uppercase tracking-wider transition-all duration-300"
             >
               <i class="fa-brands fa-medium"></i> Medium
-            </a>
-            <!-- Secondary / Personal -->
-            <div class="h-4 w-px bg-slate-700 mx-1 hidden sm:block"></div>
-            <a
-              href="https://x.com/fgscaglioni"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center justify-center w-8 h-8 border border-slate-800 bg-[#0a0a0a] hover:border-slate-600 text-slate-600 hover:text-slate-300 transition-all duration-200"
-              title="X (Twitter)"
-            >
-              <i class="fa-brands fa-x-twitter text-xs"></i>
-            </a>
-            <a
-              href="https://www.instagram.com/fgscaglioni"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center justify-center w-8 h-8 border border-slate-800 bg-[#0a0a0a] hover:border-slate-600 text-slate-600 hover:text-slate-300 transition-all duration-200"
-              title="Instagram"
-            >
-              <i class="fa-brands fa-instagram text-xs"></i>
             </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- About + Technical Approach side by side on desktop -->
-    <div class="grid lg:grid-cols-2 gap-6 mb-8">
-      <section class="brutalist-card p-6 sharp-hover">
-        <div
-          class="flex items-center gap-3 mb-5 border-b border-slate-800 pb-3"
-        >
-          <div
-            class="w-8 h-8 flex items-center justify-center border border-slate-700"
-          >
-            <i class="fa-solid fa-user text-slate-400 text-xs"></i>
-          </div>
+    <!-- About + Technical Approach side by side on desktop, stacked on mobile -->
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <section class="glass-card p-6">
+        <div class="flex items-center gap-3 mb-4 border-b border-white/5 pb-3">
+          <i class="fa-solid fa-user text-slate-400 text-sm"></i>
           <h2 class="text-2xl font-display italic text-white tracking-wide">
             Sobre mim
           </h2>
         </div>
         <ul class="space-y-3">
           <li class="flex items-start gap-3">
-            <span class="text-rose-500/70 mt-1 text-[10px] shrink-0">■</span>
+            <span class="text-rose-500 mt-1 text-[10px] shrink-0">■</span>
             <span class="text-slate-300 text-sm leading-relaxed">
               <strong class="text-white font-medium">+15 anos</strong> atuando em
               todo o ciclo de desenvolvimento — planejamento, arquitetura, frontend
@@ -122,7 +103,7 @@ import StackList from "../components/StackList.astro";
             </span>
           </li>
           <li class="flex items-start gap-3">
-            <span class="text-rose-500/70 mt-1 text-[10px] shrink-0">■</span>
+            <span class="text-rose-500 mt-1 text-[10px] shrink-0">■</span>
             <span class="text-slate-300 text-sm leading-relaxed">
               <strong class="text-white font-medium"
                 >Doutorando em Ciência da Computação</strong
@@ -132,33 +113,26 @@ import StackList from "../components/StackList.astro";
             </span>
           </li>
           <li class="flex items-start gap-3">
-            <span class="text-rose-500/70 mt-1 text-[10px] shrink-0">■</span>
+            <span class="text-rose-500 mt-1 text-[10px] shrink-0">■</span>
             <span class="text-slate-300 text-sm leading-relaxed">
-              Experiência em escalar sistemas em produção — de aplicativos
-              mobile com <strong class="text-white font-medium"
-                >+2k usuários</strong
-              > a APIs institucionais integradas com MEC e TCU.
+              Experiência em escalar sistemas em produção — de aplicativos com <strong
+                class="text-white font-medium">+2k usuários</strong
+              > a APIs institucionais de alta escala.
             </span>
           </li>
         </ul>
       </section>
 
-      <section class="brutalist-card p-6 sharp-hover">
-        <div
-          class="flex items-center gap-3 mb-5 border-b border-slate-800 pb-3"
-        >
-          <div
-            class="w-8 h-8 flex items-center justify-center border border-slate-700"
-          >
-            <i class="fa-solid fa-code text-slate-400 text-xs"></i>
-          </div>
+      <section class="glass-card p-6">
+        <div class="flex items-center gap-3 mb-4 border-b border-white/5 pb-3">
+          <i class="fa-solid fa-code text-slate-400 text-sm"></i>
           <h2 class="text-2xl font-display italic text-white tracking-wide">
             Competências Chave
           </h2>
         </div>
         <ul class="space-y-3">
           <li class="flex items-start gap-3">
-            <span class="text-rose-500/70 mt-1 text-[10px] shrink-0">■</span>
+            <span class="text-rose-500 mt-1 text-[10px] shrink-0">■</span>
             <span class="text-slate-300 text-sm leading-relaxed">
               <strong class="text-white font-medium"
                 >Arquitetura de Software</strong
@@ -167,7 +141,7 @@ import StackList from "../components/StackList.astro";
             </span>
           </li>
           <li class="flex items-start gap-3">
-            <span class="text-rose-500/70 mt-1 text-[10px] shrink-0">■</span>
+            <span class="text-rose-500 mt-1 text-[10px] shrink-0">■</span>
             <span class="text-slate-300 text-sm leading-relaxed">
               <strong class="text-white font-medium"
                 >Desenvolvimento Fullstack</strong
@@ -175,11 +149,11 @@ import StackList from "../components/StackList.astro";
             </span>
           </li>
           <li class="flex items-start gap-3">
-            <span class="text-rose-500/70 mt-1 text-[10px] shrink-0">■</span>
+            <span class="text-rose-500 mt-1 text-[10px] shrink-0">■</span>
             <span class="text-slate-300 text-sm leading-relaxed">
               <strong class="text-white font-medium">Pesquisa em ML/IA</strong> —
               modelos preditivos educacionais, SLMs e revisões sistemáticas publicadas
-              em IEEE.
+              em periódicos internacionais.
             </span>
           </li>
         </ul>
@@ -187,30 +161,24 @@ import StackList from "../components/StackList.astro";
     </div>
 
     <!-- Stack Section -->
-    <section class="mb-10">
-      <div class="flex items-center justify-center gap-3 mb-8">
-        <div class="h-px bg-slate-800 flex-grow"></div>
+    <section class="mb-8">
+      <div class="flex items-center justify-center gap-3 mb-6">
+        <div class="h-px bg-white/10 flex-grow"></div>
         <h2
-          class="text-3xl font-display italic text-white tracking-widest px-4"
+          class="text-2xl font-display italic text-white tracking-widest px-4"
         >
           Stack & Tecnologias
         </h2>
-        <div class="h-px bg-slate-800 flex-grow"></div>
+        <div class="h-px bg-white/10 flex-grow"></div>
       </div>
       <StackList />
     </section>
 
     <!-- Education + Languages -->
-    <div class="grid lg:grid-cols-2 gap-6 mb-8">
-      <section class="brutalist-card p-6 sharp-hover">
-        <div
-          class="flex items-center gap-3 mb-6 border-b border-slate-800 pb-3"
-        >
-          <div
-            class="w-8 h-8 flex items-center justify-center border border-slate-700"
-          >
-            <i class="fa-solid fa-graduation-cap text-slate-400 text-xs"></i>
-          </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <section class="glass-card p-6">
+        <div class="flex items-center gap-3 mb-4 border-b border-white/5 pb-3">
+          <i class="fa-solid fa-graduation-cap text-slate-400 text-sm"></i>
           <h2 class="text-2xl font-display italic text-white tracking-wide">
             Formação Acadêmica
           </h2>
@@ -224,7 +192,13 @@ import StackList from "../components/StackList.astro";
                 level: "Doutorado em Ciência da Computação",
                 period: "2024 - Cursando",
                 icon: "fa-circle-dot",
-                color: "text-blue-400",
+              },
+              {
+                inst: "i9",
+                href: "#",
+                level: "Pós-Graduação em Direito Público",
+                period: "2024",
+                icon: "fa-square",
               },
               {
                 inst: "UFPel",
@@ -232,7 +206,6 @@ import StackList from "../components/StackList.astro";
                 level: "Mestrado em Ciência da Computação",
                 period: "2019 - 2021",
                 icon: "fa-circle-dot",
-                color: "text-slate-500",
               },
               {
                 inst: "UniSenac",
@@ -240,7 +213,6 @@ import StackList from "../components/StackList.astro";
                 level: "Especialização em Gerenciamento de Projetos",
                 period: "2009 - 2010",
                 icon: "fa-square",
-                color: "text-slate-600",
               },
               {
                 inst: "UniSenac",
@@ -248,14 +220,11 @@ import StackList from "../components/StackList.astro";
                 level: "Tecnólogo em Análise e Desenvolvimento de Sistemas",
                 period: "2005 - 2007",
                 icon: "fa-square",
-                color: "text-slate-600",
               },
             ].map((item) => (
               <div class="flex items-start gap-3">
                 <div class="mt-1 flex-shrink-0">
-                  <i
-                    class={`fa-solid ${item.icon} text-[10px] text-rose-500`}
-                  />
+                  <i class={`fa-solid ${item.icon} text-[8px] text-rose-500`} />
                 </div>
                 <div>
                   <a
@@ -265,8 +234,8 @@ import StackList from "../components/StackList.astro";
                   >
                     {item.inst}
                   </a>
-                  <p class="text-slate-400 font-light text-sm">{item.level}</p>
-                  <p class="text-slate-500 text-xs font-mono mt-1 tracking-wider">
+                  <p class="text-slate-400 font-light text-xs">{item.level}</p>
+                  <p class="text-slate-500 text-[10px] font-mono mt-0.5 tracking-wider">
                     {item.period}
                   </p>
                 </div>
@@ -277,15 +246,11 @@ import StackList from "../components/StackList.astro";
       </section>
 
       <div class="space-y-6 flex flex-col justify-between">
-        <section class="brutalist-card p-6 sharp-hover flex-grow mb-6 lg:mb-0">
+        <section class="glass-card p-6 flex-grow">
           <div
-            class="flex items-center gap-3 mb-6 border-b border-slate-800 pb-3"
+            class="flex items-center gap-3 mb-4 border-b border-white/5 pb-3"
           >
-            <div
-              class="w-8 h-8 flex items-center justify-center border border-slate-700"
-            >
-              <i class="fa-solid fa-globe text-slate-400 text-xs"></i>
-            </div>
+            <i class="fa-solid fa-globe text-slate-400 text-sm"></i>
             <h2 class="text-2xl font-display italic text-white tracking-wide">
               Idiomas
             </h2>
@@ -316,16 +281,16 @@ import StackList from "../components/StackList.astro";
               ].map((item) => (
                 <div>
                   <div class="flex justify-between items-center mb-1">
-                    <span class="text-sm text-slate-300 font-medium">
+                    <span class="text-xs text-slate-300 font-medium">
                       {item.lang}
                     </span>
-                    <span class="text-xs font-mono text-slate-500 uppercase tracking-widest">
+                    <span class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">
                       {item.level}
                     </span>
                   </div>
-                  <div class="w-full bg-[#050505] border border-slate-800 h-2">
+                  <div class="w-full bg-[#050505]/40 border border-white/5 rounded-full h-1.5">
                     <div
-                      class={`bg-slate-300 h-full`}
+                      class="bg-white/80 rounded-full h-full"
                       style={`width: ${item.pct}%`}
                     />
                   </div>
@@ -335,35 +300,45 @@ import StackList from "../components/StackList.astro";
           </div>
         </section>
 
-        <section class="brutalist-card p-6 sharp-hover flex-grow">
+        <section class="glass-card p-6 flex-grow">
           <div
-            class="flex items-center gap-3 mb-6 border-b border-slate-800 pb-3"
+            class="flex items-center gap-3 mb-4 border-b border-white/5 pb-3"
           >
-            <div
-              class="w-8 h-8 flex items-center justify-center border border-slate-700"
-            >
-              <i class="fa-solid fa-certificate text-slate-400 text-xs"></i>
-            </div>
+            <i class="fa-solid fa-certificate text-slate-400 text-sm"></i>
             <h2 class="text-2xl font-display italic text-white tracking-wide">
               Certificações
             </h2>
           </div>
-          <div class="space-y-4">
+          <div class="space-y-3">
             {
               [
-                { name: "OFICIAL EXIN PDPF", details: "Privacy & Data Protection Foundation EAD" },
-                { name: "LGPD", details: "Fundamentos da Lei Geral de Proteção de Dados" },
+                {
+                  name: "OFICIAL EXIN PDPF",
+                  details: "Privacy & Data Protection Foundation EAD",
+                },
+                {
+                  name: "LGPD",
+                  details: "Fundamentos da Lei Geral de Proteção de Dados",
+                },
                 { name: "HTML5", details: "W3C / Desenvolvimento Web" },
-                { name: "Angular 2 Fundamentals", details: "TypeScript Framework Core" },
-                { name: "Ionic 3", details: "Desenvolvimento Híbrido Intermediário" }
+                {
+                  name: "Angular 2 Fundamentals",
+                  details: "TypeScript Framework Core",
+                },
+                {
+                  name: "Ionic 3",
+                  details: "Desenvolvimento Híbrido Intermediário",
+                },
               ].map((cert) => (
-                <div class="flex items-start gap-3">
-                  <div class="mt-1 flex-shrink-0">
-                    <i class="fa-solid fa-shield-halved text-[10px] text-rose-500" />
-                  </div>
+                <div class="flex items-start gap-2">
+                  <i class="fa-solid fa-shield-halved text-[8px] text-rose-500 mt-1.5" />
                   <div>
-                    <h3 class="text-slate-200 text-sm font-medium">{cert.name}</h3>
-                    <p class="text-slate-400 font-light text-xs">{cert.details}</p>
+                    <h3 class="text-slate-200 text-xs font-medium">
+                      {cert.name}
+                    </h3>
+                    <p class="text-slate-400 font-light text-[10px]">
+                      {cert.details}
+                    </p>
                   </div>
                 </div>
               ))
