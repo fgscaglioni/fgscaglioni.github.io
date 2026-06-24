@@ -31,7 +31,7 @@ const related = allPosts
   .slice(0, 3);
 ---
 
-<BaseLayout title={`${post.data.title} | Blog Fabrício Scaglioni`}>
+<BaseLayout title={`${post.data.title} | Blog Fabrício Scaglioni`} ogImage={post.data.ogImage || undefined}>
   <Navbar slot="header" />
 
   <article class="pt-8 pb-16">
