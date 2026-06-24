@@ -58,12 +58,17 @@ const siteUrl = "https://fgscaglioni.dev.br";
     <!-- Canonical -->
     <link rel="canonical" href={siteUrl} />
 
+    <!-- Preconnect para recursos externos -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://gravatar.com" />
+    <link rel="preconnect" href="https://i0.wp.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
   </head>
   <body class="bg-[#F5F2ED] text-gray-700 font-sans antialiased min-h-screen relative overflow-x-hidden">
     <!-- Header/Navbar slot -->
