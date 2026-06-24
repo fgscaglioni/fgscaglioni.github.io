@@ -1,6 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
+import PaperCard from "../components/PaperCard.astro";
+import PageHeader from "../components/PageHeader.astro";
+import SectionHeader from "../components/SectionHeader.astro";
 
 const socialLinks = [
   {
@@ -8,40 +11,40 @@ const socialLinks = [
     url: "http://github.com/fgscaglioni/",
     icon: "fa-github",
     brand: true,
-    color: "bg-white/5 border-white/5 hover:border-white/20",
-    iconColor: "text-slate-300",
+    color: "bg-gray-50 border-gray-100 hover:border-gray-300",
+    iconColor: "text-gray-700",
   },
   {
     name: "Medium",
     url: "https://medium.com/@fgscaglioni",
     icon: "fa-medium",
     brand: true,
-    color: "bg-white/5 border-white/5 hover:border-white/20",
-    iconColor: "text-slate-300",
+    color: "bg-gray-50 border-gray-100 hover:border-gray-300",
+    iconColor: "text-gray-700",
   },
   {
     name: "LinkedIn",
     url: "https://www.linkedin.com/in/fgscaglioni/",
     icon: "fa-linkedin",
     brand: true,
-    color: "bg-white/5 border-white/5 hover:border-white/20",
-    iconColor: "text-slate-300",
+    color: "bg-gray-50 border-gray-100 hover:border-gray-300",
+    iconColor: "text-gray-700",
   },
   {
     name: "X (Twitter)",
     url: "https://x.com/fgscaglioni",
     icon: "fa-x-twitter",
     brand: true,
-    color: "bg-white/5 border-white/5 hover:border-white/20",
-    iconColor: "text-slate-300",
+    color: "bg-gray-50 border-gray-100 hover:border-gray-300",
+    iconColor: "text-gray-700",
   },
   {
     name: "Instagram",
     url: "https://www.instagram.com/fgscaglioni",
     icon: "fa-instagram",
     brand: true,
-    color: "bg-white/5 border-white/5 hover:border-white/20",
-    iconColor: "text-slate-300",
+    color: "bg-gray-50 border-gray-100 hover:border-gray-300",
+    iconColor: "text-gray-700",
   },
 ];
 
@@ -52,7 +55,7 @@ const academicLinks = [
     icon: "fa-google",
     brand: true,
     desc: "Publicações e citações acadêmicas",
-    color: "text-slate-400",
+    color: "text-gray-500",
   },
   {
     name: "Lattes",
@@ -60,7 +63,7 @@ const academicLinks = [
     icon: "fa-id-card",
     brand: false,
     desc: "Currículo Lattes CNPq",
-    color: "text-slate-400",
+    color: "text-gray-500",
   },
   {
     name: "Orcid",
@@ -68,7 +71,7 @@ const academicLinks = [
     icon: "fa-id-badge",
     brand: false,
     desc: "Identificador de pesquisador",
-    color: "text-slate-400",
+    color: "text-gray-500",
   },
   {
     name: "Kaggle",
@@ -76,7 +79,7 @@ const academicLinks = [
     icon: "fa-k",
     brand: false,
     desc: "Competições e notebooks de ML",
-    color: "text-slate-400",
+    color: "text-gray-500",
   },
   {
     name: "ResearchGate",
@@ -84,7 +87,7 @@ const academicLinks = [
     icon: "fa-r",
     brand: false,
     desc: "Rede de colaboração científica",
-    color: "text-slate-400",
+    color: "text-gray-500",
   },
   {
     name: "Parsifal",
@@ -92,7 +95,7 @@ const academicLinks = [
     icon: "fa-magnifying-glass-chart",
     brand: false,
     desc: "Revisões sistemáticas da literatura",
-    color: "text-slate-400",
+    color: "text-gray-500",
   },
   {
     name: "Semantic Scholar",
@@ -100,7 +103,7 @@ const academicLinks = [
     icon: "fa-graduation-cap",
     brand: false,
     desc: "Pesquisa acadêmica com IA",
-    color: "text-slate-400",
+    color: "text-gray-500",
   },
   {
     name: "ResearchId",
@@ -108,7 +111,7 @@ const academicLinks = [
     icon: "fa-fingerprint",
     brand: false,
     desc: "Perfil unificado de pesquisador",
-    color: "text-slate-400",
+    color: "text-gray-500",
   },
 ];
 ---
@@ -118,25 +121,22 @@ const academicLinks = [
 
   <article class="pt-8 pb-16">
     <!-- Page Header -->
-    <div class="glass-card p-6 sm:p-8 mb-8 relative overflow-hidden">
+    <PaperCard class=" p-6 sm:p-8 mb-8 relative overflow-hidden">
       <div class="flex items-center gap-4 relative">
-        <div class="w-12 h-12 rounded-lg border border-white/10 bg-black/40 flex items-center justify-center flex-shrink-0">
-          <i class="fa-solid fa-users text-slate-400 text-xl"></i>
+        <div class="w-12 h-12 rounded-lg border border-gray-200 bg-gray-100 flex items-center justify-center flex-shrink-0">
+          <i class="fa-solid fa-users text-gray-500 text-xl"></i>
         </div>
         <div>
-          <h1 class="text-3xl sm:text-4xl font-display italic tracking-wide text-white">Redes Sociais & Científicas</h1>
-          <p class="text-slate-500 text-xs mt-1 uppercase tracking-widest font-bold">Perfis profissionais, pessoais e acadêmicos</p>
+          <h1 class="text-3xl sm:text-4xl font-display italic tracking-wide text-gray-900">Redes Sociais & Científicas</h1>
+          <p class="text-gray-400 text-xs mt-1 uppercase tracking-widest font-bold">Perfis profissionais, pessoais e acadêmicos</p>
         </div>
       </div>
-    </div>
+    </PaperCard>
 
     <div class="grid md:grid-cols-2 gap-8">
       <!-- Social Networks -->
       <section>
-        <div class="flex items-center gap-3 mb-6 border-b border-white/5 pb-3">
-          <i class="fa-solid fa-share-nodes text-slate-400 text-sm"></i>
-          <h2 class="text-2xl font-display italic text-white tracking-wide">Redes Sociais</h2>
-        </div>
+        <SectionHeader icon="share-nodes" title="Redes Sociais" />
         <div class="space-y-3">
           {
             socialLinks.map((link) => (
@@ -146,19 +146,19 @@ const academicLinks = [
                 rel="noopener noreferrer"
                 class={`group flex items-center gap-4 p-4 rounded-xl ${link.color} border transition-all duration-300 hover:-translate-y-0.5`}
               >
-                <div class="w-10 h-10 rounded-lg border border-white/10 bg-black/40 group-hover:bg-white/10 flex items-center justify-center flex-shrink-0 transition-colors">
+                <div class="w-10 h-10 rounded-lg border border-gray-200 bg-gray-100 group-hover:bg-gray-200 flex items-center justify-center flex-shrink-0 transition-colors">
                   <i
                     class={`${link.brand ? "fa-brands" : "fa-solid"} ${
                       link.icon
                     } ${
                       link.iconColor
-                    } group-hover:text-white text-lg transition-colors`}
+                    } group-hover:text-gray-900 text-lg transition-colors`}
                   />
                 </div>
-                <span class="text-slate-300 font-bold uppercase tracking-wider text-xs group-hover:text-white transition-colors">
+                <span class="text-gray-700 font-bold uppercase tracking-wider text-xs group-hover:text-gray-900 transition-colors">
                   {link.name}
                 </span>
-                <i class="fa-solid fa-arrow-right text-xs text-slate-500 group-hover:text-slate-300 ml-auto transition-colors" />
+                <i class="fa-solid fa-arrow-right text-xs text-gray-400 group-hover:text-gray-700 ml-auto transition-colors" />
               </a>
             ))
           }
@@ -167,10 +167,7 @@ const academicLinks = [
 
       <!-- Academic Networks -->
       <section>
-        <div class="flex items-center gap-3 mb-6 border-b border-white/5 pb-3">
-          <i class="fa-solid fa-microscope text-slate-400 text-sm"></i>
-          <h2 class="text-2xl font-display italic text-white tracking-wide">Redes Acadêmicas</h2>
-        </div>
+        <SectionHeader icon="microscope" title="Redes Acadêmicas" />
         <div class="space-y-3">
           {
             academicLinks.map((link) => (
@@ -178,26 +175,26 @@ const academicLinks = [
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="group flex items-center gap-4 p-4 glass-card transition-all duration-200"
+                class="group flex items-center gap-4 p-4 paper-card transition-all duration-200"
               >
-                <div class="w-8 h-8 rounded-md border border-white/10 bg-black/40 group-hover:bg-white/10 flex items-center justify-center flex-shrink-0 transition-colors">
+                <div class="w-8 h-8 rounded-md border border-gray-200 bg-gray-100 group-hover:bg-gray-200 flex items-center justify-center flex-shrink-0 transition-colors">
                   <i
                     class={`${link.brand ? "fa-brands" : "fa-solid"} ${
                       link.icon
                     } ${
                       link.color
-                    } group-hover:text-white transition-colors text-sm`}
+                    } group-hover:text-gray-900 transition-colors text-sm`}
                   />
                 </div>
                 <div class="min-w-0 flex-1">
-                  <div class="text-slate-300 font-bold uppercase tracking-wider text-xs group-hover:text-white transition-colors">
+                  <div class="text-gray-700 font-bold uppercase tracking-wider text-xs group-hover:text-gray-900 transition-colors">
                     {link.name}
                   </div>
-                  <div class="text-slate-500 font-light text-[10px] truncate mt-1">
+                  <div class="text-gray-400 font-light text-[10px] truncate mt-1">
                     {link.desc}
                   </div>
                 </div>
-                <i class="fa-solid fa-arrow-right text-xs text-slate-600 group-hover:text-slate-300 transition-colors flex-shrink-0" />
+                <i class="fa-solid fa-arrow-right text-xs text-slate-600 group-hover:text-gray-700 transition-colors flex-shrink-0" />
               </a>
             ))
           }

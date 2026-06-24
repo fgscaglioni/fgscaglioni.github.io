@@ -2,6 +2,9 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
 import { changelogData } from "../data/changelogData";
+import PaperCard from "../components/PaperCard.astro";
+import PageHeader from "../components/PageHeader.astro";
+import BulletItem from "../components/BulletItem.astro";
 ---
 
 <BaseLayout title="Histórico de Modificações | Fabrício Scaglioni">
@@ -9,20 +12,20 @@ import { changelogData } from "../data/changelogData";
 
   <article class="pt-8 pb-16">
     <!-- Page Header -->
-    <div class="glass-card p-6 sm:p-8 mb-8 relative overflow-hidden">
+    <PaperCard class=" p-6 sm:p-8 mb-8 relative overflow-hidden">
       <div class="flex items-center gap-4 relative">
-        <div class="w-12 h-12 rounded-lg border border-white/10 bg-black/40 flex items-center justify-center flex-shrink-0">
-          <i class="fa-solid fa-clock-rotate-left text-slate-400 text-xl"></i>
+        <div class="w-12 h-12 rounded-lg border border-gray-200 bg-gray-100 flex items-center justify-center flex-shrink-0">
+          <i class="fa-solid fa-clock-rotate-left text-gray-500 text-xl"></i>
         </div>
         <div>
-          <h1 class="text-3xl sm:text-4xl font-display italic tracking-wide text-white">Changelog</h1>
-          <p class="text-slate-500 text-xs mt-1 uppercase tracking-widest font-bold">Histórico de modificações e evolução do site</p>
+          <h1 class="text-3xl sm:text-4xl font-display italic tracking-wide text-gray-900">Changelog</h1>
+          <p class="text-gray-400 text-xs mt-1 uppercase tracking-widest font-bold">Histórico de modificações e evolução do site</p>
         </div>
       </div>
-    </div>
+    </PaperCard>
 
     <!-- Timeline of Changes -->
-    <div class="relative pl-6 sm:pl-8 border-l border-white/5 space-y-12">
+    <div class="relative pl-6 sm:pl-8 border-l border-gray-100 space-y-12">
       {
         changelogData.map((item) => (
           <div class="relative">
@@ -32,38 +35,31 @@ import { changelogData } from "../data/changelogData";
             </div>
 
             <!-- Card Content -->
-            <div class="glass-card p-6">
-              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 pb-3 border-b border-white/5">
+            <PaperCard class=" p-6">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 pb-3 border-b border-gray-100">
                 <div>
-                  <span class="font-mono text-[10px] px-2 py-0.5 rounded-md border border-white/10 bg-black/40 text-slate-300 font-bold uppercase tracking-wider">
+                  <span class="font-mono text-[10px] px-2 py-0.5 rounded-md border border-gray-200 bg-gray-100 text-gray-700 font-bold uppercase tracking-wider">
                     {item.version}
                   </span>
-                  <h2 class="text-xl font-display italic text-white tracking-wide mt-1.5">
+                  <h2 class="text-xl font-display italic text-gray-900 tracking-wide mt-1.5">
                     {item.title}
                   </h2>
                 </div>
-                <time class="text-slate-500 text-[10px] font-mono uppercase tracking-wider whitespace-nowrap">
+                <time class="text-gray-400 text-[10px] font-mono uppercase tracking-wider whitespace-nowrap">
                   {item.date}
                 </time>
               </div>
 
-              <p class="text-slate-300 text-xs sm:text-sm mb-4 leading-relaxed font-light">
+              <p class="text-gray-700 text-xs sm:text-sm mb-4 leading-relaxed font-light">
                 {item.description}
               </p>
 
               <ul class="space-y-2.5">
                 {item.changes.map((change) => (
-                  <li class="flex items-start gap-3">
-                    <span class="text-rose-500 mt-1 text-[8px] shrink-0">
-                      ■
-                    </span>
-                    <span class="text-slate-400 text-xs sm:text-sm leading-relaxed">
-                      {change}
-                    </span>
-                  </li>
+                  <BulletItem>{change}</BulletItem>
                 ))}
               </ul>
-            </div>
+            </PaperCard>
           </div>
         ))
       }

@@ -1,16 +1,17 @@
 ---
 import { siteLinks } from "../data/siteData";
+import PaperCard from "../components/PaperCard.astro";
 const currentPath = Astro.url.pathname;
 ---
 
 <header class="sticky top-4 z-50 px-4 max-w-3xl mx-auto w-full">
-  <div class="glass-card px-4 py-3 flex items-center justify-between bg-black/40 backdrop-blur-md border border-white/10 rounded-full">
+  <PaperCard class=" px-4 py-3 flex items-center justify-between bg-white/80 backdrop-blur-md border border-gray-200 rounded-full">
     <!-- Brand Logo -->
     <a href="/" class="flex items-center gap-2 group">
-      <div class="w-8 h-8 rounded-full border border-white/20 bg-black/40 flex items-center justify-center transition-all duration-300 group-hover:bg-white group-hover:text-black">
-        <span class="font-display italic text-base font-bold">fg</span>
+      <div class="w-8 h-8 rounded-full border border-gray-200 bg-gray-100 flex items-center justify-center transition-all duration-300 group-hover:bg-teal-600 group-hover:border-teal-600">
+        <span class="font-display italic text-base font-bold text-gray-700 group-hover:text-white">fg</span>
       </div>
-      <span class="font-display italic text-lg text-white group-hover:text-slate-300 transition-colors hidden xs:inline">
+      <span class="font-display italic text-lg text-gray-800 group-hover:text-gray-500 transition-colors hidden xs:inline">
         fgscaglioni
       </span>
     </a>
@@ -25,8 +26,8 @@ const currentPath = Astro.url.pathname;
               href={link.href}
               class={`px-3 py-1.5 rounded-full text-xs font-medium tracking-wide transition-all duration-300 ${
                 isActive
-                  ? "bg-white text-black shadow-lg"
-                  : "text-slate-400 hover:text-white hover:bg-white/5"
+                  ? "bg-teal-600 text-white shadow-sm"
+                  : "text-gray-500 hover:text-gray-800 hover:bg-gray-100"
               }`}
             >
               {link.label}
@@ -35,7 +36,7 @@ const currentPath = Astro.url.pathname;
         })
       }
     </nav>
-  </div>
+  </PaperCard>
 </header>
 
 <style>

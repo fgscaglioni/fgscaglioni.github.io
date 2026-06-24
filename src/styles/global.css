@@ -4,15 +4,14 @@
     --font-display: 'Instrument Serif', serif;
     --font-body: 'Manrope', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
-    --color-accent: #f8fafc; /* Slate 50 */
+    --color-accent: #0D9488; /* Teal 600 */
 }
 
 body {
     font-family: var(--font-body);
-    background-color: #030303;
+    background-color: #F5F2ED;
     background-image: 
-        radial-gradient(at 0% 0%, rgba(129, 140, 248, 0.04) 0px, transparent 50%),
-        radial-gradient(at 100% 0%, rgba(45, 212, 191, 0.04) 0px, transparent 50%);
+        radial-gradient(at 50% 0%, rgba(13, 148, 136, 0.03) 0px, transparent 60%);
     background-attachment: fixed;
 }
 
@@ -32,14 +31,17 @@ code,
     font-family: var(--font-mono);
 }
 
-/* Glassmorphic Card Element */
-.glass-card {
-    background: rgba(10, 10, 10, 0.4);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.04);
+/* Paper Card Element */
+.paper-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.04);
     border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+    transition: box-shadow 0.2s ease;
+}
+
+.paper-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
 /* Scrollbar */
@@ -48,28 +50,28 @@ code,
 }
 
 ::-webkit-scrollbar-track {
-    background: #030303;
+    background: #F5F2ED;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.1);
     border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.2);
 }
 
 /* External Link Elegant Hint */
-a[target="_blank"]:not(.glass-card *):not(nav *):not(header *) {
+a[target="_blank"]:not(nav a):not(header a):not(.stack-link) {
     text-decoration: underline;
     text-decoration-style: dotted;
     text-underline-offset: 3px;
-    text-decoration-color: rgba(255, 255, 255, 0.2);
+    text-decoration-color: rgba(0, 0, 0, 0.15);
 }
 
-a[target="_blank"]:not(.glass-card *):not(nav *):not(header *)::after {
-    content: " \2197";
+a[target="_blank"]:not(nav a):not(header a):not(.stack-link)::after {
+    content: " ↗";
     font-size: 0.85em;
     opacity: 0.5;
     display: inline-block;
@@ -83,5 +85,17 @@ a[target="_blank"]:not(.glass-card *):not(nav *):not(header *)::after {
     top: 0;
     bottom: 0;
     width: 1px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(0, 0, 0, 0.06);
+}
+
+/* Focus visible for keyboard navigation */
+:focus-visible {
+    outline: 2px solid #0D9488;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Remove focus outline for mouse users */
+:focus:not(:focus-visible) {
+    outline: none;
 }

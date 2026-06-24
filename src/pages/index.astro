@@ -2,6 +2,9 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
 import StackList from "../components/StackList.astro";
+import PaperCard from "../components/PaperCard.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import BulletItem from "../components/BulletItem.astro";
 ---
 
 <BaseLayout
@@ -11,7 +14,7 @@ import StackList from "../components/StackList.astro";
 
   <article class="pt-8 pb-4">
     <!-- Hero Section -->
-    <section class="glass-card p-6 sm:p-8 mb-6 relative overflow-hidden">
+    <section class="paper-card p-6 sm:p-8 mb-6 relative overflow-hidden">
       <!-- Light aura inside card -->
       <div
         class="absolute -right-10 -top-10 w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"
@@ -26,14 +29,14 @@ import StackList from "../components/StackList.astro";
           <img
             src="https://gravatar.com/avatar/556a14540bc4ab41d65b17218d498fd9d628698736378f62deb6e8f0849a5376"
             alt="Fabrício Scaglioni"
-            class="relative w-24 h-24 rounded-full object-cover border border-white/10 shadow-xl transition-transform duration-500 hover:scale-105"
+            class="relative w-24 h-24 rounded-full object-cover border border-gray-200 shadow-xl transition-transform duration-500 hover:scale-105"
           />
         </div>
         <!-- Info -->
         <div class="flex-grow">
           <div class="flex flex-col sm:flex-row items-center gap-3 mb-2">
             <h1
-              class="text-3xl sm:text-4xl text-white font-display italic tracking-wide"
+              class="text-3xl sm:text-4xl text-gray-900 font-display italic tracking-wide"
             >
               Fabrício Scaglioni
             </h1>
@@ -46,10 +49,9 @@ import StackList from "../components/StackList.astro";
           </div>
           <!-- Positioning Tagline -->
           <p
-            class="text-slate-400 text-sm mb-4 font-mono uppercase tracking-wider leading-relaxed"
+            class="text-gray-500 text-sm mb-4 font-mono uppercase tracking-wider leading-relaxed"
           >
-            Engenheiro de Software Sênior&nbsp;·&nbsp;Fullstack &amp;
-            Mobile&nbsp;·&nbsp;Pesquisador em IA
+            Engenheiro de Software Sênior&nbsp;·&nbsp;Pesquisador em IA
           </p>
           <!-- Social Links -->
           <div
@@ -59,7 +61,7 @@ import StackList from "../components/StackList.astro";
               href="https://www.linkedin.com/in/fgscaglioni/"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 hover:bg-white hover:text-black text-xs font-bold uppercase tracking-wider transition-all duration-300"
+              class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-white hover:text-black text-xs font-bold uppercase tracking-wider transition-all duration-300"
             >
               <i class="fa-brands fa-linkedin"></i> LinkedIn
             </a>
@@ -67,7 +69,7 @@ import StackList from "../components/StackList.astro";
               href="http://github.com/fgscaglioni/"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 hover:bg-white hover:text-black text-xs font-bold uppercase tracking-wider transition-all duration-300"
+              class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-white hover:text-black text-xs font-bold uppercase tracking-wider transition-all duration-300"
             >
               <i class="fa-brands fa-github"></i> GitHub
             </a>
@@ -75,7 +77,7 @@ import StackList from "../components/StackList.astro";
               href="https://medium.com/@fgscaglioni"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 hover:bg-white hover:text-black text-xs font-bold uppercase tracking-wider transition-all duration-300"
+              class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-white hover:text-black text-xs font-bold uppercase tracking-wider transition-all duration-300"
             >
               <i class="fa-brands fa-medium"></i> Medium
             </a>
@@ -86,103 +88,56 @@ import StackList from "../components/StackList.astro";
 
     <!-- About + Technical Approach side by side on desktop, stacked on mobile -->
     <div class="grid md:grid-cols-2 gap-6 mb-6">
-      <section class="glass-card p-6">
-        <div class="flex items-center gap-3 mb-4 border-b border-white/5 pb-3">
-          <i class="fa-solid fa-user text-slate-400 text-sm"></i>
-          <h2 class="text-2xl font-display italic text-white tracking-wide">
+      <section class="paper-card p-6">
+        <SectionHeader icon="user" title="
             Sobre mim
-          </h2>
-        </div>
+          " />
         <ul class="space-y-3">
-          <li class="flex items-start gap-3">
-            <span class="text-rose-500 mt-1 text-[10px] shrink-0">■</span>
-            <span class="text-slate-300 text-sm leading-relaxed">
-              <strong class="text-white font-medium">+15 anos</strong> atuando em
+          <BulletItem><strong class=&quot;text-gray-900 font-medium&quot;>+15 anos</strong> atuando em
               todo o ciclo de desenvolvimento — planejamento, arquitetura, frontend
-              e backend.
-            </span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-rose-500 mt-1 text-[10px] shrink-0">■</span>
-            <span class="text-slate-300 text-sm leading-relaxed">
-              <strong class="text-white font-medium"
+              e backend.</BulletItem>
+          <BulletItem><strong class=&quot;text-gray-900 font-medium&quot;
                 >Doutorando em Ciência da Computação</strong
-              > (UFPel), pesquisando <strong class="text-white font-medium"
+              > (UFPel), pesquisando <strong class=&quot;text-gray-900 font-medium&quot;
                 >Inteligência Artificial aplicada à Educação</strong
-              >.
-            </span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-rose-500 mt-1 text-[10px] shrink-0">■</span>
-            <span class="text-slate-300 text-sm leading-relaxed">
-              Experiência em escalar sistemas em produção — de aplicativos com <strong
-                class="text-white font-medium">+2k usuários</strong
-              > a APIs institucionais de alta escala.
-            </span>
-          </li>
+              >.</BulletItem>
+          <BulletItem>Experiência em escalar sistemas em produção — de aplicativos com <strong
+                class=&quot;text-gray-900 font-medium&quot;>+2k usuários</strong
+              > a APIs institucionais de alta escala.</BulletItem>
         </ul>
       </section>
 
-      <section class="glass-card p-6">
-        <div class="flex items-center gap-3 mb-4 border-b border-white/5 pb-3">
-          <i class="fa-solid fa-code text-slate-400 text-sm"></i>
-          <h2 class="text-2xl font-display italic text-white tracking-wide">
+      <section class="paper-card p-6">
+        <SectionHeader icon="code" title="
             Competências Chave
-          </h2>
-        </div>
+          " />
         <ul class="space-y-3">
-          <li class="flex items-start gap-3">
-            <span class="text-rose-500 mt-1 text-[10px] shrink-0">■</span>
-            <span class="text-slate-300 text-sm leading-relaxed">
-              <strong class="text-white font-medium"
+          <BulletItem><strong class=&quot;text-gray-900 font-medium&quot;
                 >Arquitetura de Software</strong
               > — design e implementação de APIs REST, sistemas containerizados com
-              Docker e pipelines CI/CD.
-            </span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-rose-500 mt-1 text-[10px] shrink-0">■</span>
-            <span class="text-slate-300 text-sm leading-relaxed">
-              <strong class="text-white font-medium"
+              Docker e pipelines CI/CD.</BulletItem>
+          <BulletItem><strong class=&quot;text-gray-900 font-medium&quot;
                 >Desenvolvimento Fullstack</strong
-              > — Laravel, NestJS, Angular, Ionic e PostgreSQL como stacks principais.
-            </span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-rose-500 mt-1 text-[10px] shrink-0">■</span>
-            <span class="text-slate-300 text-sm leading-relaxed">
-              <strong class="text-white font-medium">Pesquisa em ML/IA</strong> —
+              > — Laravel, NestJS, Angular, Ionic e PostgreSQL como stacks principais.</BulletItem>
+          <BulletItem><strong class=&quot;text-gray-900 font-medium&quot;>Pesquisa em ML/IA</strong> —
               modelos preditivos educacionais, SLMs e revisões sistemáticas publicadas
-              em periódicos internacionais.
-            </span>
-          </li>
+              em periódicos internacionais.</BulletItem>
         </ul>
       </section>
     </div>
 
     <!-- Stack Section -->
     <section class="mb-8">
-      <div class="flex items-center justify-center gap-3 mb-6">
-        <div class="h-px bg-white/10 flex-grow"></div>
-        <h2
-          class="text-2xl font-display italic text-white tracking-widest px-4"
-        >
-          Stack & Tecnologias
-        </h2>
-        <div class="h-px bg-white/10 flex-grow"></div>
-      </div>
+      <h2 class="text-2xl font-display italic text-gray-900 tracking-wide mb-6">
+        Stack
+      </h2>
       <StackList />
     </section>
 
     <!-- Education + Languages -->
     <div class="grid md:grid-cols-2 gap-6">
-      <section class="glass-card p-6">
-        <div class="flex items-center gap-3 mb-4 border-b border-white/5 pb-3">
-          <i class="fa-solid fa-graduation-cap text-slate-400 text-sm"></i>
-          <h2 class="text-2xl font-display italic text-white tracking-wide">
-            Formação Acadêmica
-          </h2>
-        </div>
+      <section class="paper-card p-6">
+        <SectionHeader icon="graduation-cap" title="Formação Acadêmica" />
         <div class="space-y-4">
           {
             [
@@ -230,12 +185,12 @@ import StackList from "../components/StackList.astro";
                   <a
                     href={item.href}
                     target="_blank"
-                    class="text-slate-200 text-sm font-medium hover:text-white transition-colors"
+                    class="text-gray-800 text-sm font-medium hover:text-gray-900 transition-colors"
                   >
                     {item.inst}
                   </a>
-                  <p class="text-slate-400 font-light text-xs">{item.level}</p>
-                  <p class="text-slate-500 text-[10px] font-mono mt-0.5 tracking-wider">
+                  <p class="text-gray-500 font-light text-xs">{item.level}</p>
+                  <p class="text-gray-400 text-[10px] font-mono mt-0.5 tracking-wider">
                     {item.period}
                   </p>
                 </div>
@@ -246,15 +201,8 @@ import StackList from "../components/StackList.astro";
       </section>
 
       <div class="space-y-6 flex flex-col justify-between">
-        <section class="glass-card p-6 flex-grow">
-          <div
-            class="flex items-center gap-3 mb-4 border-b border-white/5 pb-3"
-          >
-            <i class="fa-solid fa-globe text-slate-400 text-sm"></i>
-            <h2 class="text-2xl font-display italic text-white tracking-wide">
-              Idiomas
-            </h2>
-          </div>
+        <section class="paper-card p-6 flex-grow">
+          <SectionHeader icon="globe" title="Idiomas" />
           <div class="space-y-3">
             {
               [
@@ -281,16 +229,16 @@ import StackList from "../components/StackList.astro";
               ].map((item) => (
                 <div>
                   <div class="flex justify-between items-center mb-1">
-                    <span class="text-xs text-slate-300 font-medium">
+                    <span class="text-xs text-gray-700 font-medium">
                       {item.lang}
                     </span>
-                    <span class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">
+                    <span class="text-[10px] font-mono text-gray-400 uppercase tracking-widest">
                       {item.level}
                     </span>
                   </div>
-                  <div class="w-full bg-[#050505]/40 border border-white/5 rounded-full h-1.5">
+                  <div class="w-full bg-gray-200 border border-gray-100 rounded-full h-1.5">
                     <div
-                      class="bg-white/80 rounded-full h-full"
+                      class="bg-teal-600 rounded-full h-full"
                       style={`width: ${item.pct}%`}
                     />
                   </div>
@@ -300,15 +248,8 @@ import StackList from "../components/StackList.astro";
           </div>
         </section>
 
-        <section class="glass-card p-6 flex-grow">
-          <div
-            class="flex items-center gap-3 mb-4 border-b border-white/5 pb-3"
-          >
-            <i class="fa-solid fa-certificate text-slate-400 text-sm"></i>
-            <h2 class="text-2xl font-display italic text-white tracking-wide">
-              Certificações
-            </h2>
-          </div>
+        <section class="paper-card p-6 flex-grow">
+          <SectionHeader icon="certificate" title="Certificações" />
           <div class="space-y-3">
             {
               [
@@ -333,10 +274,10 @@ import StackList from "../components/StackList.astro";
                 <div class="flex items-start gap-2">
                   <i class="fa-solid fa-shield-halved text-[8px] text-rose-500 mt-1.5" />
                   <div>
-                    <h3 class="text-slate-200 text-xs font-medium">
+                    <h3 class="text-gray-800 text-xs font-medium">
                       {cert.name}
                     </h3>
-                    <p class="text-slate-400 font-light text-[10px]">
+                    <p class="text-gray-500 font-light text-[10px]">
                       {cert.details}
                     </p>
                   </div>
