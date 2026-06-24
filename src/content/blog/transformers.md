@@ -3,6 +3,7 @@ title: "Transformers: A Arquitetura que Revolucionou a Inteligência Artificial"
 pubDate: 2026-06-24
 description: "Uma análise do paper 'Attention Is All You Need' (Vaswani et al., 2017): o que é a arquitetura Transformer, como funciona na prática e por que ela se tornou a base de toda a IA generativa moderna."
 draft: false
+updated: 2026-06-24
 tags: ["arquitetura", "nlp", "deep learning"]
 ---
 

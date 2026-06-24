@@ -4,6 +4,7 @@ pubDate: 2026-06-24
 description: "Um guia prático das 21 falácias mais comuns em debates, organizadas por mecanismo de manipulação, com exemplos reais e como rebater cada uma."
 tags: ["filosofia", "pensamento crítico", "argumentação"]
 draft: false
+updated: 2026-06-24
 ---
 
 Uma falácia é um argumento que parece logicamente sólido, mas falha na estrutura ou nas premissas. Quem as usa não quer vencer no mérito — quer vencer na retórica.

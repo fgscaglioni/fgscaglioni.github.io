@@ -50,6 +50,15 @@ const related = allPosts
             day: "numeric",
           })
         }
+        {post.data.updated && (
+          <span class="text-gray-300"> · atualizado em {
+            post.data.updated.toLocaleDateString("pt-BR", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })
+          }</span>
+        )}
       </span>
       {post.data.tags && post.data.tags.length > 0 && (
         <div class="flex flex-wrap items-center gap-2 mb-4">
