@@ -5,9 +5,9 @@ const currentPath = Astro.url.pathname;
 ---
 
 <header class="sticky top-4 z-50 px-4 max-w-3xl mx-auto w-full">
-  <PaperCard class=" px-4 py-3 flex items-center justify-between bg-white/80 backdrop-blur-md border border-gray-200 rounded-full">
+  <PaperCard class="px-4 py-3 flex items-center justify-between bg-white/80 backdrop-blur-md border border-gray-200 rounded-full">
     <!-- Brand Logo -->
-    <a href="/" class="flex items-center gap-2 group">
+    <a href="/" class="flex items-center gap-2 group shrink-0">
       <div class="w-8 h-8 rounded-full border border-gray-200 bg-gray-100 flex items-center justify-center transition-all duration-300 group-hover:bg-teal-600 group-hover:border-teal-600">
         <span class="font-display italic text-base font-bold text-gray-700 group-hover:text-white">fg</span>
       </div>
@@ -16,35 +16,105 @@ const currentPath = Astro.url.pathname;
       </span>
     </a>
 
-    <!-- Top Navigation Links -->
-    <nav class="flex items-center gap-1 sm:gap-2">
-      {
-        siteLinks.main.slice(0, 6).map((link) => {
-          const isActive = currentPath === link.href || currentPath === link.href + "/";
-          return (
-            <a
-              href={link.href}
-              class={`px-3 py-1.5 rounded-full text-xs font-medium tracking-wide transition-all duration-300 ${
-                isActive
-                  ? "bg-teal-600 text-white shadow-sm"
-                  : "text-gray-500 hover:text-gray-800 hover:bg-gray-100"
-              }`}
-            >
-              {link.label}
-            </a>
-          );
-        })
-      }
+    <!-- Desktop Navigation + Toggle -->
+    <nav id="desktop-nav" class="hidden sm:flex items-center gap-1">
+      {siteLinks.main.slice(0, 6).map((link) => {
+        const isActive = currentPath === link.href || currentPath === link.href + "/";
+        return (
+          <a
+            href={link.href}
+            class={`px-3 py-1.5 rounded-full text-xs font-medium tracking-wide transition-all duration-300 ${
+              isActive
+                ? "bg-teal-600 text-white shadow-sm"
+                : "text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+            }`}
+          >
+            {link.label}
+          </a>
+        );
+      })}
+      <button
+        id="theme-toggle"
+        class="ml-1 w-8 h-8 rounded-full flex items-center justify-center text-gray-500 hover:text-gray-800 hover:bg-gray-100 transition-all duration-300"
+        aria-label="Alternar tema"
+      >
+        <i id="theme-icon" class="fa-solid fa-moon text-sm"></i>
+      </button>
     </nav>
+
+    <!-- Mobile: Hamburger + Toggle -->
+    <div class="flex sm:hidden items-center gap-1">
+      <button
+        id="theme-toggle-mobile"
+        class="w-8 h-8 rounded-full flex items-center justify-center text-gray-500 hover:text-gray-800 hover:bg-gray-100 transition-all duration-300"
+        aria-label="Alternar tema"
+      >
+        <i id="theme-icon-mobile" class="fa-solid fa-moon text-sm"></i>
+      </button>
+      <button
+        id="menu-toggle"
+        class="w-8 h-8 rounded-full flex items-center justify-center text-gray-500 hover:text-gray-800 hover:bg-gray-100 transition-all duration-300"
+        aria-label="Abrir menu"
+      >
+        <i id="menu-icon" class="fa-solid fa-bars text-sm"></i>
+      </button>
+    </div>
   </PaperCard>
+
+  <!-- Mobile Menu Dropdown -->
+  <div id="mobile-menu" class="sm:hidden hidden mt-2">
+    <PaperCard class="px-4 py-3 flex flex-col gap-1">
+      {siteLinks.main.slice(0, 6).map((link) => {
+        const isActive = currentPath === link.href || currentPath === link.href + "/";
+        return (
+          <a
+            href={link.href}
+            class={`px-3 py-2 rounded-xl text-sm font-medium tracking-wide transition-all duration-200 ${
+              isActive
+                ? "bg-teal-600 text-white shadow-sm"
+                : "text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+            }`}
+          >
+            {link.label}
+          </a>
+        );
+      })}
+    </PaperCard>
+  </div>
 </header>
 
-<style>
-  @media (max-width: 380px) {
-    /* Hide some items on ultra-small screens to prevent overflow */
-    nav a:nth-child(4),
-    nav a:nth-child(5) {
-      display: none;
+<script is:inline>
+  (function () {
+    var html = document.documentElement;
+    var stored = localStorage.getItem("theme");
+
+    function setThemeIcons(isDark) {
+      document.querySelectorAll("#theme-icon, #theme-icon-mobile").forEach(function (el) {
+        el.className = isDark ? "fa-solid fa-sun text-sm" : "fa-solid fa-moon text-sm";
+      });
     }
-  }
-</style>
+
+    if (stored === "dark" || (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+      html.classList.add("dark");
+      setThemeIcons(true);
+    }
+
+    function toggleTheme() {
+      var isDark = html.classList.toggle("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+      setThemeIcons(isDark);
+    }
+
+    document.addEventListener("click", function (e) {
+      if (e.target.closest("#theme-toggle") || e.target.closest("#theme-toggle-mobile")) {
+        toggleTheme();
+      }
+      if (e.target.closest("#menu-toggle")) {
+        var menu = document.getElementById("mobile-menu");
+        var icon = document.getElementById("menu-icon");
+        var isOpen = menu.classList.toggle("hidden");
+        icon.className = isOpen ? "fa-solid fa-bars text-sm" : "fa-solid fa-xmark text-sm";
+      }
+    });
+  })();
+</script>

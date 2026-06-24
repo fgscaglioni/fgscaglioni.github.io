@@ -100,3 +100,88 @@ a[target="_blank"]:not(nav a):not(header a):not(.stack-link)::after {
 :focus:not(:focus-visible) {
     outline: none;
 }
+
+/* Page fade-in animation */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body {
+    animation: fade-in 0.25s ease-out;
+}
+
+/* Dark theme overrides */
+.dark {
+    --color-gray-50: oklch(27.8% .033 256.848);
+    --color-gray-100: oklch(32% .03 260);
+    --color-gray-200: oklch(37.3% .034 259.733);
+    --color-gray-400: oklch(70.7% .022 261.325);
+    --color-gray-500: oklch(80% .015 260);
+    --color-gray-700: oklch(87.2% .01 258.338);
+    --color-gray-900: oklch(96.7% .003 264.542);
+    --tw-prose-body: oklch(87.2% .01 258.338);
+    --tw-prose-headings: oklch(96.7% .003 264.542);
+    --tw-prose-links: oklch(96.7% .003 264.542);
+    --tw-prose-bold: oklch(96.7% .003 264.542);
+    --tw-prose-code: oklch(96.7% .003 264.542);
+}
+
+.dark body {
+    background-color: #0D0D0F;
+    background-image: radial-gradient(at 50% 0%, rgba(13, 148, 136, 0.06) 0px, transparent 60%);
+}
+
+.dark .paper-card {
+    background: #18181B;
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.dark .paper-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.dark ::-webkit-scrollbar-track {
+    background: #0D0D0F;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.dark a[target="_blank"]:not(nav a):not(header a):not(.stack-link) {
+    text-decoration-color: rgba(255, 255, 255, 0.2);
+}
+
+.dark .timeline-line::before {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.dark .prose pre {
+    background: #1A1A1E !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.dark .prose code:not(pre code) {
+    background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.dark .tag-popover div {
+    background: #18181B !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.dark .bg-white {
+    background-color: #18181B !important;
+}
