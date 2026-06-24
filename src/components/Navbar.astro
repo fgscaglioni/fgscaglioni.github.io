@@ -19,7 +19,9 @@ const currentPath = Astro.url.pathname;
     <!-- Desktop Navigation + Toggle -->
     <nav id="desktop-nav" class="hidden sm:flex items-center gap-1">
       {siteLinks.main.slice(0, 6).map((link) => {
-        const isActive = currentPath === link.href || currentPath === link.href + "/";
+        const isActive = link.href === "/"
+          ? currentPath === "/"
+          : currentPath === link.href || currentPath === link.href + "/" || currentPath.startsWith(link.href + "/");
         return (
           <a
             href={link.href}
@@ -65,7 +67,9 @@ const currentPath = Astro.url.pathname;
   <div id="mobile-menu" class="sm:hidden hidden mt-2">
     <PaperCard class="px-4 py-3 flex flex-col gap-1">
       {siteLinks.main.slice(0, 6).map((link) => {
-        const isActive = currentPath === link.href || currentPath === link.href + "/";
+        const isActive = link.href === "/"
+          ? currentPath === "/"
+          : currentPath === link.href || currentPath === link.href + "/" || currentPath.startsWith(link.href + "/");
         return (
           <a
             href={link.href}
