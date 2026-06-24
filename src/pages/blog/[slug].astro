@@ -51,6 +51,18 @@ const related = allPosts
           })
         }
       </span>
+      {post.data.tags && post.data.tags.length > 0 && (
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          {post.data.tags.map((tag) => (
+            <a
+              href={`/blog/tag/${tag}`}
+              class="font-mono text-[9px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 hover:bg-teal-100 hover:text-teal-700 uppercase tracking-wider transition-colors"
+            >
+              {tag}
+            </a>
+          ))}
+        </div>
+      )}
       <h1 class="text-3xl sm:text-4xl font-display italic text-gray-900 leading-tight mb-4">
         {post.data.title}
       </h1>
