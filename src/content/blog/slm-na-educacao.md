@@ -3,9 +3,8 @@ title: "Inteligência Artificial na Educação: O papel dos Small Language Model
 pubDate: 2026-05-26
 description: "Uma análise sobre a viabilidade e os benefícios de executar modelos de linguagem enxutos localmente em infraestrutura universitária para apoiar o aprendizado."
 draft: false
+tags: ["educação", "ia", "slm"]
 ---
-
-# Inteligência Artificial na Educação: O papel dos SLMs
 
 Nos últimos anos, o debate sobre IA generativa na educação tem sido dominado por grandes modelos proprietários hospedados em nuvem. No entanto, no ecossistema das instituições públicas de ensino superior, enfrentamos barreiras claras de privacidade de dados dos estudantes, custos e latência de rede.
 

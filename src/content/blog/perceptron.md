@@ -3,9 +3,8 @@ title: "Perceptron: A Unidade Fundamental que Deu Origem às Redes Neurais"
 pubDate: 2026-06-24
 description: "Uma análise do artigo seminal de Frank Rosenblatt (1957) que apresentou o Perceptron — o primeiro modelo matemático de um neurônio artificial e a semente de toda a revolução do aprendizado profundo."
 draft: false
+tags: ["história", "redes neurais", "fundamentos"]
 ---
-
-# Perceptron: A Unidade Fundamental que Deu Origem às Redes Neurais
 
 Antes dos Transformers, antes do backpropagation, antes mesmo do conceito de "deep learning", houve o **Perceptron**. Em 1957, o psicólogo e pesquisador Frank Rosenblatt, trabalhando no Cornell Aeronautical Laboratory, publicou um artigo intitulado *"The Perceptron: A Perceiving and Recognizing Automaton"* que propunha um modelo matemático simplificado de como um neurônio biológico poderia "aprender".
 

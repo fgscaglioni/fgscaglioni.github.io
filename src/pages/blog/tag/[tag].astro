@@ -1,20 +1,31 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import Navbar from "../../components/Navbar.astro";
-import PaperCard from "../../components/PaperCard.astro";
-import TagFilter from "../../components/TagFilter.astro";
-import BlogIntro from "../../components/BlogIntro.astro";
-import SearchBar from "../../components/SearchBar.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Navbar from "../../../components/Navbar.astro";
+import PaperCard from "../../../components/PaperCard.astro";
+import TagFilter from "../../../components/TagFilter.astro";
+import BlogIntro from "../../../components/BlogIntro.astro";
+import SearchBar from "../../../components/SearchBar.astro";
 import { getCollection } from "astro:content";
 
-const posts = (await getCollection("blog"))
+export async function getStaticPaths() {
+  const posts = (await getCollection("blog"))
+    .filter((post) => !post.data.draft);
+  const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort();
+  return allTags.map((tag) => ({ params: { tag } }));
+}
+
+const { tag } = Astro.params;
+
+const allPosts = (await getCollection("blog"))
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort();
+const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags || []))].sort();
+
+const posts = allPosts.filter((post) => (post.data.tags || []).includes(tag));
 ---
 
-<BaseLayout title="Research Journal & Blog | Fabrício Scaglioni">
+<BaseLayout title={`${tag} · Journal | Fabrício Scaglioni`}>
   <Navbar slot="header" />
 
   <article class="pt-8 pb-16">
@@ -28,7 +39,7 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort
             Journal de Pesquisa
           </h1>
           <p class="text-gray-500 text-xs mt-1 uppercase tracking-widest font-bold">
-            Notas, pesquisas e reflexões
+            Posts filtrados por: <span class="text-teal-600">{tag}</span>
           </p>
         </div>
       </div>
@@ -38,10 +49,12 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort
 
     <SearchBar />
 
-    <TagFilter {allTags} {posts} />
+    <TagFilter {allTags} {posts} activeTag={tag} />
 
-    <!-- Posts List -->
-    <div class="space-y-6" id="posts-list">
+    <div class="space-y-6">
+      {posts.length === 0 && (
+        <p class="text-gray-500 text-sm text-center py-12">Nenhum post encontrado com essa tag.</p>
+      )}
       {posts.map((post) => (
         <PaperCard class="post-card p-6" data-title={post.data.title.toLowerCase()} data-description={post.data.description.toLowerCase()}>
           <div class="flex items-center gap-2 mb-3">
@@ -51,8 +64,8 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort
             {post.data.tags && post.data.tags.length > 0 && (
               <>
                 <span class="text-gray-300">·</span>
-                {post.data.tags.map((tag) => (
-                  <a href={`/blog/tag/${tag}`} class="font-mono text-[9px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 hover:bg-teal-100 hover:text-teal-700 uppercase tracking-wider transition-colors">{tag}</a>
+                {post.data.tags.map((t) => (
+                  <a href={`/blog/tag/${t}`} class="font-mono text-[9px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 hover:bg-teal-100 hover:text-teal-700 uppercase tracking-wider transition-colors">{t}</a>
                 ))}
               </>
             )}

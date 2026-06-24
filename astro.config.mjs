@@ -6,6 +6,12 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://fgscaglioni.dev.br',
+  markdown: {
+    shikiConfig: {
+      theme: 'github-light',
+      wrap: true,
+    },
+  },
   vite: {
     plugins: [tailwindcss()]
   }

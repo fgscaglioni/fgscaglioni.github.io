@@ -3,9 +3,9 @@ interface Props {
   class?: string;
 }
 
-const { class: className = "" } = Astro.props;
+const { class: className = "", ...attributes } = Astro.props;
 ---
 
-<div class={`paper-card ${className}`}>
+<div class={`paper-card ${className}`} {...attributes}>
   <slot />
 </div>
