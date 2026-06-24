@@ -3,6 +3,7 @@ title: "Inteligência Artificial na Educação: O papel dos Small Language Model
 pubDate: 2026-05-26
 description: "Uma análise sobre a viabilidade e os benefícios de executar modelos de linguagem enxutos localmente em infraestrutura universitária para apoiar o aprendizado."
 draft: false
+updated: 2026-06-24
 tags: ["educação", "ia", "slm"]
 ---
 

@@ -4,6 +4,7 @@ pubDate: 2024-01-01
 description: "Uma recriação virtual do clássico Galinho do Tempo que muda de cor conforme o clima. Código no GitHub, demo ao vivo."
 tags: ["mobile", "ionic", "angular"]
 draft: false
+updated: 2026-06-24
 ---
 
 Lembra do Galinho do Tempo? Aquele souvenir de vidro que mudava de cor prevendo o tempo? Resolvi recriar virtualmente com Ionic + Angular + API do OpenWeather.

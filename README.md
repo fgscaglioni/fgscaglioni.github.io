@@ -1,49 +1,51 @@
----
-updated: 2026-03-31
----
-# Astro Starter Kit: Basics
+# fgscaglioni.dev.br
 
-```sh
-npm create astro@latest -- --template basics
+Site pessoal de Fabrício Scaglioni — portfólio, blog e notas de pesquisa.
+
+## Stack
+
+- **Framework:** [Astro](https://astro.build) 7 (static site generator)
+- **Estilo:** Tailwind CSS 4 + [@tailwindcss/typography](https://github.com/tailwindlabs/tailwindcss-typography)
+- **Ícones:** FontAwesome 7
+- **Testes:** [Vitest](https://vitest.dev)
+- **Deploy:** GitHub Pages via GitHub Actions
+
+## Estrutura
+
+```
+src/
+├── components/    # Componentes reutilizáveis (PaperCard, Navbar, TagFilter, etc.)
+├── content/blog/  # Posts do blog em Markdown
+├── data/          # Dados estruturados (stack, publicações, changelog, etc.)
+├── layouts/       # Layout base (BaseLayout)
+├── pages/         # Páginas do site (home, research, blog, etc.)
+├── styles/        # Estilos globais (global.css)
+├── utils/         # Funções utilitárias (tags.ts)
+tests/             # Testes Vitest
 ```
 
-> 🧑🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Comandos
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+```bash
+pnpm dev       # Servidor de desenvolvimento
+pnpm build     # Build de produção
+pnpm preview   # Preview do build
+pnpm test      # Rodar testes
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Blog
 
-## 🧞 Commands
+Os posts ficam em `src/content/blog/` como arquivos `.md` com frontmatter YAML. Novos posts são automaticamente descobertos pelo Astro Content Collections.
 
-All commands are run from the root of the project, from a terminal:
+```yaml
+---
+title: "Título do Post"
+pubDate: 2026-06-24
+description: "Descrição curta para listagens e SEO."
+tags: ["tag1", "tag2"]
+updated: 2026-06-24  # opcional
+draft: false
+---
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Feito com [Astro](https://astro.build).

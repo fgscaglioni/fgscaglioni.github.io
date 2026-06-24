@@ -1,4 +1,6 @@
 ---
+import { sortTagsByFrequency } from "../utils/tags";
+
 interface Props {
   allTags: string[];
   activeTag?: string;
@@ -6,6 +8,9 @@ interface Props {
 }
 
 const { allTags, activeTag, posts } = Astro.props;
+const sorted = sortTagsByFrequency(allTags, posts);
+const top5 = sorted.slice(0, 5);
+const rest = sorted.slice(5);
 ---
 
 <div class="flex flex-wrap items-center gap-2 mb-8">
@@ -20,61 +25,38 @@ const { allTags, activeTag, posts } = Astro.props;
     Todos
   </a>
 
-  {
-    // Sort tags by frequency, show top 5
-    [...allTags]
-      .sort((a, b) => {
-        const ca = posts.filter((p: any) => (p.data.tags || []).includes(a)).length;
-        const cb = posts.filter((p: any) => (p.data.tags || []).includes(b)).length;
-        return cb - ca;
-      })
-      .slice(0, 5)
-      .map((tag) => (
-        <a
-          href={`/blog/tag/${tag}`}
-          class={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-200 ${
-            activeTag === tag
-              ? "bg-teal-600 text-white shadow-sm"
-              : "bg-gray-100 text-gray-500 hover:bg-gray-200"
-          }`}
-        >
-          {tag}
-        </a>
-      ))
-  }
+  {top5.map((tag) => (
+    <a
+      href={`/blog/tag/${tag}`}
+      class={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-200 ${
+        activeTag === tag
+          ? "bg-teal-600 text-white shadow-sm"
+          : "bg-gray-100 text-gray-500 hover:bg-gray-200"
+      }`}
+    >
+      {tag}
+    </a>
+  ))}
 
-  {
-    // Remaining tags behind details popover
-    (() => {
-      const rest = [...allTags]
-        .sort((a, b) => {
-          const ca = posts.filter((p: any) => (p.data.tags || []).includes(a)).length;
-          const cb = posts.filter((p: any) => (p.data.tags || []).includes(b)).length;
-          return cb - ca;
-        })
-        .slice(5);
-      if (rest.length === 0) return null;
-      return (
-        <details class="relative tag-popover">
-          <summary class="px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer bg-gray-100 text-gray-500 hover:bg-gray-200 transition-all duration-200 list-none">
-            +{rest.length} mais
-          </summary>
-          <div class="absolute top-full right-0 mt-2 p-3 bg-white rounded-xl border border-gray-200 shadow-lg z-50 flex flex-wrap gap-2 min-w-[200px]">
-            {rest.map((tag) => (
-              <a
-                href={`/blog/tag/${tag}`}
-                class={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-200 whitespace-nowrap ${
-                  activeTag === tag
-                    ? "bg-teal-600 text-white shadow-sm"
-                    : "bg-gray-100 text-gray-500 hover:bg-gray-200"
-                }`}
-              >
-                {tag}
-              </a>
-            ))}
-          </div>
-        </details>
-      );
-    })()
-  }
+  {rest.length > 0 && (
+    <details class="relative tag-popover">
+      <summary class="px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer bg-gray-100 text-gray-500 hover:bg-gray-200 transition-all duration-200 list-none">
+        +{rest.length} mais
+      </summary>
+      <div class="absolute top-full right-0 mt-2 p-3 bg-white rounded-xl border border-gray-200 shadow-lg z-50 flex flex-wrap gap-2 min-w-[200px]">
+        {rest.map((tag) => (
+          <a
+            href={`/blog/tag/${tag}`}
+            class={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-200 whitespace-nowrap ${
+              activeTag === tag
+                ? "bg-teal-600 text-white shadow-sm"
+                : "bg-gray-100 text-gray-500 hover:bg-gray-200"
+            }`}
+          >
+            {tag}
+          </a>
+        ))}
+      </div>
+    </details>
+  )}
 </div>

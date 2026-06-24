@@ -4,6 +4,7 @@ pubDate: 2024-01-01
 description: "Proteja seu código JS contra engenharia reversa. Passo a passo para ofuscar uma aplicação Angular com webpack-obfuscator."
 tags: ["javascript", "segurança"]
 draft: false
+updated: 2026-06-24
 ---
 
 Ofuscação de JavaScript transforma seu código legível em algo que um ser humano não consegue entender, mas o navegador executa do mesmo jeito. Não é segurança de verdade — se alguém quiser muito reverter, consegue — mas já barra 99% dos curiosos.

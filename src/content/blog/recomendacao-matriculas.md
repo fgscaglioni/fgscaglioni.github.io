@@ -4,6 +4,7 @@ pubDate: 2024-01-01
 description: "Minha dissertação de mestrado na UFPel: um sistema que recomenda disciplina para alunos de Ciência da Computação baseado no perfil acadêmico."
 tags: ["educação", "ia", "pesquisa"]
 draft: false
+updated: 2026-06-24
 ---
 
 Na minha pesquisa de mestrado na UFPel, desenvolvi um sistema de recomendação de matrículas para alunos de Ciência da Computação. A ideia é usar dados do histórico acadêmico pra sugerir disciplinas que façam sentido pro aluno — em vez de cada um montar a grade no chute.

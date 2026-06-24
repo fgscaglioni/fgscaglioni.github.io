@@ -4,6 +4,7 @@ pubDate: 2024-01-01
 description: "Monolito ou microsserviços? Depende. Um guia prático sobre quando usar cada arquitetura."
 tags: ["arquitetura", "backend"]
 draft: false
+updated: 2026-06-24
 ---
 
 A escolha entre monolito e microsserviços é menos sobre tecnologia e mais sobre contexto do projeto. Cada um resolve problemas diferentes.

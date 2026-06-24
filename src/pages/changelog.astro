@@ -12,17 +12,7 @@ import BulletItem from "../components/BulletItem.astro";
 
   <article class="pt-8 pb-16">
     <!-- Page Header -->
-    <PaperCard class=" p-6 sm:p-8 mb-8 relative overflow-hidden">
-      <div class="flex items-center gap-4 relative">
-        <div class="w-12 h-12 rounded-lg border border-gray-200 bg-gray-100 flex items-center justify-center flex-shrink-0">
-          <i class="fa-solid fa-clock-rotate-left text-gray-500 text-xl"></i>
-        </div>
-        <div>
-          <h1 class="text-3xl sm:text-4xl font-display italic tracking-wide text-gray-900">Changelog</h1>
-          <p class="text-gray-400 text-xs mt-1 uppercase tracking-widest font-bold">Histórico de modificações e evolução do site</p>
-        </div>
-      </div>
-    </PaperCard>
+    <PageHeader icon="clock-rotate-left" title="Changelog" subtitle="Histórico de modificações e evolução do site" />
 
     <!-- Timeline of Changes -->
     <div class="relative pl-6 sm:pl-8 border-l border-gray-100 space-y-12">

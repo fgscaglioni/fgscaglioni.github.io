@@ -4,6 +4,7 @@ pubDate: 2024-01-01
 description: "TypeScript adiciona tipagem estática ao JavaScript. Um guia rápido para começar."
 tags: ["typescript", "javascript", "fundamentos"]
 draft: false
+updated: 2026-06-24
 ---
 
 Se você já escreveu JavaScript por um tempo, sabe como é fácil um `undefined is not a function` aparecer em produção. TypeScript resolve isso — adiciona tipos ao JS e pega erros antes do código rodar.

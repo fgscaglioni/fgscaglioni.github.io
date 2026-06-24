@@ -4,6 +4,7 @@ pubDate: 2024-01-01
 description: "IA já está no seu dia a dia — assistentes, diagnósticos, recomendações. Um resumo de dados recentes sobre adoção, impactos no trabalho e o que esperar."
 tags: ["ia", "sociedade"]
 draft: false
+updated: 2026-06-24
 ---
 
 IA não é coisa do futuro. Ela já está rodando no seu bolso, na sua caixa de email, no app que te recomenda filme. O impacto real é mais sutil do que a ficção científica sugere.

@@ -4,6 +4,7 @@ pubDate: 2024-01-01
 description: "Três princípios simples que melhoram qualquer código. E como aplicar eles sem dogmatismo."
 tags: ["engenharia", "boas práticas"]
 draft: false
+updated: 2026-06-24
 ---
 
 Três acrônimos que aparecem em toda entrevista técnica mas pouca gente aplica de verdade. Vou direto ao ponto.
