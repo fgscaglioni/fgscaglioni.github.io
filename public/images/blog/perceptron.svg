@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" fill="none">
+  <rect width="800" height="340" fill="#F5F2ED" rx="12"/>
+
+  <!-- Input x1 -->
+  <circle cx="80" cy="80" r="22" fill="white" stroke="#0D9488" stroke-width="2"/>
+  <text x="80" y="86" font-family="Georgia, serif" font-size="16" text-anchor="middle" fill="#374151">x₁</text>
+
+  <!-- Input x2 -->
+  <circle cx="80" cy="170" r="22" fill="white" stroke="#0D9488" stroke-width="2"/>
+  <text x="80" y="176" font-family="Georgia, serif" font-size="16" text-anchor="middle" fill="#374151">x₂</text>
+
+  <!-- Input x3 -->
+  <circle cx="80" cy="260" r="22" fill="white" stroke="#0D9488" stroke-width="2"/>
+  <text x="80" y="266" font-family="Georgia, serif" font-size="16" text-anchor="middle" fill="#374151">xₙ</text>
+
+  <!-- Dots -->
+  <text x="80" y="218" font-family="Georgia, serif" font-size="20" text-anchor="middle" fill="#9CA3AF">···</text>
+
+  <!-- Weights labels -->
+  <text x="195" y="73" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle" fill="#0D9488" font-weight="bold">w₁</text>
+  <text x="195" y="163" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle" fill="#0D9488" font-weight="bold">w₂</text>
+  <text x="195" y="253" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle" fill="#0D9488" font-weight="bold">wₙ</text>
+  <text x="165" y="218" font-family="'JetBrains Mono', monospace" font-size="14" text-anchor="middle" fill="#9CA3AF">···</text>
+
+  <!-- Arrows from inputs to neuron -->
+  <line x1="102" y1="80" x2="268" y2="170" stroke="#D1D5DB" stroke-width="1.5"/>
+  <line x1="102" y1="170" x2="268" y2="170" stroke="#D1D5DB" stroke-width="1.5"/>
+  <line x1="102" y1="260" x2="268" y2="170" stroke="#D1D5DB" stroke-width="1.5"/>
+
+  <!-- Arrowheads -->
+  <polygon points="268,170 258,164 258,176" fill="#D1D5DB"/>
+  <polygon points="268,170 258,164 258,176" fill="#D1D5DB"/>
+  <polygon points="268,170 258,164 258,176" fill="#D1D5DB"/>
+
+  <!-- Bias -->
+  <text x="190" y="200" font-family="'JetBrains Mono', monospace" font-size="12" text-anchor="middle" fill="#9CA3AF">+ b</text>
+
+  <!-- Summation node (neuron) -->
+  <circle cx="330" cy="170" r="45" fill="white" stroke="#374151" stroke-width="2"/>
+  <text x="330" y="168" font-family="Georgia, serif" font-size="20" text-anchor="middle" fill="#374151">∑</text>
+  <text x="330" y="188" font-family="'JetBrains Mono', monospace" font-size="11" text-anchor="middle" fill="#9CA3AF">z = w·x + b</text>
+
+  <!-- Arrow from neuron to activation -->
+  <line x1="375" y1="170" x2="480" y2="170" stroke="#D1D5DB" stroke-width="1.5"/>
+  <polygon points="480,170 470,164 470,176" fill="#D1D5DB"/>
+
+  <!-- z label -->
+  <text x="428" y="160" font-family="'JetBrains Mono', monospace" font-size="13" text-anchor="middle" fill="#9CA3AF">z</text>
+
+  <!-- Activation function box -->
+  <rect x="480" y="120" width="100" height="100" rx="10" fill="white" stroke="#374151" stroke-width="2"/>
+  <text x="530" y="155" font-family="Georgia, serif" font-size="14" text-anchor="middle" fill="#374151">Ativação</text>
+  <text x="530" y="178" font-family="'JetBrains Mono', monospace" font-size="11" text-anchor="middle" fill="#9CA3AF">y = f(z)</text>
+  <text x="530" y="200" font-family="'JetBrains Mono', monospace" font-size="10" text-anchor="middle" fill="#F43F5E">f(z) = 1 se z &gt; 0</text>
+
+  <!-- Arrow from activation to output -->
+  <line x1="580" y1="170" x2="670" y2="170" stroke="#D1D5DB" stroke-width="2"/>
+  <polygon points="670,170 658,162 658,178" fill="#D1D5DB"/>
+
+  <!-- Output y -->
+  <circle cx="720" cy="170" r="22" fill="white" stroke="#F43F5E" stroke-width="2.5"/>
+  <text x="720" y="176" font-family="Georgia, serif" font-size="17" text-anchor="middle" fill="#F43F5E" font-weight="bold">y</text>
+
+  <!-- Section labels -->
+  <text x="80" y="310" font-family="'JetBrains Mono', monospace" font-size="11" text-anchor="middle" fill="#9CA3AF">Entradas</text>
+  <text x="195" y="300" font-family="'JetBrains Mono', monospace" font-size="11" text-anchor="middle" fill="#9CA3AF">Pesos</text>
+  <text x="330" y="290" font-family="'JetBrains Mono', monospace" font-size="11" text-anchor="middle" fill="#9CA3AF">Soma</text>
+  <text x="530" y="290" font-family="'JetBrains Mono', monospace" font-size="11" text-anchor="middle" fill="#9CA3AF">Ativação</text>
+  <text x="720" y="310" font-family="'JetBrains Mono', monospace" font-size="11" text-anchor="middle" fill="#9CA3AF">Saída</text>
+</svg>
