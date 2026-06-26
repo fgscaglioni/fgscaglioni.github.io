@@ -8,6 +8,19 @@ export interface ChangeLogEntry {
 
 export const changelogData: ChangeLogEntry[] = [
   {
+    date: "26/06/2026",
+    version: "v2.2.0",
+    title: "Navbar Expandida & Container Mais Largo",
+    description: "Navbar agora exibe todos os 8 links de navegação, container ampliado e componente extraído para eliminar duplicação.",
+    changes: [
+      "Navbar expandida de 6 para 8 links — Social e Changelog agora visíveis no menu.",
+      "Criação do componente NavLink, eliminando duplicação da lógica de link ativo entre desktop e mobile.",
+      "Container principal aumentado de max-w-3xl para max-w-4xl (768px → 896px).",
+      "Fonte dos links da navbar aumentada de text-xs para text-sm.",
+      "Breakpoint do menu ajustado de sm (640px) para lg (1024px) para acomodar os 8 itens."
+    ]
+  },
+  {
     date: "26/05/2026",
     version: "v2.1.0",
     title: "Ajuste na Formação & Limpeza de Hovers",
