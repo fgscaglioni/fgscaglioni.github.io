@@ -21,6 +21,25 @@ export const changelogData: ChangeLogEntry[] = [
     ]
   },
   {
+    date: "25/06/2026",
+    version: "v2.1.1",
+    title: "Blog Engine, Testes Automatizados & Dark Mode",
+    description: "Suite de testes com Vitest, novos posts, dark mode toggle, otimizações de performance e dark theme.",
+    changes: [
+      "Suite de testes automatizados com Vitest — 5 suites, 77 testes, incluindo teste de build.",
+      "Implementação do Dark Mode Toggle com persistência em localStorage e fallback para preferência do sistema.",
+      "Navbar responsiva para mobile com menu hamburger.",
+      "Novos posts: Falácias Lógicas, Perceptron, Transformers (Attention Is All You Need).",
+      "Campo updated opcional no frontmatter dos posts + tags exibidas no topo dos artigos.",
+      "Campo ogImage opcional para personalizar Open Graph por post.",
+      "Otimizações de performance: prefetch (hover), preconnect de CDNs, preload de fontes.",
+      "Refatoração: PageHeader e dados extraídos em componentes, limpeza de assets mortos.",
+      "Correção: navbar destaca Journal como ativo em sub-rotas do blog.",
+      "Correção: formação i9 atualizada para 2024-2026 (concluída).",
+      "CI/CD: atualização das GitHub Actions e fix da versão do Node para pnpm 11."
+    ]
+  },
+  {
     date: "26/05/2026",
     version: "v2.1.0",
     title: "Ajuste na Formação & Limpeza de Hovers",
