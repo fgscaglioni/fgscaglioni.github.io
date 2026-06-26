@@ -1,0 +1,26 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  currentPath: string;
+  class?: string;
+}
+
+const { href, label, currentPath, class: className = "" } = Astro.props;
+
+const isActive = href === "/"
+  ? currentPath === "/"
+  : currentPath === href || currentPath === href + "/" || currentPath.startsWith(href + "/");
+---
+
+<a
+  href={href}
+  class:list={[
+    className,
+    isActive
+      ? "bg-teal-600 text-white shadow-sm"
+      : "text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+  ]}
+>
+  {label}
+</a>
