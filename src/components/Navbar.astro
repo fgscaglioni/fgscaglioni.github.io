@@ -2,6 +2,7 @@
 import { siteLinks } from "../data/siteData";
 import PaperCard from "../components/PaperCard.astro";
 import NavLink from "../components/NavLink.astro";
+import Icon from "../components/Icon.svelte";
 const currentPath = Astro.url.pathname;
 ---
 
@@ -12,7 +13,7 @@ const currentPath = Astro.url.pathname;
       <div class="w-8 h-8 rounded-full border border-gray-200 bg-gray-100 flex items-center justify-center transition-all duration-300 group-hover:bg-teal-600 group-hover:border-teal-600">
         <span class="font-display italic text-base font-bold text-gray-700 group-hover:text-white">fg</span>
       </div>
-      <span class="font-display italic text-lg text-gray-800 group-hover:text-gray-500 transition-colors hidden xs:inline">
+      <span class="font-display italic text-lg text-gray-800 group-hover:text-gray-500 transition-colors hidden sm:inline">
         fgscaglioni
       </span>
     </a>
@@ -32,7 +33,8 @@ const currentPath = Astro.url.pathname;
         class="ml-1 w-8 h-8 rounded-full flex items-center justify-center text-gray-500 hover:text-gray-800 hover:bg-gray-100 transition-all duration-300"
         aria-label="Alternar tema"
       >
-        <i id="theme-icon" class="fa-solid fa-moon text-sm"></i>
+        <Icon name="moon" size={14} class="dark:hidden" />
+        <Icon name="sun" size={14} class="hidden dark:block" />
       </button>
     </nav>
 
@@ -43,14 +45,16 @@ const currentPath = Astro.url.pathname;
         class="w-8 h-8 rounded-full flex items-center justify-center text-gray-500 hover:text-gray-800 hover:bg-gray-100 transition-all duration-300"
         aria-label="Alternar tema"
       >
-        <i id="theme-icon-mobile" class="fa-solid fa-moon text-sm"></i>
+        <Icon name="moon" size={14} class="dark:hidden" />
+        <Icon name="sun" size={14} class="hidden dark:block" />
       </button>
       <button
         id="menu-toggle"
         class="w-8 h-8 rounded-full flex items-center justify-center text-gray-500 hover:text-gray-800 hover:bg-gray-100 transition-all duration-300"
         aria-label="Abrir menu"
       >
-        <i id="menu-icon" class="fa-solid fa-bars text-sm"></i>
+        <span id="menu-icon-open"><Icon name="bars" size={14} /></span>
+        <span id="menu-icon-close" class="hidden"><Icon name="xmark" size={14} /></span>
       </button>
     </div>
   </PaperCard>
@@ -75,21 +79,13 @@ const currentPath = Astro.url.pathname;
     var html = document.documentElement;
     var stored = localStorage.getItem("theme");
 
-    function setThemeIcons(isDark) {
-      document.querySelectorAll("#theme-icon, #theme-icon-mobile").forEach(function (el) {
-        el.className = isDark ? "fa-solid fa-sun text-sm" : "fa-solid fa-moon text-sm";
-      });
-    }
-
     if (stored === "dark" || (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
       html.classList.add("dark");
-      setThemeIcons(true);
     }
 
     function toggleTheme() {
-      var isDark = html.classList.toggle("dark");
-      localStorage.setItem("theme", isDark ? "dark" : "light");
-      setThemeIcons(isDark);
+      html.classList.toggle("dark");
+      localStorage.setItem("theme", html.classList.contains("dark") ? "dark" : "light");
     }
 
     document.addEventListener("click", function (e) {
@@ -98,9 +94,11 @@ const currentPath = Astro.url.pathname;
       }
       if (e.target.closest("#menu-toggle")) {
         var menu = document.getElementById("mobile-menu");
-        var icon = document.getElementById("menu-icon");
-        var isOpen = menu.classList.toggle("hidden");
-        icon.className = isOpen ? "fa-solid fa-bars text-sm" : "fa-solid fa-xmark text-sm";
+        var openIcon = document.getElementById("menu-icon-open");
+        var closeIcon = document.getElementById("menu-icon-close");
+        menu.classList.toggle("hidden");
+        openIcon.classList.toggle("hidden");
+        closeIcon.classList.toggle("hidden");
       }
     });
   })();
