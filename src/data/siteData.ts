@@ -6,7 +6,7 @@ export const my_stack = [
     { name: 'Laravel', image: 'https://laravel.com/img/logotype.min.svg', url: 'https://laravel.com/' },
     { name: 'NestJS', image: 'https://nestjs.com/img/logo-small.svg', url: 'https://nestjs.com/' },
     { name: 'Svelte', image: 'https://svelte.dev/svelte-logo-horizontal.svg', url: 'https://svelte.dev/' },
-    { name: 'Docker', image: 'https://raw.githubusercontent.com/collabnix/dockerlabs/master/beginners/docker/images/docker_facebook_share.png', url: 'https://www.docker.com/' },
+    { name: 'Docker', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg', url: 'https://www.docker.com/' },
 ];
 
 export const siteLinks = {
