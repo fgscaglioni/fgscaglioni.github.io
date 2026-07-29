@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Navbar from "../../components/Navbar.astro";
 import PaperCard from "../../components/PaperCard.astro";
+import Icon from "../../components/Icon.svelte";
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
@@ -14,6 +15,9 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+
+// Slug sem extensão
+const slug = post.id.replace(/\.[^/]+$/, '');
 
 // Find related posts by tag overlap
 const allPosts = (await getCollection("blog"))
@@ -31,7 +35,14 @@ const related = allPosts
   .slice(0, 3);
 ---
 
-<BaseLayout title={`${post.data.title} | Blog Fabrício Scaglioni`} ogImage={post.data.ogImage || undefined}>
+<BaseLayout title={`${post.data.title} | Blog Fabrício Scaglioni`}
+  description={post.data.description}
+  slug={slug}
+  pubDate={post.data.pubDate}
+  updated={post.data.updated}
+  tags={post.data.tags}
+  ogImage={post.data.ogImage || undefined}
+  isBlogPost={true}>
   <Navbar slot="header" />
 
   <article class="pt-8 pb-16">

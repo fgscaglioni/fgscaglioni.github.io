@@ -1,21 +1,61 @@
 ---
 import "../styles/global.css";
-import "@fortawesome/fontawesome-free/css/all.min.css";
+import Icon from "../components/Icon.svelte";
 import Footer from "../components/Footer.astro";
 
 interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  slug?: string;
+  pubDate?: Date;
+  updated?: Date;
+  tags?: string[];
+  isBlogPost?: boolean;
 }
 
 const {
   title = "@fgscaglioni",
   description = "Portfólio profissional de Fabrício Scaglioni — desenvolvedor de sistemas, pesquisador e doutorando em IA.",
-  ogImage = "https://gravatar.com/avatar/556a14540bc4ab41d65b17218d498fd9d628698736378f62deb6e8f0849a5376",
+  ogImage,
+  slug,
+  pubDate,
+  updated,
+  tags = [],
+  isBlogPost = false,
 } = Astro.props;
 
 const siteUrl = "https://fgscaglioni.dev.br";
+
+// OG Image automática: se não foi fornecida, gera via slug ou usa fallback
+const finalOgImage = ogImage || (slug
+  ? `${siteUrl}/og/${slug}.png`
+  : "https://gravatar.com/avatar/556a14540bc4ab41d65b17218d498fd9d628698736378f62deb6e8f0849a5376");
+
+// Schema.org JSON-LD para posts do blog
+const schemaOrg = isBlogPost && slug ? {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: title,
+  description,
+  image: finalOgImage,
+  datePublished: pubDate?.toISOString(),
+  dateModified: updated?.toISOString() || pubDate?.toISOString(),
+  author: {
+    "@type": "Person",
+    name: "Fabrício Scaglioni",
+    url: siteUrl,
+  },
+  publisher: {
+    "@type": "Person",
+    name: "Fabrício Scaglioni",
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": `${siteUrl}/blog/${slug}/`,
+  },
+  keywords: tags.join(", "),
+} : null;
 ---
 
 <!DOCTYPE html>
@@ -40,21 +80,27 @@ const siteUrl = "https://fgscaglioni.dev.br";
     />
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={siteUrl} />
+    <meta property="og:type" content={isBlogPost ? "article" : "website"} />
+    <meta property="og:url" content={slug ? `${siteUrl}/blog/${slug}/` : siteUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={finalOgImage} />
 
     <!-- Twitter Cards -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:url" content={siteUrl} />
+    <meta name="twitter:card" content={ogImage || slug ? "summary_large_image" : "summary"} />
+    <meta name="twitter:url" content={slug ? `${siteUrl}/blog/${slug}/` : siteUrl} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={finalOgImage} />
 
     <!-- Canonical -->
-    <link rel="canonical" href={siteUrl} />
+    <link rel="canonical" href={slug ? `${siteUrl}/blog/${slug}/` : siteUrl} />
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="Fabrício Scaglioni — Blog" href={`${siteUrl}/rss.xml`} />
+
+    <!-- Schema.org JSON-LD -->
+    {schemaOrg && <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />}
 
     <!-- Preconnect para recursos externos -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

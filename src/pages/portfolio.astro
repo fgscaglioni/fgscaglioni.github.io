@@ -1,4 +1,5 @@
 ---
+import Icon from "../components/Icon.svelte";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
 import PaperCard from "../components/PaperCard.astro";
@@ -45,7 +46,7 @@ import BulletItem from "../components/BulletItem.astro";
                       class="hover:text-gray-700 transition-colors"
                     >
                       {project.name}
-                      <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-2 opacity-40 hover:opacity-100 transition-opacity" />
+                      <Icon name="external-link" class="text-xs ml-2 opacity-40 hover:opacity-100 transition-opacity inline" />
                     </a>
                   ) : (
                     project.name
@@ -80,7 +81,7 @@ import BulletItem from "../components/BulletItem.astro";
                     rel="noopener noreferrer"
                     class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-700 hover:text-gray-900 transition-colors"
                   >
-                    <i class="fa-solid fa-file-pdf text-rose-500" /> Acessar Artigo Publicado (BJPT)
+                    <Icon name="file-text" class="text-rose-500 inline" /> Acessar Artigo Publicado (BJPT)
                   </a>
                 </div>
               )}

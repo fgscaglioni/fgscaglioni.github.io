@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
+import Icon from "../components/Icon.svelte";
 import StackList from "../components/StackList.astro";
 import PaperCard from "../components/PaperCard.astro";
 import SectionHeader from "../components/SectionHeader.astro";
@@ -63,7 +64,7 @@ import BulletItem from "../components/BulletItem.astro";
               rel="noopener noreferrer"
               class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-white hover:text-black text-xs font-bold uppercase tracking-wider transition-all duration-300"
             >
-              <i class="fa-brands fa-linkedin"></i> LinkedIn
+              <Icon name="linkedin" class="inline" /> LinkedIn
             </a>
             <a
               href="http://github.com/fgscaglioni/"
@@ -71,7 +72,7 @@ import BulletItem from "../components/BulletItem.astro";
               rel="noopener noreferrer"
               class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-white hover:text-black text-xs font-bold uppercase tracking-wider transition-all duration-300"
             >
-              <i class="fa-brands fa-github"></i> GitHub
+              <Icon name="github" class="inline" /> GitHub
             </a>
             <a
               href="https://medium.com/@fgscaglioni"
@@ -79,7 +80,7 @@ import BulletItem from "../components/BulletItem.astro";
               rel="noopener noreferrer"
               class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-white hover:text-black text-xs font-bold uppercase tracking-wider transition-all duration-300"
             >
-              <i class="fa-brands fa-medium"></i> Medium
+              <Icon name="medium" class="inline" /> Medium
             </a>
           </div>
         </div>
@@ -146,40 +147,40 @@ import BulletItem from "../components/BulletItem.astro";
                 href: "https://institucional.ufpel.edu.br/cursos/cod/8102",
                 level: "Doutorado em Ciência da Computação",
                 period: "2024 - Cursando",
-                icon: "fa-circle-dot",
+                icon: "circle-dot",
               },
               {
                 inst: "i9",
                 href: "#",
                 level: "Pós-Graduação em Direito Público",
                 period: "2024 - 2026",
-                icon: "fa-circle-dot",
+                icon: "circle-dot",
               },
               {
                 inst: "UFPel",
                 href: "https://institucional.ufpel.edu.br/cursos/cod/7057",
                 level: "Mestrado em Ciência da Computação",
                 period: "2019 - 2021",
-                icon: "fa-circle-dot",
+                icon: "circle-dot",
               },
               {
                 inst: "UniSenac",
                 href: "https://www.senacrs.com.br/unidade/78",
                 level: "Especialização em Gerenciamento de Projetos",
                 period: "2009 - 2010",
-                icon: "fa-square",
+                icon: "square",
               },
               {
                 inst: "UniSenac",
                 href: "https://www.senacrs.com.br/unidade/78",
                 level: "Tecnólogo em Análise e Desenvolvimento de Sistemas",
                 period: "2005 - 2007",
-                icon: "fa-square",
+                icon: "square",
               },
             ].map((item) => (
               <div class="flex items-start gap-3">
                 <div class="mt-1 flex-shrink-0">
-                  <i class={`fa-solid ${item.icon} text-[8px] text-rose-500`} />
+                  <Icon name={item.icon} class="text-[8px] text-rose-500 inline" />
                 </div>
                 <div>
                   <a
@@ -272,7 +273,7 @@ import BulletItem from "../components/BulletItem.astro";
                 },
               ].map((cert) => (
                 <div class="flex items-start gap-2">
-                  <i class="fa-solid fa-shield-halved text-[8px] text-rose-500 mt-1.5" />
+                  <Icon name="shield-halved" class="text-[8px] text-rose-500 mt-1.5 inline" />
                   <div>
                     <h3 class="text-gray-800 text-xs font-medium">
                       {cert.name}

@@ -4,45 +4,41 @@ import Navbar from "../components/Navbar.astro";
 import PaperCard from "../components/PaperCard.astro";
 import PageHeader from "../components/PageHeader.astro";
 import SectionHeader from "../components/SectionHeader.astro";
+import Icon from "../components/Icon.svelte";
 
 const socialLinks = [
   {
     name: "GitHub",
     url: "http://github.com/fgscaglioni/",
-    icon: "fa-github",
-    brand: true,
+    icon: "github",
     color: "bg-gray-50 border-gray-100 hover:border-gray-300",
     iconColor: "text-gray-700",
   },
   {
     name: "Medium",
     url: "https://medium.com/@fgscaglioni",
-    icon: "fa-medium",
-    brand: true,
+    icon: "medium",
     color: "bg-gray-50 border-gray-100 hover:border-gray-300",
     iconColor: "text-gray-700",
   },
   {
     name: "LinkedIn",
     url: "https://www.linkedin.com/in/fgscaglioni/",
-    icon: "fa-linkedin",
-    brand: true,
+    icon: "linkedin",
     color: "bg-gray-50 border-gray-100 hover:border-gray-300",
     iconColor: "text-gray-700",
   },
   {
     name: "X (Twitter)",
     url: "https://x.com/fgscaglioni",
-    icon: "fa-x-twitter",
-    brand: true,
+    icon: "x-twitter",
     color: "bg-gray-50 border-gray-100 hover:border-gray-300",
     iconColor: "text-gray-700",
   },
   {
     name: "Instagram",
     url: "https://www.instagram.com/fgscaglioni",
-    icon: "fa-instagram",
-    brand: true,
+    icon: "instagram",
     color: "bg-gray-50 border-gray-100 hover:border-gray-300",
     iconColor: "text-gray-700",
   },
@@ -52,64 +48,56 @@ const academicLinks = [
   {
     name: "Google Scholar",
     url: "https://scholar.google.com/citations?user=fZEKGvUAAAAJ",
-    icon: "fa-google",
-    brand: true,
+    icon: "google",
     desc: "Publicações e citações acadêmicas",
     color: "text-gray-500",
   },
   {
     name: "Lattes",
     url: "https://lattes.cnpq.br/0870115674210417",
-    icon: "fa-id-card",
-    brand: false,
+    icon: "id-card",
     desc: "Currículo Lattes CNPq",
     color: "text-gray-500",
   },
   {
     name: "Orcid",
     url: "https://orcid.org/0000-0002-9749-2077",
-    icon: "fa-id-badge",
-    brand: false,
+    icon: "id-badge",
     desc: "Identificador de pesquisador",
     color: "text-gray-500",
   },
   {
     name: "Kaggle",
     url: "https://www.kaggle.com/fgscaglioni",
-    icon: "fa-k",
-    brand: false,
+    icon: "k",
     desc: "Competições e notebooks de ML",
     color: "text-gray-500",
   },
   {
     name: "ResearchGate",
     url: "https://www.researchgate.net/profile/Fabricio-Scaglioni",
-    icon: "fa-r",
-    brand: false,
+    icon: "r",
     desc: "Rede de colaboração científica",
     color: "text-gray-500",
   },
   {
     name: "Parsifal",
     url: "https://parsif.al/fgscaglioni/",
-    icon: "fa-magnifying-glass-chart",
-    brand: false,
+    icon: "magnifying-glass-chart",
     desc: "Revisões sistemáticas da literatura",
     color: "text-gray-500",
   },
   {
     name: "Semantic Scholar",
     url: "https://www.semanticscholar.org/author/2202206947",
-    icon: "fa-graduation-cap",
-    brand: false,
+    icon: "graduation-cap",
     desc: "Pesquisa acadêmica com IA",
     color: "text-gray-500",
   },
   {
     name: "ResearchId",
     url: "https://researchid.co/fgscaglioni",
-    icon: "fa-fingerprint",
-    brand: false,
+    icon: "fingerprint",
     desc: "Perfil unificado de pesquisador",
     color: "text-gray-500",
   },
@@ -120,74 +108,55 @@ const academicLinks = [
   <Navbar slot="header" />
 
   <article class="pt-8 pb-16">
-    <!-- Page Header -->
     <PageHeader icon="users" title="Redes Sociais &amp; Científicas" subtitle="Perfis profissionais, pessoais e acadêmicos" />
 
     <div class="grid md:grid-cols-2 gap-8">
-      <!-- Social Networks -->
       <section>
         <SectionHeader icon="share-nodes" title="Redes Sociais" />
         <div class="space-y-3">
-          {
-            socialLinks.map((link) => (
-              <a
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class={`group flex items-center gap-4 p-4 rounded-xl ${link.color} border transition-all duration-300 hover:-translate-y-0.5`}
-              >
-                <div class="w-10 h-10 rounded-lg border border-gray-200 bg-gray-100 group-hover:bg-gray-200 flex items-center justify-center flex-shrink-0 transition-colors">
-                  <i
-                    class={`${link.brand ? "fa-brands" : "fa-solid"} ${
-                      link.icon
-                    } ${
-                      link.iconColor
-                    } group-hover:text-gray-900 text-lg transition-colors`}
-                  />
-                </div>
-                <span class="text-gray-700 font-bold uppercase tracking-wider text-xs group-hover:text-gray-900 transition-colors">
-                  {link.name}
-                </span>
-                <i class="fa-solid fa-arrow-right text-xs text-gray-400 group-hover:text-gray-700 ml-auto transition-colors" />
-              </a>
-            ))
-          }
+          {socialLinks.map((link) => (
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class={`group flex items-center gap-4 p-4 rounded-xl ${link.color} border transition-all duration-300 hover:-translate-y-0.5`}
+            >
+              <div class="w-10 h-10 rounded-lg border border-gray-200 bg-gray-100 group-hover:bg-gray-200 flex items-center justify-center flex-shrink-0 transition-colors">
+                <Icon name={link.icon} class={link.iconColor} size={20} />
+              </div>
+              <span class="text-gray-700 font-bold uppercase tracking-wider text-xs group-hover:text-gray-900 transition-colors">
+                {link.name}
+              </span>
+              <Icon name="arrow-right" class="text-xs text-gray-400 group-hover:text-gray-700 ml-auto transition-colors" size={12} />
+            </a>
+          ))}
         </div>
       </section>
 
-      <!-- Academic Networks -->
       <section>
         <SectionHeader icon="microscope" title="Redes Acadêmicas" />
         <div class="space-y-3">
-          {
-            academicLinks.map((link) => (
-              <a
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="group flex items-center gap-4 p-4 paper-card transition-all duration-200"
-              >
-                <div class="w-8 h-8 rounded-md border border-gray-200 bg-gray-100 group-hover:bg-gray-200 flex items-center justify-center flex-shrink-0 transition-colors">
-                  <i
-                    class={`${link.brand ? "fa-brands" : "fa-solid"} ${
-                      link.icon
-                    } ${
-                      link.color
-                    } group-hover:text-gray-900 transition-colors text-sm`}
-                  />
+          {academicLinks.map((link) => (
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex items-center gap-4 p-4 paper-card transition-all duration-200"
+            >
+              <div class="w-8 h-8 rounded-md border border-gray-200 bg-gray-100 group-hover:bg-gray-200 flex items-center justify-center flex-shrink-0 transition-colors">
+                <Icon name={link.icon} class={link.color} size={16} />
+              </div>
+              <div class="min-w-0 flex-1">
+                <div class="text-gray-700 font-bold uppercase tracking-wider text-xs group-hover:text-gray-900 transition-colors">
+                  {link.name}
                 </div>
-                <div class="min-w-0 flex-1">
-                  <div class="text-gray-700 font-bold uppercase tracking-wider text-xs group-hover:text-gray-900 transition-colors">
-                    {link.name}
-                  </div>
-                  <div class="text-gray-400 font-light text-[10px] truncate mt-1">
-                    {link.desc}
-                  </div>
+                <div class="text-gray-400 font-light text-[10px] truncate mt-1">
+                  {link.desc}
                 </div>
-                <i class="fa-solid fa-arrow-right text-xs text-slate-600 group-hover:text-gray-700 transition-colors flex-shrink-0" />
-              </a>
-            ))
-          }
+              </div>
+              <Icon name="arrow-right" class="text-xs text-slate-600 group-hover:text-gray-700 transition-colors flex-shrink-0" size={12} />
+            </a>
+          ))}
         </div>
       </section>
     </div>

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Sitemap: https://fgscaglioni.dev.br/sitemap-index.xml
+
+# Despriorizar páginas de tags (conteúdo duplicado)
+Disallow: /blog/tag/
