@@ -8,6 +8,22 @@ export interface ChangeLogEntry {
 
 export const changelogData: ChangeLogEntry[] = [
   {
+    date: "29/07/2026",
+    version: "v2.3.0",
+    title: "Unificação de Ícones, View Transitions & Pesquisa",
+    description: "Remoção completa do FontAwesome CDN, navegação SPA-like com transições, correção e expansão da página de publicações acadêmicas.",
+    changes: [
+      "Substituição do FontAwesome 6.7 (CDN blocking) por Lucide Icons nativos — migração de 7 páginas e 2 arquivos de dados, 0 referências residuais.",
+      "Adição de mapeamentos de ícones faltantes no componente Icon.svelte (user, code, book, award, certificate, clock-rotate-left, magnifying-glass-chart) + SVG inline da Google.",
+      "Navegação SPA-like com Astro ClientRouter e fallback animate.",
+      "Link skip-to-content para navegação por teclado (acessibilidade).",
+      "Texto 'fgscaglioni' na navbar sincronizado com o breakpoint do menu desktop (lg:inline).",
+      "Correção da página de pesquisa: venue movido para linha própria entre ano e título.",
+      "Publicações acadêmicas revisadas: títulos corrigidos conforme DOI, autorias verificadas (BJPT, LACLO, Trials), publicações removidas/adicionadas, ordenação decrescente por ano.",
+      "Remoção de dependência externa (CDN FontAwesome) — ~40KB economizados no carregamento crítico.",
+    ]
+  },
+  {
     date: "26/06/2026",
     version: "v2.2.0",
     title: "Navbar Expandida & Container Mais Largo",

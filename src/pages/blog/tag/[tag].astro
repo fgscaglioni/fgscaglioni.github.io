@@ -5,6 +5,7 @@ import PaperCard from "../../../components/PaperCard.astro";
 import TagFilter from "../../../components/TagFilter.astro";
 import BlogIntro from "../../../components/BlogIntro.astro";
 import SearchBar from "../../../components/SearchBar.astro";
+import Icon from "../../../components/Icon.svelte";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
@@ -32,7 +33,7 @@ const posts = allPosts.filter((post) => (post.data.tags || []).includes(tag));
     <PaperCard class="p-6 sm:p-8 mb-6 relative overflow-hidden">
       <div class="flex items-center gap-4 relative">
         <div class="w-12 h-12 rounded-lg border border-gray-200 bg-gray-100 flex items-center justify-center flex-shrink-0">
-          <i class="fa-solid fa-feather text-gray-500 text-xl"></i>
+          <Icon name="feather" class="inline text-gray-500" size={20} />
         </div>
         <div>
           <h1 class="text-3xl sm:text-4xl font-display italic tracking-wide text-gray-900">
@@ -75,7 +76,7 @@ const posts = allPosts.filter((post) => (post.data.tags || []).includes(tag));
           </h2>
           <p class="text-gray-500 text-sm leading-relaxed mb-4">{post.data.description}</p>
           <a href={`/blog/${post.id}`} class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-gray-700 hover:text-gray-900 transition-colors">
-            Ler Artigo <i class="fa-solid fa-arrow-right text-[10px]" />
+            Ler Artigo <Icon name="arrow-right" class="inline" size={10} />
           </a>
         </PaperCard>
       ))}

@@ -1,7 +1,7 @@
 export const articles = [
   {
     type: "Autor",
-    icon: "fa-pen-nib",
+    icon: "pen",
     color: "text-gray-500",
     bgColor: "bg-gray-50 border-gray-100",
     items: [
@@ -28,7 +28,7 @@ export const articles = [
   },
   {
     type: "Coautor",
-    icon: "fa-people-group",
+    icon: "users",
     color: "text-gray-500",
     bgColor: "bg-gray-50 border-gray-100",
     items: [

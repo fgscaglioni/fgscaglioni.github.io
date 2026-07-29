@@ -1,6 +1,4 @@
 # TODO
 
 - [ ] Adicionar screenshots aos projetos do portfólio
-- [ ] Adicionar tema toggle dark/light
-- [ ] Adicionar Open Graph image personalizada por post
-- [ ] Transições de página (fade-in)
+- [ ] Adicionar Open Graph image personalizada por post (geração automática `/og/[slug].png`)

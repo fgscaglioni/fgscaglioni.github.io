@@ -11,16 +11,16 @@ export const my_stack = [
 
 export const siteLinks = {
     main: [
-        { href: "/", label: "Início", icon: "fa-house" },
-        { href: "/research", label: "Pesquisa", icon: "fa-microscope" },
-        { href: "/blog", label: "Journal", icon: "fa-feather" },
-        { href: "/downloads", label: "Downloads", icon: "fa-download", newTab: false },
-        { href: "/experience", label: "Experiência", icon: "fa-briefcase" },
-        { href: "/portfolio", label: "Portfólio", icon: "fa-folder-open" },
-        { href: "/changelog", label: "Modificações", icon: "fa-clock-rotate-left" },
-        { href: "/social", label: "Social", icon: "fa-hashtag" },
+        { href: "/", label: "Início", icon: "house" },
+        { href: "/research", label: "Pesquisa", icon: "microscope" },
+        { href: "/blog", label: "Journal", icon: "feather" },
+        { href: "/downloads", label: "Downloads", icon: "download", newTab: false },
+        { href: "/experience", label: "Experiência", icon: "briefcase" },
+        { href: "/portfolio", label: "Portfólio", icon: "folder-open" },
+        { href: "/changelog", label: "Modificações", icon: "history" },
+        { href: "/social", label: "Social", icon: "hash" },
     ],
     external: [
-        { href: "https://medium.com/@fgscaglioni", label: "Posts", icon: "fa-medium", newTab: true }
+        { href: "https://medium.com/@fgscaglioni", label: "Posts", icon: "medium", newTab: true }
     ]
 };
