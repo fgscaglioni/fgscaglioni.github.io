@@ -8,6 +8,25 @@ export interface ChangeLogEntry {
 
 export const changelogData: ChangeLogEntry[] = [
   {
+    date: "23/09/2026",
+    version: "v2.4.0",
+    title: "Auditoria Técnica: Canonical, Metadados & Performance",
+    description: "Correção de canonical e dados estruturados, cards Open Graph por artigo, metadados únicos e ativos servidos localmente em vez de CDNs de terceiros.",
+    changes: [
+      "Canonical, og:url e twitter:url agora são auto-referentes em todas as páginas — 7 páginas de topo e 27 de tag apontavam para a home, fundindo-as no índice de busca.",
+      "Dados estruturados: WebSite e Person (com Scholar, ORCID, Lattes, ResearchGate, Semantic Scholar, GitHub, LinkedIn e Medium) em todas as páginas; BlogPosting e BreadcrumbList nos artigos.",
+      "Cards Open Graph 1200x630 gerados por artigo (pnpm og): o og:image de cada post respondia 404.",
+      "Fontes, avatar e ícones da stack passam a ser servidos localmente — Google Fonts, Gravatar e CDNs de terceiros saíram do caminho crítico.",
+      "Metadados únicos por página e título/descrição dentro do limite de exibição da busca; título editorial longo é preservado no texto visível via campo seoTitle.",
+      "URLs de tag normalizadas (educação e educacao eram duas páginas para o mesmo assunto), com noindex, canonical e H1 próprios.",
+      "Sitemap com lastmod real por artigo, em vez da data do build carimbada em todas as URLs.",
+      "Prefetch restrito aos links de navegação: o prefetch global custava uma long task de ~1,1s no carregamento.",
+      "Correção de dois PDFs de publicação que respondiam 404 na página de downloads.",
+      "Página 404 personalizada e transições respeitando prefers-reduced-motion.",
+      "Publicação do artigo sobre o levantamento de GPUs na pesquisa acadêmica brasileira (RNP).",
+    ]
+  },
+  {
     date: "29/07/2026",
     version: "v2.3.0",
     title: "Unificação de Ícones, View Transitions & Pesquisa",
