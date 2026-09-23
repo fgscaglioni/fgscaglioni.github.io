@@ -13,50 +13,94 @@ interface Props {
   updated?: Date;
   tags?: string[];
   isBlogPost?: boolean;
+  noindex?: boolean;
 }
 
 const {
   title = "@fgscaglioni",
-  description = "Portfólio profissional de Fabrício Scaglioni — desenvolvedor de sistemas, pesquisador e doutorando em IA.",
+  description = "Portfólio profissional de Fabrício Scaglioni, engenheiro de software, pesquisador e doutorando em IA.",
   ogImage,
   slug,
   pubDate,
   updated,
   tags = [],
   isBlogPost = false,
+  noindex = false,
 } = Astro.props;
 
 const siteUrl = "https://fgscaglioni.dev.br";
+const siteName = "Fabrício Scaglioni";
 
-// OG Image automática: se não foi fornecida, gera via slug ou usa fallback
-const finalOgImage = ogImage || (slug
-  ? `${siteUrl}/og/${slug}.png`
-  : "https://gravatar.com/avatar/556a14540bc4ab41d65b17218d498fd9d628698736378f62deb6e8f0849a5376");
+// Canonical sempre auto-referente. Antes, toda página sem `slug` (as 7 páginas de topo
+// e as de tag) declarava a home como canônica, o que consolida essas URLs na home.
+const canonical = new URL(Astro.url.pathname, Astro.site ?? siteUrl).href;
 
-// Schema.org JSON-LD para posts do blog
-const schemaOrg = isBlogPost && slug ? {
-  "@context": "https://schema.org",
+// Card 1200x630 gerado por `scripts/generate-og.mjs` (o caminho antigo /og/<slug>.png não existia = 404).
+const finalOgImage = ogImage || `${siteUrl}/og/${slug ? `${slug}.png` : "default.png"}`;
+
+const personId = `${siteUrl}/#person`;
+const websiteId = `${siteUrl}/#website`;
+
+const person = {
+  "@type": "Person",
+  "@id": personId,
+  name: siteName,
+  url: siteUrl,
+  jobTitle: "Engenheiro de Software Sênior, Pesquisador em IA",
+  affiliation: {
+    "@type": "Organization",
+    name: "Universidade Federal de Pelotas (UFPel)",
+    url: "https://ufpel.edu.br/",
+  },
+  sameAs: [
+    "https://scholar.google.com/citations?user=fZEKGvUAAAAJ",
+    "https://orcid.org/0000-0002-9749-2077",
+    "https://lattes.cnpq.br/0870115674210417",
+    "https://www.researchgate.net/profile/Fabricio-Scaglioni",
+    "https://www.semanticscholar.org/author/2202206947",
+    "https://github.com/fgscaglioni",
+    "https://www.linkedin.com/in/fgscaglioni/",
+    "https://medium.com/@fgscaglioni",
+  ],
+};
+
+const website = {
+  "@type": "WebSite",
+  "@id": websiteId,
+  url: siteUrl,
+  name: siteName,
+  inLanguage: "pt-BR",
+  publisher: { "@id": personId },
+};
+
+const blogPosting = isBlogPost && slug ? {
   "@type": "BlogPosting",
   headline: title,
   description,
   image: finalOgImage,
+  inLanguage: "pt-BR",
   datePublished: pubDate?.toISOString(),
-  dateModified: updated?.toISOString() || pubDate?.toISOString(),
-  author: {
-    "@type": "Person",
-    name: "Fabrício Scaglioni",
-    url: siteUrl,
-  },
-  publisher: {
-    "@type": "Person",
-    name: "Fabrício Scaglioni",
-  },
-  mainEntityOfPage: {
-    "@type": "WebPage",
-    "@id": `${siteUrl}/blog/${slug}/`,
-  },
+  dateModified: (updated || pubDate)?.toISOString(),
+  author: { "@id": personId },
+  publisher: { "@id": personId },
+  mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
+  isPartOf: { "@id": websiteId },
   keywords: tags.join(", "),
 } : null;
+
+const breadcrumb = isBlogPost && slug ? {
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Início", item: `${siteUrl}/` },
+    { "@type": "ListItem", position: 2, name: "Journal", item: `${siteUrl}/blog/` },
+    { "@type": "ListItem", position: 3, name: title, item: canonical },
+  ],
+} : null;
+
+const schemaOrg = {
+  "@context": "https://schema.org",
+  "@graph": [website, person, ...(blogPosting ? [blogPosting] : []), ...(breadcrumb ? [breadcrumb] : [])],
+};
 ---
 
 <!DOCTYPE html>
@@ -73,47 +117,59 @@ const schemaOrg = isBlogPost && slug ? {
       gtag("config", "G-6T5HCKSVKG");
     </script>
     <meta charset="UTF-8" />
-    <title>{title}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="description" content={description} />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
     />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={isBlogPost ? "article" : "website"} />
-    <meta property="og:url" content={slug ? `${siteUrl}/blog/${slug}/` : siteUrl} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={finalOgImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
 
     <!-- Twitter Cards -->
-    <meta name="twitter:card" content={ogImage || slug ? "summary_large_image" : "summary"} />
-    <meta name="twitter:url" content={slug ? `${siteUrl}/blog/${slug}/` : siteUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonical} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={finalOgImage} />
+    <meta name="twitter:image:alt" content={title} />
 
-    <!-- Canonical -->
-    <link rel="canonical" href={slug ? `${siteUrl}/blog/${slug}/` : siteUrl} />
+    <!-- Canonical (auto-referente em todas as páginas) -->
+    <link rel="canonical" href={canonical} />
 
     <!-- RSS -->
     <link rel="alternate" type="application/rss+xml" title="Fabrício Scaglioni — Blog" href={`${siteUrl}/rss.xml`} />
 
-    <!-- Schema.org JSON-LD -->
-    {schemaOrg && <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />}
+    <!-- Schema.org JSON-LD: WebSite + Person (E-E-A-T) + BlogPosting/BreadcrumbList nos posts -->
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
 
-    <!-- Preconnect para recursos externos -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <link rel="preconnect" href="https://gravatar.com" />
+    <!-- Fontes self-hosted (sem CSS render-blocking de terceiros) -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="/fonts/manrope-400-latin.woff2"
     />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="/fonts/instrument-serif-400-italic-latin.woff2"
+    />
   </head>
   <body class="bg-[#F5F2ED] text-gray-700 font-sans antialiased min-h-screen relative overflow-x-hidden">
     <!-- Skip to content link for keyboard navigation -->

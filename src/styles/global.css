@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./fonts.css";
 @plugin "@tailwindcss/typography";
 
 :root {
@@ -168,4 +169,17 @@ a[target="_blank"]:not(nav a):not(header a):not(.stack-link)::after {
 
 .dark .bg-white {
     background-color: #18181B !important;
+}
+
+/* Acessibilidade: respeita quem pediu menos movimento no sistema.
+   O indicador "Disponível" usa animate-ping infinito (index/experience). */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }

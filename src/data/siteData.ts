@@ -1,12 +1,14 @@
+// Ícones servidos localmente (antes: hotlink para laravel.com/nestjs.com/pngegg/jsdelivr/raw.githubusercontent,
+// que custava DNS/TLS de terceiros e trazia cookie __cf_bm do laravel.com).
 export const my_stack = [
-    { name: 'Python', image: 'https://raw.githubusercontent.com/docker-library/docs/01c12653951b2fe592c1f93a13b4e289ada0e3a1/python/logo.png', url: 'https://www.python.org/' },
-    { name: 'PHP', image: 'https://e7.pngegg.com/pngimages/185/655/png-clipart-logo-php-computer-icons-symbol-miscellaneous-emblem-thumbnail.png', url: 'https://www.php.net/' },
-    { name: 'TypeScript', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg', url: 'https://www.typescriptlang.org/' },
-    { name: 'PostgreSQL', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', url: 'https://www.postgresql.org/' },
-    { name: 'Laravel', image: 'https://laravel.com/img/logotype.min.svg', url: 'https://laravel.com/' },
-    { name: 'NestJS', image: 'https://nestjs.com/img/logo-small.svg', url: 'https://nestjs.com/' },
-    { name: 'Svelte', image: 'https://svelte.dev/svelte-logo-horizontal.svg', url: 'https://svelte.dev/' },
-    { name: 'Docker', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg', url: 'https://www.docker.com/' },
+    { name: 'Python', image: '/logos/python.svg', url: 'https://www.python.org/' },
+    { name: 'PHP', image: '/logos/php.svg', url: 'https://www.php.net/' },
+    { name: 'TypeScript', image: '/logos/typescript.svg', url: 'https://www.typescriptlang.org/' },
+    { name: 'PostgreSQL', image: '/logos/postgresql.svg', url: 'https://www.postgresql.org/' },
+    { name: 'Laravel', image: '/logos/laravel.svg', url: 'https://laravel.com/' },
+    { name: 'NestJS', image: '/logos/nestjs.svg', url: 'https://nestjs.com/' },
+    { name: 'Svelte', image: '/logos/svelte.svg', url: 'https://svelte.dev/' },
+    { name: 'Docker', image: '/logos/docker.svg', url: 'https://www.docker.com/' },
 ];
 
 export const siteLinks = {
