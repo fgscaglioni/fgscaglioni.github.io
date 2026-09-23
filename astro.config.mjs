@@ -40,7 +40,16 @@ export default defineConfig({
   },
   markdown: {
     shikiConfig: {
-      theme: 'github-light',
+      // Tema duplo com defaultColor:false — o Shiki emite as variáveis --shiki-light/--shiki-dark
+      // por token e a cor é aplicada pelo CSS em global.css; assim os dois temas do site usam o
+      // mesmo HTML. Os temas -high-contrast foram testados e descartados: não pintam token nenhum
+      // (o código fica monocromático). Os tokens que ficam abaixo de AA nos temas padrão são
+      // corrigidos por sobrescrita pontual das variáveis em global.css.
+      themes: {
+        light: 'github-light',
+        dark: 'github-dark',
+      },
+      defaultColor: false,
       wrap: true,
     },
   },
