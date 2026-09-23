@@ -32,11 +32,11 @@ import BulletItem from "../components/BulletItem.astro";
             <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4 border-b border-gray-100 pb-4">
               <div>
                 <h3 class="text-xl sm:text-2xl font-display italic tracking-wide text-gray-900">{exp.role}</h3>
-                <a href={exp.url} target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-gray-900 text-xs font-bold uppercase tracking-wider transition-colors inline-block mt-1">
-                  {exp.company} <span class="text-slate-600 font-medium ml-1">({exp.tag})</span>
+                <a href={exp.url} target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 text-xs font-bold uppercase tracking-wider transition-colors inline-block mt-1 py-1">
+                  {exp.company} <span class="text-gray-600 font-medium ml-1">({exp.tag})</span>
                 </a>
               </div>
-              <span class={`font-mono text-[9px] px-2.5 py-1 rounded-full uppercase tracking-widest border flex-shrink-0 self-start ${exp.current ? 'bg-rose-500/10 text-rose-400 border-rose-500/20' : 'bg-gray-50 text-gray-400 border-gray-100'}`}>
+              <span class={`font-mono text-[10px] px-2.5 py-1 rounded-full uppercase tracking-widest border flex-shrink-0 self-start ${exp.current ? 'bg-rose-500/10 text-rose-700 border-rose-500/30 dark:text-rose-300' : 'bg-gray-50 text-gray-600 border-gray-100'}`}>
                 {exp.period}
               </span>
             </div>
@@ -48,7 +48,7 @@ import BulletItem from "../components/BulletItem.astro";
             {exp.skills.length > 0 && (
               <div class="flex flex-wrap gap-1.5 pt-4 border-t border-gray-100 border-dashed">
                 {exp.skills.map(skill => (
-                  <span class="px-2 py-0.5 rounded-md bg-gray-50 text-gray-500 text-[10px] uppercase font-bold tracking-wider border border-gray-100 hover:border-gray-200 transition-colors">
+                  <span class="px-2 py-0.5 rounded-md bg-gray-50 text-gray-600 text-[11px] uppercase font-bold tracking-wider border border-gray-100 hover:border-gray-200 transition-colors">
                     {skill}
                   </span>
                 ))}

@@ -54,7 +54,7 @@ const latestPosts = (await getCollection("blog"))
               Fabrício Scaglioni
             </h1>
             <span
-              class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full border border-emerald-600/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 text-[9px] uppercase font-bold tracking-wider"
+              class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full border border-emerald-600/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 text-[10px] uppercase font-bold tracking-wider"
             >
               <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-ping"
               ></span> Disponível
@@ -62,7 +62,7 @@ const latestPosts = (await getCollection("blog"))
           </div>
           <!-- Positioning Tagline -->
           <p
-            class="text-gray-500 text-sm mb-4 font-mono uppercase tracking-wider leading-relaxed"
+            class="text-gray-600 text-sm mb-4 font-mono uppercase tracking-wider leading-relaxed"
           >
             Engenheiro de Software Sênior&nbsp;·&nbsp;Pesquisador em IA
           </p>
@@ -106,16 +106,16 @@ const latestPosts = (await getCollection("blog"))
             Sobre mim
           " />
         <ul class="space-y-3">
-          <BulletItem><strong class=&quot;text-gray-900 font-medium&quot;>+15 anos</strong> atuando em
+          <BulletItem><strong class="text-gray-900 font-medium">+15 anos</strong> atuando em
               todo o ciclo de desenvolvimento — planejamento, arquitetura, frontend
               e backend.</BulletItem>
-          <BulletItem><strong class=&quot;text-gray-900 font-medium&quot;
+          <BulletItem><strong class="text-gray-900 font-medium"
                 >Doutorando em Ciência da Computação</strong
-              > (UFPel), pesquisando <strong class=&quot;text-gray-900 font-medium&quot;
+              > (UFPel), pesquisando <strong class="text-gray-900 font-medium"
                 >Inteligência Artificial aplicada à Educação</strong
               >.</BulletItem>
           <BulletItem>Experiência em escalar sistemas em produção — de aplicativos com <strong
-                class=&quot;text-gray-900 font-medium&quot;>+2k usuários</strong
+                class="text-gray-900 font-medium">+2k usuários</strong
               > a APIs institucionais de alta escala.</BulletItem>
         </ul>
       </section>
@@ -125,14 +125,14 @@ const latestPosts = (await getCollection("blog"))
             Competências Chave
           " />
         <ul class="space-y-3">
-          <BulletItem><strong class=&quot;text-gray-900 font-medium&quot;
+          <BulletItem><strong class="text-gray-900 font-medium"
                 >Arquitetura de Software</strong
               > — design e implementação de APIs REST, sistemas containerizados com
               Docker e pipelines CI/CD.</BulletItem>
-          <BulletItem><strong class=&quot;text-gray-900 font-medium&quot;
+          <BulletItem><strong class="text-gray-900 font-medium"
                 >Desenvolvimento Fullstack</strong
               > — Laravel, NestJS, Angular, Ionic e PostgreSQL como stacks principais.</BulletItem>
-          <BulletItem><strong class=&quot;text-gray-900 font-medium&quot;>Pesquisa em ML/IA</strong> —
+          <BulletItem><strong class="text-gray-900 font-medium">Pesquisa em ML/IA</strong> —
               modelos preditivos educacionais, SLMs e revisões sistemáticas publicadas
               em periódicos internacionais.</BulletItem>
         </ul>
@@ -157,7 +157,7 @@ const latestPosts = (await getCollection("blog"))
           <a
             href="/blog"
             data-astro-prefetch
-            class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-gray-700 hover:text-gray-900 transition-colors"
+            class="inline-flex items-center gap-1.5 py-1 text-xs font-bold uppercase tracking-wider text-gray-700 hover:text-gray-900 transition-colors"
           >
             Ver todos <Icon name="arrow-right" class="inline" size={10} />
           </a>
@@ -169,15 +169,15 @@ const latestPosts = (await getCollection("blog"))
                 <div class="flex items-center gap-2 mb-2">
                   <time
                     datetime={post.data.pubDate.toISOString()}
-                    class="font-mono text-[9px] text-gray-500 uppercase tracking-widest"
+                    class="font-mono text-[10px] text-gray-600 uppercase tracking-widest"
                   >
                     {post.data.pubDate.toLocaleDateString("pt-BR", { year: "numeric", month: "short" })}
                   </time>
                   {post.data.tags && post.data.tags.length > 0 && (
                     <>
-                      <span class="text-gray-400">·</span>
+                      <span class="text-gray-600">·</span>
                       {post.data.tags.slice(0, 2).map((tag) => (
-                        <span class="font-mono text-[9px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 uppercase tracking-wider">
+                        <span class="font-mono text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 uppercase tracking-wider">
                           {tag}
                         </span>
                       ))}
@@ -187,7 +187,7 @@ const latestPosts = (await getCollection("blog"))
                 <h3 class="text-base font-display italic text-gray-900 group-hover:text-teal-600 transition-colors">
                   {post.data.title}
                 </h3>
-                <p class="text-gray-500 text-xs mt-2 leading-relaxed">{post.data.description}</p>
+                <p class="text-gray-600 text-xs mt-2 leading-relaxed">{post.data.description}</p>
               </PaperCard>
             </a>
           ))}
@@ -228,30 +228,30 @@ const latestPosts = (await getCollection("blog"))
                 href: "https://www.senacrs.com.br/unidade/78",
                 level: "Especialização em Gerenciamento de Projetos",
                 period: "2009 - 2010",
-                icon: "square",
+                icon: "circle-dot",
               },
               {
                 inst: "UniSenac",
                 href: "https://www.senacrs.com.br/unidade/78",
                 level: "Tecnólogo em Análise e Desenvolvimento de Sistemas",
                 period: "2005 - 2007",
-                icon: "square",
+                icon: "circle-dot",
               },
             ].map((item) => (
               <div class="flex items-start gap-3">
                 <div class="mt-1 flex-shrink-0">
-                  <Icon name={item.icon} class="text-[8px] text-rose-500 inline" />
+                  <Icon name={item.icon} class="text-rose-500 inline" />
                 </div>
                 <div>
                   <a
                     href={item.href}
                     target="_blank"
-                    class="text-gray-800 dark:text-gray-200 text-sm font-medium hover:text-gray-900 dark:hover:text-gray-300 transition-colors"
+                    class="text-gray-800 text-sm font-medium hover:text-gray-900 transition-colors"
                   >
                     {item.inst}
                   </a>
-                  <p class="text-gray-500 font-light text-xs">{item.level}</p>
-                  <p class="text-gray-500 text-[10px] font-mono mt-0.5 tracking-wider">
+                  <p class="text-gray-600 font-light text-xs">{item.level}</p>
+                  <p class="text-gray-600 text-[11px] font-mono mt-0.5 tracking-wider">
                     {item.period}
                   </p>
                 </div>
@@ -293,7 +293,7 @@ const latestPosts = (await getCollection("blog"))
                     <span class="text-xs text-gray-700 font-medium">
                       {item.lang}
                     </span>
-                    <span class="text-[10px] font-mono text-gray-500 uppercase tracking-widest">
+                    <span class="text-[11px] font-mono text-gray-600 uppercase tracking-widest">
                       {item.level}
                     </span>
                   </div>
@@ -333,12 +333,12 @@ const latestPosts = (await getCollection("blog"))
                 },
               ].map((cert) => (
                 <div class="flex items-start gap-2">
-                  <Icon name="shield-halved" class="text-[8px] text-rose-500 mt-1.5 inline" />
+                  <Icon name="shield-halved" class="text-rose-500 mt-1.5 inline" />
                   <div>
-                    <h3 class="text-gray-800 dark:text-gray-200 text-xs font-medium">
+                    <h3 class="text-gray-800 text-xs font-medium">
                       {cert.name}
                     </h3>
-                    <p class="text-gray-500 font-light text-[10px]">
+                    <p class="text-gray-600 font-light text-[11px]">
                       {cert.details}
                     </p>
                   </div>
