@@ -35,7 +35,7 @@ export const articles = [
       {
         title:
           "Effectiveness of an app-delivered, self-management exercise program in public safety workers with chronic low back pain: a randomized controlled trial",
-        url: "/public/papers/1-s2.0-S1413355525000619-main.pdf",
+        url: "/papers/1-s2.0-S1413355525000619-main.pdf",
         year: "2025",
         month: "Jul",
         badge: "PDF",
@@ -43,7 +43,7 @@ export const articles = [
       {
         title:
           "Effectiveness of m-health-based core strengthening exercise and health education for public safety workers with chronic non-specific low back pain: study protocol for a superiority randomized controlled trial (SAFEBACK)",
-        url: "/public/papers/s13063-023-07833-9.pdf",
+        url: "/papers/s13063-023-07833-9.pdf",
         year: "2023",
         month: "Dez",
         badge: "PDF",
