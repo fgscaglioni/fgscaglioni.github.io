@@ -1,5 +1,6 @@
 ---
 title: "21 Falácias Lógicas que Você Precisa Conhecer para Não ser Manipulado"
+seoTitle: "21 falácias lógicas para não ser manipulado"
 pubDate: 2026-06-24
 description: "Um guia prático das 21 falácias mais comuns em debates, organizadas por mecanismo de manipulação, com exemplos reais e como rebater cada uma."
 tags: ["filosofia", "pensamento crítico", "argumentação"]

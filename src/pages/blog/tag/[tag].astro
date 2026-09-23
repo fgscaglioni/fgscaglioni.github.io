@@ -7,15 +7,21 @@ import BlogIntro from "../../../components/BlogIntro.astro";
 import SearchBar from "../../../components/SearchBar.astro";
 import Icon from "../../../components/Icon.svelte";
 import { getCollection } from "astro:content";
+import { slugifyTag, tagSlugMap } from "../../../utils/tags";
 
 export async function getStaticPaths() {
   const posts = (await getCollection("blog"))
     .filter((post) => !post.data.draft);
-  const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort();
-  return allTags.map((tag) => ({ params: { tag } }));
+  const allTags = posts.flatMap((post) => post.data.tags || []);
+  // Uma página por slug: "educação" e "educacao" deixam de gerar duas URLs.
+  return [...tagSlugMap(allTags).entries()].map(([tag, label]) => ({
+    params: { tag },
+    props: { label },
+  }));
 }
 
 const { tag } = Astro.params;
+const { label } = Astro.props;
 
 const allPosts = (await getCollection("blog"))
   .filter((post) => !post.data.draft)
@@ -23,10 +29,16 @@ const allPosts = (await getCollection("blog"))
 
 const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags || []))].sort();
 
-const posts = allPosts.filter((post) => (post.data.tags || []).includes(tag));
+const posts = allPosts.filter((post) =>
+  (post.data.tags || []).some((t) => slugifyTag(t) === tag)
+);
 ---
 
-<BaseLayout title={`${tag} · Journal | Fabrício Scaglioni`}>
+<BaseLayout
+  title={`Posts com a tag ${label} · Journal`}
+  description={`Artigos do journal de Fabrício Scaglioni marcados com ${label}: ${posts.length} ${posts.length === 1 ? "publicação" : "publicações"} sobre pesquisa, engenharia de software e inteligência artificial.`}
+  noindex={true}
+>
   <Navbar slot="header" />
 
   <article class="pt-8 pb-16">
@@ -37,10 +49,10 @@ const posts = allPosts.filter((post) => (post.data.tags || []).includes(tag));
         </div>
         <div>
           <h1 class="text-3xl sm:text-4xl font-display italic tracking-wide text-gray-900">
-            Journal de Pesquisa
+            Posts com a tag “{label}”
           </h1>
           <p class="text-gray-500 text-xs mt-1 uppercase tracking-widest font-bold">
-            Posts filtrados por: <span class="text-teal-600">{tag}</span>
+            {posts.length} {posts.length === 1 ? "publicação" : "publicações"} no journal
           </p>
         </div>
       </div>
@@ -59,14 +71,17 @@ const posts = allPosts.filter((post) => (post.data.tags || []).includes(tag));
       {posts.map((post) => (
         <PaperCard class="post-card p-6" data-title={post.data.title.toLowerCase()} data-description={post.data.description.toLowerCase()}>
           <div class="flex items-center gap-2 mb-3">
-            <span class="font-mono text-[9px] text-gray-400 uppercase tracking-widest">
+            <time
+              datetime={post.data.pubDate.toISOString()}
+              class="font-mono text-[9px] text-gray-500 uppercase tracking-widest"
+            >
               {post.data.pubDate.toLocaleDateString("pt-BR", { year: "numeric", month: "long", day: "numeric" })}
-            </span>
+            </time>
             {post.data.tags && post.data.tags.length > 0 && (
               <>
-                <span class="text-gray-300">·</span>
+                <span class="text-gray-400">·</span>
                 {post.data.tags.map((t) => (
-                  <a href={`/blog/tag/${t}`} class="font-mono text-[9px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 hover:bg-teal-100 hover:text-teal-700 uppercase tracking-wider transition-colors">{t}</a>
+                  <a href={`/blog/tag/${slugifyTag(t)}`} class="font-mono text-[9px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 hover:bg-teal-100 hover:text-teal-700 uppercase tracking-wider transition-colors">{t}</a>
                 ))}
               </>
             )}

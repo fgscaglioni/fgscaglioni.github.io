@@ -1,0 +1,44 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import PaperCard from "../components/PaperCard.astro";
+import Icon from "../components/Icon.svelte";
+
+const sugestoes = [
+  { href: "/", label: "Início", icon: "house" },
+  { href: "/research", label: "Pesquisa", icon: "microscope" },
+  { href: "/blog", label: "Journal", icon: "feather" },
+  { href: "/portfolio", label: "Portfólio", icon: "folder-open" },
+];
+---
+
+<BaseLayout
+  title="Página não encontrada (404) | Fabrício Scaglioni"
+  description="A página procurada não existe neste site. Veja os atalhos para início, pesquisa, journal e portfólio."
+  noindex={true}
+>
+  <Navbar slot="header" />
+
+  <article class="pt-8 pb-16">
+    <PaperCard class="p-6 sm:p-10 text-center">
+      <p class="font-mono text-[10px] text-gray-500 uppercase tracking-widest mb-3">Erro 404</p>
+      <h1 class="text-3xl sm:text-4xl font-display italic text-gray-900 mb-4">
+        Página não encontrada
+      </h1>
+      <p class="text-gray-500 text-sm leading-relaxed max-w-md mx-auto mb-8">
+        O endereço acessado não existe ou foi movido. Use um dos atalhos abaixo para continuar navegando.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-2">
+        {sugestoes.map((s) => (
+          <a
+            href={s.href}
+            data-astro-prefetch
+            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-white hover:text-black text-xs font-bold uppercase tracking-wider transition-colors"
+          >
+            <Icon name={s.icon} class="inline" size={12} /> {s.label}
+          </a>
+        ))}
+      </div>
+    </PaperCard>
+  </article>
+</BaseLayout>

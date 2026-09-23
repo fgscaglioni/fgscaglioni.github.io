@@ -1,5 +1,6 @@
 ---
 title: "Sistema de Recomendação de Matrículas para Campi Inteligentes"
+seoTitle: "Recomendação de matrículas para campi inteligentes"
 pubDate: 2024-01-01
 description: "Minha dissertação de mestrado na UFPel: um sistema que recomenda disciplina para alunos de Ciência da Computação baseado no perfil acadêmico."
 tags: ["educação", "ia", "pesquisa"]

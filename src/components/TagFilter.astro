@@ -1,5 +1,5 @@
 ---
-import { sortTagsByFrequency } from "../utils/tags";
+import { slugifyTag, sortTagsByFrequency } from "../utils/tags";
 
 interface Props {
   allTags: string[];
@@ -11,12 +11,15 @@ const { allTags, activeTag, posts } = Astro.props;
 const sorted = sortTagsByFrequency(allTags, posts);
 const top5 = sorted.slice(0, 5);
 const rest = sorted.slice(5);
+// activeTag chega como slug (vindo da rota); compara sempre por slug.
+const isActive = (tag: string) => !!activeTag && slugifyTag(tag) === activeTag;
 ---
 
 <div class="flex flex-wrap items-center gap-2 mb-8">
   <a
     href="/blog"
-    class={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-200 ${
+    data-astro-prefetch
+    class={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-colors duration-200 ${
       !activeTag
         ? "bg-teal-600 text-white shadow-sm"
         : "bg-gray-100 text-gray-500 hover:bg-gray-200"
@@ -27,9 +30,10 @@ const rest = sorted.slice(5);
 
   {top5.map((tag) => (
     <a
-      href={`/blog/tag/${tag}`}
-      class={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-200 ${
-        activeTag === tag
+      href={`/blog/tag/${slugifyTag(tag)}`}
+      data-astro-prefetch
+      class={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-colors duration-200 ${
+        isActive(tag)
           ? "bg-teal-600 text-white shadow-sm"
           : "bg-gray-100 text-gray-500 hover:bg-gray-200"
       }`}
@@ -40,15 +44,16 @@ const rest = sorted.slice(5);
 
   {rest.length > 0 && (
     <details class="relative tag-popover">
-      <summary class="px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer bg-gray-100 text-gray-500 hover:bg-gray-200 transition-all duration-200 list-none">
+      <summary class="px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer bg-gray-100 text-gray-500 hover:bg-gray-200 transition-colors duration-200 list-none">
         +{rest.length} mais
       </summary>
       <div class="absolute top-full right-0 mt-2 p-3 bg-white rounded-xl border border-gray-200 shadow-lg z-50 flex flex-wrap gap-2 min-w-[200px]">
         {rest.map((tag) => (
           <a
-            href={`/blog/tag/${tag}`}
-            class={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-200 whitespace-nowrap ${
-              activeTag === tag
+            href={`/blog/tag/${slugifyTag(tag)}`}
+            data-astro-prefetch
+            class={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-colors duration-200 whitespace-nowrap ${
+              isActive(tag)
                 ? "bg-teal-600 text-white shadow-sm"
                 : "bg-gray-100 text-gray-500 hover:bg-gray-200"
             }`}

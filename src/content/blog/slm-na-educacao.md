@@ -1,5 +1,6 @@
 ---
 title: "Inteligência Artificial na Educação: O papel dos Small Language Models (SLMs)"
+seoTitle: "IA na Educação: o papel dos Small Language Models"
 pubDate: 2026-05-26
 description: "Uma análise sobre a viabilidade e os benefícios de executar modelos de linguagem enxutos localmente em infraestrutura universitária para apoiar o aprendizado."
 draft: false

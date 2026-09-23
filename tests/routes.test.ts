@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { slugifyTag } from '../src/utils/tags';
 
 const BLOG_DIR = path.resolve(import.meta.dirname!, '../src/content/blog');
 const DIST_DIR = path.resolve(import.meta.dirname!, '../dist');
@@ -45,7 +46,7 @@ describe('Rotas estáticas do blog', () => {
     expect(missing, `Posts sem página gerada:\n${missing.join('\n')}`).toEqual([]);
   });
 
-  it('cada tag existente gera página de filtro', () => {
+  it('cada tag existente gera página de filtro (slug normalizado)', () => {
     const files = fs.readdirSync(BLOG_DIR).filter((f: string) => f.endsWith('.md'));
     const tags = new Set<string>();
 
@@ -65,12 +66,22 @@ describe('Rotas estáticas do blog', () => {
 
     const missing: string[] = [];
     for (const tag of tags) {
-      const htmlPath = path.join(DIST_DIR, 'blog', 'tag', tag, 'index.html');
+      const slug = slugifyTag(tag);
+      const htmlPath = path.join(DIST_DIR, 'blog', 'tag', slug, 'index.html');
       if (!fs.existsSync(htmlPath)) {
-        missing.push(`tag "${tag}" → /blog/tag/${tag}/index.html`);
+        missing.push(`tag "${tag}" → /blog/tag/${slug}/index.html`);
       }
     }
 
     expect(missing, `Páginas de tag não geradas:\n${missing.join('\n')}`).toEqual([]);
+  });
+
+  it('URLs de tag não contêm espaço nem acento', () => {
+    const tagDir = path.join(DIST_DIR, 'blog', 'tag');
+    const bad = fs
+      .readdirSync(tagDir)
+      .filter((dir) => !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(dir));
+
+    expect(bad, `Tags fora do padrão slug:\n${bad.join('\n')}`).toEqual([]);
   });
 });

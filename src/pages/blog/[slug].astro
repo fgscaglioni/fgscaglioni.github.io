@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar.astro";
 import PaperCard from "../../components/PaperCard.astro";
 import Icon from "../../components/Icon.svelte";
 import { getCollection, render } from "astro:content";
+import { slugifyTag } from "../../utils/tags";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -33,50 +34,59 @@ const related = allPosts
   .filter((p) => p.score > 0)
   .sort((a, b) => b.score - a.score)
   .slice(0, 3);
+
+const updated = post.data.updated || post.data.pubDate;
 ---
 
-<BaseLayout title={`${post.data.title} | Blog Fabrício Scaglioni`}
-  description={post.data.description}
+<BaseLayout
+  title={post.data.seoTitle || post.data.title}
+  description={post.data.seoDescription || post.data.description}
   slug={slug}
   pubDate={post.data.pubDate}
   updated={post.data.updated}
   tags={post.data.tags}
   ogImage={post.data.ogImage || undefined}
-  isBlogPost={true}>
+  isBlogPost={true}
+  noindex={post.data.noindex}
+>
   <Navbar slot="header" />
 
   <article class="pt-8 pb-16">
     <a
       href="/blog"
-      class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-400 hover:text-gray-700 transition-colors mb-6"
+      data-astro-prefetch
+      class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-gray-700 transition-colors mb-6"
     >
       <Icon name="arrow-left" class="inline" size={10} /> Voltar ao Journal
     </a>
     <PaperCard class="p-6 sm:p-8">
     <div class="mb-8 pb-6">
-      <span class="font-mono text-[9px] text-gray-400 uppercase tracking-widest block mb-2">
-        {
-          post.data.pubDate.toLocaleDateString("pt-BR", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })
-        }
-        {post.data.updated && (
-          <span class="text-gray-300"> · atualizado em {
-            post.data.updated.toLocaleDateString("pt-BR", {
+      <span class="font-mono text-[9px] text-gray-500 uppercase tracking-widest block mb-2">
+        <time datetime={post.data.pubDate.toISOString()}>
+          {
+            post.data.pubDate.toLocaleDateString("pt-BR", {
               year: "numeric",
               month: "long",
               day: "numeric",
             })
-          }</span>
+          }
+        </time>
+        {post.data.updated && (
+          <span class="text-gray-400"> · <time datetime={updated.toISOString()}>atualizado em {
+            updated.toLocaleDateString("pt-BR", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })
+          }</time></span>
         )}
       </span>
       {post.data.tags && post.data.tags.length > 0 && (
         <div class="flex flex-wrap items-center gap-2 mb-4">
           {post.data.tags.map((tag) => (
             <a
-              href={`/blog/tag/${tag}`}
+              href={`/blog/tag/${slugifyTag(tag)}`}
+              data-astro-prefetch
               class="font-mono text-[9px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 hover:bg-teal-100 hover:text-teal-700 uppercase tracking-wider transition-colors"
             >
               {tag}
@@ -114,15 +124,15 @@ const related = allPosts
         <h2 class="text-xl font-display italic text-gray-900 mb-6">Posts Relacionados</h2>
         <div class="space-y-4">
           {related.map(({ post: p }) => (
-            <a href={`/blog/${p.id}`} class="block group">
+            <a href={`/blog/${p.id}`} data-astro-prefetch class="block group">
               <PaperCard class="p-5 transition-shadow duration-200 group-hover:shadow-md">
                 <div class="flex items-center gap-2 mb-2">
-                  <span class="font-mono text-[9px] text-gray-400 uppercase tracking-widest">
+                  <span class="font-mono text-[9px] text-gray-500 uppercase tracking-widest">
                     {p.data.pubDate.toLocaleDateString("pt-BR", { year: "numeric", month: "short" })}
                   </span>
                   {p.data.tags && p.data.tags.length > 0 && (
                     <>
-                      <span class="text-gray-300">·</span>
+                      <span class="text-gray-400">·</span>
                       {p.data.tags.slice(0, 2).map((t) => (
                         <span class="font-mono text-[9px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 uppercase tracking-wider">
                           {t}

@@ -6,10 +6,18 @@ import StackList from "../components/StackList.astro";
 import PaperCard from "../components/PaperCard.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import BulletItem from "../components/BulletItem.astro";
+import { getCollection } from "astro:content";
+
+// Posts mais recentes: dá sinal interno (e caminho de descoberta) para o conteúdo do journal.
+const latestPosts = (await getCollection("blog"))
+  .filter((post) => !post.data.draft && !post.data.noindex)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 ---
 
 <BaseLayout
-  title="Fabrício Scaglioni | Engenheiro de Software Sênior & Doutorando em IA"
+  title="Fabrício Scaglioni | Engenheiro de Software e Pesquisador"
+  description="Portfólio de Fabrício Scaglioni: engenheiro de software sênior e doutorando em IA na UFPel. Projetos, publicações científicas e journal de pesquisa."
 >
   <Navbar slot="header" />
 
@@ -28,8 +36,12 @@ import BulletItem from "../components/BulletItem.astro";
         <!-- Avatar -->
         <div class="relative flex-shrink-0">
           <img
-            src="https://gravatar.com/avatar/556a14540bc4ab41d65b17218d498fd9d628698736378f62deb6e8f0849a5376"
+            src="/avatar.webp"
             alt="Fabrício Scaglioni"
+            width="96"
+            height="96"
+            fetchpriority="high"
+            decoding="async"
             class="relative w-24 h-24 rounded-full object-cover border border-gray-200 shadow-xl transition-transform duration-500 hover:scale-105"
           />
         </div>
@@ -42,9 +54,9 @@ import BulletItem from "../components/BulletItem.astro";
               Fabrício Scaglioni
             </h1>
             <span
-              class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-[9px] uppercase font-bold tracking-wider"
+              class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full border border-emerald-600/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 text-[9px] uppercase font-bold tracking-wider"
             >
-              <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping"
+              <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-ping"
               ></span> Disponível
             </span>
           </div>
@@ -62,15 +74,15 @@ import BulletItem from "../components/BulletItem.astro";
               href="https://www.linkedin.com/in/fgscaglioni/"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-white hover:text-black text-xs font-bold uppercase tracking-wider transition-all duration-300"
+              class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-white hover:text-black text-xs font-bold uppercase tracking-wider transition-colors duration-300"
             >
               <Icon name="linkedin" class="inline" /> LinkedIn
             </a>
             <a
-              href="http://github.com/fgscaglioni/"
+              href="https://github.com/fgscaglioni/"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-white hover:text-black text-xs font-bold uppercase tracking-wider transition-all duration-300"
+              class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-white hover:text-black text-xs font-bold uppercase tracking-wider transition-colors duration-300"
             >
               <Icon name="github" class="inline" /> GitHub
             </a>
@@ -78,7 +90,7 @@ import BulletItem from "../components/BulletItem.astro";
               href="https://medium.com/@fgscaglioni"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-white hover:text-black text-xs font-bold uppercase tracking-wider transition-all duration-300"
+              class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-white hover:text-black text-xs font-bold uppercase tracking-wider transition-colors duration-300"
             >
               <Icon name="medium" class="inline" /> Medium
             </a>
@@ -134,6 +146,54 @@ import BulletItem from "../components/BulletItem.astro";
       </h2>
       <StackList />
     </section>
+
+    <!-- Latest Posts: liga a home ao conteúdo do journal -->
+    {latestPosts.length > 0 && (
+      <section class="mb-8">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-2xl font-display italic text-gray-900 tracking-wide">
+            Últimos Artigos
+          </h2>
+          <a
+            href="/blog"
+            data-astro-prefetch
+            class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-gray-700 hover:text-gray-900 transition-colors"
+          >
+            Ver todos <Icon name="arrow-right" class="inline" size={10} />
+          </a>
+        </div>
+        <div class="space-y-4">
+          {latestPosts.map((post) => (
+            <a href={`/blog/${post.id}`} data-astro-prefetch class="block group">
+              <PaperCard class="p-5 transition-shadow duration-200 group-hover:shadow-md">
+                <div class="flex items-center gap-2 mb-2">
+                  <time
+                    datetime={post.data.pubDate.toISOString()}
+                    class="font-mono text-[9px] text-gray-500 uppercase tracking-widest"
+                  >
+                    {post.data.pubDate.toLocaleDateString("pt-BR", { year: "numeric", month: "short" })}
+                  </time>
+                  {post.data.tags && post.data.tags.length > 0 && (
+                    <>
+                      <span class="text-gray-400">·</span>
+                      {post.data.tags.slice(0, 2).map((tag) => (
+                        <span class="font-mono text-[9px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 uppercase tracking-wider">
+                          {tag}
+                        </span>
+                      ))}
+                    </>
+                  )}
+                </div>
+                <h3 class="text-base font-display italic text-gray-900 group-hover:text-teal-600 transition-colors">
+                  {post.data.title}
+                </h3>
+                <p class="text-gray-500 text-xs mt-2 leading-relaxed">{post.data.description}</p>
+              </PaperCard>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
 
     <!-- Education + Languages -->
     <div class="grid md:grid-cols-2 gap-6">
@@ -191,7 +251,7 @@ import BulletItem from "../components/BulletItem.astro";
                     {item.inst}
                   </a>
                   <p class="text-gray-500 font-light text-xs">{item.level}</p>
-                  <p class="text-gray-400 text-[10px] font-mono mt-0.5 tracking-wider">
+                  <p class="text-gray-500 text-[10px] font-mono mt-0.5 tracking-wider">
                     {item.period}
                   </p>
                 </div>
@@ -233,7 +293,7 @@ import BulletItem from "../components/BulletItem.astro";
                     <span class="text-xs text-gray-700 font-medium">
                       {item.lang}
                     </span>
-                    <span class="text-[10px] font-mono text-gray-400 uppercase tracking-widest">
+                    <span class="text-[10px] font-mono text-gray-500 uppercase tracking-widest">
                       {item.level}
                     </span>
                   </div>

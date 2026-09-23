@@ -7,6 +7,7 @@ import BlogIntro from "../../components/BlogIntro.astro";
 import SearchBar from "../../components/SearchBar.astro";
 import Icon from "../../components/Icon.svelte";
 import { getCollection } from "astro:content";
+import { slugifyTag } from "../../utils/tags";
 
 const posts = (await getCollection("blog"))
   .filter((post) => !post.data.draft)
@@ -15,7 +16,10 @@ const posts = (await getCollection("blog"))
 const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort();
 ---
 
-<BaseLayout title="Research Journal & Blog | Fabrício Scaglioni">
+<BaseLayout
+  title="Journal de Pesquisa | Fabrício Scaglioni"
+  description="Artigos e notas de Fabrício Scaglioni sobre inteligência artificial, aprendizado de máquina, engenharia de software e educação."
+>
   <Navbar slot="header" />
 
   <article class="pt-8 pb-16">
@@ -46,23 +50,26 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort
       {posts.map((post) => (
         <PaperCard class="post-card p-6" data-title={post.data.title.toLowerCase()} data-description={post.data.description.toLowerCase()}>
           <div class="flex items-center gap-2 mb-3">
-            <span class="font-mono text-[9px] text-gray-400 uppercase tracking-widest">
+            <time
+              datetime={post.data.pubDate.toISOString()}
+              class="font-mono text-[9px] text-gray-500 uppercase tracking-widest"
+            >
               {post.data.pubDate.toLocaleDateString("pt-BR", { year: "numeric", month: "long", day: "numeric" })}
-            </span>
+            </time>
             {post.data.tags && post.data.tags.length > 0 && (
               <>
-                <span class="text-gray-300">·</span>
+                <span class="text-gray-400">·</span>
                 {post.data.tags.map((tag) => (
-                  <a href={`/blog/tag/${tag}`} class="font-mono text-[9px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 hover:bg-teal-100 hover:text-teal-700 uppercase tracking-wider transition-colors">{tag}</a>
+                  <a href={`/blog/tag/${slugifyTag(tag)}`} data-astro-prefetch class="font-mono text-[9px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 hover:bg-teal-100 hover:text-teal-700 uppercase tracking-wider transition-colors">{tag}</a>
                 ))}
               </>
             )}
           </div>
           <h2 class="text-xl sm:text-2xl font-display italic text-gray-900 mb-3">
-            <a href={`/blog/${post.id}`} class="hover:text-gray-700 transition-colors">{post.data.title}</a>
+            <a href={`/blog/${post.id}`} data-astro-prefetch class="hover:text-gray-700 transition-colors">{post.data.title}</a>
           </h2>
           <p class="text-gray-500 text-sm leading-relaxed mb-4">{post.data.description}</p>
-          <a href={`/blog/${post.id}`} class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-gray-700 hover:text-gray-900 transition-colors">
+          <a href={`/blog/${post.id}`} data-astro-prefetch class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-gray-700 hover:text-gray-900 transition-colors">
             Ler Artigo <Icon name="arrow-right" class="text-[10px] inline" size={10} />
           </a>
         </PaperCard>
