@@ -9,6 +9,26 @@ export interface ChangeLogEntry {
 export const changelogData: ChangeLogEntry[] = [
   {
     date: "23/09/2026",
+    version: "v2.5.0",
+    title: "Auditoria de Design: Dark Mode, Acessibilidade & Contraste",
+    description: "Correção dos defeitos encontrados na auditoria visual e de acessibilidade: dark mode controlado pelo toggle, código legível no escuro, busca do journal funcionando após navegação, contraste conforme WCAG 2.2 AA e limpeza de dependências mortas.",
+    changes: [
+      "Dark mode corrigido: os utilitários dark: eram compilados para @media (prefers-color-scheme) e ignoravam o botão do site — com o sistema em escuro e o site em claro, títulos ficavam em 1,24:1. Agora seguem a classe .dark do <html>, e os degraus gray-300/600/800 que faltavam na paleta escura foram definidos (links de formação estavam em 1,21:1).",
+      "Código legível no tema escuro: o tema único do Shiki pintava o código #24292E sobre fundo escuro (1,18:1). Passa a usar tema duplo (github-light no claro, github-dark no escuro).",
+      "Busca do journal volta a funcionar ao navegar pelo menu: o listener estava preso ao DOMContentLoaded e o ClientRouter não o dispara de novo (13/13 artigos chegavam pelo menu contra 1/13 em carga direta). Recebeu contagem de resultados, estado vazio, rótulo acessível e placeholder com contraste.",
+      "Correção de dois defeitos de renderização: classes escritas com entidade HTML literal (class=&quot;...) nunca aplicavam o estilo, e um trecho em **negrito** aparecia como texto literal na página de pesquisa.",
+      "Contraste conforme WCAG 2.2 AA: text-gray-400 (2,33:1 a 2,60:1) virou gray-600 e todo text-gray-500 (4,41:1, logo abaixo do mínimo de 4,5:1) virou gray-600 em 57 pontos; estados ativos, pílulas de tag e skip link passaram de teal-600 (3,66:1) para teal-700 (5,5:1); anel de foco padronizado em teal-700, com teal-300 no tema escuro.",
+      "Tamanhos de texto: 33 usos entre 8px e 10px subiram para 10px e 11px.",
+      "Alvos de toque: botões da navbar, tema e marca com 44px e menu mobile com 8 links de 44px; links de texto autônomos (rodapé, DOI, 'Ver todos', 'Voltar ao Journal', empresas) receberam área de toque de 24px. Não havia falha da WCAG 2.5.8, mas o alvo de 16px era desconfortável no dedo.",
+      "Marcadores da Formação Acadêmica unificados em `circle-dot` (os dois registros da UniSenac estavam com `square`, sem relação com o nível do curso) e removidas as classes de tamanho de fonte aplicadas a ícones, que não tinham efeito: o componente fixa o SVG em 16px, e o tamanho de fonte não encolhe SVG com dimensão explícita. Efeito visual apenas nos marcadores, que agora são todos iguais.",
+      "Rodapé com links (RSS e Modificações) e chamada 'Acessar repositório' da página de downloads sempre visível, em vez de só no hover.",
+      "Fontes: 18 arquivos para 8 conteúdos distintos — Manrope e JetBrains Mono são variáveis e agora são declaradas por faixa de peso, eliminando ~74 KB redundantes por página.",
+      "Ícones de ResearchGate e Medium com marcas próprias (antes um quadrado vazio e um globo).",
+      "Higiene: dependências sem uso (@fortawesome/fontawesome-free, swiper) e assets legados (public/data.js, public/stack.json) removidos; utilitários prose-code/prose-ul que não compilavam no Tailwind 4 substituídos por CSS explícito.",
+    ]
+  },
+  {
+    date: "23/09/2026",
     version: "v2.4.0",
     title: "Auditoria Técnica: Canonical, Metadados & Performance",
     description: "Correção de canonical e dados estruturados, cards Open Graph por artigo, metadados únicos e ativos servidos localmente em vez de CDNs de terceiros.",
