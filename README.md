@@ -6,7 +6,7 @@ Site pessoal de Fabrício Scaglioni — portfólio, blog e notas de pesquisa.
 
 - **Framework:** [Astro](https://astro.build) 7 (static site generator)
 - **Estilo:** Tailwind CSS 4 + [@tailwindcss/typography](https://github.com/tailwindlabs/tailwindcss-typography)
-- **Ícones:** FontAwesome 7
+- **Ícones:** [Lucide](https://lucide.dev) via componente `Icon.svelte` (SVGs inline para marcas)
 - **Testes:** [Vitest](https://vitest.dev)
 - **Deploy:** GitHub Pages via GitHub Actions
 
@@ -45,6 +45,9 @@ description: "Descrição curta para listagens e SEO."
 tags: ["tag1", "tag2"]
 updated: 2026-06-24  # opcional
 draft: false
+seoTitle: "Título enxuto para a busca"       # opcional
+seoDescription: "Descrição dentro do limite da busca"  # opcional
+noindex: false       # opcional: true tira a página do índice
 ---
 ```
 
