@@ -8,30 +8,31 @@ const currentPath = Astro.url.pathname;
 
 <header class="sticky top-4 z-50 px-4 max-w-4xl mx-auto w-full">
   <PaperCard class="px-4 py-3 flex items-center justify-between bg-white/80 backdrop-blur-md border border-gray-200 rounded-full">
-    <!-- Brand Logo -->
-    <a href="/" class="flex items-center gap-2 group shrink-0">
-      <div class="w-8 h-8 rounded-full border border-gray-200 bg-gray-100 flex items-center justify-center transition-all duration-300 group-hover:bg-teal-600 group-hover:border-teal-600">
+    <!-- Brand Logo (o p-1.5 com -m-1.5 amplia a área de toque sem mudar o visual) -->
+    <a href="/" class="flex items-center gap-2 group shrink-0 p-1.5 -m-1.5 rounded-full">
+      <div class="w-8 h-8 rounded-full border border-gray-200 bg-gray-100 flex items-center justify-center transition-colors duration-300 group-hover:bg-teal-700 group-hover:border-teal-700">
         <span class="font-display italic text-base font-bold text-gray-700 group-hover:text-white">fg</span>
       </div>
-      <span class="font-display italic text-lg text-gray-800 group-hover:text-gray-500 transition-colors hidden lg:inline">
+      <span class="font-display italic text-lg text-gray-800 group-hover:text-gray-600 transition-colors hidden lg:inline">
         fgscaglioni
       </span>
     </a>
 
     <!-- Desktop Navigation + Toggle -->
-    <nav id="desktop-nav" class="hidden lg:flex items-center gap-1">
+    <nav id="desktop-nav" aria-label="Navegação principal" class="hidden lg:flex items-center gap-1">
       {siteLinks.main.map((link) => (
         <NavLink
           href={link.href}
           label={link.label}
           currentPath={currentPath}
-          class="px-2.5 py-1.5 rounded-full text-sm font-medium tracking-wide transition-all duration-300"
+          class="px-2.5 py-1.5 rounded-full text-sm font-medium tracking-wide transition-colors duration-300"
         />
       ))}
       <button
         id="theme-toggle"
-        class="ml-1 w-8 h-8 rounded-full flex items-center justify-center text-gray-500 hover:text-gray-800 hover:bg-gray-100 transition-all duration-300"
-        aria-label="Alternar tema"
+        type="button"
+        class="ml-1 w-11 h-11 rounded-full flex items-center justify-center text-gray-600 hover:text-gray-800 hover:bg-gray-100 transition-colors duration-300"
+        aria-label="Alternar tema claro/escuro"
       >
         <Icon name="moon" size={14} class="dark:hidden" />
         <Icon name="sun" size={14} class="hidden dark:block" />
@@ -42,16 +43,20 @@ const currentPath = Astro.url.pathname;
     <div class="flex lg:hidden items-center gap-1">
       <button
         id="theme-toggle-mobile"
-        class="w-8 h-8 rounded-full flex items-center justify-center text-gray-500 hover:text-gray-800 hover:bg-gray-100 transition-all duration-300"
-        aria-label="Alternar tema"
+        type="button"
+        class="w-11 h-11 rounded-full flex items-center justify-center text-gray-600 hover:text-gray-800 hover:bg-gray-100 transition-colors duration-300"
+        aria-label="Alternar tema claro/escuro"
       >
         <Icon name="moon" size={14} class="dark:hidden" />
         <Icon name="sun" size={14} class="hidden dark:block" />
       </button>
       <button
         id="menu-toggle"
-        class="w-8 h-8 rounded-full flex items-center justify-center text-gray-500 hover:text-gray-800 hover:bg-gray-100 transition-all duration-300"
-        aria-label="Abrir menu"
+        type="button"
+        class="w-11 h-11 rounded-full flex items-center justify-center text-gray-600 hover:text-gray-800 hover:bg-gray-100 transition-colors duration-300"
+        aria-label="Abrir menu de navegação"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
       >
         <span id="menu-icon-open"><Icon name="bars" size={14} /></span>
         <span id="menu-icon-close" class="hidden"><Icon name="xmark" size={14} /></span>
@@ -60,18 +65,18 @@ const currentPath = Astro.url.pathname;
   </PaperCard>
 
   <!-- Mobile Menu Dropdown -->
-  <div id="mobile-menu" class="lg:hidden hidden mt-2">
+  <nav id="mobile-menu" aria-label="Navegação mobile" class="lg:hidden hidden mt-2">
     <PaperCard class="px-4 py-3 flex flex-col gap-1">
       {siteLinks.main.map((link) => (
         <NavLink
           href={link.href}
           label={link.label}
           currentPath={currentPath}
-          class="px-3 py-2 rounded-xl text-sm font-medium tracking-wide transition-all duration-200"
+          class="px-3 py-3 rounded-xl text-sm font-medium tracking-wide transition-colors duration-200"
         />
       ))}
     </PaperCard>
-  </div>
+  </nav>
 </header>
 
 <script is:inline>
@@ -88,17 +93,53 @@ const currentPath = Astro.url.pathname;
       localStorage.setItem("theme", html.classList.contains("dark") ? "dark" : "light");
     }
 
+    function closeMenu() {
+      var menu = document.getElementById("mobile-menu");
+      var toggle = document.getElementById("menu-toggle");
+      if (!menu || !toggle) return;
+      menu.classList.add("hidden");
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Abrir menu de navegação");
+      var openIcon = document.getElementById("menu-icon-open");
+      var closeIcon = document.getElementById("menu-icon-close");
+      if (openIcon) openIcon.classList.remove("hidden");
+      if (closeIcon) closeIcon.classList.add("hidden");
+    }
+
+    function toggleMenu() {
+      var menu = document.getElementById("mobile-menu");
+      var toggle = document.getElementById("menu-toggle");
+      if (!menu || !toggle) return;
+      var open = menu.classList.toggle("hidden") === false;
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.setAttribute("aria-label", open ? "Fechar menu de navegação" : "Abrir menu de navegação");
+      var openIcon = document.getElementById("menu-icon-open");
+      var closeIcon = document.getElementById("menu-icon-close");
+      if (openIcon) openIcon.classList.toggle("hidden", open);
+      if (closeIcon) closeIcon.classList.toggle("hidden", !open);
+    }
+
     document.addEventListener("click", function (e) {
       if (e.target.closest("#theme-toggle") || e.target.closest("#theme-toggle-mobile")) {
         toggleTheme();
       }
       if (e.target.closest("#menu-toggle")) {
-        var menu = document.getElementById("mobile-menu");
-        var openIcon = document.getElementById("menu-icon-open");
-        var closeIcon = document.getElementById("menu-icon-close");
-        menu.classList.toggle("hidden");
-        openIcon.classList.toggle("hidden");
-        closeIcon.classList.toggle("hidden");
+        toggleMenu();
+        return;
+      }
+      // Fecha ao escolher um destino no menu
+      if (e.target.closest("#mobile-menu a")) {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key !== "Escape") return;
+      var menu = document.getElementById("mobile-menu");
+      if (menu && !menu.classList.contains("hidden")) {
+        closeMenu();
+        var toggle = document.getElementById("menu-toggle");
+        if (toggle) toggle.focus();
       }
     });
   })();

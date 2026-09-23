@@ -3,32 +3,77 @@ import Icon from "./Icon.svelte";
 ---
 
 <div class="relative mb-6">
-  <Icon name="magnifying-glass" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm" />
+  <label for="search-input" class="sr-only">Buscar no journal</label>
+  <Icon name="magnifying-glass" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600 text-sm" />
   <input
     id="search-input"
-    type="text"
+    type="search"
     placeholder="Buscar por título ou descrição..."
-    class="w-full pl-9 pr-4 py-2.5 rounded-xl border border-gray-200 bg-white text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-600/20 focus:border-teal-600 transition-all"
+    aria-describedby="search-status"
+    class="w-full pl-9 pr-4 py-2.5 rounded-xl border border-gray-200 bg-white text-sm text-gray-700 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-teal-700/40 focus:border-teal-700 transition-colors"
   />
 </div>
+<p id="search-status" role="status" aria-live="polite" class="text-xs text-gray-600 mb-4 hidden"></p>
 
 <script is:inline>
-  document.addEventListener("DOMContentLoaded", function () {
+  function initBlogSearch() {
     var input = document.getElementById("search-input");
-    if (!input) return;
-    input.addEventListener("input", function () {
-      var q = this.value.toLowerCase().trim();
-      document.querySelectorAll(".post-card").forEach(function (card) {
-        var title = card.getAttribute("data-title") || "";
-        var desc = card.getAttribute("data-description") || "";
-        card.style.display = !q || title.indexOf(q) !== -1 || desc.indexOf(q) !== -1 ? "" : "none";
-      });
-    });
+    if (!input || input.dataset.bound === "1") return;
+    input.dataset.bound = "1";
 
-    document.addEventListener("click", function (e) {
-      var details = document.querySelector("details.tag-popover");
-      if (!details || details.contains(e.target)) return;
-      details.removeAttribute("open");
-    });
-  });
+    var status = document.getElementById("search-status");
+    var cards = Array.prototype.slice.call(document.querySelectorAll(".post-card"));
+    if (!cards.length) return;
+
+    function apply() {
+      var q = input.value.toLowerCase().trim();
+      var shown = 0;
+
+      cards.forEach(function (card) {
+        var title = (card.getAttribute("data-title") || "").toLowerCase();
+        var desc = (card.getAttribute("data-description") || "").toLowerCase();
+        var match = !q || title.indexOf(q) !== -1 || desc.indexOf(q) !== -1;
+        card.style.display = match ? "" : "none";
+        if (match) shown++;
+      });
+
+      if (!status) return;
+      if (!q) {
+        status.classList.add("hidden");
+        status.textContent = "";
+      } else {
+        status.classList.remove("hidden");
+        status.textContent =
+          shown === 0
+            ? 'Nenhum artigo encontrado para "' + input.value.trim() + '".'
+            : shown === 1
+              ? "1 artigo encontrado"
+              : shown + " artigos encontrados";
+      }
+    }
+
+    input.addEventListener("input", apply);
+    input.addEventListener("search", apply);
+    apply();
+  }
+
+  function closeTagPopoverOnOutsideClick(e) {
+    var details = document.querySelector("details.tag-popover");
+    if (!details || details.contains(e.target)) return;
+    details.removeAttribute("open");
+  }
+
+  (function () {
+    var html = document.documentElement;
+    if (html.dataset.searchBound === "1") return;
+    html.dataset.searchBound = "1";
+
+    // O ClientRouter troca o DOM nas navegações internas e o DOMContentLoaded não dispara de
+    // novo (era o bug: a busca e o fechamento do popover de tags só funcionavam em carga
+    // direta). astro:page-load cobre a carga inicial e cada navegação.
+    document.addEventListener("astro:page-load", initBlogSearch);
+    document.addEventListener("click", closeTagPopoverOnOutsideClick);
+
+    if (document.readyState !== "loading") initBlogSearch();
+  })();
 </script>
