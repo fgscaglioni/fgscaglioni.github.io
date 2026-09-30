@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# codegraph runtime files (locais de cada máquina)
+.codegraph/daemon.pid
