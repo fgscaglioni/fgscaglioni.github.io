@@ -8,6 +8,26 @@ export interface ChangeLogEntry {
 
 export const changelogData: ChangeLogEntry[] = [
   {
+    date: "30/09/2026",
+    version: "v2.6.1",
+    title: "Menu Superior: saída do link Modificações",
+    description: "O link \"Modificações\" deixa o menu de navegação, onde duplicava o rodapé; o menu ganha espaço e o changelog continua acessível pelo rodapé.",
+    changes: [
+      "Link \"Modificações\" removido do menu de navegação superior (desktop e mobile) — o mesmo destino já está no rodapé de todas as páginas. A página /changelog segue publicada, com canonical e no sitemap.",
+    ]
+  },
+  {
+    date: "30/09/2026",
+    version: "v2.6.0",
+    title: "Publicação no WTICIFES 2026",
+    description: "Adição do artigo Commit2GemPress, publicado no WTICIFES 2026, à lista de publicações e à página de downloads, com suporte a publicações sem DOI.",
+    changes: [
+      "Artigo Commit2GemPress (WTICIFES 2026) entra nas publicações acadêmicas da página de pesquisa, com resumo e link para o repositório institucional.",
+      "Publicações sem DOI passam a exibir o link do repositório de origem, em vez de rotular qualquer link de acesso como DOI.",
+      "O PDF do artigo passa a ser servido localmente em /papers/ e listado na página de downloads.",
+    ]
+  },
+  {
     date: "23/09/2026",
     version: "v2.5.0",
     title: "Auditoria de Design: Dark Mode, Acessibilidade & Contraste",
