@@ -19,7 +19,6 @@ export const siteLinks = {
         { href: "/downloads", label: "Downloads", icon: "download", newTab: false },
         { href: "/experience", label: "Experiência", icon: "briefcase" },
         { href: "/portfolio", label: "Portfólio", icon: "folder-open" },
-        { href: "/changelog", label: "Modificações", icon: "history" },
         { href: "/social", label: "Social", icon: "hash" },
     ],
     external: [
