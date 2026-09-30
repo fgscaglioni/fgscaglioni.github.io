@@ -64,6 +64,16 @@ import BulletItem from "../components/BulletItem.astro";
                 <Icon name="external-link" class="inline text-rose-500" size={12} /> Acessar DOI da Publicação
               </a>
             )}
+            {!pub.doi && pub.url && (
+              <a
+                href={pub.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 py-1 text-xs font-bold uppercase tracking-wider text-gray-700 hover:text-gray-900 transition-colors"
+              >
+                <Icon name="external-link" class="inline text-rose-500" size={12} /> Acessar Publicação no Repositório
+              </a>
+            )}
           </PaperCard>
         ))
       }

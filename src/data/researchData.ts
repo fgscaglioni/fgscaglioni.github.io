@@ -4,11 +4,21 @@ export interface Publication {
   venue: string;
   year: string;
   doi?: string;
+  /** Link de acesso quando não há DOI (repositório institucional, anais). */
+  url?: string;
   pdfUrl?: string;
   abstract: string;
 }
 
 export const publications: Publication[] = [
+  {
+    title: "Commit2GemPress: Automatização da Comunicação de Engenharia de Software para a Comunidade Acadêmica via Large Language Models",
+    authors: "Scaglioni, F. G., Noguez, J. H. S., Ávila, C. M. O., and Roque, P. T. N. M.",
+    venue: "Workshop de Tecnologia de Informação e Comunicação das Instituições Federais de Ensino Superior do Brasil (WTICIFES 2026)",
+    year: "2026",
+    url: "https://repositorio.wticifes.com.br/items/f099b0be-692d-47b3-bc04-78604818dda7",
+    abstract: "Apresenta o Commit2GemPress, ferramenta que integra a API do GitLab, o modelo Gemini 2.0 Flash e o WordPress para converter mensagens de commits em publicações acessíveis a públicos não-técnicos. O estudo de caso indica que o uso de LLMs reduz silos de comunicação e amplia a transparência institucional sem onerar o fluxo de trabalho dos desenvolvedores."
+  },
   {
     title: "Effectiveness of an app-delivered, self-management exercise program in public safety workers with chronic low back pain: a randomized controlled trial",
     authors: "Marins, E. F., Primo, T. T., Vasconcelos, B. B., Carvalho, M. T. X., Oppelt, L. L., Pinheiro, V. H. G., Scaglioni, F. G., et al.",

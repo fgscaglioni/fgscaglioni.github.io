@@ -7,6 +7,16 @@ export const articles = [
     items: [
       {
         title:
+          "Commit2GemPress: Automatização da Comunicação de Engenharia de Software para a Comunidade Acadêmica via Large Language Models",
+        url: "/papers/commit2gempress-wticifes-2026.pdf",
+        event: "WTICIFES",
+        year: "2026",
+        month: "Ago",
+        event_url: "https://wticifes.com.br/2026",
+        badge: "PDF",
+      },
+      {
+        title:
           "Enrollment Recommendation System based on Student Profile and Progress",
         url: "https://doi.org/10.1109/LACLO56648.2022.10013424",
         event: "LACLO",
