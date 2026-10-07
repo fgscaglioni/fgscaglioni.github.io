@@ -8,6 +8,17 @@ export interface ChangeLogEntry {
 
 export const changelogData: ChangeLogEntry[] = [
   {
+    date: "07/10/2026",
+    version: "v2.6.2",
+    title: "Publicação no SBIE 2026",
+    description: "Adição do artigo Evaluating SLMs for Predicting Tabular Data, publicado nos anais do SBIE 2026, à lista de publicações e à página de downloads, com DOI e link direto para os anais da SBC.",
+    changes: [
+      "Artigo \"Evaluating SLMs for Predicting Tabular Data: An Essay on Higher Education Dropout\" (SBIE 2026) entra nas publicações acadêmicas, com resumo e DOI.",
+      "Publicações passam a exibir um segundo link de acesso, para os anais, quando ele existe além do DOI; o rótulo do link é configurável por publicação (a entrada do WTICIFES segue com o rótulo padrão).",
+      "O PDF do artigo passa a ser servido localmente em /papers/ e listado na página de downloads, ao lado da entrada do WTICIFES.",
+    ]
+  },
+  {
     date: "30/09/2026",
     version: "v2.6.1",
     title: "Menu Superior: saída do link Modificações",

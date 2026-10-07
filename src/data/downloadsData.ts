@@ -7,6 +7,16 @@ export const articles = [
     items: [
       {
         title:
+          "Evaluating SLMs for Predicting Tabular Data: An Essay on Higher Education Dropout",
+        url: "/papers/sbie-2026-slm-evasao.pdf",
+        event: "SBIE",
+        year: "2026",
+        month: "Out",
+        event_url: "https://sol.sbc.org.br/index.php/sbie/article/view/45670",
+        badge: "PDF",
+      },
+      {
+        title:
           "Commit2GemPress: Automatização da Comunicação de Engenharia de Software para a Comunidade Acadêmica via Large Language Models",
         url: "/papers/commit2gempress-wticifes-2026.pdf",
         event: "WTICIFES",

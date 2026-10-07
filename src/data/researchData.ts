@@ -4,13 +4,25 @@ export interface Publication {
   venue: string;
   year: string;
   doi?: string;
-  /** Link de acesso quando não há DOI (repositório institucional, anais). */
+  /** Link de acesso alternativo: repositório institucional, anais. Aparece também quando há DOI. */
   url?: string;
+  /** Rótulo do link de `url`. Padrão: "Acessar Publicação no Repositório". */
+  urlLabel?: string;
   pdfUrl?: string;
   abstract: string;
 }
 
 export const publications: Publication[] = [
+  {
+    title: "Evaluating SLMs for Predicting Tabular Data: An Essay on Higher Education Dropout",
+    authors: "Scaglioni, F. G., Aguiar, M., and Mattos, J. C. B.",
+    venue: "XXXVII Simpósio Brasileiro de Informática na Educação (SBIE 2026)",
+    year: "2026",
+    doi: "https://doi.org/10.5753/sbie.2026.27434",
+    url: "https://sol.sbc.org.br/index.php/sbie/article/view/45670",
+    urlLabel: "Acessar nos Anais da SBC (SOL)",
+    abstract: "Avalia Small Language Models (SLMs) de 7 a 14 bilhões de parâmetros, ajustados por Parameter-Efficient Fine-Tuning (PEFT), na predição de evasão no ensino superior, em comparação com modelos especializados em dados tabulares. Com um conjunto de 6.011 registros da UFPel, foram testadas três representações dos dados (numérica, discretizada e narrativa) inferidas pelos modelos Phi-4, Qwen2.5-7B e Mitra. O modelo tabular especializado superou os modelos de linguagem (80,30% de acurácia e F1 de 0,8203, contra 72,07% e 0,7176 do melhor SLM), e as representações narrativas não trouxeram ganho preditivo: sob restrição computacional, classificadores baseados em árvores e modelos tabulares seguem sendo a arquitetura mais eficaz."
+  },
   {
     title: "Commit2GemPress: Automatização da Comunicação de Engenharia de Software para a Comunidade Acadêmica via Large Language Models",
     authors: "Scaglioni, F. G., Noguez, J. H. S., Ávila, C. M. O., and Roque, P. T. N. M.",
@@ -51,12 +63,4 @@ export const publications: Publication[] = [
     doi: "https://anais-siiepe.ufpel.edu.br/2020/CE_03692.pdf",
     abstract: "Este trabalho propõe uma plataforma de interação digital baseada no conceito de Campus Inteligente para otimizar o atendimento à comunidade acadêmica da UFPel. A solução utiliza recursos de Inteligência Artificial e Processamento de Linguagem Natural (PLN), como chatbots e assistentes virtuais, para fornecer serviços escaláveis e modulares, incluindo recomendações de matrícula e consultas frequentes (FAQ), visando melhorar a eficiência dos processos acadêmicos e a experiência do usuário institucional."
   },
-  // {
-  //   title: "Evaluating SLMs for Predicting Tabular Data: An Essay on Higher Education Dropout",
-  //   authors: "N. F., Fabrício, et al.",
-  //   venue: "XXXVII Simpósio Brasileiro de Informática na Educação (SBIE 2026)",
-  //   year: "2026",
-  //   doi: "https://jems3.sbc.org.br/submissions/27434",
-  //   abstract: "Avaliação de Small Language Models (SLMs) na predição de dados tabulares aplicados à evasão no ensino superior. O ensaio investiga a eficácia de modelos de linguagem compactos como alternativa a abordagens clássicas de ML em cenários educacionais com recursos computacionais limitados."
-  // },
 ];
