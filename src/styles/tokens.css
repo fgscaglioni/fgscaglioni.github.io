@@ -1,0 +1,46 @@
+/* Fonte unica da verdade da paleta. Nomeie por PAPEL, nunca por aparencia:
+   --ink e nao --preto. Trocar a identidade e trocar valores aqui e rodar o teste. */
+:root {
+    /* superficies */
+    --paper: #F5F2ED;
+    --paper-2: #FBFAF6;
+    --paper-3: #EFEBE2;
+    --rule: #DED8C9;
+    --rule-strong: #C9C1AE;
+
+    /* texto */
+    --ink: #1B1815;
+    --ink-2: #4A443C;
+    --ink-3: #6E675C;
+
+    /* UNICO acento. Um trabalho: link, foco, estado ativo. */
+    --accent: #0F5F5A;
+
+    /* series de dados, maximo 4 (ver agent_docs/graficos.md) */
+    --series-1: #A63D00;
+    --series-2: #00664D;
+    --series-3: #8E5A96;
+    --series-4: #1B1815;
+
+    /* medida de leitura em ch: sobrevive a troca de fonte */
+    --measure: 68ch;
+}
+
+.dark {
+    --paper: #14120F;
+    --paper-2: #1C1915;
+    --paper-3: #221F1A;
+    --rule: #37322A;
+    --rule-strong: #4A443A;
+
+    --ink: #EDE7DA;
+    --ink-2: #BDB5A6;
+    --ink-3: #969084;
+
+    --accent: #7FC2B9;
+
+    --series-1: #7FC4F0;
+    --series-2: #E88A8A;
+    --series-3: #E8B44A;
+    --series-4: #EDE7DA;
+}
