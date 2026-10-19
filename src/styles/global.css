@@ -87,6 +87,19 @@ h6,
 .font-display {
     font-family: var(--font-display);
     font-weight: 400;
+    font-style: normal;
+    letter-spacing: -0.01em;
+}
+
+/* Rotulo de secao: um lugar, um estilo. Antes esse padrao era repetido a mao
+   em 20 lugares, com 4 combinacoes diferentes de tamanho e tracking. */
+.label {
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    line-height: 1.2;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
 }
 
 code,
@@ -182,6 +195,14 @@ a[target="_blank"]:not(nav a):not(header a):not(.stack-link)::after {
 
 .prose pre.astro-code span[style*="--shiki-dark:#6a737d" i] {
     --shiki-dark: #8B949E !important;
+}
+
+/* Medida de leitura: 68ch na fonte de corpo. Se a fonte mudar, a medida
+   continua correta, porque ch e relativo ao glifo e nao a um pixel fixo. */
+.prose {
+    max-width: var(--measure);
+    font-size: var(--text-body);
+    line-height: 1.7;
 }
 
 /* Utilitários `prose-code:not(pre code):*` e `prose-ul:list-square` não compilam no Tailwind 4

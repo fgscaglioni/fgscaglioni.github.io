@@ -168,7 +168,7 @@ const schemaOrg = {
       as="font"
       type="font/woff2"
       crossorigin
-      href="/fonts/instrument-serif-400-italic-latin.woff2"
+      href="/fonts/instrument-serif-400-latin.woff2"
     />
   </head>
   <body class="bg-paper text-ink-2 font-body antialiased min-h-screen relative overflow-x-hidden">
@@ -180,8 +180,8 @@ const schemaOrg = {
     <!-- Header/Navbar slot -->
     <slot name="header" />
 
-    <!-- Main Content Container (Single column layout) -->
-    <main id="main-content" class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 pb-20">
+    <!-- Main Content Container (Single column layout; medida de leitura em ch) -->
+    <main id="main-content" class="mx-auto px-4 sm:px-6 pt-6 pb-20" style="max-width: calc(var(--measure) + 4rem)">
       <slot />
     </main>
 

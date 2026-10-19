@@ -1,25 +1,15 @@
 ---
-import PaperCard from "./PaperCard.astro";
-import Icon from "./Icon.svelte";
-
 interface Props {
-  icon: string;
   title: string;
-  subtitle: string;
+  subtitle?: string;
+  kicker?: string;
   class?: string;
 }
-
-const { icon, title, subtitle, class: className = "" } = Astro.props;
+const { title, subtitle, kicker, class: className = "" } = Astro.props;
 ---
 
-<PaperCard class="p-6 sm:p-8 mb-8 relative overflow-hidden {className}">
-  <div class="flex items-center gap-4 relative">
-    <div class="w-12 h-12 rounded-none border border-rule bg-paper-3 flex items-center justify-center flex-shrink-0">
-      <Icon name={icon} class="text-ink-2" size={20} />
-    </div>
-    <div>
-      <h1 class="text-3xl sm:text-4xl font-display italic tracking-wide text-ink">{title}</h1>
-      <p class="text-ink-2 text-xs mt-1 uppercase tracking-widest font-bold">{subtitle}</p>
-    </div>
-  </div>
-</PaperCard>
+<header class={`border-b border-rule pb-6 mb-8 ${className}`}>
+  {kicker && <p class="label mb-2">{kicker}</p>}
+  <h1 class="text-h1 font-display text-ink">{title}</h1>
+  {subtitle && <p class="mt-2 text-ink-3 text-meta">{subtitle}</p>}
+</header>

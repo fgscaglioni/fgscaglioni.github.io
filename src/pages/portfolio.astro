@@ -17,7 +17,7 @@ import BulletItem from "../components/BulletItem.astro";
 
   <article class="pt-8 pb-16">
     <!-- Page Header -->
-    <PageHeader icon="folder-open" title="Portfólio" subtitle="Projetos de Software, mobile e soluções Web em produção" />
+    <PageHeader kicker="Projetos" title="Portfólio" subtitle="Projetos de Software, mobile e soluções Web em produção" />
 
     <p class="text-ink-2 text-xs mb-8 ml-1 italic">
       Alguns projetos corporativos sob acordos de confidencialidade (NDA) foram omitidos.
@@ -39,7 +39,7 @@ import BulletItem from "../components/BulletItem.astro";
                     {project.client}
                   </span>
                 </div>
-                <h2 class="text-2xl font-display italic text-ink tracking-wide">
+                <h2 class="text-2xl font-display text-ink">
                   {project.url ? (
                     <a
                       href={project.url}

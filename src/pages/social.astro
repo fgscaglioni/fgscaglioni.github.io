@@ -110,11 +110,11 @@ const academicLinks = [
   <Navbar slot="header" />
 
   <article class="pt-8 pb-16">
-    <PageHeader icon="users" title="Redes Sociais & Científicas" subtitle="Perfis profissionais, pessoais e acadêmicos" />
+    <PageHeader kicker="Perfis" title="Redes Sociais & Científicas" subtitle="Perfis profissionais, pessoais e acadêmicos" />
 
     <div class="grid md:grid-cols-2 gap-8">
       <section>
-        <SectionHeader icon="share-nodes" title="Redes Sociais" />
+        <SectionHeader title="Redes Sociais" />
         <div class="space-y-3">
           {socialLinks.map((link) => (
             <a
@@ -136,7 +136,7 @@ const academicLinks = [
       </section>
 
       <section>
-        <SectionHeader icon="microscope" title="Redes Acadêmicas" />
+        <SectionHeader title="Redes Acadêmicas" />
         <div class="space-y-3">
           {academicLinks.map((link) => (
             <a

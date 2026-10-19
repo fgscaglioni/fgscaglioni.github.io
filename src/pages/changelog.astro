@@ -14,7 +14,7 @@ import BulletItem from "../components/BulletItem.astro";
 
   <article class="pt-8 pb-16">
     <!-- Page Header -->
-    <PageHeader icon="clock-rotate-left" title="Changelog" subtitle="Histórico de modificações e evolução do site" />
+    <PageHeader kicker="Histórico" title="Changelog" subtitle="Histórico de modificações e evolução do site" />
 
     <!-- Timeline of Changes -->
     <div class="relative pl-6 sm:pl-8 border-l border-rule space-y-12">
@@ -33,7 +33,7 @@ import BulletItem from "../components/BulletItem.astro";
                   <span class="font-mono text-[11px] px-2 py-0.5 rounded-none border border-rule bg-paper-3 text-ink-2 font-bold uppercase tracking-wider">
                     {item.version}
                   </span>
-                  <h2 class="text-xl font-display italic text-ink tracking-wide mt-1.5">
+                  <h2 class="text-xl font-display text-ink mt-1.5">
                     {item.title}
                   </h2>
                 </div>

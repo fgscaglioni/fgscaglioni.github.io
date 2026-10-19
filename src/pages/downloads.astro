@@ -17,11 +17,11 @@ import Icon from "../components/Icon.svelte";
 
   <article class="pt-8 pb-16">
     <!-- Page Header -->
-    <PageHeader icon="download" title="Downloads" subtitle="Publicações acadêmicas, artigos e dissertações" />
+    <PageHeader kicker="Arquivos" title="Downloads" subtitle="Publicações acadêmicas, artigos e dissertações" />
 
     <!-- Articles -->
     <section class="mb-10">
-      <SectionHeader icon="file-pdf" title="Artigos Publicados" />
+      <SectionHeader title="Artigos Publicados" />
       <div class="grid md:grid-cols-2 gap-5">
         {
           articles.map((category) => (
@@ -71,7 +71,7 @@ import Icon from "../components/Icon.svelte";
 
     <!-- Dissertation -->
     <section>
-      <SectionHeader icon="book" title="Dissertação de Mestrado" />
+      <SectionHeader title="Dissertação de Mestrado" />
       {
         dissertations.map((item) => (
           <a

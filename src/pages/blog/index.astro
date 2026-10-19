@@ -29,7 +29,7 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort
           <Icon name="feather" class="text-ink-2 inline" size={20} />
         </div>
         <div>
-          <h1 class="text-3xl sm:text-4xl font-display italic tracking-wide text-ink">
+          <h1 class="text-3xl sm:text-4xl font-display text-ink">
             Journal de Pesquisa
           </h1>
           <p class="text-ink-2 text-xs mt-1 uppercase tracking-widest font-bold">
@@ -65,7 +65,7 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort
               </>
             )}
           </div>
-          <h2 class="text-xl sm:text-2xl font-display italic text-ink mb-3">
+          <h2 class="text-xl sm:text-2xl font-display text-ink mb-3">
             <a href={`/blog/${post.id}`} data-astro-prefetch class="hover:text-ink-2 transition-colors">{post.data.title}</a>
           </h2>
           <p class="text-ink-2 text-sm leading-relaxed mb-4">{post.data.description}</p>

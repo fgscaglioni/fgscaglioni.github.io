@@ -43,7 +43,7 @@ const latestPosts = (await getCollection("blog"))
         <div class="flex-grow">
           <div class="flex flex-col sm:flex-row items-center gap-3 mb-2">
             <h1
-              class="text-h1 font-display italic text-ink"
+              class="text-h1 font-display text-ink"
             >
               Fabrício Scaglioni
             </h1>
@@ -93,9 +93,7 @@ const latestPosts = (await getCollection("blog"))
     <!-- About + Technical Approach side by side on desktop, stacked on mobile -->
     <div class="grid md:grid-cols-2 gap-6 mb-6">
       <section class="paper-card p-6">
-        <SectionHeader icon="user" title="
-            Sobre mim
-          " />
+        <SectionHeader title="Sobre mim" />
         <ul class="space-y-3">
           <BulletItem><strong class="text-ink font-medium">+15 anos</strong> atuando em
               todo o ciclo de desenvolvimento — planejamento, arquitetura, frontend
@@ -112,9 +110,7 @@ const latestPosts = (await getCollection("blog"))
       </section>
 
       <section class="paper-card p-6">
-        <SectionHeader icon="code" title="
-            Competências Chave
-          " />
+        <SectionHeader title="Competências Chave" />
         <ul class="space-y-3">
           <BulletItem><strong class="text-ink font-medium"
                 >Arquitetura de Software</strong
@@ -132,7 +128,7 @@ const latestPosts = (await getCollection("blog"))
 
     <!-- Stack Section -->
     <section class="mb-8">
-      <h2 class="text-2xl font-display italic text-ink tracking-wide mb-6">
+      <h2 class="text-2xl font-display text-ink mb-6">
         Stack
       </h2>
       <StackList />
@@ -142,7 +138,7 @@ const latestPosts = (await getCollection("blog"))
     {latestPosts.length > 0 && (
       <section class="mb-8">
         <div class="flex items-center justify-between mb-6">
-          <h2 class="text-2xl font-display italic text-ink tracking-wide">
+          <h2 class="text-2xl font-display text-ink">
             Últimos Artigos
           </h2>
           <a
@@ -175,7 +171,7 @@ const latestPosts = (await getCollection("blog"))
                     </>
                   )}
                 </div>
-                <h3 class="text-base font-display italic text-ink group-hover:text-accent transition-colors">
+                <h3 class="text-base font-display text-ink group-hover:text-accent transition-colors">
                   {post.data.title}
                 </h3>
                 <p class="text-ink-2 text-xs mt-2 leading-relaxed">{post.data.description}</p>
@@ -189,7 +185,7 @@ const latestPosts = (await getCollection("blog"))
     <!-- Education + Languages -->
     <div class="grid md:grid-cols-2 gap-6">
       <section class="paper-card p-6">
-        <SectionHeader icon="graduation-cap" title="Formação Acadêmica" />
+        <SectionHeader title="Formação Acadêmica" />
         <div class="space-y-4">
           {
             [
@@ -254,7 +250,7 @@ const latestPosts = (await getCollection("blog"))
 
       <div class="space-y-6 flex flex-col justify-between">
         <section class="paper-card p-6 flex-grow">
-          <SectionHeader icon="globe" title="Idiomas" />
+          <SectionHeader title="Idiomas" />
           <div class="space-y-3">
             {
               [
@@ -301,7 +297,7 @@ const latestPosts = (await getCollection("blog"))
         </section>
 
         <section class="paper-card p-6 flex-grow">
-          <SectionHeader icon="certificate" title="Certificações" />
+          <SectionHeader title="Certificações" />
           <div class="space-y-3">
             {
               [

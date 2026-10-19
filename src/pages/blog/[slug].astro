@@ -94,7 +94,7 @@ const updated = post.data.updated || post.data.pubDate;
           ))}
         </div>
       )}
-      <h1 class="text-3xl sm:text-4xl font-display italic text-ink leading-tight mb-4">
+      <h1 class="text-3xl sm:text-4xl font-display text-ink leading-tight mb-4">
         {post.data.title}
       </h1>
       <p class="text-ink-2 text-sm italic font-light">
@@ -104,7 +104,7 @@ const updated = post.data.updated || post.data.pubDate;
 
     <!-- Article Content -->
     <div class="prose max-w-none text-ink-2 text-sm leading-relaxed space-y-5
-      prose-headings:font-display prose-headings:italic prose-headings:text-ink
+      prose-headings:font-display prose-headings:text-ink
       prose-h2:text-xl prose-h2:border-b prose-h2:border-rule prose-h2:pb-2 prose-h2:mt-8
       prose-p:leading-relaxed
       prose-a:underline prose-a:underline-offset-2
@@ -119,7 +119,7 @@ const updated = post.data.updated || post.data.pubDate;
     <!-- Related Posts -->
     {related.length > 0 && (
       <div class="mt-12 pt-8 border-t border-rule">
-        <h2 class="text-xl font-display italic text-ink mb-6">Posts Relacionados</h2>
+        <h2 class="text-xl font-display text-ink mb-6">Posts Relacionados</h2>
         <div class="space-y-4">
           {related.map(({ post: p }) => (
             <a href={`/blog/${p.id}`} data-astro-prefetch class="block group">
@@ -139,7 +139,7 @@ const updated = post.data.updated || post.data.pubDate;
                     </>
                   )}
                 </div>
-                <h3 class="text-base font-display italic text-ink group-hover:text-accent transition-colors">
+                <h3 class="text-base font-display text-ink group-hover:text-accent transition-colors">
                   {p.data.title}
                 </h3>
               </PaperCard>

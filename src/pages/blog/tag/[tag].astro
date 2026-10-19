@@ -48,7 +48,7 @@ const posts = allPosts.filter((post) =>
           <Icon name="feather" class="inline text-ink-2" size={20} />
         </div>
         <div>
-          <h1 class="text-3xl sm:text-4xl font-display italic tracking-wide text-ink">
+          <h1 class="text-3xl sm:text-4xl font-display text-ink">
             Posts com a tag “{label}”
           </h1>
           <p class="text-ink-2 text-xs mt-1 uppercase tracking-widest font-bold">
@@ -86,7 +86,7 @@ const posts = allPosts.filter((post) =>
               </>
             )}
           </div>
-          <h2 class="text-xl sm:text-2xl font-display italic text-ink mb-3">
+          <h2 class="text-xl sm:text-2xl font-display text-ink mb-3">
             <a href={`/blog/${post.id}`} class="hover:text-ink-2 transition-colors">{post.data.title}</a>
           </h2>
           <p class="text-ink-2 text-sm leading-relaxed mb-4">{post.data.description}</p>
