@@ -107,13 +107,6 @@ code,
     font-family: var(--font-mono);
 }
 
-/* Papel de verdade: sem raio, sem sombra. A distincao vem do fundo e do fio. */
-.paper-card {
-    background: var(--paper-2);
-    border: 1px solid var(--rule);
-    border-radius: 0;
-}
-
 /* Ritmo vertical. Um valor, repetido. Antes havia p-4, p-6, p-8, py-3, py-4
    em combinacoes diferentes para o mesmo nivel de secao. */
 .section {
