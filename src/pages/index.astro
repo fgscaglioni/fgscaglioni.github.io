@@ -188,7 +188,8 @@ const latestPosts = (await getCollection("blog"))
               },
               {
                 inst: "i9",
-                href: "#",
+                // Sem URL oficial estável: sem href, o item vira texto em vez de
+                // link que não leva a lugar nenhum (href="#" recarregava a home).
                 level: "Pós-Graduação em Direito Público",
                 period: "2024 - 2026",
                 ariaLabel: "i9 — Pós-Graduação em Direito Público",
@@ -220,14 +221,19 @@ const latestPosts = (await getCollection("blog"))
                   <Icon name="circle-dot" class="text-ink-3 inline" />
                 </div>
                 <div>
-                  <a
-                    href={item.href}
-                    target="_blank"
-                    aria-label={item.ariaLabel}
-                    class="text-ink text-sm font-medium hover:text-ink transition-colors"
-                  >
-                    {item.inst}
-                  </a>
+                  {item.href ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={item.ariaLabel}
+                      class="text-ink text-sm font-medium hover:text-ink transition-colors"
+                    >
+                      {item.inst}
+                    </a>
+                  ) : (
+                    <span class="text-ink text-sm font-medium">{item.inst}</span>
+                  )}
                   <p class="text-ink-2 font-light text-xs">{item.level}</p>
                   <p class="text-ink-2 text-[11px] font-mono mt-0.5 tracking-wider">
                     {item.period}

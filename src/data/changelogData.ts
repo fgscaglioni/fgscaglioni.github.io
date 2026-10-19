@@ -8,6 +8,25 @@ export interface ChangeLogEntry {
 
 export const changelogData: ChangeLogEntry[] = [
   {
+    date: "19/10/2026",
+    version: "v2.7.0",
+    title: "Sistema visual à prova de envelhecimento",
+    description: "Redesign do sistema visual: um acento só, sem sombra, gradiente ou blur, tipografia de três níveis, paleta validada para contraste e daltonismo e folha de impressão. A doutrina passa a ser verificada por testes.",
+    changes: [
+      "A paleta passa a viver em src/styles/tokens.css, com tema claro e escuro trocando os mesmos nomes semânticos; a escala gray invertida dentro de .dark e seus overrides com !important saem do global.css, e o tema escuro deixa de declarar cor.",
+      "O acento deixa de ser #0D9488, que reprovava AA com 3,35:1 sobre o papel, e passa a #0F5F5A com 6,70:1. Todos os 24 pares texto por superfície passam AA no claro e no escuro.",
+      "Sombra, gradiente, blur, raio de 16px e a animação do selo de disponibilidade são removidos: a hierarquia passa a vir de fio de 1px e espaço em branco. O componente PaperCard é aposentado em favor de seções separadas por fio.",
+      "Títulos deixam o itálico e o tracking largo; rótulos de seção usam uma utility .label única no lugar de quatro combinações repetidas à mão.",
+      "Cabeçalhos de seção perdem os 15 ícones decorativos e a barra de tecnologia da home passa de oito logos para lista de texto.",
+      "A medida de leitura deixa de ser 896px fixos e passa a 68ch, então continua correta se a fonte mudar.",
+      "Acessibilidade: anel de foco duplo visível em escala de cinza, item ativo de navegação com fio e aria-current, suporte a prefers-contrast e forced-colors, alvos de toque de 24px e rótulos acessíveis distintos para links de mesma instituição.",
+      "Entra folha de impressão: fundo branco, menu oculto, URL do link externo entre parênteses e fios entre seções.",
+      "A listagem do journal perde o CTA Ler Artigo repetido em cada post (o título já é o link) e os links externos param de exibir seta dupla.",
+      "Novo portão de testes: tests/timeless.test.ts reprova sombra, blur, gradiente, animação, raio grande, cor fora do sistema e !important; tests/tokens.test.ts valida contraste AA e distinguibilidade sob protanopia, deuteranopia e tritanopia; tests/print.test.ts cobre a impressão.",
+      "Decisão sobre gráficos registrada em agent_docs/graficos.md, com o componente DataFigure e uma paleta de quatro séries validada para daltonismo.",
+    ]
+  },
+  {
     date: "07/10/2026",
     version: "v2.6.2",
     title: "Publicação no SBIE 2026",
