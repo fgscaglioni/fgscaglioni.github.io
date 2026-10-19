@@ -9,6 +9,16 @@ export interface ChangeLogEntry {
 export const changelogData: ChangeLogEntry[] = [
   {
     date: "19/10/2026",
+    version: "v2.7.2",
+    title: "Acento com presença",
+    description: "A cor de destaque deixa de ser o teal apagado e passa a um oxblood de tinta, e passa a marcar estado ativo, ações e links.",
+    changes: [
+      "Acento muda de #0F5F5A para #9C3A1E no tema claro e de #7FC2B9 para #E9957E no escuro. O teal, no nível de contraste exigido sobre papel creme, ficava cromaticamente fraco e virava cinza sob protanopia; o oxblood mantém 6,19:1 e continua distinguível da tinta nas três simulações de daltonismo.",
+      "O acento deixa de aparecer uma única vez na home: o item ativo da navegação agora usa texto e fio na cor de destaque, e os links de ação (Ver todos, Acessar DOI, Acessar publicação) saem do cinza para o acento.",
+    ]
+  },
+  {
+    date: "19/10/2026",
     version: "v2.7.1",
     title: "Atualização do Astro",
     description: "Upgrade do Astro e das integrações para as versões atuais, com o portão de build e de testes verde antes e depois.",

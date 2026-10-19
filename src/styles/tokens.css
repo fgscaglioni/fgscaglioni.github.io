@@ -13,8 +13,12 @@
     --ink-2: #4A443C;
     --ink-3: #6E675C;
 
-    /* UNICO acento. Um trabalho: link, foco, estado ativo. */
-    --accent: #0F5F5A;
+    /* UNICO acento. Um trabalho: link, foco, estado ativo.
+       Oxblood e nao teal: no nivel de contraste que passa AA sobre papel creme
+       (4,5:1+), o teal fica cromaticamente fraco por natureza e vira cinza
+       sob protanopia (#A0A0A0). O oxblood mantem 6,19:1 e continua distinguivel
+       da tinta sob as tres simulacoes de daltonismo (dE 36,8 a 65,8). */
+    --accent: #9C3A1E;
 
     /* series de dados, maximo 4 (ver agent_docs/graficos.md) */
     --series-1: #A63D00;
@@ -37,7 +41,7 @@
     --ink-2: #BDB5A6;
     --ink-3: #969084;
 
-    --accent: #7FC2B9;
+    --accent: #E9957E;
 
     --series-1: #7FC4F0;
     --series-2: #E88A8A;
