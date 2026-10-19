@@ -3,24 +3,34 @@ export interface Publication {
   authors: string;
   venue: string;
   year: string;
+  /** "autor" quando o Fabrício é um dos primeiros autores; "coautor" caso contrário. */
+  role?: "autor" | "coautor";
   doi?: string;
   /** Link de acesso alternativo: repositório institucional, anais. Aparece também quando há DOI. */
   url?: string;
   /** Rótulo do link de `url`. Padrão: "Acessar Publicação no Repositório". */
   urlLabel?: string;
+  /** Arquivo local em `public/papers/`. É o único campo que aponta para um PDF nosso. */
   pdfUrl?: string;
   abstract: string;
 }
 
+/**
+ * Fonte única das publicações. A antiga página /downloads repetia esta lista à
+ * mão, com os títulos duplicados como string literal; foi removida, e os PDFs
+ * passaram a ser linkados aqui, ao lado do resumo que explica o artigo.
+ */
 export const publications: Publication[] = [
   {
     title: "Evaluating SLMs for Predicting Tabular Data: An Essay on Higher Education Dropout",
     authors: "Scaglioni, F. G., Aguiar, M., and Mattos, J. C. B.",
     venue: "XXXVII Simpósio Brasileiro de Informática na Educação (SBIE 2026)",
     year: "2026",
+    role: "autor",
     doi: "https://doi.org/10.5753/sbie.2026.27434",
     url: "https://sol.sbc.org.br/index.php/sbie/article/view/45670",
     urlLabel: "Acessar nos Anais da SBC (SOL)",
+    pdfUrl: "/papers/sbie-2026-slm-evasao.pdf",
     abstract: "Avalia Small Language Models (SLMs) de 7 a 14 bilhões de parâmetros, ajustados por Parameter-Efficient Fine-Tuning (PEFT), na predição de evasão no ensino superior, em comparação com modelos especializados em dados tabulares. Com um conjunto de 6.011 registros da UFPel, foram testadas três representações dos dados (numérica, discretizada e narrativa) inferidas pelos modelos Phi-4, Qwen2.5-7B e Mitra. O modelo tabular especializado superou os modelos de linguagem (80,30% de acurácia e F1 de 0,8203, contra 72,07% e 0,7176 do melhor SLM), e as representações narrativas não trouxeram ganho preditivo: sob restrição computacional, classificadores baseados em árvores e modelos tabulares seguem sendo a arquitetura mais eficaz."
   },
   {
@@ -28,7 +38,10 @@ export const publications: Publication[] = [
     authors: "Scaglioni, F. G., Noguez, J. H. S., Ávila, C. M. O., and Roque, P. T. N. M.",
     venue: "Workshop de Tecnologia de Informação e Comunicação das Instituições Federais de Ensino Superior do Brasil (WTICIFES 2026)",
     year: "2026",
+    role: "autor",
     url: "https://repositorio.wticifes.com.br/items/f099b0be-692d-47b3-bc04-78604818dda7",
+    urlLabel: "Acessar no Repositório do WTICIFES",
+    pdfUrl: "/papers/commit2gempress-wticifes-2026.pdf",
     abstract: "Apresenta o Commit2GemPress, ferramenta que integra a API do GitLab, o modelo Gemini 2.0 Flash e o WordPress para converter mensagens de commits em publicações acessíveis a públicos não-técnicos. O estudo de caso indica que o uso de LLMs reduz silos de comunicação e amplia a transparência institucional sem onerar o fluxo de trabalho dos desenvolvedores."
   },
   {
@@ -36,7 +49,9 @@ export const publications: Publication[] = [
     authors: "Marins, E. F., Primo, T. T., Vasconcelos, B. B., Carvalho, M. T. X., Oppelt, L. L., Pinheiro, V. H. G., Scaglioni, F. G., et al.",
     venue: "Brazilian Journal of Physical Therapy (BJPT)",
     year: "2025",
+    role: "coautor",
     doi: "https://doi.org/10.1016/j.bjpt.2025.101232",
+    pdfUrl: "/papers/1-s2.0-S1413355525000619-main.pdf",
     abstract: "Investiga a eficácia de uma intervenção de saúde móvel (m-health) no tratamento de trabalhadores da segurança pública com dor lombar crônica. O aplicativo desenvolvido (My Safe Back) serviu como suporte clínico para o protocolo de exercícios e educação em dor estruturado."
   },
   {
@@ -44,6 +59,7 @@ export const publications: Publication[] = [
     authors: "Scaglioni, F., Aguiar, M., and Mattos, J. C. B.",
     venue: "2022 XVII Latin American Conference on Learning Technologies (LACLO)",
     year: "2023",
+    role: "autor",
     doi: "https://doi.org/10.1109/LACLO56648.2022.10013424",
     abstract: "Sistema de recomendação de matrículas baseado no perfil e progresso do estudante, utilizando técnicas de inteligência artificial para sugerir disciplinas alinhadas ao histórico acadêmico, ritmo de aprendizado e trajetória curricular no contexto de Campus Inteligente."
   },
@@ -52,7 +68,9 @@ export const publications: Publication[] = [
     authors: "Marins, E. F., Caputo, E. L., Krüger, V. L., Junior, D. M., Scaglioni, F. G., Del Vecchio, F. B., Primo, T. T., and Alberton, C. L.",
     venue: "Trials",
     year: "2023",
+    role: "coautor",
     doi: "https://doi.org/10.1186/s13063-023-07833-9",
+    pdfUrl: "/papers/s13063-023-07833-9.pdf",
     abstract: "Protocolo de ensaio clínico randomizado controlado que investiga a efetividade de um programa de exercícios de fortalecimento do core baseado em m-health combinado com educação em saúde, comparado à educação em saúde isolada, em trabalhadores da segurança pública com dor lombar crônica inespecífica."
   },
   {
@@ -60,7 +78,33 @@ export const publications: Publication[] = [
     authors: "Scaglioni, F. G., Aguiar, M., and Mattos, J. C. B.",
     venue: "Anais do XXII Encontro de Pós-Graduação (ENPOS)",
     year: "2020",
-    doi: "https://anais-siiepe.ufpel.edu.br/2020/CE_03692.pdf",
+    role: "autor",
+    // Antes este PDF estava no campo `doi`, e a página rotulava o link como
+    // "Acessar DOI da Publicação": o rótulo mentia sobre o destino.
+    url: "https://anais-siiepe.ufpel.edu.br/2020/CE_03692.pdf",
+    urlLabel: "Acessar nos Anais do ENPOS",
     abstract: "Este trabalho propõe uma plataforma de interação digital baseada no conceito de Campus Inteligente para otimizar o atendimento à comunidade acadêmica da UFPel. A solução utiliza recursos de Inteligência Artificial e Processamento de Linguagem Natural (PLN), como chatbots e assistentes virtuais, para fornecer serviços escaláveis e modulares, incluindo recomendações de matrícula e consultas frequentes (FAQ), visando melhorar a eficiência dos processos acadêmicos e a experiência do usuário institucional."
+  },
+];
+
+export interface Thesis {
+  title: string;
+  type: string;
+  institution: string;
+  year: string;
+  url: string;
+}
+
+/**
+ * Trabalhos de conclusão. Viviam na página /downloads, que existia quase só
+ * para hospedá-los; com a página removida, ficam aqui.
+ */
+export const theses: Thesis[] = [
+  {
+    title: "Sistema de Recomendação de Matrículas a partir do Perfil e do Progresso dos Estudantes no Contexto de Campus Inteligente",
+    type: "Dissertação de Mestrado",
+    institution: "Programa de Pós-Graduação em Computação, UFPel",
+    year: "2021",
+    url: "http://guaiaca.ufpel.edu.br/xmlui/handle/prefix/12891",
   },
 ];

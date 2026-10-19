@@ -16,7 +16,6 @@ export const siteLinks = {
         { href: "/", label: "Início", icon: "house" },
         { href: "/research", label: "Pesquisa", icon: "microscope" },
         { href: "/blog", label: "Journal", icon: "feather" },
-        { href: "/downloads", label: "Downloads", icon: "download", newTab: false },
         { href: "/experience", label: "Experiência", icon: "briefcase" },
         { href: "/portfolio", label: "Portfólio", icon: "folder-open" },
         { href: "/social", label: "Social", icon: "hash" },

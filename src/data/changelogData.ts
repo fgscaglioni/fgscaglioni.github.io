@@ -9,6 +9,20 @@ export interface ChangeLogEntry {
 export const changelogData: ChangeLogEntry[] = [
   {
     date: "19/10/2026",
+    version: "v2.8.0",
+    title: "Fim da página de downloads",
+    description: "A rota /downloads repetia as mesmas seis publicações da página de pesquisa. O conteúdo útil dela foi absorvido por /research e a página foi removida do site e do menu.",
+    changes: [
+      "A rota /downloads e o arquivo src/data/downloadsData.ts foram removidos. A página repetia as seis publicações de /research, com os títulos digitados uma segunda vez, e a única informação exclusiva era a dissertação de mestrado.",
+      "Os quatro PDFs que só eram acessíveis em /downloads passam a ser linkados em /research, ao lado do resumo de cada artigo, pelo botão Baixar PDF.",
+      "A dissertação de mestrado ganha a seção Trabalhos de Conclusão em /research, com ano, programa e link para o repositório Guaiaca.",
+      "A distinção Autor/Coautor, que existia só em /downloads, passa a ser um selo Coautor na ficha de cada publicação coassinada.",
+      "Corrige um rótulo que mentia: o artigo do ENPOS 2020 tinha um PDF de anais no campo DOI, e a página exibia Acessar DOI da Publicação apontando para o PDF. Agora é um link de anais com rótulo próprio.",
+      "O item Downloads sai do menu de navegação. A URL deixa de existir: links externos para /downloads passam a responder 404.",
+    ]
+  },
+  {
+    date: "19/10/2026",
     version: "v2.7.2",
     title: "Acento com presença",
     description: "A cor de destaque deixa de ser o teal apagado e passa a um oxblood de tinta, e passa a marcar estado ativo, ações e links.",
