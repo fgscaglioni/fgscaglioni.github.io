@@ -85,3 +85,34 @@ describe('Rotas estáticas do blog', () => {
     expect(bad, `Tags fora do padrão slug:\n${bad.join('\n')}`).toEqual([]);
   });
 });
+
+/**
+ * Classe repetida no mesmo atributo é sempre engano de composição: o componente
+ * já declara a utilitária e a chamada passa de novo. Não quebra nada visível,
+ * mas é o tipo de resíduo que se acumula a cada alteração.
+ */
+describe('HTML construído - higiene de classes', () => {
+  it('nenhum elemento repete o mesmo token em class', () => {
+    const problemas: string[] = [];
+
+    for (const file of fs.readdirSync(DIST_DIR, { recursive: true }) as string[]) {
+      if (!file.endsWith('.html')) continue;
+      const html = fs.readFileSync(path.join(DIST_DIR, file), 'utf-8');
+
+      for (const m of html.matchAll(/class="([^"]+)"/g)) {
+        const tokens = m[1].split(/\s+/).filter(Boolean);
+        const vistos = new Set<string>();
+        const repetidos = new Set<string>();
+        for (const t of tokens) {
+          if (vistos.has(t)) repetidos.add(t);
+          vistos.add(t);
+        }
+        if (repetidos.size > 0) {
+          problemas.push(`${file}: ${[...repetidos].join(', ')}`);
+        }
+      }
+    }
+
+    expect(problemas, `Classes repetidas:\n${problemas.slice(0, 10).join('\n')}`).toEqual([]);
+  });
+});

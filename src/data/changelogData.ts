@@ -9,6 +9,17 @@ export interface ChangeLogEntry {
 export const changelogData: ChangeLogEntry[] = [
   {
     date: "19/10/2026",
+    version: "v2.8.4",
+    title: "Dois resíduos cosméticos",
+    description: "Remoção de uma classe repetida na navegação e do vão que o código inline abria antes da pontuação, com um teste que impede a repetição de classes.",
+    changes: [
+      "O NavLink repetia transition-colors duration-150 em toda renderização: a utilitária já é declarada pelo componente e as duas chamadas da navbar passavam de novo. Saiu das chamadas e ficou onde pertence.",
+      "O código inline tinha a caixa terminando depois do glifo, o que abria um vão antes da pontuação seguinte: npm run build . lia como se houvesse um espaço antes do ponto. O padding horizontal passou a ser assimétrico, com respiro à esquerda e a caixa colada ao glifo à direita.",
+      "Novo teste em tests/routes.test.ts: nenhum elemento do HTML construído pode repetir o mesmo token no atributo class.",
+    ]
+  },
+  {
+    date: "19/10/2026",
     version: "v2.8.3",
     title: "Deploy travado em runner e pnpm explícitos",
     description: "O workflow de deploy deixou de usar ponteiros móveis: runner e gerenciador de pacotes passam a ter versão fixa, e um teste impede que voltem a flutuar.",
