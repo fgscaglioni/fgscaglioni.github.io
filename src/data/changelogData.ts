@@ -9,6 +9,16 @@ export interface ChangeLogEntry {
 export const changelogData: ChangeLogEntry[] = [
   {
     date: "19/10/2026",
+    version: "v2.7.1",
+    title: "Atualização do Astro",
+    description: "Upgrade do Astro e das integrações para as versões atuais, com o portão de build e de testes verde antes e depois.",
+    changes: [
+      "Astro passa de 7.1.5 para 7.4.0 via pnpm dlx @astrojs/upgrade; @astrojs/svelte vai a 9.1.0 e @astrojs/sitemap a 3.7.4.",
+      "Nenhuma mudança de conteúdo, de rota ou de CSS: as 49 páginas continuam iguais e a suíte de 109 testes passa sem alteração.",
+    ]
+  },
+  {
+    date: "19/10/2026",
     version: "v2.7.0",
     title: "Sistema visual à prova de envelhecimento",
     description: "Redesign do sistema visual: um acento só, sem sombra, gradiente ou blur, tipografia de três níveis, paleta validada para contraste e daltonismo e folha de impressão. A doutrina passa a ser verificada por testes.",
