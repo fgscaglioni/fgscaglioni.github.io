@@ -3,7 +3,7 @@ title: "GPUs na Pesquisa Acadêmica Brasileira: o Levantamento da RNP"
 pubDate: 2026-08-14
 description: "O que o levantamento da RNP (43º SBRC 2025) revela sobre o perfil de uso de GPUs nas IES brasileiras - modelos por faixa de VRAM, economia do hardware e as 35 instituições representadas."
 seoDescription: "Panorama do uso de GPUs na pesquisa acadêmica brasileira a partir do levantamento da RNP: perfil dos grupos, faixas de VRAM e infraestrutura disponível."
-tags: ["gpu", "hpc", "pesquisa", "rnp", "educacao"]
+tags: ["gpu", "hpc", "pesquisa", "rnp", "educação"]
 draft: false
 updated: 2026-08-14
 ---

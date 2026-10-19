@@ -9,6 +9,16 @@ export interface ChangeLogEntry {
 export const changelogData: ChangeLogEntry[] = [
   {
     date: "19/10/2026",
+    version: "v2.8.1",
+    title: "Código inline sem crases e tag unificada",
+    description: "Correção da exibição de código inline nos posts e unificação da tag de educação, que aparecia com duas grafias.",
+    changes: [
+      "O código inline dos posts deixou de exibir crases literais. O @tailwindcss/typography decora `code` com pseudo-elementos ::before e ::after, e o redesign removeu os utilitários prose-code que sobrescreviam essa decoração; a regra equivalente passou a existir explícita no global.css.",
+      "A tag educacao, grafada sem cedilha em um dos posts, passa a educação, unificando com os demais. A URL não muda, porque o slug da tag já normalizava o acento.",
+    ]
+  },
+  {
+    date: "19/10/2026",
     version: "v2.8.0",
     title: "Fim da página de downloads",
     description: "A rota /downloads repetia as mesmas seis publicações da página de pesquisa. O conteúdo útil dela foi absorvido por /research e a página foi removida do site e do menu.",

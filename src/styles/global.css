@@ -233,6 +233,15 @@ a[target="_blank"]:not(nav a):not(header a):not(.stack-link) {
     padding: 0.125rem 0.375rem;
 }
 
+/* O @tailwindcss/typography decora `code` com crases em ::before/::after. A
+   antiga pipeline sobrescrevia isso por utilitarios `prose-code:*`, que nao
+   compilam no Tailwind 4 com seletor `:not()`. Sem esta regra, todo codigo
+   inline do site aparece entre crases literais. */
+.prose code:not(pre code)::before,
+.prose code:not(pre code)::after {
+    content: "";
+}
+
 .prose ul {
     list-style-type: square;
     padding-left: 1.25rem;
