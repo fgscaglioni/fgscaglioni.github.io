@@ -1,0 +1,49 @@
+---
+interface Props {
+  caption: string;
+  source?: string;
+  table?: { head: string[]; rows: (string | number)[][] };
+  class?: string;
+}
+const { caption, source, table, class: className = "" } = Astro.props;
+---
+
+{/*
+  Envelope de grafico. O SVG entra pelo slot e DEVE ter role="img" e <title>:
+  o componente nao consegue impor isso, a regra esta em agent_docs/graficos.md.
+  A tabela em <details> e o que garante acesso sem cor e sem grafico.
+*/}
+<figure class={`my-8 ${className}`}>
+  <div class="border-y border-rule py-5">
+    <slot />
+  </div>
+  <figcaption class="mt-3 text-meta text-ink-3 leading-relaxed">
+    {caption}
+    {source && <span> Fonte: {source}.</span>}
+  </figcaption>
+  {table && (
+    <details class="mt-3">
+      <summary class="cursor-pointer text-meta text-accent underline underline-offset-2">
+        Tabela de dados
+      </summary>
+      <table class="mt-3 w-full text-meta border-collapse">
+        <thead>
+          <tr>
+            {table.head.map((h) => (
+              <th class="text-left font-semibold text-ink border-b border-rule-strong py-2 pr-4">{h}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {table.rows.map((row) => (
+            <tr>
+              {row.map((cell) => (
+                <td class="py-1.5 pr-4 border-b border-rule text-ink-2">{cell}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </details>
+  )}
+</figure>
