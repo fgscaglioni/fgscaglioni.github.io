@@ -184,30 +184,35 @@ const latestPosts = (await getCollection("blog"))
                 href: "https://institucional.ufpel.edu.br/cursos/cod/8102",
                 level: "Doutorado em Ciência da Computação",
                 period: "2024 - Cursando",
+                ariaLabel: "UFPel — Doutorado em Ciência da Computação",
               },
               {
                 inst: "i9",
                 href: "#",
                 level: "Pós-Graduação em Direito Público",
                 period: "2024 - 2026",
+                ariaLabel: "i9 — Pós-Graduação em Direito Público",
               },
               {
                 inst: "UFPel",
                 href: "https://institucional.ufpel.edu.br/cursos/cod/7057",
                 level: "Mestrado em Ciência da Computação",
                 period: "2019 - 2021",
+                ariaLabel: "UFPel — Mestrado em Ciência da Computação",
               },
               {
                 inst: "UniSenac",
                 href: "https://www.senacrs.com.br/unidade/78",
                 level: "Especialização em Gerenciamento de Projetos",
                 period: "2009 - 2010",
+                ariaLabel: "UniSenac — Especialização em Gerenciamento de Projetos",
               },
               {
                 inst: "UniSenac",
                 href: "https://www.senacrs.com.br/unidade/78",
                 level: "Tecnólogo em Análise e Desenvolvimento de Sistemas",
                 period: "2005 - 2007",
+                ariaLabel: "UniSenac — Tecnólogo em Análise e Desenvolvimento de Sistemas",
               },
             ].map((item) => (
               <div class="flex items-start gap-3">
@@ -218,6 +223,7 @@ const latestPosts = (await getCollection("blog"))
                   <a
                     href={item.href}
                     target="_blank"
+                    aria-label={item.ariaLabel}
                     class="text-ink text-sm font-medium hover:text-ink transition-colors"
                   >
                     {item.inst}
