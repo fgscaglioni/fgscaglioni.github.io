@@ -19,39 +19,39 @@ import BulletItem from "../components/BulletItem.astro";
 
     <!-- Research Lines -->
     <section class="paper-card p-6 mb-8">
-      <h2 class="text-2xl font-display italic text-gray-900 mb-4 border-b border-gray-100 pb-2">
+      <h2 class="text-2xl font-display italic text-ink mb-4 border-b border-rule pb-2">
         Linhas de Investigação
       </h2>
-      <p class="text-gray-700 text-sm leading-relaxed mb-4">
-        Atualmente conduzo pesquisas no <strong class="text-gray-800">Doutorado em Ciência da Computação (UFPel)</strong> focadas na intersecção entre <strong class="text-gray-800">Inteligência Artificial</strong> e <strong class="text-gray-800">Educação</strong>, abordando principalmente:
+      <p class="text-ink-2 text-sm leading-relaxed mb-4">
+        Atualmente conduzo pesquisas no <strong class="text-ink">Doutorado em Ciência da Computação (UFPel)</strong> focadas na intersecção entre <strong class="text-ink">Inteligência Artificial</strong> e <strong class="text-ink">Educação</strong>, abordando principalmente:
       </p>
       <ul class="space-y-3">
-        <BulletItem><strong class="text-gray-800">Modelagem do Estudante com IA:</strong> Predição de desempenho, evasão e gargalos de aprendizado usando representações latentes.</BulletItem>
-        <BulletItem><strong class="text-gray-800">Sistemas de Recomendação Educacionais:</strong> Adaptação dinâmica de caminhos de estudo orientados por Large Language Models (LLMs) e SLMs locais.</BulletItem>
+        <BulletItem><strong class="text-ink">Modelagem do Estudante com IA:</strong> Predição de desempenho, evasão e gargalos de aprendizado usando representações latentes.</BulletItem>
+        <BulletItem><strong class="text-ink">Sistemas de Recomendação Educacionais:</strong> Adaptação dinâmica de caminhos de estudo orientados por Large Language Models (LLMs) e SLMs locais.</BulletItem>
       </ul>
     </section>
 
     <!-- Publications List -->
     <div class="space-y-6">
-      <h2 class="text-2xl font-display italic text-gray-900 mb-4 border-b border-gray-100 pb-2">
+      <h2 class="text-2xl font-display italic text-ink mb-4 border-b border-rule pb-2">
         Publicações Acadêmicas
       </h2>
       {
         publications.map((pub) => (
           <PaperCard class=" p-6">
-          <div class="mb-4 border-b border-gray-100 pb-3">
-            <span class="font-mono text-[10px] px-2 py-0.5 rounded-full border border-gray-200 text-gray-600 uppercase tracking-widest bg-gray-100 inline-block mb-2">
+          <div class="mb-4 border-b border-rule pb-3">
+            <span class="font-mono text-[10px] px-2 py-0.5 border border-rule text-ink-2 uppercase tracking-widest bg-paper-3 inline-block mb-2">
               {pub.year}
             </span>
-            <span class="block text-gray-600 text-[11px] font-bold uppercase tracking-wider font-mono mb-2">
+            <span class="block text-ink-2 text-[11px] font-bold uppercase tracking-wider font-mono mb-2">
               {pub.venue}
             </span>
-            <h3 class="text-xl sm:text-2xl font-display italic text-gray-900 tracking-wide mt-2">
+            <h3 class="text-xl sm:text-2xl font-display italic text-ink tracking-wide mt-2">
               {pub.title}
             </h3>
-            <p class="text-gray-600 text-xs mt-1 font-mono">{pub.authors}</p>
+            <p class="text-ink-2 text-xs mt-1 font-mono">{pub.authors}</p>
           </div>
-            <p class="text-gray-700 text-sm leading-relaxed mb-4 font-light">
+            <p class="text-ink-2 text-sm leading-relaxed mb-4 font-light">
               {pub.abstract}
             </p>
             {pub.doi && (
@@ -59,9 +59,9 @@ import BulletItem from "../components/BulletItem.astro";
                 href={pub.doi}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 py-1 text-xs font-bold uppercase tracking-wider text-gray-700 hover:text-gray-900 transition-colors"
+                class="inline-flex items-center gap-2 py-1 text-xs font-bold uppercase tracking-wider text-ink-2 hover:text-ink transition-colors"
               >
-                <Icon name="external-link" class="inline text-rose-500" size={12} /> Acessar DOI da Publicação
+                <Icon name="external-link" class="inline text-ink-3" size={12} /> Acessar DOI da Publicação
               </a>
             )}
             {pub.url && (
@@ -69,9 +69,9 @@ import BulletItem from "../components/BulletItem.astro";
                 href={pub.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 py-1 text-xs font-bold uppercase tracking-wider text-gray-700 hover:text-gray-900 transition-colors"
+                class="inline-flex items-center gap-2 py-1 text-xs font-bold uppercase tracking-wider text-ink-2 hover:text-ink transition-colors"
               >
-                <Icon name="external-link" class="inline text-rose-500" size={12} /> {pub.urlLabel ?? "Acessar Publicação no Repositório"}
+                <Icon name="external-link" class="inline text-ink-3" size={12} /> {pub.urlLabel ?? "Acessar Publicação no Repositório"}
               </a>
             )}
           </PaperCard>

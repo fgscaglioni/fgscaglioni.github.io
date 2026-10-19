@@ -55,13 +55,13 @@ const updated = post.data.updated || post.data.pubDate;
     <a
       href="/blog"
       data-astro-prefetch
-      class="inline-flex items-center gap-2 py-1 text-xs font-bold uppercase tracking-wider text-gray-600 hover:text-gray-700 transition-colors mb-6"
+      class="inline-flex items-center gap-2 py-1 text-xs font-bold uppercase tracking-wider text-ink-2 hover:text-ink-2 transition-colors mb-6"
     >
       <Icon name="arrow-left" class="inline" size={10} /> Voltar ao Journal
     </a>
     <PaperCard class="p-6 sm:p-8">
     <div class="mb-8 pb-6">
-      <span class="font-mono text-[10px] text-gray-600 uppercase tracking-widest block mb-2">
+      <span class="font-mono text-[10px] text-ink-2 uppercase tracking-widest block mb-2">
         <time datetime={post.data.pubDate.toISOString()}>
           {
             post.data.pubDate.toLocaleDateString("pt-BR", {
@@ -72,7 +72,7 @@ const updated = post.data.updated || post.data.pubDate;
           }
         </time>
         {post.data.updated && (
-          <span class="text-gray-600"> · <time datetime={updated.toISOString()}>atualizado em {
+          <span class="text-ink-2"> · <time datetime={updated.toISOString()}>atualizado em {
             updated.toLocaleDateString("pt-BR", {
               year: "numeric",
               month: "long",
@@ -87,30 +87,30 @@ const updated = post.data.updated || post.data.pubDate;
             <a
               href={`/blog/tag/${slugifyTag(tag)}`}
               data-astro-prefetch
-              class="font-mono text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 hover:bg-teal-100 hover:text-teal-700 uppercase tracking-wider transition-colors"
+              class="font-mono text-[10px] px-2 py-0.5 border border-rule bg-paper-3 text-ink-2 hover:bg-rule hover:text-ink uppercase tracking-wider transition-colors"
             >
               {tag}
             </a>
           ))}
         </div>
       )}
-      <h1 class="text-3xl sm:text-4xl font-display italic text-gray-900 leading-tight mb-4">
+      <h1 class="text-3xl sm:text-4xl font-display italic text-ink leading-tight mb-4">
         {post.data.title}
       </h1>
-      <p class="text-gray-600 text-sm italic font-light">
+      <p class="text-ink-2 text-sm italic font-light">
         {post.data.description}
       </p>
     </div>
 
     <!-- Article Content -->
-    <div class="prose max-w-none text-gray-700 text-sm leading-relaxed space-y-5
-      prose-headings:font-display prose-headings:italic prose-headings:text-gray-900
-      prose-h2:text-xl prose-h2:border-b prose-h2:border-gray-100 prose-h2:pb-2 prose-h2:mt-8
+    <div class="prose max-w-none text-ink-2 text-sm leading-relaxed space-y-5
+      prose-headings:font-display prose-headings:italic prose-headings:text-ink
+      prose-h2:text-xl prose-h2:border-b prose-h2:border-rule prose-h2:pb-2 prose-h2:mt-8
       prose-p:leading-relaxed
-      prose-a:text-teal-700 prose-a:underline prose-a:underline-offset-2 prose-a:hover:text-teal-800 dark:prose-a:text-teal-400 dark:prose-a:hover:text-teal-300
-      prose-pre:bg-[#F6F8FA] prose-pre:border prose-pre:border-gray-200 prose-pre:p-4 prose-pre:rounded-xl prose-pre:font-mono prose-pre:text-sm
-      prose-strong:text-gray-900 prose-strong:font-medium
-      prose-li:text-gray-700">
+      prose-a:underline prose-a:underline-offset-2
+      prose-pre:bg-paper-3 prose-pre:border prose-pre:border-rule prose-pre:p-4 prose-pre:rounded-none prose-pre:font-mono prose-pre:text-sm
+      prose-strong:text-ink prose-strong:font-medium
+      prose-li:text-ink-2">
       <Content />
     </div>
 
@@ -118,28 +118,28 @@ const updated = post.data.updated || post.data.pubDate;
 
     <!-- Related Posts -->
     {related.length > 0 && (
-      <div class="mt-12 pt-8 border-t border-gray-100">
-        <h2 class="text-xl font-display italic text-gray-900 mb-6">Posts Relacionados</h2>
+      <div class="mt-12 pt-8 border-t border-rule">
+        <h2 class="text-xl font-display italic text-ink mb-6">Posts Relacionados</h2>
         <div class="space-y-4">
           {related.map(({ post: p }) => (
             <a href={`/blog/${p.id}`} data-astro-prefetch class="block group">
-              <PaperCard class="p-5 transition-shadow duration-200 group-hover:shadow-md">
+              <PaperCard class="p-5">
                 <div class="flex items-center gap-2 mb-2">
-                  <span class="font-mono text-[10px] text-gray-600 uppercase tracking-widest">
+                  <span class="font-mono text-[10px] text-ink-2 uppercase tracking-widest">
                     {p.data.pubDate.toLocaleDateString("pt-BR", { year: "numeric", month: "short" })}
                   </span>
                   {p.data.tags && p.data.tags.length > 0 && (
                     <>
-                      <span class="text-gray-600">·</span>
+                      <span class="text-ink-2">·</span>
                       {p.data.tags.slice(0, 2).map((t) => (
-                        <span class="font-mono text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 uppercase tracking-wider">
+                        <span class="font-mono text-[10px] px-2 py-0.5 border border-rule bg-paper-3 text-ink-2 uppercase tracking-wider">
                           {t}
                         </span>
                       ))}
                     </>
                   )}
                 </div>
-                <h3 class="text-base font-display italic text-gray-900 group-hover:text-teal-600 transition-colors">
+                <h3 class="text-base font-display italic text-ink group-hover:text-accent transition-colors">
                   {p.data.title}
                 </h3>
               </PaperCard>

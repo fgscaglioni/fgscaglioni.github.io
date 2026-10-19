@@ -1,14 +1,14 @@
-// Ícones servidos localmente (antes: hotlink para laravel.com/nestjs.com/pngegg/jsdelivr/raw.githubusercontent,
-// que custava DNS/TLS de terceiros e trazia cookie __cf_bm do laravel.com).
+// Stack como dado puro: o site renderiza nome e link. Logo de tecnologia
+// envelhece em dois anos e nao carrega informacao que o nome nao carregue.
 export const my_stack = [
-    { name: 'Python', image: '/logos/python.svg', url: 'https://www.python.org/' },
-    { name: 'PHP', image: '/logos/php.svg', url: 'https://www.php.net/' },
-    { name: 'TypeScript', image: '/logos/typescript.svg', url: 'https://www.typescriptlang.org/' },
-    { name: 'PostgreSQL', image: '/logos/postgresql.svg', url: 'https://www.postgresql.org/' },
-    { name: 'Laravel', image: '/logos/laravel.svg', url: 'https://laravel.com/' },
-    { name: 'NestJS', image: '/logos/nestjs.svg', url: 'https://nestjs.com/' },
-    { name: 'Svelte', image: '/logos/svelte.svg', url: 'https://svelte.dev/' },
-    { name: 'Docker', image: '/logos/docker.svg', url: 'https://www.docker.com/' },
+    { name: 'Python', url: 'https://www.python.org/' },
+    { name: 'PHP', url: 'https://www.php.net/' },
+    { name: 'TypeScript', url: 'https://www.typescriptlang.org/' },
+    { name: 'PostgreSQL', url: 'https://www.postgresql.org/' },
+    { name: 'Laravel', url: 'https://laravel.com/' },
+    { name: 'NestJS', url: 'https://nestjs.com/' },
+    { name: 'Svelte', url: 'https://svelte.dev/' },
+    { name: 'Docker', url: 'https://www.docker.com/' },
 ];
 
 export const siteLinks = {

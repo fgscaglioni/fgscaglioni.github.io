@@ -19,10 +19,10 @@ const isActive = (tag: string) => !!activeTag && slugifyTag(tag) === activeTag;
   <a
     href="/blog"
     data-astro-prefetch
-    class={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-colors duration-200 ${
+    class={`px-3 py-1.5 border text-xs font-bold uppercase tracking-wider transition-colors duration-200 ${
       !activeTag
-        ? "bg-teal-700 text-white shadow-sm"
-        : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+        ? "bg-ink text-paper border-ink"
+        : "bg-paper-3 text-ink-2 border-rule hover:text-ink"
     }`}
   >
     Todos
@@ -32,10 +32,10 @@ const isActive = (tag: string) => !!activeTag && slugifyTag(tag) === activeTag;
     <a
       href={`/blog/tag/${slugifyTag(tag)}`}
       data-astro-prefetch
-      class={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-colors duration-200 ${
+      class={`px-3 py-1.5 border text-xs font-bold uppercase tracking-wider transition-colors duration-200 ${
         isActive(tag)
-          ? "bg-teal-700 text-white shadow-sm"
-          : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+          ? "bg-ink text-paper border-ink"
+          : "bg-paper-3 text-ink-2 border-rule hover:text-ink"
       }`}
     >
       {tag}
@@ -44,18 +44,18 @@ const isActive = (tag: string) => !!activeTag && slugifyTag(tag) === activeTag;
 
   {rest.length > 0 && (
     <details class="relative tag-popover">
-      <summary class="px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors duration-200 list-none">
+      <summary class="px-3 py-1.5 border border-rule text-xs font-bold uppercase tracking-wider cursor-pointer bg-paper-3 text-ink-2 hover:text-ink transition-colors duration-200 list-none">
         +{rest.length} mais
       </summary>
-      <div class="absolute top-full right-0 mt-2 p-3 bg-white rounded-xl border border-gray-200 shadow-lg z-50 flex flex-wrap gap-2 min-w-[200px]">
+      <div class="absolute top-full right-0 mt-2 p-3 bg-paper-2 border border-rule z-50 flex flex-wrap gap-2 min-w-[200px]">
         {rest.map((tag) => (
           <a
             href={`/blog/tag/${slugifyTag(tag)}`}
             data-astro-prefetch
-            class={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-colors duration-200 whitespace-nowrap ${
+            class={`px-3 py-1.5 border text-xs font-bold uppercase tracking-wider transition-colors duration-200 whitespace-nowrap ${
               isActive(tag)
-                ? "bg-teal-700 text-white shadow-sm"
-                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                ? "bg-ink text-paper border-ink"
+                : "bg-paper-3 text-ink-2 border-rule hover:text-ink"
             }`}
           >
             {tag}
