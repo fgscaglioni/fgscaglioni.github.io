@@ -3,8 +3,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
 import Icon from "../components/Icon.svelte";
 import StackList from "../components/StackList.astro";
-import PaperCard from "../components/PaperCard.astro";
-import SectionHeader from "../components/SectionHeader.astro";
 import BulletItem from "../components/BulletItem.astro";
 import { getCollection } from "astro:content";
 
@@ -22,13 +20,13 @@ const latestPosts = (await getCollection("blog"))
   <Navbar slot="header" />
 
   <article class="pt-8 pb-4">
-    <!-- Hero Section -->
-    <section class="paper-card p-6 sm:p-8 mb-6">
+    <!-- Hero: primeira secao, nao repete o fio que o cabecalho ja desenhou -->
+    <section class="section section-first">
       <div
-        class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 relative"
+        class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6"
       >
         <!-- Avatar -->
-        <div class="relative flex-shrink-0">
+        <div class="flex-shrink-0">
           <img
             src="/avatar.webp"
             alt="Fabrício Scaglioni"
@@ -42,9 +40,7 @@ const latestPosts = (await getCollection("blog"))
         <!-- Info -->
         <div class="flex-grow">
           <div class="flex flex-col sm:flex-row items-center gap-3 mb-2">
-            <h1
-              class="text-h1 font-display text-ink"
-            >
+            <h1 class="text-h1 font-display text-ink">
               Fabrício Scaglioni
             </h1>
             <span class="inline-flex items-center gap-1.5 text-label text-ink-3 uppercase">
@@ -52,15 +48,11 @@ const latestPosts = (await getCollection("blog"))
             </span>
           </div>
           <!-- Positioning Tagline -->
-          <p
-            class="text-ink-2 text-sm mb-4 font-mono uppercase tracking-wider leading-relaxed"
-          >
+          <p class="text-ink-2 text-sm mb-4 font-mono uppercase tracking-wider leading-relaxed">
             Engenheiro de Software Sênior&nbsp;·&nbsp;Pesquisador em IA
           </p>
           <!-- Social Links -->
-          <div
-            class="flex flex-wrap items-center justify-center sm:justify-start gap-2"
-          >
+          <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
             <a
               href="https://www.linkedin.com/in/fgscaglioni/"
               target="_blank"
@@ -90,10 +82,10 @@ const latestPosts = (await getCollection("blog"))
       </div>
     </section>
 
-    <!-- About + Technical Approach side by side on desktop, stacked on mobile -->
-    <div class="grid md:grid-cols-2 gap-6 mb-6">
-      <section class="paper-card p-6">
-        <SectionHeader title="Sobre mim" />
+    <!-- About + Technical Approach: cada coluna abre com o proprio fio -->
+    <div class="grid md:grid-cols-2 gap-x-10">
+      <section class="section">
+        <h2 class="text-h2 font-display text-ink">Sobre mim</h2>
         <ul class="space-y-3">
           <BulletItem><strong class="text-ink font-medium">+15 anos</strong> atuando em
               todo o ciclo de desenvolvimento — planejamento, arquitetura, frontend
@@ -109,8 +101,8 @@ const latestPosts = (await getCollection("blog"))
         </ul>
       </section>
 
-      <section class="paper-card p-6">
-        <SectionHeader title="Competências Chave" />
+      <section class="section">
+        <h2 class="text-h2 font-display text-ink">Competências Chave</h2>
         <ul class="space-y-3">
           <BulletItem><strong class="text-ink font-medium"
                 >Arquitetura de Software</strong
@@ -127,20 +119,16 @@ const latestPosts = (await getCollection("blog"))
     </div>
 
     <!-- Stack Section -->
-    <section class="mb-8">
-      <h2 class="text-2xl font-display text-ink mb-6">
-        Stack
-      </h2>
+    <section class="section">
+      <h2 class="text-h2 font-display text-ink">Stack</h2>
       <StackList />
     </section>
 
     <!-- Latest Posts: liga a home ao conteúdo do journal -->
     {latestPosts.length > 0 && (
-      <section class="mb-8">
-        <div class="flex items-center justify-between mb-6">
-          <h2 class="text-2xl font-display text-ink">
-            Últimos Artigos
-          </h2>
+      <section class="section">
+        <div class="flex items-baseline justify-between gap-4">
+          <h2 class="text-h2 font-display text-ink">Últimos Artigos</h2>
           <a
             href="/blog"
             data-astro-prefetch
@@ -149,33 +137,35 @@ const latestPosts = (await getCollection("blog"))
             Ver todos <Icon name="arrow-right" class="inline" size={10} />
           </a>
         </div>
-        <div class="space-y-4">
+        <div class="space-y-5">
           {latestPosts.map((post) => (
-            <a href={`/blog/${post.id}`} data-astro-prefetch class="block group">
-              <PaperCard class="p-5">
-                <div class="flex items-center gap-2 mb-2">
-                  <time
-                    datetime={post.data.pubDate.toISOString()}
-                    class="font-mono text-[10px] text-ink-2 uppercase tracking-widest"
-                  >
-                    {post.data.pubDate.toLocaleDateString("pt-BR", { year: "numeric", month: "short" })}
-                  </time>
-                  {post.data.tags && post.data.tags.length > 0 && (
-                    <>
-                      <span class="text-ink-2">·</span>
-                      {post.data.tags.slice(0, 2).map((tag) => (
-                        <span class="font-mono text-[10px] px-2 py-0.5 border border-rule bg-paper-3 text-ink-2 uppercase tracking-wider">
-                          {tag}
-                        </span>
-                      ))}
-                    </>
-                  )}
-                </div>
-                <h3 class="text-base font-display text-ink group-hover:text-accent transition-colors">
-                  {post.data.title}
-                </h3>
-                <p class="text-ink-2 text-xs mt-2 leading-relaxed">{post.data.description}</p>
-              </PaperCard>
+            <a
+              href={`/blog/${post.id}`}
+              data-astro-prefetch
+              class="block group border-t border-rule pt-5"
+            >
+              <div class="flex items-center gap-2 mb-2">
+                <time
+                  datetime={post.data.pubDate.toISOString()}
+                  class="font-mono text-[10px] text-ink-2 uppercase tracking-widest"
+                >
+                  {post.data.pubDate.toLocaleDateString("pt-BR", { year: "numeric", month: "short" })}
+                </time>
+                {post.data.tags && post.data.tags.length > 0 && (
+                  <>
+                    <span class="text-ink-2">·</span>
+                    {post.data.tags.slice(0, 2).map((tag) => (
+                      <span class="font-mono text-[10px] px-2 py-0.5 border border-rule bg-paper-3 text-ink-2 uppercase tracking-wider">
+                        {tag}
+                      </span>
+                    ))}
+                  </>
+                )}
+              </div>
+              <h3 class="text-base font-display text-ink group-hover:text-accent transition-colors">
+                {post.data.title}
+              </h3>
+              <p class="text-ink-2 text-xs mt-2 leading-relaxed">{post.data.description}</p>
             </a>
           ))}
         </div>
@@ -183,9 +173,9 @@ const latestPosts = (await getCollection("blog"))
     )}
 
     <!-- Education + Languages -->
-    <div class="grid md:grid-cols-2 gap-6">
-      <section class="paper-card p-6">
-        <SectionHeader title="Formação Acadêmica" />
+    <div class="grid md:grid-cols-2 gap-x-10">
+      <section class="section">
+        <h2 class="text-h2 font-display text-ink">Formação Acadêmica</h2>
         <div class="space-y-4">
           {
             [
@@ -194,40 +184,35 @@ const latestPosts = (await getCollection("blog"))
                 href: "https://institucional.ufpel.edu.br/cursos/cod/8102",
                 level: "Doutorado em Ciência da Computação",
                 period: "2024 - Cursando",
-                icon: "circle-dot",
               },
               {
                 inst: "i9",
                 href: "#",
                 level: "Pós-Graduação em Direito Público",
                 period: "2024 - 2026",
-                icon: "circle-dot",
               },
               {
                 inst: "UFPel",
                 href: "https://institucional.ufpel.edu.br/cursos/cod/7057",
                 level: "Mestrado em Ciência da Computação",
                 period: "2019 - 2021",
-                icon: "circle-dot",
               },
               {
                 inst: "UniSenac",
                 href: "https://www.senacrs.com.br/unidade/78",
                 level: "Especialização em Gerenciamento de Projetos",
                 period: "2009 - 2010",
-                icon: "circle-dot",
               },
               {
                 inst: "UniSenac",
                 href: "https://www.senacrs.com.br/unidade/78",
                 level: "Tecnólogo em Análise e Desenvolvimento de Sistemas",
                 period: "2005 - 2007",
-                icon: "circle-dot",
               },
             ].map((item) => (
               <div class="flex items-start gap-3">
                 <div class="mt-1 flex-shrink-0">
-                  <Icon name={item.icon} class="text-ink-3 inline" />
+                  <Icon name="circle-dot" class="text-ink-3 inline" />
                 </div>
                 <div>
                   <a
@@ -248,56 +233,32 @@ const latestPosts = (await getCollection("blog"))
         </div>
       </section>
 
-      <div class="space-y-6 flex flex-col justify-between">
-        <section class="paper-card p-6 flex-grow">
-          <SectionHeader title="Idiomas" />
-          <div class="space-y-3">
+      <div>
+        <section class="section">
+          <h2 class="text-h2 font-display text-ink">Idiomas</h2>
+          <div class="divide-y divide-rule">
             {
               [
-                {
-                  lang: "Português",
-                  level: "Nativo",
-                  pct: 100,
-                },
-                {
-                  lang: "Inglês",
-                  level: "Intermediário (Limited Working)",
-                  pct: 65,
-                },
-                {
-                  lang: "Espanhol",
-                  level: "Básico (Elementary)",
-                  pct: 35,
-                },
-                {
-                  lang: "Francês",
-                  level: "Básico (Elementary)",
-                  pct: 25,
-                },
+                { lang: "Português", level: "Nativo" },
+                { lang: "Inglês", level: "Intermediário (Limited Working)" },
+                { lang: "Espanhol", level: "Básico (Elementary)" },
+                { lang: "Francês", level: "Básico (Elementary)" },
               ].map((item) => (
-                <div>
-                  <div class="flex justify-between items-center mb-1">
-                    <span class="text-xs text-ink-2 font-medium">
-                      {item.lang}
-                    </span>
-                    <span class="text-[11px] font-mono text-ink-2 uppercase tracking-widest">
-                      {item.level}
-                    </span>
-                  </div>
-                  <div class="w-full bg-paper-3 border border-rule h-1.5">
-                    <div
-                      class="bg-ink h-full"
-                      style={`width: ${item.pct}%`}
-                    />
-                  </div>
+                <div class="flex justify-between items-baseline gap-4 py-2">
+                  <span class="text-xs text-ink-2 font-medium">
+                    {item.lang}
+                  </span>
+                  <span class="text-[11px] font-mono text-ink-2 uppercase tracking-widest text-right">
+                    {item.level}
+                  </span>
                 </div>
               ))
             }
           </div>
         </section>
 
-        <section class="paper-card p-6 flex-grow">
-          <SectionHeader title="Certificações" />
+        <section class="section">
+          <h2 class="text-h2 font-display text-ink">Certificações</h2>
           <div class="space-y-3">
             {
               [

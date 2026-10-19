@@ -7,7 +7,7 @@ const currentPath = Astro.url.pathname;
 ---
 
 <header data-site-header class="sticky top-0 z-50 w-full border-b border-rule bg-paper">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+  <div class="mx-auto px-4 sm:px-6 py-3 flex items-center justify-between" style="max-width: calc(var(--measure) + 4rem)">
     <!-- Brand Logo (o p-1.5 com -m-1.5 amplia a área de toque sem mudar o visual) -->
     <a href="/" class="flex items-center gap-2 group shrink-0 p-1.5 -m-1.5">
       <div class="w-8 h-8 border border-rule flex items-center justify-center transition-colors duration-150 group-hover:bg-ink">
@@ -25,7 +25,7 @@ const currentPath = Astro.url.pathname;
           href={link.href}
           label={link.label}
           currentPath={currentPath}
-          class="px-2.5 py-1.5 text-sm font-medium tracking-wide transition-colors duration-150"
+          class="px-2 py-1.5 text-sm font-medium tracking-wide transition-colors duration-150"
         />
       ))}
       <button
