@@ -4,7 +4,6 @@ import Navbar from "../../../components/Navbar.astro";
 import TagFilter from "../../../components/TagFilter.astro";
 import BlogIntro from "../../../components/BlogIntro.astro";
 import SearchBar from "../../../components/SearchBar.astro";
-import Icon from "../../../components/Icon.svelte";
 import { getCollection } from "astro:content";
 import { slugifyTag, tagSlugMap } from "../../../utils/tags";
 
@@ -89,10 +88,7 @@ const posts = allPosts.filter((post) =>
           <h2 class="text-xl sm:text-2xl font-display text-ink mb-3">
             <a href={`/blog/${post.id}`} class="hover:text-ink-2 transition-colors">{post.data.title}</a>
           </h2>
-          <p class="text-ink-2 text-sm leading-relaxed mb-4">{post.data.description}</p>
-          <a href={`/blog/${post.id}`} class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-ink-2 hover:text-ink transition-colors">
-            Ler Artigo <Icon name="arrow-right" class="inline" size={10} />
-          </a>
+          <p class="text-ink-2 text-sm leading-relaxed">{post.data.description}</p>
         </section>
       ))}
     </div>

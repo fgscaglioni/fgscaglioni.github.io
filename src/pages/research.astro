@@ -3,7 +3,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
 import { publications } from "../data/researchData";
 import PageHeader from "../components/PageHeader.astro";
-import Icon from "../components/Icon.svelte";
 import BulletItem from "../components/BulletItem.astro";
 ---
 
@@ -61,7 +60,7 @@ import BulletItem from "../components/BulletItem.astro";
                   rel="noopener noreferrer"
                   class="inline-flex items-center gap-2 py-1 text-xs font-bold uppercase tracking-wider text-ink-2 hover:text-ink transition-colors"
                 >
-                  <Icon name="external-link" class="inline text-ink-3" size={12} /> Acessar DOI da Publicação
+                  Acessar DOI da Publicação
                 </a>
               )}
               {pub.url && (
@@ -71,7 +70,7 @@ import BulletItem from "../components/BulletItem.astro";
                   rel="noopener noreferrer"
                   class="inline-flex items-center gap-2 py-1 text-xs font-bold uppercase tracking-wider text-ink-2 hover:text-ink transition-colors"
                 >
-                  <Icon name="external-link" class="inline text-ink-3" size={12} /> {pub.urlLabel ?? "Acessar Publicação no Repositório"}
+                  {pub.urlLabel ?? "Acessar Publicação no Repositório"}
                 </a>
               )}
             </div>
