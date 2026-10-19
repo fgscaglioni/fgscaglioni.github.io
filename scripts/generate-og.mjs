@@ -5,6 +5,14 @@
  * Por que existe: BaseLayout referencia /og/<slug>.png em og:image. Enquanto nada gerava
  * esses arquivos, todo post anunciava uma imagem 404 e ficava sem preview ao ser compartilhado.
  *
+ * Identidade: o card segue a mesma doutrina do site (papel, tinta e fio). Sem raio, sem
+ * sombra, sem gradiente. Serie romana no titulo, mono em caixa alta nos rotulos, fio duplo
+ * de masthead e um unico acento oxblood.
+ *
+ * Fontes: usa os arquivos variaveis de public/fonts. Os antigos manrope-400/700 e
+ * jetbrains-mono-400 nao existem mais desde a consolidacao das fontes, e o card vinha
+ * caindo na fonte do sistema sem avisar. tests/og.test.ts guarda essa regra.
+ *
  * Uso:  node scripts/generate-og.mjs        (ou: pnpm og)
  * Requisitos: Google Chrome/Chromium instalado. Defina CHROME_PATH se não estiver em
  * /usr/bin/google-chrome, /usr/bin/chromium ou no PATH.
@@ -21,6 +29,15 @@ const FONTS_DIR = path.join(ROOT, 'public/fonts');
 
 const SITE = 'fgscaglioni.dev.br';
 const AUTHOR = 'Fabrício Scaglioni';
+
+// Tokens do site (src/styles/tokens.css), repetidos aqui porque o card e um HTML
+// autonomo renderizado fora do build do Astro.
+const PAPER = '#F5F2ED';
+const INK = '#1B1815';
+const INK_2 = '#4A443C';
+const INK_3 = '#6E675C';
+const RULE = '#DED8C9';
+const ACCENT = '#9C3A1E';
 
 function findChrome() {
   const candidates = [
@@ -47,6 +64,7 @@ function parseFrontmatter(file) {
   return {
     title: pick('title') ?? file,
     date: pick('pubDate') ?? '',
+    description: pick('description') ?? '',
     tags: tagsRaw.split(',').map((t) => t.trim().replace(/^["']|["']$/g, '')).filter(Boolean),
   };
 }
@@ -54,53 +72,82 @@ function parseFrontmatter(file) {
 const escapeHtml = (s) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-function cardHtml({ title, tags = [], date = '', kicker = 'Journal de Pesquisa' }) {
+function cardHtml({ title, tags = [], date = '', description = '', kicker = 'Journal de Pesquisa' }) {
   const font = (name) => `file://${path.join(FONTS_DIR, name)}`;
-  const tagChips = tags
-    .slice(0, 4)
-    .map((t) => `<span class="tag">${escapeHtml(t)}</span>`)
+
+  const itens = [
+    ...tags.slice(0, 3).map(escapeHtml),
+    ...(date
+      ? [new Date(`${date}T12:00:00Z`).toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })]
+      : []),
+  ];
+  const metaHtml = itens
+    .map((t, i) => (i === 0 ? t : `<span class="sep">·</span>${t}`))
     .join('');
-  const dateLabel = date
-    ? new Date(`${date}T12:00:00Z`).toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })
-    : '';
+
+  // Titulo longo precisa de corpo menor: 62px quando cabe em duas linhas,
+  // 52px quando aperta e 44px para os titulos de artigo que ocupam tres.
+  const size = title.length > 110 ? 44 : title.length > 76 ? 52 : 62;
+
+  // A descricao preenche o miolo do card e diz do que o post trata antes do
+  // clique. Cortada em ~150 caracteres para caber em tres linhas.
+  const lede = description.length > 150 ? description.slice(0, 147).trimEnd() + '...' : description;
+
   return `<!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8"><style>
-  @font-face { font-family: 'Instrument Serif'; font-style: italic; font-weight: 400; src: url('${font('instrument-serif-400-italic-latin.woff2')}') format('woff2'); }
-  @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 400; src: url('${font('manrope-400-latin.woff2')}') format('woff2'); }
-  @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 700; src: url('${font('manrope-700-latin.woff2')}') format('woff2'); }
-  @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; src: url('${font('jetbrains-mono-400-latin.woff2')}') format('woff2'); }
+  @font-face { font-family: 'Instrument Serif'; font-style: normal; font-weight: 400; src: url('${font('instrument-serif-400-latin.woff2')}') format('woff2'); }
+  @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 200 800; src: url('${font('manrope-var-latin.woff2')}') format('woff2-variations'); }
+  @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400 800; src: url('${font('jetbrains-mono-var-latin.woff2')}') format('woff2-variations'); }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    width: 1200px; height: 630px; display: flex; align-items: center; justify-content: center;
-    background-color: #F5F2ED;
-    background-image: radial-gradient(at 50% 0%, rgba(13,148,136,0.10) 0px, transparent 60%);
+    width: 1200px; height: 630px; padding: 0 72px;
+    background: ${PAPER}; color: ${INK_2};
     font-family: 'Manrope', system-ui, sans-serif;
+    display: flex; flex-direction: column;
   }
-  .card {
-    width: 1060px; background: #fff; border: 1px solid rgba(0,0,0,0.05); border-radius: 28px;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.06); padding: 64px 72px; display: flex; flex-direction: column; justify-content: space-between;
-    height: 470px;
+  /* Fio duplo de masthead: 4px em cima, 1px embaixo. */
+  .masthead { border-top: 4px solid ${INK}; border-bottom: 1px solid ${INK}; height: 0; margin-top: 42px; }
+  .card { flex: 1; display: flex; flex-direction: column; justify-content: space-between; padding: 46px 0 38px; overflow: hidden; }
+  .kicker {
+    font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase; color: ${ACCENT};
   }
-  .kicker { font-family: 'JetBrains Mono', monospace; font-size: 15px; letter-spacing: 0.22em; text-transform: uppercase; color: #0D9488; font-weight: 700; }
-  h1 { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: #111827; font-size: 58px; line-height: 1.12; margin-top: 20px; }
-  .meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 26px; }
-  .tag { font-family: 'JetBrains Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: #4B5563; background: #F3F4F6; border-radius: 999px; padding: 5px 12px; }
-  .foot { display: flex; align-items: center; justify-content: space-between; margin-top: 30px; }
-  .who { font-size: 19px; color: #374151; font-weight: 700; }
-  .site { font-family: 'JetBrains Mono', monospace; font-size: 15px; color: #6B7280; }
-  .dot { width: 9px; height: 9px; border-radius: 50%; background: #0D9488; display: inline-block; margin-right: 10px; }
+  h1 {
+    font-family: 'Instrument Serif', serif; font-style: normal; font-weight: 400;
+    color: ${INK}; font-size: ${size}px; line-height: 1.1; letter-spacing: -0.01em; margin-top: 18px;
+  }
+  .lede {
+    margin-top: 22px; font-size: 23px; line-height: 1.5; color: ${INK_2};
+    max-width: 940px;
+  }
+  .meta {
+    margin-top: 26px; font-family: 'JetBrains Mono', monospace; font-size: 14px;
+    letter-spacing: 0.12em; text-transform: uppercase; color: ${INK_3};
+  }
+  .meta .sep { color: ${RULE}; margin: 0 10px; }
+  .foot {
+    display: flex; align-items: baseline; justify-content: space-between;
+    border-top: 1px solid ${RULE}; padding-top: 22px;
+  }
+  .who { font-size: 19px; font-weight: 700; color: ${INK}; }
+  .square { width: 8px; height: 8px; background: ${ACCENT}; display: inline-block; margin-right: 10px; }
+  .site { font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.08em; color: ${INK_3}; }
 </style></head>
-<body><div class="card">
-  <div>
-    <div class="kicker">${escapeHtml(kicker)}</div>
-    <h1>${escapeHtml(title)}</h1>
-    <div class="meta">${tagChips}${dateLabel ? `<span class="tag">${escapeHtml(dateLabel)}</span>` : ''}</div>
+<body>
+  <div class="masthead"></div>
+  <div class="card">
+    <div>
+      <div class="kicker">${escapeHtml(kicker)}</div>
+      <h1>${escapeHtml(title)}</h1>
+      ${lede ? `<p class="lede">${escapeHtml(lede)}</p>` : ''}
+      <div class="meta">${metaHtml}</div>
+    </div>
+    <div class="foot">
+      <div class="who"><span class="square"></span>${escapeHtml(AUTHOR)}</div>
+      <div class="site">${escapeHtml(SITE)}</div>
+    </div>
   </div>
-  <div class="foot">
-    <div class="who"><span class="dot"></span>${escapeHtml(AUTHOR)}</div>
-    <div class="site">${escapeHtml(SITE)}</div>
-  </div>
-</div></body></html>`;
+</body></html>`;
 }
 
 function shoot(chrome, html, outFile) {
@@ -131,9 +178,9 @@ fs.mkdirSync(OUT_DIR, { recursive: true });
 const posts = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith('.md'));
 let count = 0;
 for (const file of posts) {
-  const { title, tags, date } = parseFrontmatter(file);
+  const { title, tags, date, description } = parseFrontmatter(file);
   const slug = file.replace(/\.md$/, '');
-  shoot(chrome, cardHtml({ title, tags, date }), path.join(OUT_DIR, `${slug}.png`));
+  shoot(chrome, cardHtml({ title, tags, date, description }), path.join(OUT_DIR, `${slug}.png`));
   count++;
 }
 

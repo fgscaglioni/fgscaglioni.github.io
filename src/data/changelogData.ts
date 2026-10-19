@@ -9,6 +9,19 @@ export interface ChangeLogEntry {
 export const changelogData: ChangeLogEntry[] = [
   {
     date: "19/10/2026",
+    version: "v2.8.2",
+    title: "Cards de compartilhamento na identidade nova",
+    description: "O template dos cards Open Graph foi reescrito na linguagem de papel, tinta e fio, e passou a carregar a descrição do post. As fontes que o script referenciava não existiam mais.",
+    changes: [
+      "O card de compartilhamento deixa o cartão branco com raio, sombra e selo teal e passa a usar papel, tinta e fio, com título em serifa romana, rótulos em mono e um único acento oxblood.",
+      "O card passa a exibir a descrição do post entre o título e a data, então quem vê o link compartilhado entende o assunto antes de clicar.",
+      "Correção silenciosa: o script referenciava manrope-400-latin.woff2, manrope-700-latin.woff2 e jetbrains-mono-400-latin.woff2, arquivos que deixaram de existir quando as fontes foram consolidadas em variáveis. Os cards vinham sendo renderizados com a fonte do sistema, sem erro e sem aviso.",
+      "Os 14 cards de Open Graph foram regerados.",
+      "Novo teste tests/og.test.ts: exige que toda fonte citada exista em public/fonts e que o card não use raio, sombra, gradiente nem o acento antigo.",
+    ]
+  },
+  {
+    date: "19/10/2026",
     version: "v2.8.1",
     title: "Código inline sem crases e tag unificada",
     description: "Correção da exibição de código inline nos posts e unificação da tag de educação, que aparecia com duas grafias.",
