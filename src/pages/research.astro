@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar.astro";
 import { publications } from "../data/researchData";
 import PageHeader from "../components/PageHeader.astro";
 import BulletItem from "../components/BulletItem.astro";
+import AuthorList from "../components/AuthorList.astro";
 ---
 
 <BaseLayout
@@ -48,7 +49,7 @@ import BulletItem from "../components/BulletItem.astro";
                 <h3 class="text-xl sm:text-2xl font-display text-ink mt-2">
                   {pub.title}
                 </h3>
-                <p class="text-ink-2 text-xs mt-1 font-mono">{pub.authors}</p>
+                <AuthorList authors={pub.authors} />
               </div>
               <p class="text-ink-2 text-sm leading-relaxed mb-4 font-light">
                 {pub.abstract}

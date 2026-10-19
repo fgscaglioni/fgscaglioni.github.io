@@ -1,0 +1,15 @@
+---
+import { highlightSelf } from '../utils/authors';
+
+interface Props {
+  authors: string;
+  class?: string;
+}
+
+const { authors, class: className = '' } = Astro.props;
+---
+
+{/* O proprio nome sai marcado no acento: numa lista longa de coautores e a
+    informacao que o leitor procura primeiro, e o unico uso do acento que
+    carrega dado. */}
+<p class={`text-ink-2 text-xs mt-1 font-mono ${className}`} set:html={highlightSelf(authors)} />
