@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
-import PaperCard from "../components/PaperCard.astro";
 import PageHeader from "../components/PageHeader.astro";
 import { articles, dissertations } from "../data/downloadsData";
 import SectionHeader from "../components/SectionHeader.astro";
@@ -20,17 +19,17 @@ import Icon from "../components/Icon.svelte";
     <PageHeader kicker="Arquivos" title="Downloads" subtitle="Publicações acadêmicas, artigos e dissertações" />
 
     <!-- Articles -->
-    <section class="mb-10">
+    <section class="section section-first">
       <SectionHeader title="Artigos Publicados" />
       <div class="grid md:grid-cols-2 gap-5">
         {
           articles.map((category) => (
-            <PaperCard class=" overflow-hidden">
-              <div class="px-5 py-3 border-b border-rule flex items-center gap-2 bg-paper-3">
+            <div>
+              <div class="pb-3 mb-4 border-b border-rule flex items-center gap-2">
                 <Icon name={category.icon} class={`${category.color} inline`} size={14} />
                 <h3 class="font-bold text-ink-2 uppercase tracking-wider text-[10px]">{category.type}</h3>
               </div>
-              <div class="p-5 space-y-6">
+              <div class="space-y-6">
                 {category.items.map((item) => (
                   <div>
                     <a
@@ -63,14 +62,14 @@ import Icon from "../components/Icon.svelte";
                   </div>
                 ))}
               </div>
-            </PaperCard>
+            </div>
           ))
         }
       </div>
     </section>
 
     <!-- Dissertation -->
-    <section>
+    <section class="section">
       <SectionHeader title="Dissertação de Mestrado" />
       {
         dissertations.map((item) => (
@@ -78,7 +77,7 @@ import Icon from "../components/Icon.svelte";
             href={item.url}
             target="_blank"
             rel="noopener noreferrer"
-            class="group paper-card p-6 flex flex-col sm:flex-row items-center gap-6 transition-colors duration-150"
+            class="group flex flex-col sm:flex-row items-center gap-6 transition-colors duration-150"
           >
             <div class="w-16 h-20 rounded-none border border-rule bg-paper-3 flex items-center justify-center flex-shrink-0 group-hover:border-rule-strong transition-colors">
               <Icon name="book-open" class="inline text-ink-2 group-hover:text-ink transition-colors" size={28} />

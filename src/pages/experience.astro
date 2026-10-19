@@ -1,8 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
-import PaperCard from "../components/PaperCard.astro";
-import PageHeader from "../components/PageHeader.astro";
+import PageHeader from '../components/PageHeader.astro';
 import { experiences } from "../data/experienceData";
 import BulletItem from "../components/BulletItem.astro";
 
@@ -19,15 +18,14 @@ import BulletItem from "../components/BulletItem.astro";
     <PageHeader kicker="Trajetória" title="Experiência Profissional" subtitle="Minha trajetória como desenvolvedor de sistemas desde 2006" />
 
     <!-- Timeline -->
-    <div class="relative timeline-line pl-8 sm:pl-10 space-y-6">
-      {experiences.map((exp) => (
-        <div class="relative">
-          <!-- Dot -->
-          <div class={`absolute -left-[37px] sm:-left-[45px] w-2 h-2 border mt-2.5 transition-colors ${exp.current ? 'border-accent bg-accent' : 'border-rule-strong bg-paper-2'}`}>
-          </div>
+    <div class="relative timeline-line pl-8 sm:pl-10">
+      {experiences.map((exp, i) => (
+        <section class:list={["section", i === 0 && "section-first"]}>
+          <div class="relative">
+            <!-- Dot -->
+            <div class={`absolute -left-[37px] sm:-left-[45px] w-2 h-2 border mt-2.5 transition-colors ${exp.current ? 'border-accent bg-accent' : 'border-rule-strong bg-paper-2'}`}>
+            </div>
 
-          <!-- Card -->
-          <PaperCard class=" p-6">
             <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4 border-b border-rule pb-4">
               <div>
                 <h3 class="text-xl sm:text-2xl font-display text-ink">{exp.role}</h3>
@@ -53,8 +51,8 @@ import BulletItem from "../components/BulletItem.astro";
                 ))}
               </div>
             )}
-          </PaperCard>
-        </div>
+          </div>
+        </section>
       ))}
     </div>
   </article>

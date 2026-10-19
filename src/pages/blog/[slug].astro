@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Navbar from "../../components/Navbar.astro";
-import PaperCard from "../../components/PaperCard.astro";
 import Icon from "../../components/Icon.svelte";
 import { getCollection, render } from "astro:content";
 import { slugifyTag } from "../../utils/tags";
@@ -51,80 +50,79 @@ const updated = post.data.updated || post.data.pubDate;
 >
   <Navbar slot="header" />
 
-  <article class="pt-8 pb-16">
+  <div class="pt-8 pb-16">
     <a
       href="/blog"
       data-astro-prefetch
-      class="inline-flex items-center gap-2 py-1 text-xs font-bold uppercase tracking-wider text-ink-2 hover:text-ink-2 transition-colors mb-6"
+      class="inline-flex items-center gap-2 py-1 text-xs font-bold uppercase tracking-wider text-ink-2 hover:text-ink-2 transition-colors"
     >
       <Icon name="arrow-left" class="inline" size={10} /> Voltar ao Journal
     </a>
-    <PaperCard class="p-6 sm:p-8">
-    <div class="mb-8 pb-6">
-      <span class="font-mono text-[10px] text-ink-2 uppercase tracking-widest block mb-2">
-        <time datetime={post.data.pubDate.toISOString()}>
-          {
-            post.data.pubDate.toLocaleDateString("pt-BR", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })
-          }
-        </time>
-        {post.data.updated && (
-          <span class="text-ink-2"> · <time datetime={updated.toISOString()}>atualizado em {
-            updated.toLocaleDateString("pt-BR", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })
-          }</time></span>
+    <article class="section">
+      <div class="mb-8">
+        <span class="font-mono text-[10px] text-ink-2 uppercase tracking-widest block mb-2">
+          <time datetime={post.data.pubDate.toISOString()}>
+            {
+              post.data.pubDate.toLocaleDateString("pt-BR", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })
+            }
+          </time>
+          {post.data.updated && (
+            <span class="text-ink-2"> · <time datetime={updated.toISOString()}>atualizado em {
+              updated.toLocaleDateString("pt-BR", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })
+            }</time></span>
+          )}
+        </span>
+        {post.data.tags && post.data.tags.length > 0 && (
+          <div class="flex flex-wrap items-center gap-2 mb-4">
+            {post.data.tags.map((tag) => (
+              <a
+                href={`/blog/tag/${slugifyTag(tag)}`}
+                data-astro-prefetch
+                class="font-mono text-[10px] px-2 py-0.5 border border-rule bg-paper-3 text-ink-2 hover:bg-rule hover:text-ink uppercase tracking-wider transition-colors"
+              >
+                {tag}
+              </a>
+            ))}
+          </div>
         )}
-      </span>
-      {post.data.tags && post.data.tags.length > 0 && (
-        <div class="flex flex-wrap items-center gap-2 mb-4">
-          {post.data.tags.map((tag) => (
-            <a
-              href={`/blog/tag/${slugifyTag(tag)}`}
-              data-astro-prefetch
-              class="font-mono text-[10px] px-2 py-0.5 border border-rule bg-paper-3 text-ink-2 hover:bg-rule hover:text-ink uppercase tracking-wider transition-colors"
-            >
-              {tag}
-            </a>
-          ))}
-        </div>
-      )}
-      <h1 class="text-3xl sm:text-4xl font-display text-ink leading-tight mb-4">
-        {post.data.title}
-      </h1>
-      <p class="text-ink-2 text-sm italic font-light">
-        {post.data.description}
-      </p>
-    </div>
+        <h1 class="text-3xl sm:text-4xl font-display text-ink leading-tight mb-4">
+          {post.data.title}
+        </h1>
+        <p class="text-ink-2 text-sm italic font-light">
+          {post.data.description}
+        </p>
+      </div>
 
-    <!-- Article Content -->
-    <div class="prose max-w-none text-ink-2 text-sm leading-relaxed space-y-5
-      prose-headings:font-display prose-headings:text-ink
-      prose-h2:text-xl prose-h2:border-b prose-h2:border-rule prose-h2:pb-2 prose-h2:mt-8
-      prose-p:leading-relaxed
-      prose-a:underline prose-a:underline-offset-2
-      prose-pre:bg-paper-3 prose-pre:border prose-pre:border-rule prose-pre:p-4 prose-pre:rounded-none prose-pre:font-mono prose-pre:text-sm
-      prose-strong:text-ink prose-strong:font-medium
-      prose-li:text-ink-2">
-      <Content />
-    </div>
+      <!-- Article Content -->
+      <div class="prose max-w-none text-ink-2 text-sm leading-relaxed space-y-5
+        prose-headings:font-display prose-headings:text-ink
+        prose-h2:text-xl prose-h2:border-b prose-h2:border-rule prose-h2:pb-2 prose-h2:mt-8
+        prose-p:leading-relaxed
+        prose-a:underline prose-a:underline-offset-2
+        prose-pre:bg-paper-3 prose-pre:border prose-pre:border-rule prose-pre:p-4 prose-pre:rounded-none prose-pre:font-mono prose-pre:text-sm
+        prose-strong:text-ink prose-strong:font-medium
+        prose-li:text-ink-2">
+        <Content />
+      </div>
 
-    </PaperCard>
+    </article>
 
     <!-- Related Posts -->
     {related.length > 0 && (
-      <div class="mt-12 pt-8 border-t border-rule">
-        <h2 class="text-xl font-display text-ink mb-6">Posts Relacionados</h2>
-        <div class="space-y-4">
+      <section class="section">
+        <h2 class="text-xl font-display text-ink">Posts Relacionados</h2>
+        <div class="space-y-5">
           {related.map(({ post: p }) => (
-            <a href={`/blog/${p.id}`} data-astro-prefetch class="block group">
-              <PaperCard class="p-5">
-                <div class="flex items-center gap-2 mb-2">
+            <a href={`/blog/${p.id}`} data-astro-prefetch class="block group border-t border-rule pt-5">
+              <div class="flex items-center gap-2 mb-2">
                   <span class="font-mono text-[10px] text-ink-2 uppercase tracking-widest">
                     {p.data.pubDate.toLocaleDateString("pt-BR", { year: "numeric", month: "short" })}
                   </span>
@@ -142,11 +140,10 @@ const updated = post.data.updated || post.data.pubDate;
                 <h3 class="text-base font-display text-ink group-hover:text-accent transition-colors">
                   {p.data.title}
                 </h3>
-              </PaperCard>
             </a>
           ))}
         </div>
-      </div>
+      </section>
     )}
-  </article>
+  </div>
 </BaseLayout>

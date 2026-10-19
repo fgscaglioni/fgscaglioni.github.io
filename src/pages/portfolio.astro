@@ -2,7 +2,6 @@
 import Icon from "../components/Icon.svelte";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
-import PaperCard from "../components/PaperCard.astro";
 import PageHeader from "../components/PageHeader.astro";
 import { projects } from "../data/portfolioData";
 import BulletItem from "../components/BulletItem.astro";
@@ -24,12 +23,12 @@ import BulletItem from "../components/BulletItem.astro";
     </p>
 
     <!-- Projects -->
-    <div class="space-y-8">
+    <div>
       {
         projects.map((project) => (
-          <PaperCard class=" overflow-hidden">
+          <section class="section">
             <!-- Header Bar -->
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-6 py-4 border-b border-rule bg-paper-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-rule">
               <div>
                 <div class="flex items-center gap-3 mb-1">
                   <span class="font-mono text-[10px] px-2 py-0.5 border border-rule text-ink-2 uppercase tracking-widest bg-paper-3">
@@ -65,7 +64,7 @@ import BulletItem from "../components/BulletItem.astro";
             </div>
 
             <!-- Content -->
-            <div class="px-6 py-5">
+            <div class="pt-5">
               <p class="text-ink-2 text-sm leading-relaxed mb-5 border-l-2 border-rule-strong pl-4">
                 {project.summary}
               </p>
@@ -121,7 +120,7 @@ import BulletItem from "../components/BulletItem.astro";
                 </div>
               )}
             </div>
-          </PaperCard>
+          </section>
         ))
       }
     </div>

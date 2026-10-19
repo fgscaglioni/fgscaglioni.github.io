@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Navbar from "../../components/Navbar.astro";
-import PaperCard from "../../components/PaperCard.astro";
 import TagFilter from "../../components/TagFilter.astro";
 import BlogIntro from "../../components/BlogIntro.astro";
 import SearchBar from "../../components/SearchBar.astro";
@@ -23,11 +22,8 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort
   <Navbar slot="header" />
 
   <article class="pt-8 pb-16">
-    <PaperCard class="p-6 sm:p-8 mb-6 relative overflow-hidden">
+    <section class="section section-first">
       <div class="flex items-center gap-4 relative">
-        <div class="w-12 h-12 rounded-none border border-rule bg-paper-3 flex items-center justify-center flex-shrink-0">
-          <Icon name="feather" class="text-ink-2 inline" size={20} />
-        </div>
         <div>
           <h1 class="text-3xl sm:text-4xl font-display text-ink">
             Journal de Pesquisa
@@ -37,18 +33,22 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort
           </p>
         </div>
       </div>
-    </PaperCard>
+    </section>
 
-    <BlogIntro />
+    <section class="section">
+      <BlogIntro />
+    </section>
 
-    <SearchBar />
+    <section class="section">
+      <SearchBar />
 
-    <TagFilter {allTags} {posts} />
+      <TagFilter {allTags} {posts} />
+    </section>
 
     <!-- Posts List -->
-    <div class="space-y-6" id="posts-list">
+    <div id="posts-list">
       {posts.map((post) => (
-        <PaperCard class="post-card p-6" data-title={post.data.title.toLowerCase()} data-description={post.data.description.toLowerCase()}>
+        <section class="section post-card" data-title={post.data.title.toLowerCase()} data-description={post.data.description.toLowerCase()}>
           <div class="flex items-center gap-2 mb-3">
             <time
               datetime={post.data.pubDate.toISOString()}
@@ -72,7 +72,7 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort
           <a href={`/blog/${post.id}`} data-astro-prefetch class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-ink-2 hover:text-ink transition-colors">
             Ler Artigo <Icon name="arrow-right" class="inline" size={10} />
           </a>
-        </PaperCard>
+        </section>
       ))}
     </div>
   </article>

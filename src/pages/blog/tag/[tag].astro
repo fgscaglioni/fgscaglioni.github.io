@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Navbar from "../../../components/Navbar.astro";
-import PaperCard from "../../../components/PaperCard.astro";
 import TagFilter from "../../../components/TagFilter.astro";
 import BlogIntro from "../../../components/BlogIntro.astro";
 import SearchBar from "../../../components/SearchBar.astro";
@@ -42,11 +41,8 @@ const posts = allPosts.filter((post) =>
   <Navbar slot="header" />
 
   <article class="pt-8 pb-16">
-    <PaperCard class="p-6 sm:p-8 mb-6 relative overflow-hidden">
+    <section class="section section-first">
       <div class="flex items-center gap-4 relative">
-        <div class="w-12 h-12 rounded-none border border-rule bg-paper-3 flex items-center justify-center flex-shrink-0">
-          <Icon name="feather" class="inline text-ink-2" size={20} />
-        </div>
         <div>
           <h1 class="text-3xl sm:text-4xl font-display text-ink">
             Posts com a tag “{label}”
@@ -56,20 +52,24 @@ const posts = allPosts.filter((post) =>
           </p>
         </div>
       </div>
-    </PaperCard>
+    </section>
 
-    <BlogIntro />
+    <section class="section">
+      <BlogIntro />
+    </section>
 
-    <SearchBar />
+    <section class="section">
+      <SearchBar />
 
-    <TagFilter {allTags} {posts} activeTag={tag} />
+      <TagFilter {allTags} {posts} activeTag={tag} />
+    </section>
 
-    <div class="space-y-6">
+    <div>
       {posts.length === 0 && (
         <p class="text-ink-2 text-sm text-center py-12">Nenhum post encontrado com essa tag.</p>
       )}
       {posts.map((post) => (
-        <PaperCard class="post-card p-6" data-title={post.data.title.toLowerCase()} data-description={post.data.description.toLowerCase()}>
+        <section class="section post-card" data-title={post.data.title.toLowerCase()} data-description={post.data.description.toLowerCase()}>
           <div class="flex items-center gap-2 mb-3">
             <time
               datetime={post.data.pubDate.toISOString()}
@@ -93,7 +93,7 @@ const posts = allPosts.filter((post) =>
           <a href={`/blog/${post.id}`} class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-ink-2 hover:text-ink transition-colors">
             Ler Artigo <Icon name="arrow-right" class="inline" size={10} />
           </a>
-        </PaperCard>
+        </section>
       ))}
     </div>
   </article>

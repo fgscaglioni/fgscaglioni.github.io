@@ -12,7 +12,7 @@ const { title, kicker, class: className = "" } = Astro.props;
   e "Formacao" com capelo nao dizem nada que o titulo ja nao diga, e cada icone
   e uma dependencia que envelhece (lucide muda de nome, de desenho, de pacote).
 */}
-<div class={`border-t border-rule pt-5 mb-4 ${className}`}>
+<div class={`mb-4 ${className}`}>
   {kicker && <p class="label mb-1">{kicker}</p>}
   <h2 class="text-h2 font-display text-ink">{title}</h2>
 </div>

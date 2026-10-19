@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
-import PaperCard from "../components/PaperCard.astro";
 import PageHeader from "../components/PageHeader.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import Icon from "../components/Icon.svelte";
@@ -112,55 +111,57 @@ const academicLinks = [
   <article class="pt-8 pb-16">
     <PageHeader kicker="Perfis" title="Redes Sociais & Científicas" subtitle="Perfis profissionais, pessoais e acadêmicos" />
 
-    <div class="grid md:grid-cols-2 gap-8">
-      <section>
-        <SectionHeader title="Redes Sociais" />
-        <div class="space-y-3">
-          {socialLinks.map((link) => (
-            <a
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class={`group flex items-center gap-4 p-4 rounded-none ${link.color} border transition-colors duration-150`}
-            >
-              <div class="w-10 h-10 rounded-none border border-rule bg-paper-3 group-hover:bg-rule flex items-center justify-center flex-shrink-0 transition-colors">
-                <Icon name={link.icon} class={link.iconColor} size={20} />
-              </div>
-              <span class="text-ink-2 font-bold uppercase tracking-wider text-xs group-hover:text-ink transition-colors">
-                {link.name}
-              </span>
-              <Icon name="arrow-right" class="text-xs text-ink-2 group-hover:text-ink-2 ml-auto transition-colors" size={12} />
-            </a>
-          ))}
-        </div>
-      </section>
-
-      <section>
-        <SectionHeader title="Redes Acadêmicas" />
-        <div class="space-y-3">
-          {academicLinks.map((link) => (
-            <a
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="group flex items-center gap-4 p-4 paper-card transition-colors duration-200"
-            >
-              <div class="w-8 h-8 rounded-none border border-rule bg-paper-3 group-hover:bg-rule flex items-center justify-center flex-shrink-0 transition-colors">
-                <Icon name={link.icon} class={link.color} size={16} />
-              </div>
-              <div class="min-w-0 flex-1">
-                <div class="text-ink-2 font-bold uppercase tracking-wider text-xs group-hover:text-ink transition-colors">
+    <section class="section section-first">
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <SectionHeader title="Redes Sociais" />
+          <div class="divide-y divide-rule">
+            {socialLinks.map((link) => (
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group flex items-center gap-4 py-3 transition-colors duration-150"
+              >
+                <div class="w-10 h-10 rounded-none border border-rule bg-paper-3 group-hover:bg-rule flex items-center justify-center flex-shrink-0 transition-colors">
+                  <Icon name={link.icon} class={link.iconColor} size={20} />
+                </div>
+                <span class="text-ink-2 font-bold uppercase tracking-wider text-xs group-hover:text-ink transition-colors">
                   {link.name}
-                </div>
-                <div class="text-ink-2 font-light text-[11px] truncate mt-1">
-                  {link.desc}
-                </div>
-              </div>
-              <Icon name="arrow-right" class="text-xs text-ink-2 group-hover:text-ink-2 transition-colors flex-shrink-0" size={12} />
-            </a>
-          ))}
+                </span>
+                <Icon name="arrow-right" class="text-xs text-ink-2 group-hover:text-ink-2 ml-auto transition-colors" size={12} />
+              </a>
+            ))}
+          </div>
         </div>
-      </section>
-    </div>
+
+        <div>
+          <SectionHeader title="Redes Acadêmicas" />
+          <div class="divide-y divide-rule">
+            {academicLinks.map((link) => (
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group flex items-center gap-4 py-3 transition-colors duration-200"
+              >
+                <div class="w-8 h-8 rounded-none border border-rule bg-paper-3 group-hover:bg-rule flex items-center justify-center flex-shrink-0 transition-colors">
+                  <Icon name={link.icon} class={link.color} size={16} />
+                </div>
+                <div class="min-w-0 flex-1">
+                  <div class="text-ink-2 font-bold uppercase tracking-wider text-xs group-hover:text-ink transition-colors">
+                    {link.name}
+                  </div>
+                  <div class="text-ink-2 font-light text-[11px] truncate mt-1">
+                    {link.desc}
+                  </div>
+                </div>
+                <Icon name="arrow-right" class="text-xs text-ink-2 group-hover:text-ink-2 transition-colors flex-shrink-0" size={12} />
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
   </article>
 </BaseLayout>

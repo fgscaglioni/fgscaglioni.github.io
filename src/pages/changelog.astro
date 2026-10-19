@@ -2,7 +2,6 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
 import { changelogData } from "../data/changelogData";
-import PaperCard from "../components/PaperCard.astro";
 import PageHeader from "../components/PageHeader.astro";
 import BulletItem from "../components/BulletItem.astro";
 ---
@@ -17,17 +16,17 @@ import BulletItem from "../components/BulletItem.astro";
     <PageHeader kicker="Histórico" title="Changelog" subtitle="Histórico de modificações e evolução do site" />
 
     <!-- Timeline of Changes -->
-    <div class="relative pl-6 sm:pl-8 border-l border-rule space-y-12">
+    <div class="relative pl-6 sm:pl-8 border-l border-rule">
       {
-        changelogData.map((item) => (
-          <div class="relative">
-            <!-- Position marker -->
-            <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 border-2 border-ink bg-paper flex items-center justify-center">
-              <span class="w-1.5 h-1.5 bg-ink" />
-            </div>
+        changelogData.map((item, i) => (
+          <section class:list={["section", i === 0 && "section-first"]}>
+            <div class="relative">
+              <!-- Position marker -->
+              <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 border-2 border-ink bg-paper flex items-center justify-center">
+                <span class="w-1.5 h-1.5 bg-ink" />
+              </div>
 
-            <!-- Card Content -->
-            <PaperCard class=" p-6">
+              <!-- Entry Content -->
               <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 pb-3 border-b border-rule">
                 <div>
                   <span class="font-mono text-[11px] px-2 py-0.5 rounded-none border border-rule bg-paper-3 text-ink-2 font-bold uppercase tracking-wider">
@@ -51,8 +50,8 @@ import BulletItem from "../components/BulletItem.astro";
                   <BulletItem>{change}</BulletItem>
                 ))}
               </ul>
-            </PaperCard>
-          </div>
+            </div>
+          </section>
         ))
       }
     </div>
