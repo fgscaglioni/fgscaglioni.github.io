@@ -10,21 +10,34 @@ permissions:
   pages: write
   id-token: write
 
+# Versões travadas de propósito.
+#
+# `ubuntu-latest` é um ponteiro móvel: hoje aponta para 24.04 e migra para 26.04
+# sem aviso no repositório (só uma anotação no run). O build que funcionava pode
+# quebrar num push que não tocou em nada. Para subir de versão, troque a data
+# aqui e rode o workflow uma vez, olhando o log.
+#
+# `pnpm@latest` tem o mesmo defeito: o gerenciador muda no meio do lockfile.
+# A versão abaixo acompanha o campo `packageManager` do package.json.
+#
+# Actions de terceiros continuam em tag de major (v7, v6, v5), que é a convenção
+# do GitHub. Travar em SHA de commit é o único passo mais rígido possível, e
+# custa atualização manual a cada release de segurança.
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v7
       - name: Install, build, and upload your site
         uses: withastro/action@v6
         with:
-          package-manager: pnpm@latest
+          package-manager: pnpm@11.9.0
           node-version: 22
 
   deploy:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

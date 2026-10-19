@@ -9,6 +9,18 @@ export interface ChangeLogEntry {
 export const changelogData: ChangeLogEntry[] = [
   {
     date: "19/10/2026",
+    version: "v2.8.3",
+    title: "Deploy travado em runner e pnpm explícitos",
+    description: "O workflow de deploy deixou de usar ponteiros móveis: runner e gerenciador de pacotes passam a ter versão fixa, e um teste impede que voltem a flutuar.",
+    changes: [
+      "O runner deixa de ser ubuntu-latest e passa a ubuntu-24.04 nos dois jobs. O ponteiro móvel hoje aponta para 24.04 e migra para 26.04 sem aviso no repositório, apenas com uma anotação no run, o que pode quebrar um build que não tocou em nada.",
+      "package-manager: pnpm@latest passa a pnpm@11.9.0, a mesma versão declarada no novo campo packageManager do package.json.",
+      "Novo teste tests/workflow.test.ts reprova runner com ponteiro móvel, gerenciador @latest e divergência entre a versão do workflow e a do package.json.",
+      "O próprio workflow documenta, em comentário, por que as versões estão travadas e como subir de versão com segurança.",
+    ]
+  },
+  {
+    date: "19/10/2026",
     version: "v2.8.2",
     title: "Cards de compartilhamento na identidade nova",
     description: "O template dos cards Open Graph foi reescrito na linguagem de papel, tinta e fio, e passou a carregar a descrição do post. As fontes que o script referenciava não existiam mais.",
