@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "./fonts.css";
 @import "./tokens.css";
+@import "./print.css";
 
 @theme inline {
     --font-display: 'Instrument Serif', 'Iowan Old Style', Palatino, 'Times New Roman', serif;
@@ -151,11 +152,15 @@ a[target="_blank"]:not(nav a):not(header a):not(.stack-link) {
     text-decoration-color: var(--rule-strong);
 }
 
-a[target="_blank"]:not(nav a):not(header a):not(.stack-link)::after {
-    content: " ↗";
-    font-size: 0.85em;
-    opacity: 0.5;
-    display: inline-block;
+/* So na tela. No papel o marcador e a URL por extenso, declarada em print.css;
+   sem esta guarda o ↗ (mais especifico) vencia a regra de impressao. */
+@media screen {
+    a[target="_blank"]:not(nav a):not(header a):not(.stack-link)::after {
+        content: " ↗";
+        font-size: 0.85em;
+        opacity: 0.5;
+        display: inline-block;
+    }
 }
 
 /* Timeline dot connector */
@@ -256,5 +261,35 @@ a[target="_blank"]:not(nav a):not(header a):not(.stack-link)::after {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
+    }
+}
+
+/* Quem pediu mais contraste recebe menos sutileza: o texto secundario sobe para
+   o tom de texto, o fio escurece e todo link ganha sublinhado visivel. */
+@media (prefers-contrast: more) {
+    :root {
+        --ink-3: var(--ink-2);
+        --rule: var(--rule-strong);
+    }
+
+    .section {
+        border-width: 2px;
+    }
+
+    a {
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+    }
+}
+
+/* Alto contraste do Windows: nada estrutural depende de background-color. */
+@media (forced-colors: active) {
+    .section {
+        border: 1px solid CanvasText;
+    }
+
+    a {
+        color: LinkText;
+        text-decoration: underline;
     }
 }

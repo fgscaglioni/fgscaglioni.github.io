@@ -157,6 +157,15 @@ if (process.argv[1] && process.argv[1].endsWith('check-tokens.mjs')) {
     const doTema = seriesDelta.filter((r) => r.theme === theme);
     console.log(`Series (${theme}): menor dE entre pares = ${Math.min(...doTema.map((r) => r.ratio)).toFixed(1)}`);
   }
+  // Tabela de consulta: como cada token e visto sob cada simulacao.
+  console.log('\nToken        normal    protan    deutan    tritan');
+  for (const key of ['accent', 'series-1', 'series-2', 'series-3', 'series-4']) {
+    if (!tokens.light[key]) continue;
+    const row = ['normal', 'protanopia', 'deuteranopia', 'tritanopia']
+      .map((sim) => simulateCvd(tokens.light[key], sim).padEnd(9));
+    console.log(key.padEnd(12) + row.join(' '));
+  }
+
   if (falhas.length) {
     for (const f of falhas) {
       console.error(`FALHA ${f.theme} ${f.kind} ${f.a}/${f.b}${f.sim ? ' ' + f.sim : ''} = ${f.ratio.toFixed(2)}`);

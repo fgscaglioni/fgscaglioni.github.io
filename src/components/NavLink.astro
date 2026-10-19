@@ -8,19 +8,23 @@ interface Props {
 
 const { href, label, currentPath, class: className = "" } = Astro.props;
 
+// "/" so casa na home. As demais rotas aceitam subcaminho (/blog/tag/... ativa
+// o Journal), mas exigem a barra depois do href para nao casar prefixo por acidente.
 const isActive = href === "/"
   ? currentPath === "/"
-  : currentPath === href || currentPath === href + "/" || currentPath.startsWith(href + "/");
+  : currentPath === href || currentPath.startsWith(href + "/");
 ---
 
 <a
   href={href}
   data-astro-prefetch
+  aria-current={isActive ? "page" : undefined}
   class:list={[
-    className,
+    "inline-flex items-center border-b-2 transition-colors duration-150",
     isActive
-      ? "bg-ink text-paper"
-      : "text-ink-2 hover:text-ink hover:bg-paper-3"
+      ? "border-ink text-ink"
+      : "border-transparent text-ink-2 hover:text-ink",
+    className,
   ]}
 >
   {label}

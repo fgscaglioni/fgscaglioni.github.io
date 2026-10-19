@@ -1,0 +1,65 @@
+/* O estilo editorial so termina quando sobrevive ao papel. Antes disto o site
+   tinha zero regras de impressao: saia com fundo bege e menu sticky no meio. */
+@media print {
+    /* Impressao e sempre tinta sobre branco: o papel nao tem tema escuro. */
+    :root,
+    .dark {
+        --paper: #FFFFFF;
+        --paper-2: #FFFFFF;
+        --paper-3: #FFFFFF;
+        --ink: #000000;
+        --ink-2: #1A1A1A;
+        --ink-3: #333333;
+        --rule: #999999;
+        --rule-strong: #666666;
+        --accent: #000000;
+    }
+
+    @page {
+        margin: 2cm;
+    }
+
+    body {
+        background: #FFFFFF;
+    }
+
+    /* O global.css declara o corpo depois deste arquivo (import no topo), entao
+       a mesma especificidade perderia. `html body` ganha sem !important. */
+    html body {
+        font-size: 11pt;
+    }
+
+    [data-site-header],
+    footer nav,
+    .no-print {
+        display: none;
+    }
+
+    a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 0.8em;
+        color: var(--ink-3);
+        word-break: break-all;
+    }
+
+    h1,
+    h2,
+    h3 {
+        break-after: avoid;
+    }
+
+    figure,
+    table,
+    pre,
+    blockquote {
+        break-inside: avoid;
+    }
+
+    /* Mesma razao do body: `.section` do global.css vem depois no arquivo.
+       A primeira secao continua sem fio, como na tela. */
+    body .section:not(.section-first) {
+        border-top: 1px solid var(--rule);
+        margin-top: 1.5em;
+        padding-top: 1em;
+    }
+}
