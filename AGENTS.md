@@ -16,15 +16,15 @@ GitHub Pages em https://fgscaglioni.dev.br.
 - `dist/` e `.astro/` são saída de build, não versionados: nunca editar.
 - `README.md` — narrativa para humanos. `agent_docs/` — detalhe lido sob demanda.
 
-## Git: commit e push só sob ordem explícita
+## Git: commit livre, merge na main sob ordem
 
 - Editar, criar e apagar arquivos do repositório é livre e é o esperado para concluir a tarefa.
-- `git add`, `git commit`, `git push`, `gh pr create` e qualquer escrita no remoto acontecem **somente quando o autor pedir**. Entregar a tarefa com as mudanças no working tree é o resultado correto — não commitar não é pendência a resolver.
-- `push` para `main` é deploy em produção: `.github/workflows/deploy.yml` publica no push para `main`/`master`. Nunca presumir autorização de push; confirmar antes.
-- Sem ordem explícita, não reescrever histórico: nada de `--amend`, `rebase`, `reset` sobre commits existentes ou `push --force`.
-- Commit autorizado é commit específico: não incluir mudanças que não foram pedidas.
-- Se um commit ou push já tiver saído por engano, avisar o autor e aguardar decisão; não corrigir o histórico por conta própria.
-- Mensagem de commit no padrão do histórico: prefixo `feat:` / `fix:` / `refactor:`, texto em português.
+- `git add`, `git commit` e `git push` para branch de trabalho acontecem quando o trabalho estiver verificado, por iniciativa do agente.
+- **Push para `main` é deploy**: `.github/workflows/deploy.yml` publica no push para `main`/`master`. Nunca merge na `main` nem PR para `main` sem ordem explícita.
+- Não reescrever histórico publicado: nada de `--amend`, `rebase`, `reset` sobre commits existentes ou `push --force`.
+- Commit é específico: não incluir mudanças que não foram pedidas.
+- Se um commit ou push saiu por engano, avisar o autor e aguardar decisão; não corrigir o histórico por conta própria.
+- Mensagem de commit no padrão do histórico: prefixo `feat:` / `fix:` / `refactor:`, texto em inglês.
 
 ## Build, teste e verificação
 
@@ -52,7 +52,7 @@ grep -o '<link rel="canonical" href="[^"]*"' dist/<pagina>/index.html
 ## Convenções
 
 - Toda página passa `title` e `description` para o `BaseLayout`; canonical, `og:url`, `twitter:url` e JSON-LD são derivados dele. Não declarar esses metadados manualmente na página.
-- Texto visível e comentários em português; nomes de arquivos, componentes, funções e tipos em inglês.
+- Texto visível em português; nomes de arquivos, componentes, funções, tipos e comentários em inglês.
 - Título de página até ~60 caracteres, descrição até ~160: nada falha no build, mas o excesso é truncado no resultado de busca.
 - Link de tag sempre por `slugifyTag()` (`src/utils/tags.ts`): a URL é o slug, nunca o rótulo com espaço ou acento.
 - Asset novo vai para `public/` (servido na raiz) ou `src/assets/` (processado pelo Astro). Não hotlinkar CDN de terceiro: fontes, avatar e logos são locais por decisão.
