@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="index, follow">
 <title>Política de Privacidade — Gaveta</title>
-<meta name="description" content="Política de privacidade da extensão Gaveta para Google Chrome: nenhum dado é coletado, armazenado ou transmitido.">
+<meta name="description" content="Política de privacidade da extensão Gaveta para Chrome e Firefox: nenhum dado pessoal é coletado ou transmitido. As preferências ficam no próprio navegador do usuário.">
 <style>
   :root {
     --paper: #F5F2ED;
@@ -70,29 +70,48 @@
 </head>
 <body>
 <main>
-  <p class="eyebrow">Gaveta · extensão para Google Chrome</p>
+  <p class="eyebrow">Gaveta · extensão para Chrome e Firefox</p>
   <h1>Política de Privacidade</h1>
   <p class="updated">Última atualização: 16 de novembro de 2026</p>
 
-  <p class="lead">O Gaveta não coleta, não armazena e não transmite dados pessoais nem informações de navegação. Todo o processamento acontece no seu computador.</p>
+  <p class="lead">O Gaveta não coleta nem transmite dados pessoais. Todo o processamento acontece no seu computador. A extensão guarda apenas as suas preferências de uso, dentro do próprio navegador.</p>
 
   <h2>O que a extensão faz com o texto da página</h2>
-  <p>Quando você escolhe a ferramenta "Copiar texto do elemento" e clica em um bloco da página, a extensão lê o texto visível desse elemento e grava esse texto na área de transferência do seu computador. O texto é usado apenas para essa cópia e é descartado em seguida.</p>
-  <p>A extensão não envia o texto para nenhum servidor, não guarda histórico do que foi copiado e não analisa o conteúdo.</p>
+  <p>Quando você escolhe uma ferramenta de texto no menu e clica em um bloco da página, a extensão lê o texto visível desse elemento e grava esse texto na área de transferência do seu computador. O texto serve apenas para essa cópia e é descartado em seguida.</p>
+  <p>A extensão não envia o texto para nenhum servidor, não guarda histórico do que foi copiado e não analisa o conteúdo. A calculadora de prazo não acessa a página: recebe uma data e devolve uma data.</p>
 
   <h2>Armazenamento</h2>
-  <p>O Gaveta não usa armazenamento local, armazenamento sincronizado, cookies, banco de dados nem qualquer forma de persistência. Ao fechar o navegador, não sobra registro de uso na extensão.</p>
+  <p>A extensão usa o armazenamento local do navegador para guardar três coisas: as ferramentas que você marcou como favoritas, o domínio principal que você escolheu destacar e as fontes de pesquisa que você salvou.</p>
+  <ul>
+    <li>Esses dados ficam no seu computador, dentro do perfil do navegador.</li>
+    <li>Não são sincronizados com a sua conta.</li>
+    <li>Não são enviados para nenhum servidor.</li>
+    <li>Podem ser apagados a qualquer momento desmarcando as favoritas ou removendo a extensão.</li>
+  </ul>
+  <p>Não há cookies, nem histórico do que foi copiado, nem qualquer outro registro de uso.</p>
 
   <h2>Serviços de terceiros</h2>
-  <p>Não há serviços de terceiros, análise de uso, anúncios ou rastreamento. O pacote da extensão não faz nenhuma requisição de rede.</p>
+  <p>Não há análise de uso, anúncios, contas ou rastreamento. Fora das ferramentas descritas a seguir, o pacote da extensão não faz requisição de rede.</p>
+  <p>Três ferramentas consultam o próprio site de origem, e somente depois que você as escolhe e autoriza o acesso àquele domínio:</p>
+  <ul>
+    <li><strong>IEEE Xplore</strong>: aciona a exportação de citações do próprio portal, página por página.</li>
+    <li><strong>ACM Digital Library</strong>: mesma operação na ACM.</li>
+    <li><strong>SBC OpenLib</strong>: lê a página de resultados da sua busca e as páginas dos artigos escolhidos, apenas para montar o arquivo de metadados em BibTeX e listar os resultados no menu.</li>
+  </ul>
+  <p>Nessas consultas a extensão se comporta como o seu próprio navegador naquele site. O que ela lê ali serve para o arquivo que você pediu e não é transmitido a mais ninguém.</p>
 
   <h2>Permissões e o motivo de cada uma</h2>
   <ul>
-    <li><strong>Ler a aba atual</strong>: solicitada no momento em que você abre o menu da extensão no ícone, para aplicar a ferramenta nessa aba. Nenhuma outra aba é acessada.</li>
+    <li><strong>Ler a aba atual</strong>: solicitada no momento em que você abre o menu no ícone, para aplicar a ferramenta nessa aba. Nenhuma outra aba é acessada.</li>
     <li><strong>Executar a ferramenta na página</strong>: para mostrar o destaque do elemento e capturar o bloco que você clicou.</li>
     <li><strong>Escrever na área de transferência</strong>: para copiar o texto, que é a função da ferramenta.</li>
+    <li><strong>Guardar preferências</strong>: para lembrar favoritas, domínio principal e fontes salvas. Fica só no seu navegador.</li>
+    <li><strong>Acessar um site específico, se você autorizar</strong>: as ferramentas do IEEE, da ACM e da SBC OpenLib pedem permissão apenas para o domínio delas, no momento em que você as escolhe. Recusar mantém o resto da extensão funcionando.</li>
   </ul>
-  <p>A extensão não pede acesso permanente a nenhum site. O acesso vale apenas para a aba em que você clicou no ícone e termina quando essa aba navega ou fecha.</p>
+  <p>A extensão não pede acesso permanente a nenhum site. Fora das três permissões opcionais acima, o acesso vale apenas para a aba em que você clicou no ícone e termina quando essa aba navega ou fecha.</p>
+
+  <h2>Dados coletados</h2>
+  <p>Nenhum. O Gaveta não coleta, não vende, não compartilha e não transfere dados de usuário. A declaração feita na Chrome Web Store e no addons.mozilla.org é a mesma: nenhuma coleta de dados.</p>
 
   <h2>Compartilhamento</h2>
   <p>Nenhum dado é compartilhado com terceiros, porque nenhum dado é coletado.</p>
@@ -101,13 +120,13 @@
   <p>A extensão não coleta dados de nenhum usuário, incluindo menores de idade.</p>
 
   <h2>Alterações nesta política</h2>
-  <p>Se a extensão passar a tratar dados de outra forma, esta página será atualizada e a data acima será alterada. Mudança de coleta de dados também será informada na descrição da extensão na Chrome Web Store.</p>
+  <p>Se a extensão passar a tratar dados de outra forma, esta página será atualizada e a data acima será alterada. Mudança de coleta de dados também será informada na descrição da extensão na Chrome Web Store e no addons.mozilla.org.</p>
 
   <h2>Contato</h2>
   <p>Dúvidas sobre privacidade: <a href="mailto:fgscaglioni@gmail.com">fgscaglioni@gmail.com</a></p>
 
   <footer>
-    <p>Gaveta — caixa de ferramentas de página para Google Chrome. <a href="/">fgscaglioni.dev.br</a></p>
+    <p>Gaveta · caixa de ferramentas de página para Chrome e Firefox. <a href="/">fgscaglioni.dev.br</a></p>
   </footer>
 </main>
 </body>
