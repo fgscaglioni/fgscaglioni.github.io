@@ -9,6 +9,16 @@ export interface ChangeLogEntry {
 export const changelogData: ChangeLogEntry[] = [
   {
     date: "26/11/2026",
+    version: "v2.8.6",
+    title: "Astro 7.4.13",
+    description: "Atualização de dependências: Astro, sitemap e integração Svelte sobem para as versões atuais, sem nenhuma mudança visual.",
+    changes: [
+      "Astro 7.4.0 → 7.4.13, @astrojs/sitemap 3.7.4 → 3.7.6 e @astrojs/svelte 9.1.0 → 9.1.6, via @astrojs/upgrade.",
+      "Build, os 146 testes, a verificação de tipos e a auditoria da paleta seguem verdes após a atualização.",
+    ],
+  },
+  {
+    date: "26/11/2026",
     version: "v2.8.5",
     title: "Refatoração interna e portão de CI",
     description: "Consolidação de código duplicado, tema escuro sem piscada e um workflow que roda build, testes, tipos e paleta antes do deploy.",
