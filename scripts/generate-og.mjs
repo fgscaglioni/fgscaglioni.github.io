@@ -21,6 +21,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import { execFileSync } from 'node:child_process';
+import { parseFrontmatter } from './frontmatter.mjs';
+import { readTokens } from './check-tokens.mjs';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const BLOG_DIR = path.join(ROOT, 'src/content/blog');
@@ -30,14 +32,16 @@ const FONTS_DIR = path.join(ROOT, 'public/fonts');
 const SITE = 'fgscaglioni.dev.br';
 const AUTHOR = 'Fabrício Scaglioni';
 
-// Tokens do site (src/styles/tokens.css), repetidos aqui porque o card e um HTML
-// autonomo renderizado fora do build do Astro.
-const PAPER = '#F5F2ED';
-const INK = '#1B1815';
-const INK_2 = '#4A443C';
-const INK_3 = '#6E675C';
-const RULE = '#DED8C9';
-const ACCENT = '#9C3A1E';
+// Tokens lidos da fonte (src/styles/tokens.css) via check-tokens: o card é um
+// HTML autônomo fora do build do Astro, mas os hex não são copiados à mão —
+// trocar a paleta no token muda o card junto, sem deriva silenciosa.
+const { light: TOKENS } = readTokens();
+const PAPER = TOKENS.paper;
+const INK = TOKENS.ink;
+const INK_2 = TOKENS['ink-2'];
+const INK_3 = TOKENS['ink-3'];
+const RULE = TOKENS.rule;
+const ACCENT = TOKENS.accent;
 
 function findChrome() {
   const candidates = [
@@ -56,16 +60,15 @@ function findChrome() {
   }
 }
 
-function parseFrontmatter(file) {
-  const raw = fs.readFileSync(path.join(BLOG_DIR, file), 'utf-8');
-  const fm = raw.split('---')[1] ?? '';
-  const pick = (key) => fm.match(new RegExp(`^${key}:\\s*(.+)$`, 'm'))?.[1]?.trim().replace(/^["']|["']$/g, '');
-  const tagsRaw = fm.match(/^tags:\s*\[(.*?)\]/m)?.[1] ?? '';
+function readPost(file) {
+  const parsed = parseFrontmatter(fs.readFileSync(path.join(BLOG_DIR, file), 'utf-8'));
+  const data = parsed?.data ?? {};
   return {
-    title: pick('title') ?? file,
-    date: pick('pubDate') ?? '',
-    description: pick('description') ?? '',
-    tags: tagsRaw.split(',').map((t) => t.trim().replace(/^["']|["']$/g, '')).filter(Boolean),
+    title: data.title ?? file,
+    date: data.pubDate ?? '',
+    description: data.description ?? '',
+    tags: Array.isArray(data.tags) ? data.tags : [],
+    draft: data.draft === 'true',
   };
 }
 
@@ -152,24 +155,27 @@ function cardHtml({ title, tags = [], date = '', description = '', kicker = 'Jou
 
 function shoot(chrome, html, outFile) {
   const tmp = path.join(os.tmpdir(), `og-${path.basename(outFile, '.png')}.html`);
-  fs.writeFileSync(tmp, html);
-  execFileSync(
-    chrome,
-    [
-      '--headless=new',
-      '--no-sandbox',
-      '--disable-gpu',
-      '--hide-scrollbars',
-      '--allow-file-access-from-files',
-      '--force-device-scale-factor=1',
-      '--window-size=1200,630',
-      '--virtual-time-budget=3000',
-      `--screenshot=${outFile}`,
-      `file://${tmp}`,
-    ],
-    { stdio: 'ignore' }
-  );
-  fs.unlinkSync(tmp);
+  try {
+    fs.writeFileSync(tmp, html);
+    execFileSync(
+      chrome,
+      [
+        '--headless=new',
+        '--no-sandbox',
+        '--disable-gpu',
+        '--hide-scrollbars',
+        '--allow-file-access-from-files',
+        '--force-device-scale-factor=1',
+        '--window-size=1200,630',
+        '--virtual-time-budget=3000',
+        `--screenshot=${outFile}`,
+        `file://${tmp}`,
+      ],
+      { stdio: 'ignore' }
+    );
+  } finally {
+    fs.rmSync(tmp, { force: true });
+  }
 }
 
 const chrome = findChrome();
@@ -178,7 +184,9 @@ fs.mkdirSync(OUT_DIR, { recursive: true });
 const posts = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith('.md'));
 let count = 0;
 for (const file of posts) {
-  const { title, tags, date, description } = parseFrontmatter(file);
+  const { title, tags, date, description, draft } = readPost(file);
+  // Draft não entra no site nem no card: gerar seria um PNG órfão em public/og.
+  if (draft) continue;
   const slug = file.replace(/\.md$/, '');
   shoot(chrome, cardHtml({ title, tags, date, description }), path.join(OUT_DIR, `${slug}.png`));
   count++;

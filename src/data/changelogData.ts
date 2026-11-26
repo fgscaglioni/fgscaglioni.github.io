@@ -8,6 +8,20 @@ export interface ChangeLogEntry {
 
 export const changelogData: ChangeLogEntry[] = [
   {
+    date: "26/11/2026",
+    version: "v2.8.5",
+    title: "Refatoração interna e portão de CI",
+    description: "Consolidação de código duplicado, tema escuro sem piscada e um workflow que roda build, testes, tipos e paleta antes do deploy.",
+    changes: [
+      "O tema escuro agora é aplicado no cabeçalho da página, antes da primeira pintura: quem salvou o tema escuro não vê mais o site claro piscar ao carregar.",
+      "As datas dos posts passaram a ser formatadas por um único utilitário com fuso UTC fixo, e a listagem de posts (filtro de rascunho e ordenação) vive num lugar só: as páginas do journal, de tag, a home e o RSS compartilham as mesmas regras em vez de repetirem o filtro e a ordenação.",
+      "O cartão de post das listas virou um componente único, e o frontmatter passou a ser lido por um parser compartilhado entre o sitemap, os cartões Open Graph e os testes, em vez de quatro leitores por expressão regular.",
+      "Os cartões Open Graph leem as cores de src/styles/tokens.css em vez de copiá-las à mão, pulam posts em rascunho e sempre limpam o arquivo temporário.",
+      "Novo workflow de CI: todo push para dev e todo pull request rodam build, testes, verificação de tipos (astro check) e a auditoria da paleta. Antes, só o deploy fazia build, e um teste quebrado publicava igual.",
+      "Perfis sociais e acadêmicos viraram fonte única em siteData.ts: a página /social e o JSON-LD do site leem os mesmos arrays, e o link do GitHub passou a usar https.",
+    ],
+  },
+  {
     date: "19/10/2026",
     version: "v2.8.4",
     title: "Dois resíduos cosméticos",

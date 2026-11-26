@@ -1,8 +1,8 @@
 ---
 import "../styles/global.css";
-import Icon from "../components/Icon.svelte";
 import Footer from "../components/Footer.astro";
 import { ClientRouter } from "astro:transitions";
+import { socialLinks, academicLinks } from "../data/siteData";
 
 interface Props {
   title?: string;
@@ -52,16 +52,7 @@ const person = {
     name: "Universidade Federal de Pelotas (UFPel)",
     url: "https://ufpel.edu.br/",
   },
-  sameAs: [
-    "https://scholar.google.com/citations?user=fZEKGvUAAAAJ",
-    "https://orcid.org/0000-0002-9749-2077",
-    "https://lattes.cnpq.br/0870115674210417",
-    "https://www.researchgate.net/profile/Fabricio-Scaglioni",
-    "https://www.semanticscholar.org/author/2202206947",
-    "https://github.com/fgscaglioni",
-    "https://www.linkedin.com/in/fgscaglioni/",
-    "https://medium.com/@fgscaglioni",
-  ],
+  sameAs: [...socialLinks, ...academicLinks].map((l) => l.url),
 };
 
 const website = {
@@ -117,6 +108,16 @@ const schemaOrg = {
       gtag("config", "G-6T5HCKSVKG");
     </script>
     <meta charset="UTF-8" />
+    <!-- Tema antes da primeira pintura: quem salvou "escuro" não vê o site
+         claro piscar. A decisão vive aqui; o botão na navbar só alterna. -->
+    <script is:inline>
+      try {
+        var tema = localStorage.getItem("theme");
+        if (tema === "dark" || (!tema && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+          document.documentElement.classList.add("dark");
+        }
+      } catch (e) {}
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta
       name="viewport"

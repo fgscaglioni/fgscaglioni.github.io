@@ -4,12 +4,11 @@ import Navbar from "../../components/Navbar.astro";
 import TagFilter from "../../components/TagFilter.astro";
 import BlogIntro from "../../components/BlogIntro.astro";
 import SearchBar from "../../components/SearchBar.astro";
+import PostCard from "../../components/PostCard.astro";
 import { getCollection } from "astro:content";
-import { slugifyTag } from "../../utils/tags";
+import { publishedPosts } from "../../utils/posts";
 
-const posts = (await getCollection("blog"))
-  .filter((post) => !post.data.draft)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = publishedPosts(await getCollection("blog"));
 
 const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort();
 ---
@@ -47,28 +46,7 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort
     <!-- Posts List -->
     <div id="posts-list">
       {posts.map((post) => (
-        <section class="section post-card" data-title={post.data.title.toLowerCase()} data-description={post.data.description.toLowerCase()}>
-          <div class="flex items-center gap-2 mb-3">
-            <time
-              datetime={post.data.pubDate.toISOString()}
-              class="font-mono text-[10px] text-ink-2 uppercase tracking-widest"
-            >
-              {post.data.pubDate.toLocaleDateString("pt-BR", { year: "numeric", month: "long", day: "numeric" })}
-            </time>
-            {post.data.tags && post.data.tags.length > 0 && (
-              <>
-                <span class="text-ink-2">·</span>
-                {post.data.tags.map((tag) => (
-                  <a href={`/blog/tag/${slugifyTag(tag)}`} data-astro-prefetch class="font-mono text-[10px] px-2 py-0.5 border border-rule bg-paper-3 text-ink-2 hover:bg-rule hover:text-ink uppercase tracking-wider transition-colors">{tag}</a>
-                ))}
-              </>
-            )}
-          </div>
-          <h2 class="text-xl sm:text-2xl font-display text-ink mb-3">
-            <a href={`/blog/${post.id}`} data-astro-prefetch class="hover:text-ink-2 transition-colors">{post.data.title}</a>
-          </h2>
-          <p class="text-ink-2 text-sm leading-relaxed">{post.data.description}</p>
-        </section>
+        <PostCard {post} />
       ))}
     </div>
   </article>

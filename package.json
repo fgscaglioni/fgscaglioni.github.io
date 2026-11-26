@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "check": "astro check",
     "preview": "astro preview",
     "astro": "astro",
     "og": "node scripts/generate-og.mjs",
@@ -23,7 +24,9 @@
     "tailwindcss": "^4.2.1"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.12",
     "@types/node": "^26.0.0",
+    "typescript": "^5.9.3",
     "vitest": "^4.1.9"
   }
 }

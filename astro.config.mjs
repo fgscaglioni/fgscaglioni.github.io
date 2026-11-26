@@ -5,6 +5,7 @@ import sitemap from '@astrojs/sitemap';
 import svelte from '@astrojs/svelte';
 import fs from 'node:fs';
 import path from 'node:path';
+import { parseFrontmatter } from './scripts/frontmatter.mjs';
 
 /**
  * lastmod real por post (updated || pubDate).
@@ -18,11 +19,9 @@ function buildLastmodMap() {
   if (!fs.existsSync(dir)) return map;
   for (const file of fs.readdirSync(dir)) {
     if (!file.endsWith('.md')) continue;
-    const frontmatter = fs.readFileSync(path.join(dir, file), 'utf-8').split('---')[1] ?? '';
-    const updated = frontmatter.match(/^updated:\s*([\d-]{10})/m)?.[1];
-    const pubDate = frontmatter.match(/^pubDate:\s*([\d-]{10})/m)?.[1];
-    const date = updated || pubDate;
-    if (date) map[`/blog/${file.replace(/\.md$/, '')}/`] = date;
+    const parsed = parseFrontmatter(fs.readFileSync(path.join(dir, file), 'utf-8'));
+    const date = parsed?.data.updated || parsed?.data.pubDate;
+    if (date) map[`/blog/${file.replace(/\.md$/, '')}/`] = String(date).slice(0, 10);
   }
   return map;
 }

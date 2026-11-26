@@ -1,8 +1,12 @@
 export function sortTagsByFrequency(allTags: string[], posts: { data: { tags?: string[] } }[]): string[] {
-  const count = (tag: string) =>
-    posts.filter((p) => (p.data.tags || []).includes(tag)).length;
+  const counts = new Map<string, number>();
+  for (const post of posts) {
+    for (const tag of post.data.tags || []) {
+      counts.set(tag, (counts.get(tag) ?? 0) + 1);
+    }
+  }
   return [...allTags].sort((a, b) => {
-    const diff = count(b) - count(a);
+    const diff = (counts.get(b) ?? 0) - (counts.get(a) ?? 0);
     return diff !== 0 ? diff : a.localeCompare(b);
   });
 }

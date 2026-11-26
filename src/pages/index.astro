@@ -5,12 +5,11 @@ import Icon from "../components/Icon.svelte";
 import StackList from "../components/StackList.astro";
 import BulletItem from "../components/BulletItem.astro";
 import { getCollection } from "astro:content";
+import { publishedPosts } from "../utils/posts";
+import { formatPostDate } from "../utils/dates";
 
 // Posts mais recentes: dá sinal interno (e caminho de descoberta) para o conteúdo do journal.
-const latestPosts = (await getCollection("blog"))
-  .filter((post) => !post.data.draft && !post.data.noindex)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
+const latestPosts = publishedPosts(await getCollection("blog"), { indexableOnly: true }).slice(0, 3);
 ---
 
 <BaseLayout
@@ -149,7 +148,7 @@ const latestPosts = (await getCollection("blog"))
                   datetime={post.data.pubDate.toISOString()}
                   class="font-mono text-[10px] text-ink-2 uppercase tracking-widest"
                 >
-                  {post.data.pubDate.toLocaleDateString("pt-BR", { year: "numeric", month: "short" })}
+                  {formatPostDate(post.data.pubDate, "short")}
                 </time>
                 {post.data.tags && post.data.tags.length > 0 && (
                   <>

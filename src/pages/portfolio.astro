@@ -99,7 +99,7 @@ import BulletItem from "../components/BulletItem.astro";
                         : "items-start"
                     }`}
                   >
-                    {project.screenshots.map((img: any, i) => (
+                    {project.screenshots.map((img, i) => (
                       <div
                         class={`flex-shrink-0 border border-rule rounded-none overflow-hidden transition-colors duration-200 hover:border-rule-strong ${
                           project.screenshotType === "mobile"

@@ -1,22 +1,13 @@
 import { describe, it, expect } from 'vitest';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
+import { parseFrontmatter } from '../scripts/frontmatter.mjs';
 
 const BLOG_DIR = path.resolve(import.meta.dirname!, '../src/content/blog');
 
-function parseFrontmatter(filePath: string): Record<string, string> | null {
-  const content = fs.readFileSync(filePath, 'utf-8');
-  const match = content.match(/^---\n([\s\S]*?)\n---/);
-  if (!match) return null;
-
-  const fm: Record<string, string> = {};
-  for (const line of match[1].split('\n')) {
-    const kv = line.match(/^(\w+):\s*(.+)$/);
-    if (kv) {
-      fm[kv[1]] = kv[2].trim().replace(/^["']|["']$/g, '');
-    }
-  }
-  return fm;
+function readData(filePath: string) {
+  const parsed = parseFrontmatter(fs.readFileSync(filePath, 'utf-8'));
+  return parsed?.data ?? null;
 }
 
 describe('Frontmatter dos posts', () => {
@@ -28,7 +19,7 @@ describe('Frontmatter dos posts', () => {
 
   for (const file of files) {
     describe(file, () => {
-      const fm = parseFrontmatter(path.join(BLOG_DIR, file));
+      const fm = readData(path.join(BLOG_DIR, file));
 
       it('tem frontmatter', () => {
         expect(fm).not.toBeNull();

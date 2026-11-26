@@ -1,4 +1,20 @@
-export const projects = [
+export interface ProjectScreenshot {
+  src: string;
+}
+
+export interface Project {
+  year: string;
+  client: string;
+  name: string;
+  url: string | null;
+  stack: string[];
+  summary: string;
+  bullets: string[];
+  screenshots: ProjectScreenshot[];
+  screenshotType: "mobile" | "desktop";
+}
+
+export const projects: Project[] = [
   {
     year: "2018",
     client: "Partamon",

@@ -23,10 +23,10 @@ describe('cards Open Graph', () => {
   });
 
   it('usa os tokens do site, nao hex avulsos', () => {
-    // papel, tinta e acento oxblood
-    expect(source).toContain('#F5F2ED');
-    expect(source).toContain('#1B1815');
-    expect(source).toContain('#9C3A1E');
+    // Os hex saem de src/styles/tokens.css via readTokens (check-tokens.mjs):
+    // copiar hex à mão aqui e no script era a deriva que este teste impedia.
+    expect(source).toContain('readTokens');
+    expect(source).not.toMatch(/#[0-9A-Fa-f]{6}/);
     // o acento antigo do site nao pode voltar
     expect(source).not.toContain('#0D9488');
   });

@@ -10,7 +10,7 @@
 
   let { name, class: className = "", size = 16 }: { name: string; class?: string; size?: number } = $props();
 
-  const iconMap: Record<string, any> = {
+  const iconMap: Record<string, typeof ArrowLeft> = {
     "arrow-left": ArrowLeft,
     "arrow-right": ArrowRight,
     "external-link": ExternalLink,
@@ -64,9 +64,14 @@
     "r": `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M9 16.5V7.5h3a2.5 2.5 0 0 1 0 5H9"/><path d="M11.8 12.5 14.6 16.5"/></svg>`,
   };
 
-  let cleanName = $derived(name.replace(/^fa-(solid|brands)\s+fa-/, "").replace(/^fa-/, ""));
-  let LucideIcon = $derived(iconMap[cleanName]);
-  let brandSvg = $derived(brandSVGs[cleanName]);
+  let LucideIcon = $derived(iconMap[name]);
+  let brandSvg = $derived(brandSVGs[name]);
+
+  // Nome desconhecido cai no Square, mas avisa em dev: antes o fallback era
+  // silencioso e um nome digitado errado virava quadrado sem nenhum sinal.
+  if (import.meta.env.DEV && !LucideIcon && !brandSvg) {
+    console.warn(`[Icon] ícone desconhecido: "${name}"`);
+  }
 </script>
 
 {#if brandSvg}

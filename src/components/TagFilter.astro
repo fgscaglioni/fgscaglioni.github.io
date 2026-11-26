@@ -1,10 +1,11 @@
 ---
 import { slugifyTag, sortTagsByFrequency } from "../utils/tags";
+import type { BlogPost } from "../utils/posts";
 
 interface Props {
   allTags: string[];
   activeTag?: string;
-  posts: any[];
+  posts: BlogPost[];
 }
 
 const { allTags, activeTag, posts } = Astro.props;
@@ -65,3 +66,19 @@ const isActive = (tag: string) => !!activeTag && slugifyTag(tag) === activeTag;
     </details>
   )}
 </div>
+
+<script is:inline>
+  // Fecha o popover de tags ao clicar fora dele. Antes esse listener vivia no
+  // SearchBar (acoplamento invisível: só funcionava onde a busca era
+  // renderizada junto). Guarda única para não duplicar com o ClientRouter.
+  (function () {
+    var html = document.documentElement;
+    if (html.dataset.tagPopoverBound === "1") return;
+    html.dataset.tagPopoverBound = "1";
+    document.addEventListener("click", function (e) {
+      var details = document.querySelector("details.tag-popover");
+      if (!details || details.contains(e.target)) return;
+      details.removeAttribute("open");
+    });
+  })();
+</script>

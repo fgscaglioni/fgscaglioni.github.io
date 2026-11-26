@@ -3,6 +3,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { slugifyTag } from '../src/utils/tags';
+import { parseFrontmatter } from '../scripts/frontmatter.mjs';
 
 const BLOG_DIR = path.resolve(import.meta.dirname!, '../src/content/blog');
 const DIST_DIR = path.resolve(import.meta.dirname!, '../dist');
@@ -31,9 +32,8 @@ describe('Rotas estáticas do blog', () => {
     const missing: string[] = [];
 
     for (const file of files) {
-      const content = fs.readFileSync(path.join(BLOG_DIR, file), 'utf-8');
-      const isDraft = /^draft:\s*true$/m.test(content);
-      if (isDraft) continue;
+      const data = parseFrontmatter(fs.readFileSync(path.join(BLOG_DIR, file), 'utf-8'))?.data ?? {};
+      if (data.draft === 'true') continue;
 
       const slug = file.replace(/\.md$/, '');
       const htmlPath = path.join(DIST_DIR, 'blog', slug, 'index.html');
@@ -51,16 +51,10 @@ describe('Rotas estáticas do blog', () => {
     const tags = new Set<string>();
 
     for (const file of files) {
-      const content = fs.readFileSync(path.join(BLOG_DIR, file), 'utf-8');
-      const fm = content.match(/^---\n([\s\S]*?)\n---/);
-      if (!fm) continue;
-
-      const tagMatch = fm[1].match(/tags:\s*\[(.*)\]/);
-      if (tagMatch) {
-        for (const raw of tagMatch[1].split(',')) {
-          const t = raw.trim().replace(/["']/g, '');
-          if (t) tags.add(t);
-        }
+      const data = parseFrontmatter(fs.readFileSync(path.join(BLOG_DIR, file), 'utf-8'))?.data ?? {};
+      const fileTags = Array.isArray(data.tags) ? data.tags : [];
+      for (const t of fileTags) {
+        if (typeof t === 'string' && t) tags.add(t);
       }
     }
 

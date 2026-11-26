@@ -57,22 +57,15 @@ import Icon from "./Icon.svelte";
     apply();
   }
 
-  function closeTagPopoverOnOutsideClick(e) {
-    var details = document.querySelector("details.tag-popover");
-    if (!details || details.contains(e.target)) return;
-    details.removeAttribute("open");
-  }
-
   (function () {
     var html = document.documentElement;
     if (html.dataset.searchBound === "1") return;
     html.dataset.searchBound = "1";
 
     // O ClientRouter troca o DOM nas navegações internas e o DOMContentLoaded não dispara de
-    // novo (era o bug: a busca e o fechamento do popover de tags só funcionavam em carga
-    // direta). astro:page-load cobre a carga inicial e cada navegação.
+    // novo (era o bug: a busca só funcionava em carga direta).
+    // astro:page-load cobre a carga inicial e cada navegação.
     document.addEventListener("astro:page-load", initBlogSearch);
-    document.addEventListener("click", closeTagPopoverOnOutsideClick);
 
     if (document.readyState !== "loading") initBlogSearch();
   })();

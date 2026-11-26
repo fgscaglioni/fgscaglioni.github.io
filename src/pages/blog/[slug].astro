@@ -4,9 +4,11 @@ import Navbar from "../../components/Navbar.astro";
 import Icon from "../../components/Icon.svelte";
 import { getCollection, render } from "astro:content";
 import { slugifyTag } from "../../utils/tags";
+import { publishedPosts } from "../../utils/posts";
+import { formatPostDate } from "../../utils/dates";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
+  const posts = publishedPosts(await getCollection("blog"));
   return posts.map((post) => ({
     params: { slug: post.id },
     props: { post },
@@ -20,8 +22,7 @@ const { Content } = await render(post);
 const slug = post.id.replace(/\.[^/]+$/, '');
 
 // Find related posts by tag overlap
-const allPosts = (await getCollection("blog"))
-  .filter((p) => p.id !== post.id && !p.data.draft);
+const allPosts = publishedPosts(await getCollection("blog")).filter((p) => p.id !== post.id);
 
 const postTags = post.data.tags || [];
 
@@ -62,21 +63,11 @@ const updated = post.data.updated || post.data.pubDate;
       <div class="mb-8">
         <span class="font-mono text-[10px] text-ink-2 uppercase tracking-widest block mb-2">
           <time datetime={post.data.pubDate.toISOString()}>
-            {
-              post.data.pubDate.toLocaleDateString("pt-BR", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })
-            }
+            {formatPostDate(post.data.pubDate)}
           </time>
           {post.data.updated && (
             <span class="text-ink-2"> · <time datetime={updated.toISOString()}>atualizado em {
-              updated.toLocaleDateString("pt-BR", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })
+              formatPostDate(updated)
             }</time></span>
           )}
         </span>
@@ -124,7 +115,7 @@ const updated = post.data.updated || post.data.pubDate;
             <a href={`/blog/${p.id}`} data-astro-prefetch class="block group border-t border-rule pt-5">
               <div class="flex items-center gap-2 mb-2">
                   <span class="font-mono text-[10px] text-ink-2 uppercase tracking-widest">
-                    {p.data.pubDate.toLocaleDateString("pt-BR", { year: "numeric", month: "short" })}
+                    {formatPostDate(p.data.pubDate, "short")}
                   </span>
                   {p.data.tags && p.data.tags.length > 0 && (
                     <>

@@ -1,0 +1,43 @@
+---
+import type { BlogPost } from "../utils/posts";
+import { formatPostDate } from "../utils/dates";
+import { slugifyTag } from "../utils/tags";
+
+interface Props {
+  post: BlogPost;
+}
+
+const { post } = Astro.props;
+const { title, description, pubDate, tags } = post.data;
+---
+
+{/*
+  Cartão de post das listas (journal e página de tag). A busca filtra por
+  .post-card + data-title/data-description, então essa marcação é contrato.
+*/}
+<section
+  class="section post-card"
+  data-title={title.toLowerCase()}
+  data-description={description.toLowerCase()}
+>
+  <div class="flex items-center gap-2 mb-3">
+    <time
+      datetime={pubDate.toISOString()}
+      class="font-mono text-[10px] text-ink-2 uppercase tracking-widest"
+    >
+      {formatPostDate(pubDate)}
+    </time>
+    {tags && tags.length > 0 && (
+      <>
+        <span class="text-ink-2">·</span>
+        {tags.map((tag) => (
+          <a href={`/blog/tag/${slugifyTag(tag)}`} data-astro-prefetch class="font-mono text-[10px] px-2 py-0.5 border border-rule bg-paper-3 text-ink-2 hover:bg-rule hover:text-ink uppercase tracking-wider transition-colors">{tag}</a>
+        ))}
+      </>
+    )}
+  </div>
+  <h2 class="text-xl sm:text-2xl font-display text-ink mb-3">
+    <a href={`/blog/${post.id}`} data-astro-prefetch class="hover:text-ink-2 transition-colors">{title}</a>
+  </h2>
+  <p class="text-ink-2 text-sm leading-relaxed">{description}</p>
+</section>
