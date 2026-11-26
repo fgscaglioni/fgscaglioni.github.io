@@ -9,6 +9,15 @@ export interface ChangeLogEntry {
 export const changelogData: ChangeLogEntry[] = [
   {
     date: "26/11/2026",
+    version: "v2.8.7",
+    title: "Fonte mono com preload",
+    description: "A fonte JetBrains Mono passou a ser pré-carregada junto com as outras duas: rótulos e datas não trocam mais de fonte à vista, depois que a página já abriu.",
+    changes: [
+      "Preload da jetbrains-mono-var-latin.woff2 no cabeçalho: a fonte mono aparece em rótulos e datas acima da dobra, mas entrava tarde na página, e o texto trocava de fonte depois de visível.",
+    ],
+  },
+  {
+    date: "26/11/2026",
     version: "v2.8.6",
     title: "Astro 7.4.13",
     description: "Atualização de dependências: Astro, sitemap e integração Svelte sobem para as versões atuais, sem nenhuma mudança visual.",

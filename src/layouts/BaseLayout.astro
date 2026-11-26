@@ -171,6 +171,16 @@ const schemaOrg = {
       crossorigin
       href="/fonts/instrument-serif-400-latin.woff2"
     />
+    <!-- Mono também é preload: rótulos e datas usam a fonte acima da dobra, e
+         sem preload ela entrava ~600ms depois, com o texto trocando de fonte
+         à vista (sensação de página "ainda carregando"). -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="/fonts/jetbrains-mono-var-latin.woff2"
+    />
   </head>
   <body class="bg-paper text-ink-2 font-body antialiased min-h-screen relative overflow-x-hidden">
     <!-- Skip to content link for keyboard navigation -->
