@@ -9,6 +9,24 @@ export interface ChangeLogEntry {
 export const changelogData: ChangeLogEntry[] = [
   {
     date: "27/11/2026",
+    version: "v2.9.0",
+    title: "Lote do conselho: portão de deploy, busca, privacidade e rótulos",
+    description: "Sete frentes do conselho de produto aplicadas: deploy com teste bloqueante, atalho de busca no cabeçalho, página de privacidade, alvos de toque de 44px, rótulos desambiguados, schema apertado e baseline de performance.",
+    changes: [
+      "O workflow de deploy agora roda testes e tipos antes de publicar: um teste quebrado não entra mais no ar. O CI em dev/PR continua valendo.",
+      "Atalho de busca no cabeçalho (lupa de 44px, levando aos Artigos), para quem chega procurando um tema não depender de achar o menu. Campo de busca global fica para depois, com métrica de uso.",
+      "Nova página de privacidade explicando o Google Analytics e como optar por sair; o script do GA nem carrega quando o navegador envia Do Not Track. Link no rodapé.",
+      "Pílulas de tag e filtros com altura mínima de 44px no celular, e botões do cabeçalho já estavam nesse tamanho.",
+      "Rótulos desambiguados sem renomear rota: Journal virou Artigos, Social virou Perfis, Competências Chave virou Habilidades, e a home diz Disponível para colaboração. A frase que afastava quem vinha de fora saiu da introdução do Artigos.",
+      "Schema do frontmatter apertado onde o teste já prometia: título com mínimo, descrição entre 10 e 300 caracteres, tags sem repetição. Post fora do limite reprova o build.",
+      "A página de cada tag mostra sempre o mesmo rótulo, em ordem alfabética, em vez do primeiro post que o sistema lia.",
+      "Portfólio sem o bloco de screenshots vazio (não havia imagens para os projetos); o TODO saiu junto.",
+      "Versão única: o package.json agora acompanha o topo do changelog (2.9.0), com teste que reprova a divergência.",
+      "Baseline de performance medido com Lighthouse mobile e registrado em agent_docs/performance-baseline.md: home 64, post 97, accessibility 100; o maior custo é o script do Google Analytics.",
+    ],
+  },
+  {
+    date: "27/11/2026",
     version: "v2.8.8",
     title: "Ícones sem Svelte: primeira página do dev em menos de 1s",
     description: "O componente de ícone virou Astro puro com SVG inline e o Svelte saiu do projeto: a primeira página do servidor de desenvolvimento deixou de custar cerca de 17 segundos.",

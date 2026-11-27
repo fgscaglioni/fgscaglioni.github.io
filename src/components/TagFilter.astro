@@ -20,7 +20,7 @@ const isActive = (tag: string) => !!activeTag && slugifyTag(tag) === activeTag;
   <a
     href="/blog"
     data-astro-prefetch
-    class={`px-3 py-1.5 border text-xs font-bold uppercase tracking-wider transition-colors duration-200 ${
+    class={`inline-flex items-center justify-center min-h-[44px] px-3 py-1.5 border text-xs font-bold uppercase tracking-wider transition-colors duration-200 ${
       !activeTag
         ? "bg-ink text-paper border-ink"
         : "bg-paper-3 text-ink-2 border-rule hover:text-ink"
@@ -33,7 +33,7 @@ const isActive = (tag: string) => !!activeTag && slugifyTag(tag) === activeTag;
     <a
       href={`/blog/tag/${slugifyTag(tag)}`}
       data-astro-prefetch
-      class={`px-3 py-1.5 border text-xs font-bold uppercase tracking-wider transition-colors duration-200 ${
+      class={`inline-flex items-center justify-center min-h-[44px] px-3 py-1.5 border text-xs font-bold uppercase tracking-wider transition-colors duration-200 ${
         isActive(tag)
           ? "bg-ink text-paper border-ink"
           : "bg-paper-3 text-ink-2 border-rule hover:text-ink"
@@ -53,7 +53,7 @@ const isActive = (tag: string) => !!activeTag && slugifyTag(tag) === activeTag;
           <a
             href={`/blog/tag/${slugifyTag(tag)}`}
             data-astro-prefetch
-            class={`px-3 py-1.5 border text-xs font-bold uppercase tracking-wider transition-colors duration-200 whitespace-nowrap ${
+            class={`inline-flex items-center justify-center min-h-[44px] px-3 py-1.5 border text-xs font-bold uppercase tracking-wider transition-colors duration-200 whitespace-nowrap ${
               isActive(tag)
                 ? "bg-ink text-paper border-ink"
                 : "bg-paper-3 text-ink-2 border-rule hover:text-ink"

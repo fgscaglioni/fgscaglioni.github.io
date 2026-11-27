@@ -45,6 +45,12 @@ describe('workflow de deploy', () => {
     expect(noWorkflow).toBe(noPacote);
   });
 
+  it('roda testes e tipos antes de publicar (portão bloqueante)', () => {
+    const yaml = semComentarios(bruto);
+    expect(yaml).toContain('pnpm test');
+    expect(yaml).toContain('pnpm check');
+  });
+
   it('documenta o motivo do travamento no proprio arquivo', () => {
     expect(bruto).toMatch(/versões travadas/i);
   });

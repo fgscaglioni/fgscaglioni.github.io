@@ -1,7 +1,3 @@
-export interface ProjectScreenshot {
-  src: string;
-}
-
 export interface Project {
   year: string;
   client: string;
@@ -10,8 +6,6 @@ export interface Project {
   stack: string[];
   summary: string;
   bullets: string[];
-  screenshots: ProjectScreenshot[];
-  screenshotType: "mobile" | "desktop";
 }
 
 export const projects: Project[] = [
@@ -31,10 +25,6 @@ export const projects: Project[] = [
       "Cadastro de profissionais e equipes com controle de acesso",
       "Geração de relatórios detalhados por período e cultura",
     ],
-    screenshots: [
-      // lp0, lp1, lp2, lp3, lp4
-    ],
-    screenshotType: "mobile",
   },
   {
     year: "2022",
@@ -50,10 +40,6 @@ export const projects: Project[] = [
       "Seção informativa sobre tipos de dor lombar, causas e cuidados específicos",
       "Integrado a um RCT (Randomized Controlled Trial) publicado em periódico internacional",
     ],
-    screenshots: [
-      // msb0, msb1, msb2, msb3
-    ],
-    screenshotType: "mobile",
   },
   {
     year: "2023",
@@ -68,9 +54,5 @@ export const projects: Project[] = [
       "Correções de bugs e inconsistências visuais no frontend",
       "Ajustes de performance e carregamento de página",
     ],
-    screenshots: [
-      // dtn0, dtn1
-    ],
-    screenshotType: "desktop",
   },
 ];

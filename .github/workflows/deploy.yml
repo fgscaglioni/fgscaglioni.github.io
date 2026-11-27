@@ -29,6 +29,18 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v7
+      # Portão bloqueante (T-01 do conselho 2026-11-27): sem teste verde, nada
+      # publica. Antes, este job só fazia build e um teste quebrado ia ao ar.
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Instalar dependências
+        run: corepack enable && corepack prepare pnpm@11.9.0 --activate && pnpm install --frozen-lockfile
+      - name: Testes
+        run: pnpm test
+      - name: Tipos
+        run: pnpm check
       - name: Install, build, and upload your site
         uses: withastro/action@v6
         with:

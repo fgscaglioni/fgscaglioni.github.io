@@ -70,6 +70,12 @@ describe('Rotas estáticas do blog', () => {
     expect(missing, `Páginas de tag não geradas:\n${missing.join('\n')}`).toEqual([]);
   });
 
+  it('cabeçalho linka a busca e rodapé linka a privacidade', () => {
+    const html = fs.readFileSync(path.join(DIST_DIR, 'index.html'), 'utf-8');
+    expect(html).toContain('aria-label="Buscar artigos"');
+    expect(html).toContain('href="/privacidade/"');
+  });
+
   it('URLs de tag não contêm espaço nem acento', () => {
     const tagDir = path.join(DIST_DIR, 'blog', 'tag');
     const bad = fs

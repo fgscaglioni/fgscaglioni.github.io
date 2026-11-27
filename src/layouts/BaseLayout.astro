@@ -83,7 +83,7 @@ const breadcrumb = isBlogPost && slug ? {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Início", item: `${siteUrl}/` },
-    { "@type": "ListItem", position: 2, name: "Journal", item: `${siteUrl}/blog/` },
+    { "@type": "ListItem", position: 2, name: "Artigos", item: `${siteUrl}/blog/` },
     { "@type": "ListItem", position: 3, name: title, item: canonical },
   ],
 } : null;
@@ -98,14 +98,19 @@ const schemaOrg = {
 <html lang="pt-BR" class="scroll-smooth">
   <head>
     <ClientRouter fallback="animate" />
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6T5HCKSVKG"
-    ></script>
+    <!-- Google Analytics: só carrega sem Do Not Track (ver /privacidade) -->
     <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag("js", new Date());
-      gtag("config", "G-6T5HCKSVKG");
+      (function () {
+        if (navigator.doNotTrack === "1" || navigator.doNotTrack === "yes") return;
+        var s = document.createElement("script");
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=G-6T5HCKSVKG";
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { dataLayer.push(arguments); };
+        window.gtag("js", new Date());
+        window.gtag("config", "G-6T5HCKSVKG");
+      })();
     </script>
     <meta charset="UTF-8" />
     <!-- Tema antes da primeira pintura: quem salvou "escuro" não vê o site

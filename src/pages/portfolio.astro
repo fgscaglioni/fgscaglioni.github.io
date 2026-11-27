@@ -86,38 +86,7 @@ import BulletItem from "../components/BulletItem.astro";
                 </div>
               )}
 
-              <!-- Screenshots Gallery -->
-              {project.screenshots.length > 0 && (
-                <div class="border-t border-rule pt-5">
-                  <p class="text-ink-2 text-[11px] uppercase tracking-widest font-bold mb-4">
-                    Screenshots
-                  </p>
-                  <div
-                    class={`flex gap-3 overflow-x-auto pb-2 ${
-                      project.screenshotType === "mobile"
-                        ? "items-end"
-                        : "items-start"
-                    }`}
-                  >
-                    {project.screenshots.map((img, i) => (
-                      <div
-                        class={`flex-shrink-0 border border-rule rounded-none overflow-hidden transition-colors duration-200 hover:border-rule-strong ${
-                          project.screenshotType === "mobile"
-                            ? "w-32"
-                            : "w-64"
-                        }`}
-                      >
-                        <img
-                          src={img.src}
-                          alt={`${project.name} screenshot ${i + 1}`}
-                          class="w-full h-auto object-cover grayscale hover:grayscale-0 transition-colors duration-150"
-                          loading="lazy"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
+
             </div>
           </section>
         ))

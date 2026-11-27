@@ -28,7 +28,9 @@ export function slugifyTag(tag: string): string {
 /** Mapa slug -> rótulo legível (primeiro rótulo encontrado vence). */
 export function tagSlugMap(tags: string[]): Map<string, string> {
   const map = new Map<string, string>();
-  for (const tag of tags) {
+  // Rótulo determinístico: em ordem alfabética, a ordem dos posts não muda
+  // qual grafia aparece na página da tag (antes, o primeiro post mandava).
+  for (const tag of [...tags].sort((a, b) => a.localeCompare(b))) {
     const slug = slugifyTag(tag);
     if (slug && !map.has(slug)) map.set(slug, tag);
   }

@@ -15,10 +15,10 @@ export const siteLinks = {
     main: [
         { href: "/", label: "Início", icon: "house" },
         { href: "/research", label: "Pesquisa", icon: "microscope" },
-        { href: "/blog", label: "Journal", icon: "feather" },
+        { href: "/blog", label: "Artigos", icon: "feather" },
         { href: "/experience", label: "Experiência", icon: "briefcase" },
         { href: "/portfolio", label: "Portfólio", icon: "folder-open" },
-        { href: "/social", label: "Social", icon: "hash" },
+        { href: "/social", label: "Perfis", icon: "hash" },
     ],
     external: [
         { href: "https://medium.com/@fgscaglioni", label: "Posts", icon: "medium", newTab: true }

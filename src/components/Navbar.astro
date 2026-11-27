@@ -36,10 +36,25 @@ const currentPath = Astro.url.pathname;
         <Icon name="moon" size={14} class="dark:hidden" />
         <Icon name="sun" size={14} class="hidden dark:block" />
       </button>
+      <!-- Atalho de busca (T-05): porta visível ao acervo sem campo na home -->
+      <a
+        href="/blog/"
+        class="ml-1 w-11 h-11 flex items-center justify-center text-ink-2 hover:text-ink hover:bg-paper-3 transition-colors duration-150"
+        aria-label="Buscar artigos"
+      >
+        <Icon name="magnifying-glass" size={14} />
+      </a>
     </nav>
 
-    <!-- Mobile: Hamburger + Toggle -->
+    <!-- Mobile: Busca + Hamburger + Toggle -->
     <div class="flex lg:hidden items-center gap-1">
+      <a
+        href="/blog/"
+        class="w-11 h-11 flex items-center justify-center text-ink-2 hover:text-ink hover:bg-paper-3 transition-colors duration-150"
+        aria-label="Buscar artigos"
+      >
+        <Icon name="magnifying-glass" size={14} />
+      </a>
       <button
         id="theme-toggle-mobile"
         type="button"

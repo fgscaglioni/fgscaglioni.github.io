@@ -1,0 +1,45 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import PageHeader from "../components/PageHeader.astro";
+---
+
+<BaseLayout
+  title="Privacidade | Fabrício Scaglioni"
+  description="Como este site mede visitas com Google Analytics, o que é coletado e como optar por sair."
+>
+  <Navbar slot="header" />
+
+  <article class="pt-8 pb-16">
+    <PageHeader kicker="Privacidade" title="Privacidade" subtitle="O que este site coleta e como sair" />
+
+    <section class="section section-first prose max-w-none text-ink-2 text-sm leading-relaxed space-y-5
+      prose-headings:font-display prose-headings:text-ink
+      prose-h2:text-xl prose-h2:border-b prose-h2:border-rule prose-h2:pb-2 prose-h2:mt-8
+      prose-p:leading-relaxed
+      prose-a:underline prose-a:underline-offset-2
+      prose-strong:text-ink prose-strong:font-medium">
+      <h2>O que é coletado</h2>
+      <p>
+        Este site usa o Google Analytics (GA4) para saber quantas pessoas visitam,
+        quais páginas leem e de onde chegam. O Analytics coleta endereço IP
+        anonimizado, navegador e sistema, páginas visitadas e tempo de leitura.
+        Não coleta nome, e-mail ou qualquer dado que identifique você.
+      </p>
+
+      <h2>Do Not Track</h2>
+      <p>
+        Se o seu navegador envia o cabeçalho <strong>Do Not Track</strong>, o script
+        do Analytics nem é carregado. Você também pode optar por sair pelo
+        <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">complemento de exclusão do Google</a>
+        ou bloqueando o domínio <code>googletagmanager.com</code> no seu bloqueador de anúncios.
+      </p>
+
+      <h2>Sem cookies de perfil</h2>
+      <p>
+        O site não usa cookies de publicidade nem de perfil. O tema claro/escuro
+        é salvo no armazenamento local do seu navegador, e só você tem acesso.
+      </p>
+    </section>
+  </article>
+</BaseLayout>

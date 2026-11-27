@@ -31,7 +31,7 @@ const { title, description, pubDate, tags } = post.data;
       <>
         <span class="text-ink-2">·</span>
         {tags.map((tag) => (
-          <a href={`/blog/tag/${slugifyTag(tag)}`} data-astro-prefetch class="font-mono text-[10px] px-2 py-0.5 border border-rule bg-paper-3 text-ink-2 hover:bg-rule hover:text-ink uppercase tracking-wider transition-colors">{tag}</a>
+          <a href={`/blog/tag/${slugifyTag(tag)}`} data-astro-prefetch class="inline-flex items-center justify-center min-h-[44px] font-mono text-[10px] px-2 py-0.5 border border-rule bg-paper-3 text-ink-2 hover:bg-rule hover:text-ink uppercase tracking-wider transition-colors">{tag}</a>
         ))}
       </>
     )}

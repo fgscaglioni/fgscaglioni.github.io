@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { spawnSync } from 'node:child_process';
+import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { changelogData } from '../src/data/changelogData';
 
@@ -92,6 +93,11 @@ describe('Changelog - formato e ordem', () => {
 });
 
 describe('Changelog - atualizacao pendente', () => {
+  it('a versao do package.json bate com o topo do changelog (fonte unica de versao)', () => {
+    const pkg = JSON.parse(fs.readFileSync(path.join(REPO, 'package.json'), 'utf-8'));
+    expect(pkg.version).toBe(changelogData[0].version.replace(/^v/, ''));
+  });
+
   it('alteracao de site nao commitada vem acompanhada da entrada no changelog', () => {
     // Escape consciente para quando a alteracao e a entrada nao andam juntas:
     // SKIP_CHANGELOG_GATE=1 pnpm test
