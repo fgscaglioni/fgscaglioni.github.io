@@ -2,7 +2,6 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
-import svelte from '@astrojs/svelte';
 import fs from 'node:fs';
 import path from 'node:path';
 import { parseFrontmatter } from './scripts/frontmatter.mjs';
@@ -67,7 +66,6 @@ export default defineConfig({
         return item;
       },
     }),
-    svelte(),
   ],
   vite: {
     plugins: [tailwindcss()],

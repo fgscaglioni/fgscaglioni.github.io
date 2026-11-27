@@ -8,6 +8,17 @@ export interface ChangeLogEntry {
 
 export const changelogData: ChangeLogEntry[] = [
   {
+    date: "27/11/2026",
+    version: "v2.8.8",
+    title: "Ícones sem Svelte: primeira página do dev em menos de 1s",
+    description: "O componente de ícone virou Astro puro com SVG inline e o Svelte saiu do projeto: a primeira página do servidor de desenvolvimento deixou de custar cerca de 17 segundos.",
+    changes: [
+      "O Icon.svelte virou Icon.astro, com o mesmo markup SVG de antes (viewBox 24, traço 2, currentColor), gerado dos iconNode do pacote lucide-svelte; os ícones de marca já eram strings inline e continuam iguais.",
+      "A integração @astrojs/svelte saiu do astro.config e as dependências svelte, @astrojs/svelte e lucide-svelte foram removidas do package.json: o plugin do Svelte queimava cerca de 17 segundos de CPU na primeira página após cada partida do dev, mesmo havendo um único componente Svelte no projeto. Medido antes e depois na mesma máquina: primeira página em 0,5s.",
+      "O HTML construído foi comparado antes e depois: os 21 SVGs da home têm o mesmo desenho, tamanho e cor; saem apenas as classes lucide-icon que o pacote injetava (nenhum CSS do site as usa) e os comentários de hidratação do Svelte.",
+    ],
+  },
+  {
     date: "26/11/2026",
     version: "v2.8.7",
     title: "Fonte mono com preload",
