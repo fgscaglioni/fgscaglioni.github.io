@@ -1,7 +1,7 @@
 {
   "name": "fgscaglioni.github.io",
   "type": "module",
-  "version": "2.10.0",
+  "version": "2.10.1",
   "packageManager": "pnpm@11.9.0",
   "scripts": {
     "dev": "astro dev",

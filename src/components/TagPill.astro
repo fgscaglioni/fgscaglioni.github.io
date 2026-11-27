@@ -1,0 +1,24 @@
+---
+import { slugifyTag } from "../utils/tags";
+
+interface Props {
+  /**
+   * Rótulo da pílula. Com `link`, vira link de tag (a URL sai do slug);
+   * sem `link`, é um chip estático (stack, tipo, venue). Um padrão visual só.
+   * `class` adiciona espaçamento do contexto (mb-2, ml-1...).
+   */
+  tag: string;
+  link?: boolean;
+  class?: string;
+}
+
+const { tag, link = false, class: className = "" } = Astro.props;
+const href = link ? `/blog/tag/${slugifyTag(tag)}` : undefined;
+const classes = `inline-flex items-center justify-center min-h-[44px] font-mono text-[11px] px-2 py-0.5 border border-rule bg-paper-3 text-ink-2 hover:bg-rule hover:text-ink uppercase tracking-wider transition-colors ${className}`;
+---
+
+{href ? (
+  <a href={href} data-astro-prefetch class={classes}>{tag}</a>
+) : (
+  <span class={classes}>{tag}</span>
+)}

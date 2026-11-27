@@ -2,6 +2,7 @@
 import { siteLinks } from "../data/siteData";
 import NavLink from "../components/NavLink.astro";
 import Icon from "../components/Icon.astro";
+import IconButton from "../components/IconButton.astro";
 const currentPath = Astro.url.pathname;
 ---
 
@@ -27,43 +28,25 @@ const currentPath = Astro.url.pathname;
           class="px-2 py-2 text-sm font-medium tracking-wide"
         />
       ))}
-      <button
-        id="theme-toggle"
-        type="button"
-        class="ml-1 w-11 h-11 flex items-center justify-center text-ink-2 hover:text-ink hover:bg-paper-3 transition-colors duration-150"
-        aria-label="Alternar tema claro/escuro"
-      >
+      <IconButton id="theme-toggle" label="Alternar tema claro/escuro" class="ml-1">
         <Icon name="moon" size={14} class="dark:hidden" />
         <Icon name="sun" size={14} class="hidden dark:block" />
-      </button>
+      </IconButton>
       <!-- Atalho de busca (T-05): porta visível ao acervo sem campo na home -->
-      <a
-        href="/blog/"
-        class="ml-1 w-11 h-11 flex items-center justify-center text-ink-2 hover:text-ink hover:bg-paper-3 transition-colors duration-150"
-        aria-label="Buscar artigos"
-      >
+      <IconButton href="/blog/" label="Buscar artigos" class="ml-1">
         <Icon name="magnifying-glass" size={14} />
-      </a>
+      </IconButton>
     </nav>
 
     <!-- Mobile: Busca + Hamburger + Toggle -->
     <div class="flex lg:hidden items-center gap-1">
-      <a
-        href="/blog/"
-        class="w-11 h-11 flex items-center justify-center text-ink-2 hover:text-ink hover:bg-paper-3 transition-colors duration-150"
-        aria-label="Buscar artigos"
-      >
+      <IconButton href="/blog/" label="Buscar artigos">
         <Icon name="magnifying-glass" size={14} />
-      </a>
-      <button
-        id="theme-toggle-mobile"
-        type="button"
-        class="w-11 h-11 flex items-center justify-center text-ink-2 hover:text-ink hover:bg-paper-3 transition-colors duration-150"
-        aria-label="Alternar tema claro/escuro"
-      >
+      </IconButton>
+      <IconButton id="theme-toggle-mobile" label="Alternar tema claro/escuro">
         <Icon name="moon" size={14} class="dark:hidden" />
         <Icon name="sun" size={14} class="hidden dark:block" />
-      </button>
+      </IconButton>
       <button
         id="menu-toggle"
         type="button"

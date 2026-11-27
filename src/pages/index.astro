@@ -2,6 +2,8 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
 import Icon from "../components/Icon.astro";
+import ExternalButton from "../components/ExternalButton.astro";
+import TagPill from "../components/TagPill.astro";
 import StackList from "../components/StackList.astro";
 import BulletItem from "../components/BulletItem.astro";
 import { getCollection } from "astro:content";
@@ -52,30 +54,9 @@ const latestPosts = publishedPosts(await getCollection("blog"), { indexableOnly:
           </p>
           <!-- Social Links -->
           <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
-            <a
-              href="https://www.linkedin.com/in/fgscaglioni/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center gap-2 px-3 py-1.5 border border-rule bg-paper-3 hover:bg-paper-2 hover:text-ink text-xs font-bold uppercase tracking-wider transition-colors duration-150"
-            >
-              <Icon name="linkedin" class="inline" /> LinkedIn
-            </a>
-            <a
-              href="https://github.com/fgscaglioni/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center gap-2 px-3 py-1.5 border border-rule bg-paper-3 hover:bg-paper-2 hover:text-ink text-xs font-bold uppercase tracking-wider transition-colors duration-150"
-            >
-              <Icon name="github" class="inline" /> GitHub
-            </a>
-            <a
-              href="https://medium.com/@fgscaglioni"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center gap-2 px-3 py-1.5 border border-rule bg-paper-3 hover:bg-paper-2 hover:text-ink text-xs font-bold uppercase tracking-wider transition-colors duration-150"
-            >
-              <Icon name="medium" class="inline" /> Medium
-            </a>
+            <ExternalButton href="https://www.linkedin.com/in/fgscaglioni/" icon="linkedin" label="LinkedIn" />
+            <ExternalButton href="https://github.com/fgscaglioni/" icon="github" label="GitHub" />
+            <ExternalButton href="https://medium.com/@fgscaglioni" icon="medium" label="Medium" />
           </div>
         </div>
       </div>
@@ -154,9 +135,7 @@ const latestPosts = publishedPosts(await getCollection("blog"), { indexableOnly:
                   <>
                     <span class="text-ink-2">·</span>
                     {post.data.tags.slice(0, 2).map((tag) => (
-                      <span class="font-mono text-[11px] px-2 py-0.5 border border-rule bg-paper-3 text-ink-2 uppercase tracking-wider">
-                        {tag}
-                      </span>
+                      <TagPill {tag} />
                     ))}
                   </>
                 )}

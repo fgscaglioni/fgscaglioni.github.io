@@ -9,6 +9,17 @@ export interface ChangeLogEntry {
 export const changelogData: ChangeLogEntry[] = [
   {
     date: "27/11/2026",
+    version: "v2.10.1",
+    title: "Blocos repetidos viraram três componentes",
+    description: "Pílula de tag, botão externo e botão de ícone do cabeçalho agora vivem cada um num componente só: mesmo padrão visual em todas as páginas, sem cópia espalhada.",
+    changes: [
+      "Novo TagPill: a pílula de tag (link ou chip estático) aparece em 5 arquivos com a mesma classe copiada; agora é um componente em src/components/TagPill.astro, usado em PostCard, posts relacionados, home, pesquisa e portfólio.",
+      "Novo ExternalButton: os três botões sociais da home (LinkedIn, GitHub, Medium) eram o mesmo bloco repetido três vezes.",
+      "Novo IconButton: os botões de tema e o atalho de busca do cabeçalho (desktop e mobile) compartilham um componente com 44px e o mesmo hover.",
+    ],
+  },
+  {
+    date: "27/11/2026",
     version: "v2.10.0",
     title: "Leitura maior: corpo dos posts em 16px, metadados em 11px",
     description: "O texto dos posts saiu de 14px para 16px e os metadados (datas, tags, rótulos) de 10px para 11px. O contraste já passava em AA nos dois temas; o que faltava era tamanho de leitura.",

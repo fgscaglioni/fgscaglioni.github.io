@@ -1,0 +1,21 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  href: string;
+  icon: string;
+  label: string;
+}
+
+const { href, icon, label } = Astro.props;
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="flex items-center gap-2 px-3 py-1.5 border border-rule bg-paper-3 hover:bg-paper-2 hover:text-ink text-xs font-bold uppercase tracking-wider transition-colors duration-150"
+>
+  <Icon name={icon} size={16} class="inline" />
+  {label}
+</a>

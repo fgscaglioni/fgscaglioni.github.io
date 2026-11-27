@@ -1,0 +1,25 @@
+---
+/**
+ * Botão/ícone do cabeçalho: 44px, mesmo hover, mesmo raio zero.
+ * Com `href`, vira link; sem `href`, vira botão (a navbar liga por id).
+ */
+interface Props {
+  label: string;
+  href?: string;
+  id?: string;
+  class?: string;
+}
+
+const { label, href, id, class: className = "" } = Astro.props;
+const classes = `w-11 h-11 flex items-center justify-center text-ink-2 hover:text-ink hover:bg-paper-3 transition-colors duration-150 ${className}`;
+---
+
+{href ? (
+  <a href={href} class={classes} aria-label={label}>
+    <slot />
+  </a>
+) : (
+  <button id={id} type="button" class={classes} aria-label={label}>
+    <slot />
+  </button>
+)}
