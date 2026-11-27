@@ -5,6 +5,7 @@ import Icon from "../components/Icon.astro";
 import ExternalButton from "../components/ExternalButton.astro";
 import TagPill from "../components/TagPill.astro";
 import StackList from "../components/StackList.astro";
+import SectionHeader from "../components/SectionHeader.astro";
 import BulletItem from "../components/BulletItem.astro";
 import { getCollection } from "astro:content";
 import { publishedPosts } from "../utils/posts";
@@ -65,7 +66,7 @@ const latestPosts = publishedPosts(await getCollection("blog"), { indexableOnly:
     <!-- About + Technical Approach: cada coluna abre com o proprio fio -->
     <div class="grid md:grid-cols-2 gap-x-10">
       <section class="section">
-        <h2 class="text-h2 font-display text-ink">Sobre mim</h2>
+        <SectionHeader title="Sobre mim" />
         <ul class="space-y-3">
           <BulletItem><strong class="text-ink font-medium">+15 anos</strong> atuando em
               todo o ciclo de desenvolvimento — planejamento, arquitetura, frontend
@@ -82,7 +83,7 @@ const latestPosts = publishedPosts(await getCollection("blog"), { indexableOnly:
       </section>
 
       <section class="section">
-        <h2 class="text-h2 font-display text-ink">Habilidades</h2>
+        <SectionHeader title="Habilidades" />
         <ul class="space-y-3">
           <BulletItem><strong class="text-ink font-medium"
                 >Arquitetura de Software</strong
@@ -100,7 +101,7 @@ const latestPosts = publishedPosts(await getCollection("blog"), { indexableOnly:
 
     <!-- Stack Section -->
     <section class="section">
-      <h2 class="text-h2 font-display text-ink">Stack</h2>
+      <SectionHeader title="Stack" />
       <StackList />
     </section>
 
@@ -108,7 +109,7 @@ const latestPosts = publishedPosts(await getCollection("blog"), { indexableOnly:
     {latestPosts.length > 0 && (
       <section class="section">
         <div class="flex items-baseline justify-between gap-4">
-          <h2 class="text-h2 font-display text-ink">Últimos Artigos</h2>
+          <SectionHeader title="Últimos Artigos" />
           <a
             href="/blog"
             data-astro-prefetch
@@ -153,7 +154,7 @@ const latestPosts = publishedPosts(await getCollection("blog"), { indexableOnly:
     <!-- Education + Languages -->
     <div class="grid md:grid-cols-2 gap-x-10">
       <section class="section">
-        <h2 class="text-h2 font-display text-ink">Formação Acadêmica</h2>
+        <SectionHeader title="Formação Acadêmica" />
         <div class="space-y-4">
           {
             [
@@ -225,7 +226,7 @@ const latestPosts = publishedPosts(await getCollection("blog"), { indexableOnly:
 
       <div>
         <section class="section">
-          <h2 class="text-h2 font-display text-ink">Idiomas</h2>
+          <SectionHeader title="Idiomas" />
           <div class="divide-y divide-rule">
             {
               [
@@ -248,7 +249,7 @@ const latestPosts = publishedPosts(await getCollection("blog"), { indexableOnly:
         </section>
 
         <section class="section">
-          <h2 class="text-h2 font-display text-ink">Certificações</h2>
+          <SectionHeader title="Certificações" />
           <div class="space-y-3">
             {
               [

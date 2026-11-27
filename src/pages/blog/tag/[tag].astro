@@ -1,9 +1,9 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Navbar from "../../../components/Navbar.astro";
-import TagFilter from "../../../components/TagFilter.astro";
+import BlogToolbar from "../../../components/BlogToolbar.astro";
 import BlogIntro from "../../../components/BlogIntro.astro";
-import SearchBar from "../../../components/SearchBar.astro";
+
 import PostCard from "../../../components/PostCard.astro";
 import { getCollection } from "astro:content";
 import { slugifyTag, tagSlugMap } from "../../../utils/tags";
@@ -56,11 +56,7 @@ const posts = allPosts.filter((post) =>
       <BlogIntro />
     </section>
 
-    <section class="section">
-      <SearchBar />
-
-      <TagFilter {allTags} {posts} activeTag={tag} />
-    </section>
+    <BlogToolbar {allTags} {posts} activeTag={tag} />
 
     <div>
       {posts.length === 0 && (

@@ -9,6 +9,16 @@ export interface ChangeLogEntry {
 export const changelogData: ChangeLogEntry[] = [
   {
     date: "27/11/2026",
+    version: "v2.10.2",
+    title: "Títulos de seção e busca do blog em componentes",
+    description: "Os títulos de seção da home e da pesquisa passaram a usar o SectionHeader que já existia, e a barra de busca + filtros do blog virou um componente só.",
+    changes: [
+      "Dez títulos crus (Sobre mim, Habilidades, Linhas de Investigação, Publicações Acadêmicas etc.) trocados pelo SectionHeader: o espaçamento abaixo dos títulos passa a ser o mesmo em todas as seções.",
+      "Novo BlogToolbar: a seção com busca e filtro de tags era repetida igualzinha nas páginas do blog e de tag; agora é um componente em src/components/BlogToolbar.astro.",
+    ],
+  },
+  {
+    date: "27/11/2026",
     version: "v2.10.1",
     title: "Blocos repetidos viraram três componentes",
     description: "Pílula de tag, botão externo e botão de ícone do cabeçalho agora vivem cada um num componente só: mesmo padrão visual em todas as páginas, sem cópia espalhada.",

@@ -1,0 +1,19 @@
+---
+import SearchBar from "./SearchBar.astro";
+import TagFilter from "./TagFilter.astro";
+import type { BlogPost } from "../utils/posts";
+
+interface Props {
+  allTags: string[];
+  posts: BlogPost[];
+  activeTag?: string;
+}
+
+const { allTags, posts, activeTag } = Astro.props;
+---
+
+<section class="section">
+  <SearchBar />
+
+  <TagFilter {allTags} {posts} {activeTag} />
+</section>

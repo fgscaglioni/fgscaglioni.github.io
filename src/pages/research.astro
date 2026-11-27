@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
 import { publications, theses } from "../data/researchData";
 import PageHeader from "../components/PageHeader.astro";
+import SectionHeader from "../components/SectionHeader.astro";
 import BulletItem from "../components/BulletItem.astro";
 import AuthorList from "../components/AuthorList.astro";
 import TagPill from "../components/TagPill.astro";
@@ -19,9 +20,7 @@ import TagPill from "../components/TagPill.astro";
 
     <!-- Research Lines -->
     <section class="section section-first">
-      <h2 class="text-h2 font-display text-ink">
-        Linhas de Investigação
-      </h2>
+      <SectionHeader title="Linhas de Investigação" />
       <p class="text-ink-2 text-sm leading-relaxed mb-4">
         Atualmente conduzo pesquisas no <strong class="text-ink">Doutorado em Ciência da Computação (UFPel)</strong> focadas na intersecção entre <strong class="text-ink">Inteligência Artificial</strong> e <strong class="text-ink">Educação</strong>, abordando principalmente:
       </p>
@@ -33,9 +32,7 @@ import TagPill from "../components/TagPill.astro";
 
     <!-- Publications List -->
     <section class="section">
-      <h2 class="text-h2 font-display text-ink">
-        Publicações Acadêmicas
-      </h2>
+      <SectionHeader title="Publicações Acadêmicas" />
       <div class="space-y-8 pt-8">
         {
           publications.map((pub, i) => (
@@ -93,7 +90,7 @@ import TagPill from "../components/TagPill.astro";
     {
       theses.length > 0 && (
         <section class="section">
-          <h2 class="text-h2 font-display text-ink">Trabalhos de Conclusão</h2>
+          <SectionHeader title="Trabalhos de Conclusão" />
           <div class="space-y-6 pt-8">
             {theses.map((t) => (
               <div>
