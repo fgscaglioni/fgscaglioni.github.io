@@ -61,7 +61,7 @@ const updated = post.data.updated || post.data.pubDate;
     </a>
     <article class="section">
       <div class="mb-8">
-        <span class="font-mono text-[10px] text-ink-2 uppercase tracking-widest block mb-2">
+        <span class="font-mono text-[11px] text-ink-2 uppercase tracking-widest block mb-2">
           <time datetime={post.data.pubDate.toISOString()}>
             {formatPostDate(post.data.pubDate)}
           </time>
@@ -77,7 +77,7 @@ const updated = post.data.updated || post.data.pubDate;
               <a
                 href={`/blog/tag/${slugifyTag(tag)}`}
                 data-astro-prefetch
-                class="inline-flex items-center justify-center min-h-[44px] font-mono text-[10px] px-2 py-0.5 border border-rule bg-paper-3 text-ink-2 hover:bg-rule hover:text-ink uppercase tracking-wider transition-colors"
+                class="inline-flex items-center justify-center min-h-[44px] font-mono text-[11px] px-2 py-0.5 border border-rule bg-paper-3 text-ink-2 hover:bg-rule hover:text-ink uppercase tracking-wider transition-colors"
               >
                 {tag}
               </a>
@@ -87,13 +87,13 @@ const updated = post.data.updated || post.data.pubDate;
         <h1 class="text-3xl sm:text-4xl font-display text-ink leading-tight mb-4">
           {post.data.title}
         </h1>
-        <p class="text-ink-2 text-sm italic font-light">
+        <p class="text-ink-2 text-base italic font-light">
           {post.data.description}
         </p>
       </div>
 
       <!-- Article Content -->
-      <div class="prose max-w-none text-ink-2 text-sm leading-relaxed space-y-5
+      <div class="prose max-w-none text-ink-2 text-base leading-relaxed space-y-5
         prose-headings:font-display prose-headings:text-ink
         prose-h2:text-xl prose-h2:border-b prose-h2:border-rule prose-h2:pb-2 prose-h2:mt-8
         prose-p:leading-relaxed
@@ -114,14 +114,14 @@ const updated = post.data.updated || post.data.pubDate;
           {related.map(({ post: p }) => (
             <a href={`/blog/${p.id}`} data-astro-prefetch class="block group border-t border-rule pt-5">
               <div class="flex items-center gap-2 mb-2">
-                  <span class="font-mono text-[10px] text-ink-2 uppercase tracking-widest">
+                  <span class="font-mono text-[11px] text-ink-2 uppercase tracking-widest">
                     {formatPostDate(p.data.pubDate, "short")}
                   </span>
                   {p.data.tags && p.data.tags.length > 0 && (
                     <>
                       <span class="text-ink-2">·</span>
                       {p.data.tags.slice(0, 2).map((t) => (
-                        <span class="font-mono text-[10px] px-2 py-0.5 border border-rule bg-paper-3 text-ink-2 uppercase tracking-wider">
+                        <span class="font-mono text-[11px] px-2 py-0.5 border border-rule bg-paper-3 text-ink-2 uppercase tracking-wider">
                           {t}
                         </span>
                       ))}

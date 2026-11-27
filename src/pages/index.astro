@@ -146,7 +146,7 @@ const latestPosts = publishedPosts(await getCollection("blog"), { indexableOnly:
               <div class="flex items-center gap-2 mb-2">
                 <time
                   datetime={post.data.pubDate.toISOString()}
-                  class="font-mono text-[10px] text-ink-2 uppercase tracking-widest"
+                  class="font-mono text-[11px] text-ink-2 uppercase tracking-widest"
                 >
                   {formatPostDate(post.data.pubDate, "short")}
                 </time>
@@ -154,7 +154,7 @@ const latestPosts = publishedPosts(await getCollection("blog"), { indexableOnly:
                   <>
                     <span class="text-ink-2">·</span>
                     {post.data.tags.slice(0, 2).map((tag) => (
-                      <span class="font-mono text-[10px] px-2 py-0.5 border border-rule bg-paper-3 text-ink-2 uppercase tracking-wider">
+                      <span class="font-mono text-[11px] px-2 py-0.5 border border-rule bg-paper-3 text-ink-2 uppercase tracking-wider">
                         {tag}
                       </span>
                     ))}

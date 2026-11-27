@@ -9,6 +9,16 @@ export interface ChangeLogEntry {
 export const changelogData: ChangeLogEntry[] = [
   {
     date: "27/11/2026",
+    version: "v2.10.0",
+    title: "Leitura maior: corpo dos posts em 16px, metadados em 11px",
+    description: "O texto dos posts saiu de 14px para 16px e os metadados (datas, tags, rótulos) de 10px para 11px. O contraste já passava em AA nos dois temas; o que faltava era tamanho de leitura.",
+    changes: [
+      "Corpo dos posts e descrição em text-base (16px), em vez de text-sm (14px): a base do site já era 17px, e o artigo ficava abaixo dela.",
+      "Datas, tags e rótulos em text-[11px] em vez de text-[10px], em todas as páginas. Os tamanhos de 11px não mudam.",
+    ],
+  },
+  {
+    date: "27/11/2026",
     version: "v2.9.0",
     title: "Lote do conselho: portão de deploy, busca, privacidade e rótulos",
     description: "Sete frentes do conselho de produto aplicadas: deploy com teste bloqueante, atalho de busca no cabeçalho, página de privacidade, alvos de toque de 44px, rótulos desambiguados, schema apertado e baseline de performance.",

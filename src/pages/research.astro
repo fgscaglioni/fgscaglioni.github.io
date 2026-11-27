@@ -40,11 +40,11 @@ import AuthorList from "../components/AuthorList.astro";
           publications.map((pub, i) => (
             <div class:list={[i > 0 && "border-t border-rule pt-8"]}>
               <div class="mb-4">
-                <span class="font-mono text-[10px] px-2 py-0.5 border border-rule text-ink-2 uppercase tracking-widest bg-paper-3 inline-block mb-2">
+                <span class="font-mono text-[11px] px-2 py-0.5 border border-rule text-ink-2 uppercase tracking-widest bg-paper-3 inline-block mb-2">
                   {pub.year}
                 </span>
                 {pub.role === "coautor" && (
-                  <span class="font-mono text-[10px] px-2 py-0.5 border border-rule text-ink-3 uppercase tracking-widest inline-block mb-2 ml-1">
+                  <span class="font-mono text-[11px] px-2 py-0.5 border border-rule text-ink-3 uppercase tracking-widest inline-block mb-2 ml-1">
                     Coautor
                   </span>
                 )}
@@ -100,7 +100,7 @@ import AuthorList from "../components/AuthorList.astro";
           <div class="space-y-6 pt-8">
             {theses.map((t) => (
               <div>
-                <span class="font-mono text-[10px] px-2 py-0.5 border border-rule text-ink-2 uppercase tracking-widest bg-paper-3 inline-block mb-2">
+                <span class="font-mono text-[11px] px-2 py-0.5 border border-rule text-ink-2 uppercase tracking-widest bg-paper-3 inline-block mb-2">
                   {t.year}
                 </span>
                 <span class="block text-ink-2 text-[11px] font-bold uppercase tracking-wider font-mono mb-2">
