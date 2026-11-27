@@ -9,6 +9,15 @@ export interface ChangeLogEntry {
 export const changelogData: ChangeLogEntry[] = [
   {
     date: "27/11/2026",
+    version: "v2.11.0",
+    title: "Teleprompter entra no portfólio",
+    description: "A página de portfólio ganhou o Teleprompter, projeto pessoal de roteiros e gravação no navegador, com detalhes de stack e funcionamento.",
+    changes: [
+      "Novo projeto no portfólio: Teleprompter (Svelte, TypeScript, Vite, Firebase Hosting), com roteiros em localStorage, exportação em JSON/JSONL, gravação em MP4/WebM e CTA de doação via Ko-fi.",
+    ],
+  },
+  {
+    date: "27/11/2026",
     version: "v2.10.2",
     title: "Títulos de seção e busca do blog em componentes",
     description: "Os títulos de seção da home e da pesquisa passaram a usar o SectionHeader que já existia, e a barra de busca + filtros do blog virou um componente só.",

@@ -10,6 +10,22 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    year: "2026",
+    client: "Projeto pessoal",
+    name: "Teleprompter",
+    url: null,
+    stack: ["Svelte", "TypeScript", "Vite", "Firebase Hosting"],
+    summary:
+      "Teleprompter gratuito no navegador: roteiros salvos localmente, leitura com rolagem automática e gravação com a câmera. Publicado com Firebase Hosting, sem cadastro e sem retenção de dados.",
+    bullets: [
+      "Roteiros em localStorage, com exportação e importação em JSON e JSONL",
+      "Rolagem automática com velocidade e tamanho de fonte ajustáveis, modo espelho e cronômetro",
+      "Gravação com MediaRecorder (MP4 quando o navegador suporta, WebM como alternativa) e download do vídeo",
+      "CTA de doação via Ko-fi ao concluir uma leitura ou uma gravação, uma vez por sessão",
+      "Analytics GA4 opcional (gtag) com eventos de tela, leitura, gravação e tempo de tela",
+    ],
+  },
+  {
     year: "2018",
     client: "Partamon",
     name: "Lookpest",
